@@ -1,0 +1,33 @@
+/// Centralized route names for SmartShop AI.
+///
+/// Keeping routes in one place avoids hard-coded strings
+/// throughout the application.
+class AppRoutes {
+  AppRoutes._();
+
+  static const String splash = '/';
+
+  //static const String login = '/login';
+
+  static const String dashboard = '/dashboard';
+
+  static const String products = '/products';
+
+  static const String inventory = '/inventory';
+
+  static const String sales = '/sales';
+
+  static const String customers = '/customers';
+
+  static const String suppliers = '/suppliers';
+
+  static const String reports = '/reports';
+
+  static const String analytics = '/analytics';
+
+  static const String notifications = '/notifications';
+
+  static const String settings = '/settings';
+
+  static const String profile = '/profile';
+}
