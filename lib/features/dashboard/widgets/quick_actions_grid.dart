@@ -72,11 +72,29 @@ class QuickActionsGrid extends StatelessWidget {
         ),
 
         QuickActionCard(
+          title: 'Expenses',
+          icon: Icons.receipt_long,
+          color: Colors.red,
+          onTap: () {
+            context.push(AppRoutes.expenses);
+          },
+        ),
+
+        QuickActionCard(
           title: 'Sales',
           icon: Icons.point_of_sale_rounded,
           color: Colors.green,
           onTap: () {
             context.push(AppRoutes.sales);
+          },
+        ),
+
+        QuickActionCard(
+          title: 'Reports',
+          icon: Icons.analytics,
+          color: Colors.deepPurple,
+          onTap: () {
+            context.push(AppRoutes.reports);
           },
         ),
       ],

@@ -39,7 +39,19 @@ import '../../features/sales/controllers/sale_form_controller.dart';
 
 import '../../features/dashboard/screens/dashboard_screen.dart';
 import '../../features/splash/presentation/pages/splash_page.dart';
+import '../../features/expenses/screens/expense_list_screen.dart';
+import '../../features/expenses/screens/add_expense_screen.dart';
+import '../../features/expenses/screens/expense_details_screen.dart';
+import '../../features/expenses/screens/edit_expense_screen.dart';
 
+import '../../features/reports/screens/reports_dashboard_screen.dart';
+import '../../features/reports/screens/sales_report_screen.dart';
+import '../../features/reports/screens/inventory_report_screen.dart';
+import '../../features/reports/screens/purchase_report_screen.dart';
+import '../../features/reports/screens/expense_report_screen.dart';
+import '../../features/reports/screens/customer_report_screen.dart';
+import '../../features/reports/screens/supplier_report_screen.dart';
+import '../../features/reports/screens/financial_report_screen.dart';
 import 'app_routes.dart';
 
 final GoRouter appRouter = GoRouter(
@@ -267,6 +279,90 @@ final GoRouter appRouter = GoRouter(
           },
         ),
       ],
+    ),
+
+    // ---------------------------------------------------------------------------
+    // Expenses
+    // ---------------------------------------------------------------------------
+
+    GoRoute(
+      path: AppRoutes.expenses,
+      builder: (context, state) =>
+          const ExpenseListScreen(),
+    ),
+
+    GoRoute(
+      path: AppRoutes.addExpense,
+      builder: (context, state) =>
+          const AddExpenseScreen(),
+    ),
+
+    GoRoute(
+      path: '/expenses/:id',
+      builder: (context, state) =>
+          ExpenseDetailsScreen(
+        expenseId: state.pathParameters['id']!,
+      ),
+    ),
+
+    GoRoute(
+      path: '/expenses/:id/edit',
+      builder: (context, state) =>
+          EditExpenseScreen(
+        expenseId: state.pathParameters['id']!,
+      ),
+    ),
+
+    //---------------------------------------------------------------------------
+    // Reports
+    //---------------------------------------------------------------------------
+
+    GoRoute(
+      path: AppRoutes.reports,
+      builder: (_, _) =>
+          const ReportsDashboardScreen(),
+    ),
+
+    GoRoute(
+      path: AppRoutes.salesReport,
+      builder: (_,_) =>
+          const SalesReportScreen(),
+    ),
+
+    GoRoute(
+      path: AppRoutes.inventoryReport,
+      builder: (_, _) =>
+          const InventoryReportScreen(),
+    ),
+
+    GoRoute(
+      path: AppRoutes.purchaseReport,
+      builder: (_, _) =>
+          const PurchaseReportScreen(),
+    ),
+
+    GoRoute(
+      path: AppRoutes.expenseReport,
+      builder: (_, _) =>
+          const ExpenseReportScreen(),
+    ),
+
+    GoRoute(
+      path: AppRoutes.customerReport,
+      builder: (_, _) =>
+          const CustomerReportScreen(),
+    ),
+
+    GoRoute(
+      path: AppRoutes.supplierReport,
+      builder: (_, _) =>
+          const SupplierReportScreen(),
+    ),
+
+    GoRoute(
+      path: AppRoutes.financialReport,
+      builder: (_, _) =>
+          const FinancialReportScreen(),
     ),
   ],
 );
