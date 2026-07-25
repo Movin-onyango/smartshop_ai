@@ -23,20 +23,15 @@ import '../widgets/form/category_form.dart';
 /// • Handle Cancel
 /// ---------------------------------------------------------------------------
 class EditCategoryScreen extends StatefulWidget {
-  const EditCategoryScreen({
-    super.key,
-    required this.categoryId,
-  });
+  const EditCategoryScreen({super.key, required this.categoryId});
 
   final String categoryId;
 
   @override
-  State<EditCategoryScreen> createState() =>
-      _EditCategoryScreenState();
+  State<EditCategoryScreen> createState() => _EditCategoryScreenState();
 }
 
-class _EditCategoryScreenState
-    extends State<EditCategoryScreen> {
+class _EditCategoryScreenState extends State<EditCategoryScreen> {
   late final CategoryFormController controller;
 
   bool _initialized = false;
@@ -59,8 +54,7 @@ class _EditCategoryScreenState
 
     if (category != null) {
       controller.nameController.text = category.name;
-      controller.descriptionController.text =
-          category.description ?? '';
+      controller.descriptionController.text = category.description ?? '';
       controller.color = category.color;
       controller.icon = category.icon;
     }
@@ -77,27 +71,18 @@ class _EditCategoryScreenState
   void _updateCategory() {
     if (!controller.isValid) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text(
-            'Please enter a category name.',
-          ),
-        ),
+        const SnackBar(content: Text('Please enter a category name.')),
       );
       return;
     }
 
-    context.read<CategoryProvider>()
-        .updateCategoryFromController(
-          widget.categoryId,
-          controller,
-        );
+    context.read<CategoryProvider>().updateCategoryFromController(
+      widget.categoryId,
+      controller,
+    );
 
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text(
-          'Category updated successfully.',
-        ),
-      ),
+      const SnackBar(content: Text('Category updated successfully.')),
     );
 
     context.pop();

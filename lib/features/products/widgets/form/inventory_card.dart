@@ -23,10 +23,7 @@ import '../../controllers/product_form_controller.dart';
 /// Business state is managed entirely by [ProductFormController].
 /// ---------------------------------------------------------------------------
 class InventoryCard extends StatelessWidget {
-  const InventoryCard({
-    super.key,
-    required this.controller,
-  });
+  const InventoryCard({super.key, required this.controller});
 
   /// Shared product form controller.
   final ProductFormController controller;
@@ -70,8 +67,7 @@ class InventoryCard extends StatelessWidget {
 
           AppSwitchField(
             title: 'Low Stock Alerts',
-            subtitle:
-                'Notify when stock falls below the reorder level.',
+            subtitle: 'Notify when stock falls below the reorder level.',
             value: controller.lowStockAlerts,
             onChanged: controller.setLowStockAlerts,
           ),

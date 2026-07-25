@@ -21,20 +21,15 @@ import '../widgets/form/expense_payment_card.dart';
 /// Edit an existing expense.
 /// ---------------------------------------------------------------------------
 class EditExpenseScreen extends StatefulWidget {
-  const EditExpenseScreen({
-    super.key,
-    required this.expenseId,
-  });
+  const EditExpenseScreen({super.key, required this.expenseId});
 
   final String expenseId;
 
   @override
-  State<EditExpenseScreen> createState() =>
-      _EditExpenseScreenState();
+  State<EditExpenseScreen> createState() => _EditExpenseScreenState();
 }
 
-class _EditExpenseScreenState
-    extends State<EditExpenseScreen> {
+class _EditExpenseScreenState extends State<EditExpenseScreen> {
   late Expense expense;
 
   late ExpenseFormController controller;
@@ -51,14 +46,9 @@ class _EditExpenseScreenState
       return;
     }
 
-    expense = context
-        .read<ExpenseProvider>()
-        .findById(widget.expenseId)!;
+    expense = context.read<ExpenseProvider>().findById(widget.expenseId)!;
 
-    controller =
-        ExpenseFormController.fromExpense(
-      expense,
-    );
+    controller = ExpenseFormController.fromExpense(expense);
 
     _initialized = true;
   }
@@ -78,15 +68,12 @@ class _EditExpenseScreenState
       isSaving = true;
     });
 
-    await context
-        .read<ExpenseProvider>()
-        .updateExpense(
-          controller.toExpense(
-            id: expense.id,
-            expenseNumber:
-                expense.expenseNumber,
-          ),
-        );
+    await context.read<ExpenseProvider>().updateExpense(
+      controller.toExpense(
+        id: expense.id,
+        expenseNumber: expense.expenseNumber,
+      ),
+    );
 
     if (!mounted) return;
 
@@ -104,25 +91,15 @@ class _EditExpenseScreenState
           body: Form(
             key: controller.formKey,
             child: ListView(
-              padding:
-                  const EdgeInsets.all(16),
+              padding: const EdgeInsets.all(16),
               children: [
                 ExpenseInformationCard(
-                  titleController:
-                      controller
-                          .titleController,
-                  vendorController:
-                      controller
-                          .vendorController,
-                  category:
-                      controller.category,
-                  onCategoryChanged:
-                      (value) {
+                  titleController: controller.titleController,
+                  vendorController: controller.vendorController,
+                  category: controller.category,
+                  onCategoryChanged: (value) {
                     if (value != null) {
-                      controller
-                          .setCategory(
-                        value,
-                      );
+                      controller.setCategory(value);
                     }
                   },
                 ),
@@ -130,65 +107,39 @@ class _EditExpenseScreenState
                 const SizedBox(height: 24),
 
                 ExpensePaymentCard(
-                  amountController:
-                      controller
-                          .amountController,
-                  taxController:
-                      controller
-                          .taxController,
-                  paymentMethodController:
-                      controller
-                          .paymentMethodController,
-                  status:
-                      controller.status,
-                  onStatusChanged:
-                      (value) {
+                  amountController: controller.amountController,
+                  taxController: controller.taxController,
+                  paymentMethodController: controller.paymentMethodController,
+                  status: controller.status,
+                  onStatusChanged: (value) {
                     if (value != null) {
-                      controller
-                          .setStatus(
-                        value,
-                      );
+                      controller.setStatus(value);
                     }
                   },
-                  expenseDate:
-                      controller
-                          .expenseDate,
-                  dueDate:
-                      controller.dueDate,
-                  onExpenseDateTap:
-                      () {},
-                  onDueDateTap:
-                      () {},
+                  expenseDate: controller.expenseDate,
+                  dueDate: controller.dueDate,
+                  onExpenseDateTap: () {},
+                  onDueDateTap: () {},
                 ),
 
                 const SizedBox(height: 24),
 
                 ExpenseAttachmentCard(
-                  attachment:
-                      controller
-                          .attachment,
+                  attachment: controller.attachment,
                   onAttach: () {},
                   onRemove: () {
-                    controller
-                        .setAttachment(
-                      null,
-                    );
+                    controller.setAttachment(null);
                   },
                 ),
 
                 const SizedBox(height: 24),
 
-                ExpenseNotesCard(
-                  notesController:
-                      controller
-                          .notesController,
-                ),
+                ExpenseNotesCard(notesController: controller.notesController),
 
                 const SizedBox(height: 32),
 
                 ExpenseActions(
-                  isLoading:
-                      isSaving,
+                  isLoading: isSaving,
                   isEditing: true,
                   onSave: _save,
                   onCancel: () {

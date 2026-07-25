@@ -9,10 +9,7 @@ import '../../controllers/customer_form_controller.dart';
 /// Displays the primary customer information.
 /// ---------------------------------------------------------------------------
 class CustomerInformationCard extends StatelessWidget {
-  const CustomerInformationCard({
-    super.key,
-    required this.controller,
-  });
+  const CustomerInformationCard({super.key, required this.controller});
 
   final CustomerFormController controller;
 
@@ -22,15 +19,11 @@ class CustomerInformationCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
-          crossAxisAlignment:
-              CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-
             Text(
               'Customer Information',
-              style: Theme.of(context)
-                  .textTheme
-                  .titleLarge,
+              style: Theme.of(context).textTheme.titleLarge,
             ),
 
             const SizedBox(height: 20),
@@ -43,8 +36,7 @@ class CustomerInformationCard extends StatelessWidget {
                 border: OutlineInputBorder(),
               ),
               validator: (value) {
-                if (value == null ||
-                    value.trim().isEmpty) {
+                if (value == null || value.trim().isEmpty) {
                   return 'Customer name is required';
                 }
                 return null;

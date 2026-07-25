@@ -9,10 +9,7 @@ import '../../controllers/customer_form_controller.dart';
 /// Credit settings for the customer.
 /// ---------------------------------------------------------------------------
 class CreditInformationCard extends StatelessWidget {
-  const CreditInformationCard({
-    super.key,
-    required this.controller,
-  });
+  const CreditInformationCard({super.key, required this.controller});
 
   final CustomerFormController controller;
 
@@ -22,24 +19,18 @@ class CreditInformationCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
-          crossAxisAlignment:
-              CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-
             Text(
               'Credit Information',
-              style: Theme.of(context)
-                  .textTheme
-                  .titleLarge,
+              style: Theme.of(context).textTheme.titleLarge,
             ),
 
             const SizedBox(height: 24),
 
             TextFormField(
-              controller:
-                  controller.creditLimitController,
-              keyboardType:
-                  const TextInputType.numberWithOptions(
+              controller: controller.creditLimitController,
+              keyboardType: const TextInputType.numberWithOptions(
                 decimal: true,
               ),
               decoration: const InputDecoration(
@@ -48,8 +39,7 @@ class CreditInformationCard extends StatelessWidget {
                 prefixText: 'KES ',
               ),
               validator: (value) {
-                if (value == null ||
-                    value.trim().isEmpty) {
+                if (value == null || value.trim().isEmpty) {
                   return null;
                 }
 
@@ -65,9 +55,7 @@ class CreditInformationCard extends StatelessWidget {
 
             Text(
               'Leave the credit limit empty or set it to 0 if this customer is not allowed to purchase on credit.',
-              style: Theme.of(context)
-                  .textTheme
-                  .bodySmall,
+              style: Theme.of(context).textTheme.bodySmall,
             ),
           ],
         ),

@@ -33,15 +33,11 @@ class ContactInformationCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
-          crossAxisAlignment:
-              CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-
             Text(
               'Contact Information',
-              style: Theme.of(context)
-                  .textTheme
-                  .titleLarge,
+              style: Theme.of(context).textTheme.titleLarge,
             ),
 
             const SizedBox(height: 20),
@@ -49,17 +45,13 @@ class ContactInformationCard extends StatelessWidget {
             //------------------------------------------------------------------
             // Phone Number
             //------------------------------------------------------------------
-
             TextFormField(
               controller: phoneController,
-              keyboardType:
-                  TextInputType.phone,
+              keyboardType: TextInputType.phone,
               decoration: const InputDecoration(
                 labelText: 'Phone Number',
                 hintText: '+254712345678',
-                prefixIcon: Icon(
-                  Icons.phone_outlined,
-                ),
+                prefixIcon: Icon(Icons.phone_outlined),
                 border: OutlineInputBorder(),
               ),
             ),
@@ -69,18 +61,13 @@ class ContactInformationCard extends StatelessWidget {
             //------------------------------------------------------------------
             // Email
             //------------------------------------------------------------------
-
             TextFormField(
               controller: emailController,
-              keyboardType:
-                  TextInputType.emailAddress,
+              keyboardType: TextInputType.emailAddress,
               decoration: const InputDecoration(
                 labelText: 'Email Address',
-                hintText:
-                    'supplier@example.com',
-                prefixIcon: Icon(
-                  Icons.email_outlined,
-                ),
+                hintText: 'supplier@example.com',
+                prefixIcon: Icon(Icons.email_outlined),
                 border: OutlineInputBorder(),
               ),
             ),
@@ -90,16 +77,12 @@ class ContactInformationCard extends StatelessWidget {
             //------------------------------------------------------------------
             // Tax Number
             //------------------------------------------------------------------
-
             TextFormField(
-              controller:
-                  taxNumberController,
+              controller: taxNumberController,
               decoration: const InputDecoration(
                 labelText: 'Tax Number',
                 hintText: 'KRA PIN / VAT No.',
-                prefixIcon: Icon(
-                  Icons.badge_outlined,
-                ),
+                prefixIcon: Icon(Icons.badge_outlined),
                 border: OutlineInputBorder(),
               ),
             ),
@@ -109,17 +92,12 @@ class ContactInformationCard extends StatelessWidget {
             //------------------------------------------------------------------
             // Payment Terms
             //------------------------------------------------------------------
-
             TextFormField(
-              controller:
-                  paymentTermsController,
+              controller: paymentTermsController,
               decoration: const InputDecoration(
                 labelText: 'Payment Terms',
-                hintText:
-                    'Cash, 30 Days, 60 Days...',
-                prefixIcon: Icon(
-                  Icons.payments_outlined,
-                ),
+                hintText: 'Cash, 30 Days, 60 Days...',
+                prefixIcon: Icon(Icons.payments_outlined),
                 border: OutlineInputBorder(),
               ),
             ),

@@ -91,10 +91,7 @@ class PaymentController extends ChangeNotifier {
   // Build Payment Model
   //---------------------------------------------------------------------------
 
-  Payment buildPayment({
-    String? reference,
-    String? notes,
-  }) {
+  Payment buildPayment({String? reference, String? notes}) {
     return Payment(
       method: _paymentMethod,
       amountPaid: _amountReceived,

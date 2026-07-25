@@ -19,27 +19,21 @@ class SupplierFilterController {
   // Filtering
   //---------------------------------------------------------------------------
 
-  List<Supplier> filter(
-    List<Supplier> suppliers,
-  ) {
+  List<Supplier> filter(List<Supplier> suppliers) {
     return suppliers.where((supplier) {
-      if (showOnlyWithBalance &&
-          supplier.currentBalance <= 0) {
+      if (showOnlyWithBalance && supplier.currentBalance <= 0) {
         return false;
       }
 
-      if (showOnlyWithoutBalance &&
-          supplier.currentBalance > 0) {
+      if (showOnlyWithoutBalance && supplier.currentBalance > 0) {
         return false;
       }
 
-      if (showOnlyOverLimit &&
-          !supplier.isOverLimit) {
+      if (showOnlyOverLimit && !supplier.isOverLimit) {
         return false;
       }
 
-      if (showOnlyWithCredit &&
-          !supplier.hasCredit) {
+      if (showOnlyWithCredit && !supplier.hasCredit) {
         return false;
       }
 

@@ -30,11 +30,9 @@ class ExpenseActionButtons extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-
         //----------------------------------------------------------------------
         // Edit
         //----------------------------------------------------------------------
-
         SizedBox(
           width: double.infinity,
           child: FilledButton.icon(
@@ -49,7 +47,6 @@ class ExpenseActionButtons extends StatelessWidget {
         //----------------------------------------------------------------------
         // Share
         //----------------------------------------------------------------------
-
         if (onShare != null)
           SizedBox(
             width: double.infinity,
@@ -60,39 +57,27 @@ class ExpenseActionButtons extends StatelessWidget {
             ),
           ),
 
-        if (onShare != null)
-          const SizedBox(height: 12),
+        if (onShare != null) const SizedBox(height: 12),
 
         //----------------------------------------------------------------------
         // Delete
         //----------------------------------------------------------------------
-
         SizedBox(
           width: double.infinity,
           child: FilledButton.icon(
-            style: FilledButton.styleFrom(
-              backgroundColor: Colors.red,
-            ),
-            onPressed:
-                isDeleting
-                    ? null
-                    : onDelete,
+            style: FilledButton.styleFrom(backgroundColor: Colors.red),
+            onPressed: isDeleting ? null : onDelete,
             icon: isDeleting
                 ? const SizedBox(
                     height: 18,
                     width: 18,
-                    child:
-                        CircularProgressIndicator(
+                    child: CircularProgressIndicator(
                       strokeWidth: 2,
                       color: Colors.white,
                     ),
                   )
                 : const Icon(Icons.delete),
-            label: Text(
-              isDeleting
-                  ? 'Deleting...'
-                  : 'Delete Expense',
-            ),
+            label: Text(isDeleting ? 'Deleting...' : 'Delete Expense'),
           ),
         ),
       ],

@@ -12,10 +12,7 @@ import '../../models/supplier.dart';
 /// • Supplier Details Screen
 /// ---------------------------------------------------------------------------
 class ContactInformation extends StatelessWidget {
-  const ContactInformation({
-    super.key,
-    required this.supplier,
-  });
+  const ContactInformation({super.key, required this.supplier});
 
   final Supplier supplier;
 
@@ -25,15 +22,11 @@ class ContactInformation extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
-          crossAxisAlignment:
-              CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-
             Text(
               'Contact Information',
-              style: Theme.of(context)
-                  .textTheme
-                  .titleLarge,
+              style: Theme.of(context).textTheme.titleLarge,
             ),
 
             const SizedBox(height: 20),
@@ -95,42 +88,23 @@ class _InfoRow extends StatelessWidget {
     }
 
     return Padding(
-      padding: const EdgeInsets.only(
-        bottom: 16,
-      ),
+      padding: const EdgeInsets.only(bottom: 16),
       child: Row(
-        crossAxisAlignment:
-            CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-
-          Icon(
-            icon,
-            size: 20,
-          ),
+          Icon(icon, size: 20),
 
           const SizedBox(width: 12),
 
           Expanded(
             child: Column(
-              crossAxisAlignment:
-                  CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-
-                Text(
-                  label,
-                  style: Theme.of(context)
-                      .textTheme
-                      .labelMedium,
-                ),
+                Text(label, style: Theme.of(context).textTheme.labelMedium),
 
                 const SizedBox(height: 2),
 
-                Text(
-                  value!,
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyLarge,
-                ),
+                Text(value!, style: Theme.of(context).textTheme.bodyLarge),
               ],
             ),
           ),

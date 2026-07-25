@@ -31,7 +31,6 @@ import '/features/reports/providers/report_provider.dart';
 /// Keeping these responsibilities out of `main.dart` makes the
 /// application easier to maintain and test.
 
-
 /// Bootstraps the SmartShop AI application.
 Future<void> bootstrap() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -45,40 +44,20 @@ Future<void> bootstrap() async {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(
-          create: (_) => DashboardProvider(),
-        ),
+        ChangeNotifierProvider(create: (_) => DashboardProvider()),
 
+        ChangeNotifierProvider(create: (_) => ProductProvider()),
         ChangeNotifierProvider(
-          create: (_) => ProductProvider(),
+          create: (_) => ProductProvider()..loadProducts(),
         ),
-        ChangeNotifierProvider(
-      create: (_) => ProductProvider()..loadProducts(),
-    ),
-    ChangeNotifierProvider(
-     create: (_) => CategoryProvider(),
-    ),
-    ChangeNotifierProvider(
-      create: (_) => InventoryProvider(),
-    ),
-    ChangeNotifierProvider(
-     create: (_) => SalesProvider(),
-   ),
-   ChangeNotifierProvider(
-     create: (_) => CustomerProvider(),
-   ),
-   ChangeNotifierProvider(
-     create: (_) => SupplierProvider(),
-   ),
-   ChangeNotifierProvider(
-    create: (_) => PurchaseProvider(),
-   ),
-   ChangeNotifierProvider(
-    create: (_) => ExpenseProvider(),
-   ),
-   ChangeNotifierProvider(
-  create: (_) => ReportProvider(),
-),
+        ChangeNotifierProvider(create: (_) => CategoryProvider()),
+        ChangeNotifierProvider(create: (_) => InventoryProvider()),
+        ChangeNotifierProvider(create: (_) => SalesProvider()),
+        ChangeNotifierProvider(create: (_) => CustomerProvider()),
+        ChangeNotifierProvider(create: (_) => SupplierProvider()),
+        ChangeNotifierProvider(create: (_) => PurchaseProvider()),
+        ChangeNotifierProvider(create: (_) => ExpenseProvider()),
+        ChangeNotifierProvider(create: (_) => ReportProvider()),
       ],
       child: const SmartShopApp(),
     ),

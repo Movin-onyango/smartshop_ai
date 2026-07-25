@@ -23,13 +23,8 @@ class SalesRepository {
     Sale(
       id: '1',
       invoiceNumber: 'INV-1001',
-      saleDate: DateTime.now().subtract(
-        const Duration(hours: 2),
-      ),
-      payment: const Payment(
-        method: PaymentMethod.cash,
-        amountPaid: 270,
-      ),
+      saleDate: DateTime.now().subtract(const Duration(hours: 2)),
+      payment: const Payment(method: PaymentMethod.cash, amountPaid: 270),
       items: [
         SaleItem(
           id: '1',
@@ -49,9 +44,7 @@ class SalesRepository {
     Sale(
       id: '2',
       invoiceNumber: 'INV-1002',
-      saleDate: DateTime.now().subtract(
-        const Duration(days: 1),
-      ),
+      saleDate: DateTime.now().subtract(const Duration(days: 1)),
       payment: const Payment(
         method: PaymentMethod.mpesa,
         amountPaid: 150,
@@ -72,14 +65,11 @@ class SalesRepository {
   // CRUD
   //---------------------------------------------------------------------------
 
-  static List<Sale> getAll() =>
-      List.unmodifiable(_sales);
+  static List<Sale> getAll() => List.unmodifiable(_sales);
 
   static Sale? getById(String id) {
     try {
-      return _sales.firstWhere(
-        (sale) => sale.id == id,
-      );
+      return _sales.firstWhere((sale) => sale.id == id);
     } catch (_) {
       return null;
     }
@@ -90,9 +80,7 @@ class SalesRepository {
   }
 
   static void update(Sale sale) {
-    final index = _sales.indexWhere(
-      (s) => s.id == sale.id,
-    );
+    final index = _sales.indexWhere((s) => s.id == sale.id);
 
     if (index != -1) {
       _sales[index] = sale;
@@ -100,9 +88,7 @@ class SalesRepository {
   }
 
   static void delete(String id) {
-    _sales.removeWhere(
-      (sale) => sale.id == id,
-    );
+    _sales.removeWhere((sale) => sale.id == id);
   }
 
   //---------------------------------------------------------------------------
@@ -142,12 +128,8 @@ class SalesRepository {
     }
 
     return _sales.where((sale) {
-      return sale.invoiceNumber
-              .toLowerCase()
-              .contains(q) ||
-          (sale.customerName ?? '')
-              .toLowerCase()
-              .contains(q);
+      return sale.invoiceNumber.toLowerCase().contains(q) ||
+          (sale.customerName ?? '').toLowerCase().contains(q);
     }).toList();
   }
 
@@ -156,17 +138,11 @@ class SalesRepository {
   //---------------------------------------------------------------------------
 
   static double totalRevenue() {
-    return _sales.fold(
-      0,
-      (sum, sale) => sum + sale.subtotal,
-    );
+    return _sales.fold(0, (sum, sale) => sum + sale.subtotal);
   }
 
   static double totalProfit() {
-    return _sales.fold(
-      0,
-      (sum, sale) => sum + sale.profit,
-    );
+    return _sales.fold(0, (sum, sale) => sum + sale.profit);
   }
 
   static int totalTransactions() {

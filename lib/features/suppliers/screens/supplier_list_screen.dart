@@ -24,13 +24,10 @@ class SupplierListScreen extends StatefulWidget {
   const SupplierListScreen({super.key});
 
   @override
-  State<SupplierListScreen> createState() =>
-      _SupplierListScreenState();
+  State<SupplierListScreen> createState() => _SupplierListScreenState();
 }
 
-class _SupplierListScreenState
-    extends State<SupplierListScreen> {
-
+class _SupplierListScreenState extends State<SupplierListScreen> {
   bool _initialized = false;
 
   @override
@@ -39,27 +36,21 @@ class _SupplierListScreenState
 
     if (_initialized) return;
 
-    context
-        .read<SupplierProvider>()
-        .loadSuppliers();
+    context.read<SupplierProvider>().loadSuppliers();
 
     _initialized = true;
   }
 
   @override
   Widget build(BuildContext context) {
-    final provider =
-        context.watch<SupplierProvider>();
+    final provider = context.watch<SupplierProvider>();
 
     return SmartScaffold(
       title: 'Suppliers',
 
-      floatingActionButton:
-          FloatingActionButton.extended(
+      floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          context.push(
-            AppRoutes.addSupplier,
-          );
+          context.push(AppRoutes.addSupplier);
         },
         icon: const Icon(Icons.add),
         label: const Text('Supplier'),
@@ -67,45 +58,26 @@ class _SupplierListScreenState
 
       body: Builder(
         builder: (_) {
-
           if (provider.isLoading) {
-            return const Center(
-              child:
-                  CircularProgressIndicator(),
-            );
+            return const Center(child: CircularProgressIndicator());
           }
 
           if (provider.suppliers.isEmpty) {
-            return const Center(
-              child: Text(
-                'No suppliers available.',
-              ),
-            );
+            return const Center(child: Text('No suppliers available.'));
           }
 
           return RefreshIndicator(
             onRefresh: provider.refresh,
             child: ListView.builder(
-              padding:
-                  const EdgeInsets.only(
-                top: 8,
-                bottom: 80,
-              ),
-              itemCount:
-                  provider.suppliers.length,
+              padding: const EdgeInsets.only(top: 8, bottom: 80),
+              itemCount: provider.suppliers.length,
               itemBuilder: (context, index) {
-                final supplier =
-                    provider.suppliers[index];
+                final supplier = provider.suppliers[index];
 
                 return SupplierListItem(
                   supplier: supplier,
                   onTap: () {
-                    context.push(
-                      AppRoutes
-                          .supplierDetails(
-                        supplier.id!,
-                      ),
-                    );
+                    context.push(AppRoutes.supplierDetails(supplier.id!));
                   },
                 );
               },

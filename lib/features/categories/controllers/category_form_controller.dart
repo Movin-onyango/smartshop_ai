@@ -69,8 +69,7 @@ class CategoryFormController extends ChangeNotifier {
   // Validation
   //--------------------------------------------------------------------------
 
-  bool get isValid =>
-      nameController.text.trim().isNotEmpty;
+  bool get isValid => nameController.text.trim().isNotEmpty;
 
   //--------------------------------------------------------------------------
   // Populate from existing Category
@@ -84,8 +83,7 @@ class CategoryFormController extends ChangeNotifier {
   }) {
     nameController.text = name;
 
-    descriptionController.text =
-        description ?? '';
+    descriptionController.text = description ?? '';
 
     _selectedIcon = icon;
 
@@ -98,9 +96,7 @@ class CategoryFormController extends ChangeNotifier {
   // Convert to Category
   //--------------------------------------------------------------------------
 
-  Category toCategory({
-    String? id,
-  }) {
+  Category toCategory({String? id}) {
     return Category(
       id: id,
       name: nameController.text.trim(),

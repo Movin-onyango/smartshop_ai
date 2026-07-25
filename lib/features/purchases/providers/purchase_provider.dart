@@ -27,8 +27,7 @@ class PurchaseProvider extends ChangeNotifier {
   // Getters
   //---------------------------------------------------------------------------
 
-  List<Purchase> get purchases =>
-      List.unmodifiable(_purchases);
+  List<Purchase> get purchases => List.unmodifiable(_purchases);
 
   bool get isLoading => _isLoading;
 
@@ -49,12 +48,8 @@ class PurchaseProvider extends ChangeNotifier {
     final query = _searchQuery.toLowerCase();
 
     return purchases.where((purchase) {
-      return purchase.purchaseNumber
-              .toLowerCase()
-              .contains(query) ||
-          purchase.supplierName
-              .toLowerCase()
-              .contains(query);
+      return purchase.purchaseNumber.toLowerCase().contains(query) ||
+          purchase.supplierName.toLowerCase().contains(query);
     }).toList();
   }
 
@@ -96,25 +91,19 @@ class PurchaseProvider extends ChangeNotifier {
   // CRUD
   //---------------------------------------------------------------------------
 
-  Future<void> addPurchase(
-    Purchase purchase,
-  ) async {
+  Future<void> addPurchase(Purchase purchase) async {
     PurchaseRepository.add(purchase);
 
     await loadPurchases();
   }
 
-  Future<void> updatePurchase(
-    Purchase purchase,
-  ) async {
+  Future<void> updatePurchase(Purchase purchase) async {
     PurchaseRepository.update(purchase);
 
     await loadPurchases();
   }
 
-  Future<void> deletePurchase(
-    String id,
-  ) async {
+  Future<void> deletePurchase(String id) async {
     PurchaseRepository.delete(id);
 
     await loadPurchases();
@@ -124,18 +113,12 @@ class PurchaseProvider extends ChangeNotifier {
   // Cancel Purchase
   //---------------------------------------------------------------------------
 
-  Future<void> cancelPurchase(
-    String id,
-  ) async {
+  Future<void> cancelPurchase(String id) async {
     final purchase = findById(id);
 
     if (purchase == null) return;
 
-    await updatePurchase(
-      purchase.copyWith(
-        status: PurchaseStatus.cancelled,
-      ),
-    );
+    await updatePurchase(purchase.copyWith(status: PurchaseStatus.cancelled));
   }
 
   //---------------------------------------------------------------------------
@@ -150,9 +133,7 @@ class PurchaseProvider extends ChangeNotifier {
 
     if (purchase == null) return;
 
-    final fullyReceived = receivedItems.every(
-      (item) => item.isFullyReceived,
-    );
+    final fullyReceived = receivedItems.every((item) => item.isFullyReceived);
 
     await updatePurchase(
       purchase.copyWith(
@@ -170,13 +151,9 @@ class PurchaseProvider extends ChangeNotifier {
   // Helpers
   //---------------------------------------------------------------------------
 
-  Purchase? findById(
-    String id,
-  ) {
+  Purchase? findById(String id) {
     try {
-      return _purchases.firstWhere(
-        (purchase) => purchase.id == id,
-      );
+      return _purchases.firstWhere((purchase) => purchase.id == id);
     } catch (_) {
       return null;
     }
@@ -186,18 +163,13 @@ class PurchaseProvider extends ChangeNotifier {
   // Dashboard KPIs
   //---------------------------------------------------------------------------
 
-  int get totalPurchases =>
-      statistics.totalPurchases;
+  int get totalPurchases => statistics.totalPurchases;
 
-  int get pendingPurchases =>
-      statistics.pendingPurchases;
+  int get pendingPurchases => statistics.pendingPurchases;
 
-  int get receivedPurchases =>
-      statistics.receivedPurchases;
+  int get receivedPurchases => statistics.receivedPurchases;
 
-  double get totalSpent =>
-      statistics.totalSpent;
+  double get totalSpent => statistics.totalSpent;
 
-  double get outstandingAmount =>
-      statistics.outstandingAmount;
+  double get outstandingAmount => statistics.outstandingAmount;
 }

@@ -16,9 +16,7 @@ import '../models/loyalty_account.dart';
 /// • Build Customer model
 /// ---------------------------------------------------------------------------
 class CustomerFormController extends ChangeNotifier {
-  CustomerFormController({
-    Customer? customer,
-  }) {
+  CustomerFormController({Customer? customer}) {
     if (customer != null) {
       loadCustomer(customer);
     }
@@ -44,8 +42,7 @@ class CustomerFormController extends ChangeNotifier {
 
   final notesController = TextEditingController();
 
-  final creditLimitController =
-      TextEditingController();
+  final creditLimitController = TextEditingController();
 
   //---------------------------------------------------------------------------
   // Loyalty
@@ -53,11 +50,9 @@ class CustomerFormController extends ChangeNotifier {
 
   bool hasLoyalty = false;
 
-  final loyaltyPointsController =
-      TextEditingController();
+  final loyaltyPointsController = TextEditingController();
 
-  LoyaltyTier loyaltyTier =
-      LoyaltyTier.standard;
+  LoyaltyTier loyaltyTier = LoyaltyTier.standard;
 
   /// Enable or disable loyalty account.
   void setHasLoyalty(bool value) {
@@ -66,9 +61,7 @@ class CustomerFormController extends ChangeNotifier {
   }
 
   /// Update the selected loyalty tier.
-  void setLoyaltyTier(
-    LoyaltyTier value,
-  ) {
+  void setLoyaltyTier(LoyaltyTier value) {
     loyaltyTier = value;
     notifyListeners();
   }
@@ -92,30 +85,22 @@ class CustomerFormController extends ChangeNotifier {
 
     nameController.text = customer.name;
 
-    phoneController.text =
-        customer.phone ?? '';
+    phoneController.text = customer.phone ?? '';
 
-    emailController.text =
-        customer.email ?? '';
+    emailController.text = customer.email ?? '';
 
-    addressController.text =
-        customer.address ?? '';
+    addressController.text = customer.address ?? '';
 
-    notesController.text =
-        customer.notes ?? '';
+    notesController.text = customer.notes ?? '';
 
-    creditLimitController.text =
-        customer.creditLimit.toString();
+    creditLimitController.text = customer.creditLimit.toString();
 
     if (customer.loyaltyAccount != null) {
       hasLoyalty = true;
 
-      loyaltyPointsController.text =
-          customer.loyaltyAccount!.points
-              .toString();
+      loyaltyPointsController.text = customer.loyaltyAccount!.points.toString();
 
-      loyaltyTier =
-          customer.loyaltyAccount!.tier;
+      loyaltyTier = customer.loyaltyAccount!.tier;
     }
   }
 
@@ -124,8 +109,7 @@ class CustomerFormController extends ChangeNotifier {
   //---------------------------------------------------------------------------
 
   bool validate() {
-    return formKey.currentState?.validate() ??
-        false;
+    return formKey.currentState?.validate() ?? false;
   }
 
   //---------------------------------------------------------------------------
@@ -142,26 +126,17 @@ class CustomerFormController extends ChangeNotifier {
       email: emailController.text.trim().isEmpty
           ? null
           : emailController.text.trim(),
-      address:
-          addressController.text.trim().isEmpty
-              ? null
-              : addressController.text.trim(),
+      address: addressController.text.trim().isEmpty
+          ? null
+          : addressController.text.trim(),
       notes: notesController.text.trim().isEmpty
           ? null
           : notesController.text.trim(),
-      creditLimit:
-          double.tryParse(
-                creditLimitController.text,
-              ) ??
-              0,
+      creditLimit: double.tryParse(creditLimitController.text) ?? 0,
       statistics: const CustomerStatistics(),
       loyaltyAccount: hasLoyalty
           ? LoyaltyAccount(
-              points:
-                  int.tryParse(
-                    loyaltyPointsController.text,
-                  ) ??
-                  0,
+              points: int.tryParse(loyaltyPointsController.text) ?? 0,
               tier: loyaltyTier,
             )
           : null,

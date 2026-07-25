@@ -12,17 +12,13 @@ import '../../models/purchase.dart';
 /// • PurchaseDetailsScreen
 /// ---------------------------------------------------------------------------
 class PurchaseNotesCard extends StatelessWidget {
-  const PurchaseNotesCard({
-    super.key,
-    required this.purchase,
-  });
+  const PurchaseNotesCard({super.key, required this.purchase});
 
   final Purchase purchase;
 
   @override
   Widget build(BuildContext context) {
-    if (purchase.notes == null ||
-        purchase.notes!.trim().isEmpty) {
+    if (purchase.notes == null || purchase.notes!.trim().isEmpty) {
       return const SizedBox.shrink();
     }
 
@@ -30,27 +26,18 @@ class PurchaseNotesCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
-          crossAxisAlignment:
-              CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             //------------------------------------------------------------------
             // Header
             //------------------------------------------------------------------
-
             Row(
               children: [
-                const Icon(
-                  Icons.notes,
-                ),
+                const Icon(Icons.notes),
 
                 const SizedBox(width: 12),
 
-                Text(
-                  'Notes',
-                  style: Theme.of(context)
-                      .textTheme
-                      .titleLarge,
-                ),
+                Text('Notes', style: Theme.of(context).textTheme.titleLarge),
               ],
             ),
 
@@ -59,12 +46,9 @@ class PurchaseNotesCard extends StatelessWidget {
             //------------------------------------------------------------------
             // Notes
             //------------------------------------------------------------------
-
             SelectableText(
               purchase.notes!,
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyMedium,
+              style: Theme.of(context).textTheme.bodyMedium,
             ),
           ],
         ),

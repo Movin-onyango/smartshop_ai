@@ -1,3 +1,4 @@
+import '../models/report_export_data.dart';
 import '../repositories/report_repository.dart';
 
 /// ---------------------------------------------------------------------------
@@ -5,13 +6,14 @@ import '../repositories/report_repository.dart';
 /// ---------------------------------------------------------------------------
 ///
 /// Base controller shared by all report controllers.
-///
-/// Provides access to the report repository used throughout the
-/// Reports module.
 /// ---------------------------------------------------------------------------
 abstract class ReportController {
-  const ReportController(this.repository);
+  const ReportController(
+    this.repository,
+  );
 
-  /// Shared report repository.
   final ReportRepository repository;
+
+  /// Data used by PDF, Excel and CSV exporters.
+  ReportExportData get exportData;
 }

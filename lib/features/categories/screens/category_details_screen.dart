@@ -23,10 +23,7 @@ import '../widgets/details/category_statistics_section.dart';
 /// • Delete category
 /// ---------------------------------------------------------------------------
 class CategoryDetailsScreen extends StatelessWidget {
-  const CategoryDetailsScreen({
-    super.key,
-    required this.categoryId,
-  });
+  const CategoryDetailsScreen({super.key, required this.categoryId});
 
   final String categoryId;
 
@@ -37,11 +34,7 @@ class CategoryDetailsScreen extends StatelessWidget {
     final category = provider.findById(categoryId);
 
     if (category == null) {
-      return const Scaffold(
-        body: Center(
-          child: Text('Category not found'),
-        ),
-      );
+      return const Scaffold(body: Center(child: Text('Category not found')));
     }
 
     return SmartScaffold(
@@ -50,9 +43,7 @@ class CategoryDetailsScreen extends StatelessWidget {
         IconButton(
           icon: const Icon(Icons.edit_outlined),
           onPressed: () {
-            context.push(
-              '${AppRoutes.categories}/${category.id}/edit',
-            );
+            context.push('${AppRoutes.categories}/${category.id}/edit');
           },
         ),
       ],
@@ -61,29 +52,21 @@ class CategoryDetailsScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            CategoryHeader(
-              category: category,
-            ),
+            CategoryHeader(category: category),
 
             const SizedBox(height: 24),
 
-            CategoryInformationSection(
-              category: category,
-            ),
+            CategoryInformationSection(category: category),
 
             const SizedBox(height: 24),
 
-            CategoryStatisticsSection(
-              category: category,
-            ),
+            CategoryStatisticsSection(category: category),
 
             const SizedBox(height: 32),
 
             FilledButton.icon(
               onPressed: () {
-                context.push(
-                  '${AppRoutes.categories}/${category.id}/edit',
-                );
+                context.push('${AppRoutes.categories}/${category.id}/edit');
               },
               icon: const Icon(Icons.edit),
               label: const Text('Edit Category'),
@@ -95,39 +78,27 @@ class CategoryDetailsScreen extends StatelessWidget {
               onPressed: () async {
                 final confirmed =
                     await showDialog<bool>(
-                          context: context,
-                          builder: (context) {
-                            return AlertDialog(
-                              title: const Text(
-                                'Delete Category',
-                              ),
-                              content: const Text(
-                                'Are you sure you want to delete this category?',
-                              ),
-                              actions: [
-                                TextButton(
-                                  onPressed: () => Navigator.pop(
-                                    context,
-                                    false,
-                                  ),
-                                  child: const Text(
-                                    'Cancel',
-                                  ),
-                                ),
-                                FilledButton(
-                                  onPressed: () => Navigator.pop(
-                                    context,
-                                    true,
-                                  ),
-                                  child: const Text(
-                                    'Delete',
-                                  ),
-                                ),
-                              ],
-                            );
-                          },
-                        ) ??
-                        false;
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          title: const Text('Delete Category'),
+                          content: const Text(
+                            'Are you sure you want to delete this category?',
+                          ),
+                          actions: [
+                            TextButton(
+                              onPressed: () => Navigator.pop(context, false),
+                              child: const Text('Cancel'),
+                            ),
+                            FilledButton(
+                              onPressed: () => Navigator.pop(context, true),
+                              child: const Text('Delete'),
+                            ),
+                          ],
+                        );
+                      },
+                    ) ??
+                    false;
 
                 if (!confirmed) return;
 

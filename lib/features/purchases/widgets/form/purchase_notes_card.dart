@@ -12,10 +12,7 @@ import '../../controllers/purchase_form_controller.dart';
 /// • PurchaseForm
 /// ---------------------------------------------------------------------------
 class PurchaseNotesCard extends StatelessWidget {
-  const PurchaseNotesCard({
-    super.key,
-    required this.controller,
-  });
+  const PurchaseNotesCard({super.key, required this.controller});
 
   final PurchaseFormController controller;
 
@@ -25,49 +22,33 @@ class PurchaseNotesCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
-          crossAxisAlignment:
-              CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             //------------------------------------------------------------------
             // Header
             //------------------------------------------------------------------
-
-            Text(
-              'Notes',
-              style: Theme.of(context)
-                  .textTheme
-                  .titleLarge,
-            ),
+            Text('Notes', style: Theme.of(context).textTheme.titleLarge),
 
             const SizedBox(height: 20),
 
             //------------------------------------------------------------------
             // Notes Field
             //------------------------------------------------------------------
-
             TextFormField(
-              controller:
-                  controller.notesController,
+              controller: controller.notesController,
               maxLines: 5,
               minLines: 3,
-              textCapitalization:
-                  TextCapitalization.sentences,
-              decoration:
-                  const InputDecoration(
+              textCapitalization: TextCapitalization.sentences,
+              decoration: const InputDecoration(
                 labelText: 'Purchase Notes',
                 hintText:
                     'Add any additional information about this purchase...',
                 alignLabelWithHint: true,
                 prefixIcon: Padding(
-                  padding: EdgeInsets.only(
-                    bottom: 80,
-                  ),
-                  child: Icon(
-                    Icons.notes,
-                  ),
+                  padding: EdgeInsets.only(bottom: 80),
+                  child: Icon(Icons.notes),
                 ),
-                border:
-                    OutlineInputBorder(),
+                border: OutlineInputBorder(),
               ),
             ),
 
@@ -75,9 +56,7 @@ class PurchaseNotesCard extends StatelessWidget {
 
             Text(
               'Notes are optional and can include delivery instructions, supplier remarks, or internal comments.',
-              style: Theme.of(context)
-                  .textTheme
-                  .bodySmall,
+              style: Theme.of(context).textTheme.bodySmall,
             ),
           ],
         ),

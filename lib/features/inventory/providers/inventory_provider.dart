@@ -2,14 +2,11 @@ import 'package:flutter/material.dart';
 
 import '../models/inventory_item.dart';
 import '../repositories/inventory_repository.dart';
+
 /// InventoryFilter
 /// ---------------------------------------------------------------------------
 
-enum InventoryFilter {
-  all,
-  lowStock,
-  outOfStock,
-}
+enum InventoryFilter { all, lowStock, outOfStock }
 
 /// ---------------------------------------------------------------------------
 /// InventoryProvider
@@ -40,14 +37,10 @@ class InventoryProvider extends ChangeNotifier {
   List<InventoryItem> get inventory {
     switch (_filter) {
       case InventoryFilter.lowStock:
-        return List.unmodifiable(
-          _inventory.where((e) => e.isLowStock),
-        );
+        return List.unmodifiable(_inventory.where((e) => e.isLowStock));
 
       case InventoryFilter.outOfStock:
-        return List.unmodifiable(
-          _inventory.where((e) => e.isOutOfStock),
-        );
+        return List.unmodifiable(_inventory.where((e) => e.isOutOfStock));
 
       case InventoryFilter.all:
         return List.unmodifiable(_inventory);
@@ -90,12 +83,8 @@ class InventoryProvider extends ChangeNotifier {
       ..addAll(
         InventoryRepository.getAll().where(
           (item) =>
-              item.product.name
-                  .toLowerCase()
-                  .contains(_searchQuery) ||
-              item.product.category
-                  .toLowerCase()
-                  .contains(_searchQuery),
+              item.product.name.toLowerCase().contains(_searchQuery) ||
+              item.product.category.toLowerCase().contains(_searchQuery),
         ),
       );
 
@@ -115,26 +104,14 @@ class InventoryProvider extends ChangeNotifier {
   // Stock Operations
   //---------------------------------------------------------------------------
 
-  void increaseStock(
-    String id,
-    int quantity,
-  ) {
-    InventoryRepository.increaseStock(
-      id,
-      quantity,
-    );
+  void increaseStock(String id, int quantity) {
+    InventoryRepository.increaseStock(id, quantity);
 
     loadInventory();
   }
 
-  void decreaseStock(
-    String id,
-    int quantity,
-  ) {
-    InventoryRepository.decreaseStock(
-      id,
-      quantity,
-    );
+  void decreaseStock(String id, int quantity) {
+    InventoryRepository.decreaseStock(id, quantity);
 
     loadInventory();
   }
@@ -145,9 +122,7 @@ class InventoryProvider extends ChangeNotifier {
 
   InventoryItem? findById(String id) {
     try {
-      return _inventory.firstWhere(
-        (item) => item.id == id,
-      );
+      return _inventory.firstWhere((item) => item.id == id);
     } catch (_) {
       return null;
     }

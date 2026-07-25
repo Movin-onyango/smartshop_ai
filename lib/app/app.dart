@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../core/theme/app_theme.dart';
 //import '../features/splash/presentation/pages/splash_page.dart';
 import '../app/router/app_router.dart';
+
 /// Root widget of the SmartShop AI application.
 ///
 /// During the early development phases, the application starts
@@ -19,9 +20,6 @@ class SmartShopApp extends StatelessWidget {
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       routerConfig: appRouter,
-
-       
-
     );
   }
 }

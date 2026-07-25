@@ -71,14 +71,11 @@ class CategoryRepository {
   // Read
   //--------------------------------------------------------------------------
 
-  static List<Category> getAll() =>
-      List.unmodifiable(_categories);
+  static List<Category> getAll() => List.unmodifiable(_categories);
 
   static Category? getById(String id) {
     try {
-      return _categories.firstWhere(
-        (category) => category.id == id,
-      );
+      return _categories.firstWhere((category) => category.id == id);
     } catch (_) {
       return null;
     }
@@ -97,9 +94,7 @@ class CategoryRepository {
   //--------------------------------------------------------------------------
 
   static void update(Category category) {
-    final index = _categories.indexWhere(
-      (c) => c.id == category.id,
-    );
+    final index = _categories.indexWhere((c) => c.id == category.id);
 
     if (index != -1) {
       _categories[index] = category;
@@ -111,8 +106,6 @@ class CategoryRepository {
   //--------------------------------------------------------------------------
 
   static void delete(String id) {
-    _categories.removeWhere(
-      (category) => category.id == id,
-    );
+    _categories.removeWhere((category) => category.id == id);
   }
 }

@@ -12,10 +12,7 @@ import '../../models/supplier.dart';
 /// • Supplier Details Screen
 /// ---------------------------------------------------------------------------
 class AddressInformation extends StatelessWidget {
-  const AddressInformation({
-    super.key,
-    required this.supplier,
-  });
+  const AddressInformation({super.key, required this.supplier});
 
   final Supplier supplier;
 
@@ -27,23 +24,17 @@ class AddressInformation extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
-          crossAxisAlignment:
-              CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-
             Text(
               'Address Information',
-              style: Theme.of(context)
-                  .textTheme
-                  .titleLarge,
+              style: Theme.of(context).textTheme.titleLarge,
             ),
 
             const SizedBox(height: 20),
 
             if (address == null || address.isEmpty)
-              const Text(
-                'No address information available.',
-              )
+              const Text('No address information available.')
             else ...[
               _AddressRow(
                 icon: Icons.location_city_outlined,
@@ -124,42 +115,23 @@ class _AddressRow extends StatelessWidget {
     }
 
     return Padding(
-      padding: const EdgeInsets.only(
-        bottom: 16,
-      ),
+      padding: const EdgeInsets.only(bottom: 16),
       child: Row(
-        crossAxisAlignment:
-            CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-
-          Icon(
-            icon,
-            size: 20,
-          ),
+          Icon(icon, size: 20),
 
           const SizedBox(width: 12),
 
           Expanded(
             child: Column(
-              crossAxisAlignment:
-                  CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-
-                Text(
-                  label,
-                  style: Theme.of(context)
-                      .textTheme
-                      .labelMedium,
-                ),
+                Text(label, style: Theme.of(context).textTheme.labelMedium),
 
                 const SizedBox(height: 2),
 
-                Text(
-                  value!,
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyLarge,
-                ),
+                Text(value!, style: Theme.of(context).textTheme.bodyLarge),
               ],
             ),
           ),

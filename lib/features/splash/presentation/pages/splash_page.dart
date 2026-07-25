@@ -5,8 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../../../app/router/app_routes.dart';
 import '../widgets/splash_header.dart';
 
-import  '/../../shared/widgets/layouts/smart_scaffold.dart';
-
+import '/../../shared/widgets/layouts/smart_scaffold.dart';
 
 /// Splash screen displayed when SmartShop AI launches.
 ///
@@ -34,14 +33,11 @@ class _SplashPageState extends State<SplashPage> {
   }
 
   void _startInitialization() {
-    _startupTimer = Timer(
-      const Duration(seconds: 2),
-      () {
-        if (!mounted) return;
+    _startupTimer = Timer(const Duration(seconds: 2), () {
+      if (!mounted) return;
 
-        context.go(AppRoutes.dashboard);
-      },
-    );
+      context.go(AppRoutes.dashboard);
+    });
   }
 
   @override
@@ -53,11 +49,9 @@ class _SplashPageState extends State<SplashPage> {
   @override
   Widget build(BuildContext context) {
     return const SmartScaffold(
-            title: 'Splash ',
+      title: 'Splash ',
 
-      body: SafeArea(
-        child: SplashHeader(),
-      ),
+      body: SafeArea(child: SplashHeader()),
     );
   }
 }

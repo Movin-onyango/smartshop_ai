@@ -55,15 +55,13 @@ class Sale {
 
   /// Whether this sale has an attached customer.
   bool get hasCustomer =>
-      customerName != null &&
-      customerName!.trim().isNotEmpty;
+      customerName != null && customerName!.trim().isNotEmpty;
 
   /// Number of different products.
   int get totalItems => items.length;
 
   /// Total quantity sold.
-  int get totalQuantity =>
-      items.fold(0, (sum, item) => sum + item.quantity);
+  int get totalQuantity => items.fold(0, (sum, item) => sum + item.quantity);
 
   /// Total before discounts.
   double get grossTotal =>
@@ -74,16 +72,13 @@ class Sale {
       items.fold(0.0, (sum, item) => sum + item.discount);
 
   /// Final amount payable.
-  double get subtotal =>
-      items.fold(0.0, (sum, item) => sum + item.subtotal);
+  double get subtotal => items.fold(0.0, (sum, item) => sum + item.subtotal);
 
   /// Total buying cost.
-  double get totalCost =>
-      items.fold(0.0, (sum, item) => sum + item.cost);
+  double get totalCost => items.fold(0.0, (sum, item) => sum + item.cost);
 
   /// Expected profit.
-  double get profit =>
-      subtotal - totalCost;
+  double get profit => subtotal - totalCost;
 
   /// Compatibility getter for older widgets.
   double get totalProfit => profit;

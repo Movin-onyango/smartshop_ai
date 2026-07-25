@@ -11,10 +11,7 @@ import 'package:flutter/material.dart';
 /// • Edit Supplier
 /// ---------------------------------------------------------------------------
 class NotesCard extends StatelessWidget {
-  const NotesCard({
-    super.key,
-    required this.notesController,
-  });
+  const NotesCard({super.key, required this.notesController});
 
   final TextEditingController notesController;
 
@@ -24,16 +21,9 @@ class NotesCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
-          crossAxisAlignment:
-              CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-
-            Text(
-              'Notes',
-              style: Theme.of(context)
-                  .textTheme
-                  .titleLarge,
-            ),
+            Text('Notes', style: Theme.of(context).textTheme.titleLarge),
 
             const SizedBox(height: 20),
 
@@ -41,20 +31,14 @@ class NotesCard extends StatelessWidget {
               controller: notesController,
               minLines: 4,
               maxLines: 8,
-              textCapitalization:
-                  TextCapitalization.sentences,
+              textCapitalization: TextCapitalization.sentences,
               decoration: const InputDecoration(
                 labelText: 'Notes',
-                hintText:
-                    'Enter additional supplier information...',
+                hintText: 'Enter additional supplier information...',
                 alignLabelWithHint: true,
                 prefixIcon: Padding(
-                  padding: EdgeInsets.only(
-                    bottom: 72,
-                  ),
-                  child: Icon(
-                    Icons.notes_outlined,
-                  ),
+                  padding: EdgeInsets.only(bottom: 72),
+                  child: Icon(Icons.notes_outlined),
                 ),
                 border: OutlineInputBorder(),
               ),

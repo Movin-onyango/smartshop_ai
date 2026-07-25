@@ -105,16 +105,12 @@ class CheckoutController extends ChangeNotifier {
   // Validation
   //--------------------------------------------------------------------------
 
-  bool validate({
-    required Sale sale,
-    required Payment payment,
-  }) {
+  bool validate({required Sale sale, required Payment payment}) {
     if (sale.items.isEmpty) {
       return false;
     }
 
-    if (payment.amountPaid < sale.subtotal &&
-        !payment.isCredit) {
+    if (payment.amountPaid < sale.subtotal && !payment.isCredit) {
       return false;
     }
 
@@ -135,10 +131,7 @@ class CheckoutController extends ChangeNotifier {
 
       // Reduce inventory
       for (final item in sale.items) {
-        InventoryRepository.decreaseStock(
-          item.product.id!,
-          item.quantity,
-        );
+        InventoryRepository.decreaseStock(item.product.id!, item.quantity);
       }
 
       // TODO:

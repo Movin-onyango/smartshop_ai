@@ -24,36 +24,27 @@ class ExpenseFormController extends ChangeNotifier {
   // Controllers
   //--------------------------------------------------------------------------
 
-  final titleController =
-      TextEditingController();
+  final titleController = TextEditingController();
 
-  final vendorController =
-      TextEditingController();
+  final vendorController = TextEditingController();
 
-  final amountController =
-      TextEditingController();
+  final amountController = TextEditingController();
 
-  final taxController =
-      TextEditingController();
+  final taxController = TextEditingController();
 
-  final paymentMethodController =
-      TextEditingController();
+  final paymentMethodController = TextEditingController();
 
-  final notesController =
-      TextEditingController();
+  final notesController = TextEditingController();
 
   //--------------------------------------------------------------------------
   // Fields
   //--------------------------------------------------------------------------
 
-  ExpenseCategory category =
-      ExpenseCategory.miscellaneous;
+  ExpenseCategory category = ExpenseCategory.miscellaneous;
 
-  ExpenseStatus status =
-      ExpenseStatus.draft;
+  ExpenseStatus status = ExpenseStatus.draft;
 
-  DateTime expenseDate =
-      DateTime.now();
+  DateTime expenseDate = DateTime.now();
 
   DateTime? dueDate;
 
@@ -67,26 +58,18 @@ class ExpenseFormController extends ChangeNotifier {
 
   ExpenseFormController();
 
-  ExpenseFormController.fromExpense(
-    Expense expense,
-  ) {
-    titleController.text =
-        expense.title;
+  ExpenseFormController.fromExpense(Expense expense) {
+    titleController.text = expense.title;
 
-    vendorController.text =
-        expense.vendor ?? '';
+    vendorController.text = expense.vendor ?? '';
 
-    amountController.text =
-        expense.amount.toString();
+    amountController.text = expense.amount.toString();
 
-    taxController.text =
-        expense.tax.toString();
+    taxController.text = expense.tax.toString();
 
-    paymentMethodController.text =
-        expense.paymentMethod ?? '';
+    paymentMethodController.text = expense.paymentMethod ?? '';
 
-    notesController.text =
-        expense.notes ?? '';
+    notesController.text = expense.notes ?? '';
 
     category = expense.category;
     status = expense.status;
@@ -100,44 +83,32 @@ class ExpenseFormController extends ChangeNotifier {
   // Setters
   //--------------------------------------------------------------------------
 
-  void setCategory(
-    ExpenseCategory value,
-  ) {
+  void setCategory(ExpenseCategory value) {
     category = value;
     notifyListeners();
   }
 
-  void setStatus(
-    ExpenseStatus value,
-  ) {
+  void setStatus(ExpenseStatus value) {
     status = value;
     notifyListeners();
   }
 
-  void setExpenseDate(
-    DateTime value,
-  ) {
+  void setExpenseDate(DateTime value) {
     expenseDate = value;
     notifyListeners();
   }
 
-  void setDueDate(
-    DateTime? value,
-  ) {
+  void setDueDate(DateTime? value) {
     dueDate = value;
     notifyListeners();
   }
 
-  void setPaidDate(
-    DateTime? value,
-  ) {
+  void setPaidDate(DateTime? value) {
     paidDate = value;
     notifyListeners();
   }
 
-  void setAttachment(
-    ExpenseAttachment? value,
-  ) {
+  void setAttachment(ExpenseAttachment? value) {
     attachment = value;
     notifyListeners();
   }
@@ -154,46 +125,28 @@ class ExpenseFormController extends ChangeNotifier {
   // Conversion
   //--------------------------------------------------------------------------
 
-  Expense toExpense({
-    String? id,
-    String? expenseNumber,
-  }) {
+  Expense toExpense({String? id, String? expenseNumber}) {
     return Expense(
       id: id,
 
       expenseNumber:
-          expenseNumber ??
-          'EXP-${DateTime.now().millisecondsSinceEpoch}',
+          expenseNumber ?? 'EXP-${DateTime.now().millisecondsSinceEpoch}',
 
-      title:
-          titleController.text.trim(),
+      title: titleController.text.trim(),
 
       category: category,
 
-      amount:
-          double.tryParse(
-                amountController.text,
-              ) ??
-              0,
+      amount: double.tryParse(amountController.text) ?? 0,
 
-      tax:
-          double.tryParse(
-                taxController.text,
-              ) ??
-              0,
+      tax: double.tryParse(taxController.text) ?? 0,
 
-      vendor:
-          vendorController.text.trim().isEmpty
-              ? null
-              : vendorController.text.trim(),
+      vendor: vendorController.text.trim().isEmpty
+          ? null
+          : vendorController.text.trim(),
 
-      paymentMethod:
-          paymentMethodController
-                  .text
-                  .trim()
-                  .isEmpty
-              ? null
-              : paymentMethodController.text.trim(),
+      paymentMethod: paymentMethodController.text.trim().isEmpty
+          ? null
+          : paymentMethodController.text.trim(),
 
       expenseDate: expenseDate,
 
@@ -203,10 +156,9 @@ class ExpenseFormController extends ChangeNotifier {
 
       status: status,
 
-      notes:
-          notesController.text.trim().isEmpty
-              ? null
-              : notesController.text.trim(),
+      notes: notesController.text.trim().isEmpty
+          ? null
+          : notesController.text.trim(),
 
       attachment: attachment,
 

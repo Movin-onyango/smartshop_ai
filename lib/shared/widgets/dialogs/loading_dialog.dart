@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 
 class LoadingDialog extends StatelessWidget {
-  const LoadingDialog({
-    super.key,
-    this.message = 'Please wait...',
-  });
+  const LoadingDialog({super.key, this.message = 'Please wait...'});
 
   final String message;
 
@@ -15,9 +12,7 @@ class LoadingDialog extends StatelessWidget {
         children: [
           const CircularProgressIndicator(),
           const SizedBox(width: 16),
-          Expanded(
-            child: Text(message),
-          ),
+          Expanded(child: Text(message)),
         ],
       ),
     );

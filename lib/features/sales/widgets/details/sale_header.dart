@@ -15,10 +15,7 @@ import '../../models/sale.dart';
 /// • Payment Method
 /// ---------------------------------------------------------------------------
 class SaleHeader extends StatelessWidget {
-  const SaleHeader({
-    super.key,
-    required this.sale,
-  });
+  const SaleHeader({super.key, required this.sale});
 
   final Sale sale;
 
@@ -31,11 +28,9 @@ class SaleHeader extends StatelessWidget {
         padding: const EdgeInsets.all(24),
         child: Column(
           children: [
-
             CircleAvatar(
               radius: 34,
-              backgroundColor:
-                  theme.colorScheme.primaryContainer,
+              backgroundColor: theme.colorScheme.primaryContainer,
               child: Icon(
                 Icons.receipt_long,
                 size: 34,
@@ -55,29 +50,19 @@ class SaleHeader extends StatelessWidget {
 
             const SizedBox(height: 8),
 
-            Text(
-              _formatDate(sale.saleDate),
-              style: theme.textTheme.bodyMedium,
-            ),
+            Text(_formatDate(sale.saleDate), style: theme.textTheme.bodyMedium),
 
             const SizedBox(height: 24),
 
             Container(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 20,
-                vertical: 12,
-              ),
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
               decoration: BoxDecoration(
                 color: theme.colorScheme.primaryContainer,
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Column(
                 children: [
-
-                  Text(
-                    'Total Sale',
-                    style: theme.textTheme.labelLarge,
-                  ),
+                  Text('Total Sale', style: theme.textTheme.labelLarge),
 
                   const SizedBox(height: 8),
 
@@ -88,7 +73,6 @@ class SaleHeader extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-
                 ],
               ),
             ),
@@ -97,7 +81,6 @@ class SaleHeader extends StatelessWidget {
 
             Row(
               children: [
-
                 Expanded(
                   child: _InfoCard(
                     title: 'Items',
@@ -111,13 +94,10 @@ class SaleHeader extends StatelessWidget {
                 Expanded(
                   child: _InfoCard(
                     title: 'Payment',
-                    value: _paymentMethodLabel(
-                      sale.payment.method.name,
-                    ),
+                    value: _paymentMethodLabel(sale.payment.method.name),
                     icon: Icons.payments,
                   ),
                 ),
-
               ],
             ),
           ],
@@ -172,24 +152,14 @@ class _InfoCard extends StatelessWidget {
       elevation: 0,
       color: theme.colorScheme.surfaceContainerHighest,
       child: Padding(
-        padding: const EdgeInsets.symmetric(
-          vertical: 16,
-          horizontal: 12,
-        ),
+        padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 12),
         child: Column(
           children: [
-
-            Icon(
-              icon,
-              color: theme.colorScheme.primary,
-            ),
+            Icon(icon, color: theme.colorScheme.primary),
 
             const SizedBox(height: 8),
 
-            Text(
-              title,
-              style: theme.textTheme.labelMedium,
-            ),
+            Text(title, style: theme.textTheme.labelMedium),
 
             const SizedBox(height: 6),
 
@@ -200,7 +170,6 @@ class _InfoCard extends StatelessWidget {
               ),
               textAlign: TextAlign.center,
             ),
-
           ],
         ),
       ),

@@ -56,11 +56,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
   void _saveProduct() {
     if (!controller.isValid) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text(
-            'Please complete all required fields.',
-          ),
-        ),
+        const SnackBar(content: Text('Please complete all required fields.')),
       );
       return;
     }
@@ -69,9 +65,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
     // ProductRepository.save(controller.toProduct());
 
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text('Product saved successfully.'),
-      ),
+      const SnackBar(content: Text('Product saved successfully.')),
     );
 
     controller.clear();

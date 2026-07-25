@@ -13,10 +13,7 @@ import '../../controllers/purchase_form_controller.dart';
 /// • Edit Purchase
 /// ---------------------------------------------------------------------------
 class PurchaseSummaryCard extends StatelessWidget {
-  const PurchaseSummaryCard({
-    super.key,
-    required this.controller,
-  });
+  const PurchaseSummaryCard({super.key, required this.controller});
 
   final PurchaseFormController controller;
 
@@ -28,39 +25,24 @@ class PurchaseSummaryCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
-          crossAxisAlignment:
-              CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'Purchase Summary',
-              style: theme.textTheme.titleLarge,
-            ),
+            Text('Purchase Summary', style: theme.textTheme.titleLarge),
 
             const SizedBox(height: 20),
 
-            _SummaryRow(
-              label: 'Subtotal',
-              value: controller.subtotal,
-            ),
+            _SummaryRow(label: 'Subtotal', value: controller.subtotal),
 
             const SizedBox(height: 12),
 
-            _SummaryRow(
-              label: 'Discount',
-              value: controller.totalDiscount,
-            ),
+            _SummaryRow(label: 'Discount', value: controller.totalDiscount),
 
             const SizedBox(height: 12),
 
-            _SummaryRow(
-              label: 'Tax',
-              value: controller.totalTax,
-            ),
+            _SummaryRow(label: 'Tax', value: controller.totalTax),
 
             const Padding(
-              padding: EdgeInsets.symmetric(
-                vertical: 16,
-              ),
+              padding: EdgeInsets.symmetric(vertical: 16),
               child: Divider(),
             ),
 
@@ -93,29 +75,15 @@ class _SummaryRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final style = isTotal
-        ? Theme.of(context)
-            .textTheme
-            .titleMedium
-            ?.copyWith(
-              fontWeight:
-                  FontWeight.bold,
-            )
-        : Theme.of(context)
-            .textTheme
-            .bodyLarge;
+        ? Theme.of(
+            context,
+          ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold)
+        : Theme.of(context).textTheme.bodyLarge;
 
     return Row(
       children: [
-        Expanded(
-          child: Text(
-            label,
-            style: style,
-          ),
-        ),
-        Text(
-          value.toStringAsFixed(2),
-          style: style,
-        ),
+        Expanded(child: Text(label, style: style)),
+        Text(value.toStringAsFixed(2), style: style),
       ],
     );
   }

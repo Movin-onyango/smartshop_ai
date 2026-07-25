@@ -43,25 +43,25 @@ class KpiGrid extends StatelessWidget {
           color: Colors.purple,
         ),
         KpiCard(
-  title: "Today's Sales",
-  value: "28",
-  icon: Icons.shopping_cart_checkout,
-  color: Colors.green,
-),
+          title: "Today's Sales",
+          value: "28",
+          icon: Icons.shopping_cart_checkout,
+          color: Colors.green,
+        ),
 
-KpiCard(
-  title: "Revenue",
-  value: "KSh 82,400",
-  icon: Icons.payments,
-  color: Colors.blue,
-),
+        KpiCard(
+          title: "Revenue",
+          value: "KSh 82,400",
+          icon: Icons.payments,
+          color: Colors.blue,
+        ),
 
-KpiCard(
-  title: "Profit",
-  value: "KSh 21,700",
-  icon: Icons.trending_up,
-  color: Colors.orange,
-),
+        KpiCard(
+          title: "Profit",
+          value: "KSh 21,700",
+          icon: Icons.trending_up,
+          color: Colors.orange,
+        ),
       ],
     );
   }

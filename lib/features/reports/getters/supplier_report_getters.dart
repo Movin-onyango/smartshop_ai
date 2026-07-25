@@ -4,27 +4,20 @@ import 'base/base_report_getters.dart';
 class SupplierReportGetters extends BaseReportGetters {
   const SupplierReportGetters();
 
-  static List<List<String>> tableRows(
-    SupplierReportRepository repository,
-  ) {
+  static List<List<String>> tableRows(SupplierReportRepository repository) {
     return const SupplierReportRepository()
         .getAllSuppliers()
         .map(
           (supplier) => [
-            supplier.name ,
+            supplier.name,
             supplier.phone ?? '',
             supplier.email ?? '',
-            
           ],
         )
         .toList();
   }
 
-  static int totalSuppliers(
-    SupplierReportRepository repository,
-  ) {
-    return const SupplierReportRepository()
-        .getAllSuppliers()
-        .length;
+  static int totalSuppliers(SupplierReportRepository repository) {
+    return const SupplierReportRepository().getAllSuppliers().length;
   }
 }

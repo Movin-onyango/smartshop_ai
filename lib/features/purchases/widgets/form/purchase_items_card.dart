@@ -24,10 +24,7 @@ class PurchaseItemsCard extends StatelessWidget {
 
   final VoidCallback onAddItem;
 
-  final void Function(
-    int index,
-    PurchaseItem item,
-  ) onEditItem;
+  final void Function(int index, PurchaseItem item) onEditItem;
 
   @override
   Widget build(BuildContext context) {
@@ -35,32 +32,24 @@ class PurchaseItemsCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
-          crossAxisAlignment:
-              CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             //------------------------------------------------------------------
             // Header
             //------------------------------------------------------------------
-
             Row(
               children: [
                 Expanded(
                   child: Text(
                     'Purchase Items',
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleLarge,
+                    style: Theme.of(context).textTheme.titleLarge,
                   ),
                 ),
 
                 FilledButton.icon(
                   onPressed: onAddItem,
-                  icon: const Icon(
-                    Icons.add,
-                  ),
-                  label: const Text(
-                    'Add Item',
-                  ),
+                  icon: const Icon(Icons.add),
+                  label: const Text('Add Item'),
                 ),
               ],
             ),
@@ -70,34 +59,22 @@ class PurchaseItemsCard extends StatelessWidget {
             //------------------------------------------------------------------
             // Empty State
             //------------------------------------------------------------------
-
             if (controller.items.isEmpty)
               const _EmptyItems()
             else
               ListView.separated(
                 shrinkWrap: true,
-                physics:
-                    const NeverScrollableScrollPhysics(),
-                itemCount:
-                    controller.items.length,
-                separatorBuilder:
-                    (_, _) =>
-                        const Divider(height: 24),
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: controller.items.length,
+                separatorBuilder: (_, _) => const Divider(height: 24),
                 itemBuilder: (context, index) {
-                  final item =
-                      controller.items[index];
+                  final item = controller.items[index];
 
                   return _PurchaseItemTile(
                     item: item,
-                    onEdit: () =>
-                        onEditItem(
-                      index,
-                      item,
-                    ),
+                    onEdit: () => onEditItem(index, item),
                     onDelete: () {
-                      controller.removeItem(
-                        item,
-                      );
+                      controller.removeItem(item);
                     },
                   );
                 },
@@ -112,8 +89,7 @@ class PurchaseItemsCard extends StatelessWidget {
 /// ---------------------------------------------------------------------------
 /// Purchase Item Tile
 /// ---------------------------------------------------------------------------
-class _PurchaseItemTile
-    extends StatelessWidget {
+class _PurchaseItemTile extends StatelessWidget {
   const _PurchaseItemTile({
     required this.item,
     required this.onEdit,
@@ -129,76 +105,43 @@ class _PurchaseItemTile
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      contentPadding:
-          EdgeInsets.zero,
+      contentPadding: EdgeInsets.zero,
 
       title: Text(
         item.productName,
-        style: const TextStyle(
-          fontWeight:
-              FontWeight.w600,
-        ),
+        style: const TextStyle(fontWeight: FontWeight.w600),
       ),
 
       subtitle: Padding(
-        padding:
-            const EdgeInsets.only(
-          top: 6,
-        ),
+        padding: const EdgeInsets.only(top: 6),
         child: Column(
-          crossAxisAlignment:
-              CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'Qty: ${item.quantity}',
-            ),
-            Text(
-              'Unit Cost: ${item.unitCost.toStringAsFixed(2)}',
-            ),
-            Text(
-              'Discount: ${item.discount.toStringAsFixed(1)}%',
-            ),
-            Text(
-              'Tax: ${item.tax.toStringAsFixed(1)}%',
-            ),
+            Text('Qty: ${item.quantity}'),
+            Text('Unit Cost: ${item.unitCost.toStringAsFixed(2)}'),
+            Text('Discount: ${item.discount.toStringAsFixed(1)}%'),
+            Text('Tax: ${item.tax.toStringAsFixed(1)}%'),
           ],
         ),
       ),
 
       trailing: Column(
-        crossAxisAlignment:
-            CrossAxisAlignment.end,
-        mainAxisAlignment:
-            MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.end,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            item.total.toStringAsFixed(
-              2,
-            ),
-            style: Theme.of(context)
-                .textTheme
-                .titleMedium,
+            item.total.toStringAsFixed(2),
+            style: Theme.of(context).textTheme.titleMedium,
           ),
 
           const SizedBox(height: 8),
 
           Row(
-            mainAxisSize:
-                MainAxisSize.min,
+            mainAxisSize: MainAxisSize.min,
             children: [
-              IconButton(
-                icon: const Icon(
-                  Icons.edit,
-                ),
-                onPressed: onEdit,
-              ),
+              IconButton(icon: const Icon(Icons.edit), onPressed: onEdit),
 
-              IconButton(
-                icon: const Icon(
-                  Icons.delete,
-                ),
-                onPressed: onDelete,
-              ),
+              IconButton(icon: const Icon(Icons.delete), onPressed: onDelete),
             ],
           ),
         ],
@@ -210,44 +153,34 @@ class _PurchaseItemTile
 /// ---------------------------------------------------------------------------
 /// Empty Items
 /// ---------------------------------------------------------------------------
-class _EmptyItems
-    extends StatelessWidget {
+class _EmptyItems extends StatelessWidget {
   const _EmptyItems();
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:
-          const EdgeInsets.symmetric(
-        vertical: 32,
-      ),
+      padding: const EdgeInsets.symmetric(vertical: 32),
       child: Center(
         child: Column(
           children: [
             Icon(
               Icons.shopping_cart_outlined,
               size: 56,
-              color: Theme.of(context)
-                  .colorScheme
-                  .outline,
+              color: Theme.of(context).colorScheme.outline,
             ),
 
             const SizedBox(height: 16),
 
             Text(
               'No items added',
-              style: Theme.of(context)
-                  .textTheme
-                  .titleMedium,
+              style: Theme.of(context).textTheme.titleMedium,
             ),
 
             const SizedBox(height: 8),
 
             Text(
               'Tap "Add Item" to begin.',
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyMedium,
+              style: Theme.of(context).textTheme.bodyMedium,
             ),
           ],
         ),

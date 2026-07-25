@@ -40,8 +40,7 @@ class ResponsiveHelper {
   static bool isTablet(BuildContext context) {
     final width = screenWidth(context);
 
-    return width >= mobileBreakpoint &&
-        width < tabletBreakpoint;
+    return width >= mobileBreakpoint && width < tabletBreakpoint;
   }
 
   static bool isDesktop(BuildContext context) {
@@ -53,13 +52,11 @@ class ResponsiveHelper {
   // ==========================================================
 
   static bool isPortrait(BuildContext context) {
-    return MediaQuery.orientationOf(context) ==
-        Orientation.portrait;
+    return MediaQuery.orientationOf(context) == Orientation.portrait;
   }
 
   static bool isLandscape(BuildContext context) {
-    return MediaQuery.orientationOf(context) ==
-        Orientation.landscape;
+    return MediaQuery.orientationOf(context) == Orientation.landscape;
   }
 
   // ==========================================================

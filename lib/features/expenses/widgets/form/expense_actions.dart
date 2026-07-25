@@ -34,14 +34,10 @@ class ExpenseActions extends StatelessWidget {
         //----------------------------------------------------------------------
         // Cancel
         //----------------------------------------------------------------------
-
         Expanded(
           child: OutlinedButton(
-            onPressed:
-                isLoading ? null : onCancel,
-            child: const Text(
-              'Cancel',
-            ),
+            onPressed: isLoading ? null : onCancel,
+            child: const Text('Cancel'),
           ),
         ),
 
@@ -50,31 +46,18 @@ class ExpenseActions extends StatelessWidget {
         //----------------------------------------------------------------------
         // Save
         //----------------------------------------------------------------------
-
         Expanded(
           flex: 2,
           child: FilledButton.icon(
-            onPressed:
-                isLoading ? null : onSave,
+            onPressed: isLoading ? null : onSave,
             icon: isLoading
                 ? const SizedBox(
                     width: 18,
                     height: 18,
-                    child:
-                        CircularProgressIndicator(
-                      strokeWidth: 2,
-                    ),
+                    child: CircularProgressIndicator(strokeWidth: 2),
                   )
-                : Icon(
-                    isEditing
-                        ? Icons.save
-                        : Icons.add,
-                  ),
-            label: Text(
-              isEditing
-                  ? 'Update Expense'
-                  : 'Save Expense',
-            ),
+                : Icon(isEditing ? Icons.save : Icons.add),
+            label: Text(isEditing ? 'Update Expense' : 'Save Expense'),
           ),
         ),
       ],

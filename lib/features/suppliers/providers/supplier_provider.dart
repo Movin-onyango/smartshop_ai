@@ -20,13 +20,11 @@ class SupplierProvider extends ChangeNotifier {
   // Getters
   //--------------------------------------------------------------------------
 
-  List<Supplier> get suppliers =>
-      List.unmodifiable(_suppliers);
+  List<Supplier> get suppliers => List.unmodifiable(_suppliers);
 
   bool get isLoading => _isLoading;
 
-  int get totalSuppliers =>
-      _suppliers.length;
+  int get totalSuppliers => _suppliers.length;
 
   //--------------------------------------------------------------------------
   // Loading
@@ -50,25 +48,19 @@ class SupplierProvider extends ChangeNotifier {
   // CRUD
   //--------------------------------------------------------------------------
 
-  Future<void> addSupplier(
-    Supplier supplier,
-  ) async {
+  Future<void> addSupplier(Supplier supplier) async {
     SupplierRepository.add(supplier);
 
     loadSuppliers();
   }
 
-  Future<void> updateSupplier(
-    Supplier supplier,
-  ) async {
+  Future<void> updateSupplier(Supplier supplier) async {
     SupplierRepository.update(supplier);
 
     loadSuppliers();
   }
 
-  Future<void> deleteSupplier(
-    String id,
-  ) async {
+  Future<void> deleteSupplier(String id) async {
     SupplierRepository.delete(id);
 
     loadSuppliers();
@@ -80,9 +72,7 @@ class SupplierProvider extends ChangeNotifier {
 
   Supplier? findById(String id) {
     try {
-      return _suppliers.firstWhere(
-        (supplier) => supplier.id == id,
-      );
+      return _suppliers.firstWhere((supplier) => supplier.id == id);
     } catch (_) {
       return null;
     }
@@ -101,30 +91,18 @@ class SupplierProvider extends ChangeNotifier {
   //--------------------------------------------------------------------------
 
   double get totalOutstandingBalance {
-    return _suppliers.fold(
-      0,
-      (sum, supplier) =>
-          sum + supplier.currentBalance,
-    );
+    return _suppliers.fold(0, (sum, supplier) => sum + supplier.currentBalance);
   }
 
   double get totalCreditLimit {
-    return _suppliers.fold(
-      0,
-      (sum, supplier) =>
-          sum + supplier.creditLimit,
-    );
+    return _suppliers.fold(0, (sum, supplier) => sum + supplier.creditLimit);
   }
 
   int get suppliersWithBalance {
-    return _suppliers.where(
-      (supplier) => supplier.currentBalance > 0,
-    ).length;
+    return _suppliers.where((supplier) => supplier.currentBalance > 0).length;
   }
 
   int get suppliersWithoutBalance {
-    return _suppliers.where(
-      (supplier) => supplier.currentBalance == 0,
-    ).length;
+    return _suppliers.where((supplier) => supplier.currentBalance == 0).length;
   }
 }

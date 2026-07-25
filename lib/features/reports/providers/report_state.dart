@@ -8,10 +8,4 @@ enum ReportType {
   financial,
 }
 
-enum ReportPeriod {
-  today,
-  week,
-  month,
-  year,
-  custom,
-}
+enum ReportPeriod { today, week, month, year, custom }

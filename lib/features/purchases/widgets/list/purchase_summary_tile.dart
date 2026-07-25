@@ -45,66 +45,39 @@ class PurchaseSummaryTile extends StatelessWidget {
             children: [
               CircleAvatar(
                 radius: 24,
-                backgroundColor:
-                    color.withValues(
-                  alpha: 0.12,
-                ),
-                child: Icon(
-                  icon,
-                  color: color,
-                ),
+                backgroundColor: color.withValues(alpha: 0.12),
+                child: Icon(icon, color: color),
               ),
 
               const SizedBox(width: 16),
 
               Expanded(
                 child: Column(
-                  crossAxisAlignment:
-                      CrossAxisAlignment
-                          .start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      title,
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyMedium,
-                    ),
+                    Text(title, style: Theme.of(context).textTheme.bodyMedium),
 
-                    const SizedBox(
-                      height: 4,
-                    ),
+                    const SizedBox(height: 4),
 
                     Text(
                       value,
-                      style: Theme.of(context)
-                          .textTheme
-                          .titleLarge
-                          ?.copyWith(
-                            fontWeight:
-                                FontWeight
-                                    .bold,
-                          ),
+                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
 
                     if (subtitle != null) ...[
-                      const SizedBox(
-                        height: 4,
-                      ),
+                      const SizedBox(height: 4),
                       Text(
                         subtitle!,
-                        style: Theme.of(
-                          context,
-                        ).textTheme.bodySmall,
+                        style: Theme.of(context).textTheme.bodySmall,
                       ),
                     ],
                   ],
                 ),
               ),
 
-              if (onTap != null)
-                const Icon(
-                  Icons.chevron_right,
-                ),
+              if (onTap != null) const Icon(Icons.chevron_right),
             ],
           ),
         ),

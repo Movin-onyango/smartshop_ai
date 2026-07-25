@@ -24,24 +24,15 @@ class ReceivePurchaseSummaryCard extends StatelessWidget {
   final List<PurchaseItem> items;
 
   double get _orderedQuantity {
-    return items.fold(
-      0.0,
-      (sum, item) => sum + item.quantity,
-    );
+    return items.fold(0.0, (sum, item) => sum + item.quantity);
   }
 
   double get _receivedQuantity {
-    return items.fold(
-      0.0,
-      (sum, item) => sum + item.receivedQuantity,
-    );
+    return items.fold(0.0, (sum, item) => sum + item.receivedQuantity);
   }
 
   double get _remainingQuantity {
-    return items.fold(
-      0.0,
-      (sum, item) => sum + item.remainingQuantity,
-    );
+    return items.fold(0.0, (sum, item) => sum + item.remainingQuantity);
   }
 
   @override
@@ -50,18 +41,14 @@ class ReceivePurchaseSummaryCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
-          crossAxisAlignment:
-              CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             //------------------------------------------------------------------
             // Header
             //------------------------------------------------------------------
-
             Text(
               'Receipt Summary',
-              style: Theme.of(context)
-                  .textTheme
-                  .titleLarge,
+              style: Theme.of(context).textTheme.titleLarge,
             ),
 
             const SizedBox(height: 20),
@@ -71,35 +58,28 @@ class ReceivePurchaseSummaryCard extends StatelessWidget {
               value: purchase.purchaseNumber,
             ),
 
-            _SummaryRow(
-              label: 'Supplier',
-              value: purchase.supplierName,
-            ),
+            _SummaryRow(label: 'Supplier', value: purchase.supplierName),
 
             _SummaryRow(
               label: 'Ordered Quantity',
-              value: _orderedQuantity
-                  .toStringAsFixed(2),
+              value: _orderedQuantity.toStringAsFixed(2),
             ),
 
             _SummaryRow(
               label: 'Received Quantity',
-              value: _receivedQuantity
-                  .toStringAsFixed(2),
+              value: _receivedQuantity.toStringAsFixed(2),
             ),
 
             _SummaryRow(
               label: 'Remaining Quantity',
-              value: _remainingQuantity
-                  .toStringAsFixed(2),
+              value: _remainingQuantity.toStringAsFixed(2),
             ),
 
             const Divider(height: 32),
 
             _SummaryRow(
               label: 'Order Value',
-              value:
-                  'KES ${purchase.grandTotal.toStringAsFixed(2)}',
+              value: 'KES ${purchase.grandTotal.toStringAsFixed(2)}',
               isBold: true,
             ),
           ],
@@ -126,30 +106,15 @@ class _SummaryRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final style = isBold
-        ? Theme.of(context)
-            .textTheme
-            .titleMedium
-        : Theme.of(context)
-            .textTheme
-            .bodyMedium;
+        ? Theme.of(context).textTheme.titleMedium
+        : Theme.of(context).textTheme.bodyMedium;
 
     return Padding(
-      padding:
-          const EdgeInsets.symmetric(
-        vertical: 6,
-      ),
+      padding: const EdgeInsets.symmetric(vertical: 6),
       child: Row(
         children: [
-          Expanded(
-            child: Text(
-              label,
-              style: style,
-            ),
-          ),
-          Text(
-            value,
-            style: style,
-          ),
+          Expanded(child: Text(label, style: style)),
+          Text(value, style: style),
         ],
       ),
     );

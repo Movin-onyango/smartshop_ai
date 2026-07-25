@@ -11,9 +11,7 @@ import 'base/report_formatter.dart';
 class InventoryReportGetters extends BaseReportGetters {
   const InventoryReportGetters();
 
-  static List<List<String>> tableRows(
-    InventoryReportRepository repository,
-  ) {
+  static List<List<String>> tableRows(InventoryReportRepository repository) {
     return repository
         .getAllProducts()
         .map(
@@ -21,51 +19,31 @@ class InventoryReportGetters extends BaseReportGetters {
             product.name,
             ReportFormatter.integer(product.quantity),
             ReportFormatter.integer(product.reorderLevel),
-            ReportFormatter.currency(
-              product.buyingPrice * product.quantity,
-            ),
-            product.quantity <= product.reorderLevel
-                ? 'Low Stock'
-                : 'In Stock',
+            ReportFormatter.currency(product.buyingPrice * product.quantity),
+            product.quantity <= product.reorderLevel ? 'Low Stock' : 'In Stock',
           ],
         )
         .toList();
   }
 
-  static int totalStock(
-    InventoryReportRepository repository,
-  ) {
-    return repository
-        .getAllProducts()
-        .fold(
-          0,
-          (sum, product) => sum + product.quantity,
-        );
+  static int totalStock(InventoryReportRepository repository) {
+    return repository.getAllProducts().fold(
+      0,
+      (sum, product) => sum + product.quantity,
+    );
   }
 
-  static int lowStock(
-    InventoryReportRepository repository,
-  ) {
+  static int lowStock(InventoryReportRepository repository) {
     return repository
         .getAllProducts()
-        .where(
-          (product) =>
-              product.quantity <= product.reorderLevel,
-        )
+        .where((product) => product.quantity <= product.reorderLevel)
         .length;
   }
 
-  static double stockValue(
-    InventoryReportRepository repository,
-  ) {
-    return repository
-        .getAllProducts()
-        .fold(
-          0.0,
-          (sum, product) =>
-              sum +
-              (product.buyingPrice *
-                  product.quantity),
-        );
+  static double stockValue(InventoryReportRepository repository) {
+    return repository.getAllProducts().fold(
+      0.0,
+      (sum, product) => sum + (product.buyingPrice * product.quantity),
+    );
   }
 }

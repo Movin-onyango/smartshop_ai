@@ -13,20 +13,15 @@ import '../../../shared/widgets/layouts/smart_scaffold.dart';
 /// will be implemented when warehouse/location management is added.
 /// ---------------------------------------------------------------------------
 class StockTransferScreen extends StatefulWidget {
-  const StockTransferScreen({
-    super.key,
-    required this.inventoryId,
-  });
+  const StockTransferScreen({super.key, required this.inventoryId});
 
   final String inventoryId;
 
   @override
-  State<StockTransferScreen> createState() =>
-      _StockTransferScreenState();
+  State<StockTransferScreen> createState() => _StockTransferScreenState();
 }
 
-class _StockTransferScreenState
-    extends State<StockTransferScreen> {
+class _StockTransferScreenState extends State<StockTransferScreen> {
   final _quantityController = TextEditingController();
 
   String? _sourceLocation;
@@ -46,18 +41,13 @@ class _StockTransferScreenState
   }
 
   void _transferStock() {
-    final quantity =
-        int.tryParse(_quantityController.text) ?? 0;
+    final quantity = int.tryParse(_quantityController.text) ?? 0;
 
     if (_sourceLocation == null ||
         _destinationLocation == null ||
         quantity <= 0) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text(
-            'Complete all required fields.',
-          ),
-        ),
+        const SnackBar(content: Text('Complete all required fields.')),
       );
       return;
     }
@@ -65,9 +55,7 @@ class _StockTransferScreenState
     if (_sourceLocation == _destinationLocation) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text(
-            'Source and destination cannot be the same.',
-          ),
+          content: Text('Source and destination cannot be the same.'),
         ),
       );
       return;
@@ -77,11 +65,7 @@ class _StockTransferScreenState
     // Implement repository/provider transfer logic.
 
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text(
-          'Stock transferred successfully.',
-        ),
-      ),
+      const SnackBar(content: Text('Stock transferred successfully.')),
     );
 
     context.pop();
@@ -94,8 +78,7 @@ class _StockTransferScreenState
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
         child: Column(
-          crossAxisAlignment:
-              CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             DropdownButtonFormField<String>(
               initialValue: _sourceLocation,
@@ -159,9 +142,7 @@ class _StockTransferScreenState
               child: FilledButton.icon(
                 onPressed: _transferStock,
                 icon: const Icon(Icons.swap_horiz),
-                label: const Text(
-                  'Transfer Stock',
-                ),
+                label: const Text('Transfer Stock'),
               ),
             ),
           ],

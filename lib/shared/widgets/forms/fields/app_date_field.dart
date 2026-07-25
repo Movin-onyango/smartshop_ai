@@ -74,8 +74,7 @@ class _AppDateFieldState extends State<AppDateField> {
 
     if (picked == null) return;
 
-    widget.controller.text =
-        DateFormat(widget.dateFormat).format(picked);
+    widget.controller.text = DateFormat(widget.dateFormat).format(picked);
 
     widget.onChanged?.call(picked);
 
@@ -100,13 +99,9 @@ class _AppDateFieldState extends State<AppDateField> {
 
         hintText: widget.hint,
 
-        prefixIcon: Icon(
-          widget.icon ?? Icons.calendar_month_outlined,
-        ),
+        prefixIcon: Icon(widget.icon ?? Icons.calendar_month_outlined),
 
-        suffixIcon: const Icon(
-          Icons.arrow_drop_down,
-        ),
+        suffixIcon: const Icon(Icons.arrow_drop_down),
       ),
     );
   }

@@ -10,11 +10,7 @@ import 'supplier_status_badges.dart';
 /// Reusable supplier tile displayed on the Supplier List screen.
 /// ---------------------------------------------------------------------------
 class SupplierListItem extends StatelessWidget {
-  const SupplierListItem({
-    super.key,
-    required this.supplier,
-    this.onTap,
-  });
+  const SupplierListItem({super.key, required this.supplier, this.onTap});
 
   final Supplier supplier;
   final VoidCallback? onTap;
@@ -24,66 +20,46 @@ class SupplierListItem extends StatelessWidget {
     final statistics = supplier.statistics;
 
     return Card(
-      margin: const EdgeInsets.symmetric(
-        horizontal: 16,
-        vertical: 8,
-      ),
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: InkWell(
         borderRadius: BorderRadius.circular(12),
         onTap: onTap,
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Column(
-            crossAxisAlignment:
-                CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-
               //----------------------------------------------------------------
               // Header
               //----------------------------------------------------------------
-
               Row(
                 children: [
-
                   CircleAvatar(
                     radius: 24,
-                    child: Text(
-                      supplier.name
-                          .substring(0, 1)
-                          .toUpperCase(),
-                    ),
+                    child: Text(supplier.name.substring(0, 1).toUpperCase()),
                   ),
 
                   const SizedBox(width: 16),
 
                   Expanded(
                     child: Column(
-                      crossAxisAlignment:
-                          CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-
                         Text(
                           supplier.name,
-                          style: Theme.of(context)
-                              .textTheme
-                              .titleMedium,
+                          style: Theme.of(context).textTheme.titleMedium,
                         ),
 
-                        if (supplier.contactPerson !=
-                            null)
+                        if (supplier.contactPerson != null)
                           Text(
                             supplier.contactPerson!,
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyMedium,
+                            style: Theme.of(context).textTheme.bodyMedium,
                           ),
                       ],
                     ),
                   ),
 
-                  const Icon(
-                    Icons.chevron_right,
-                  ),
+                  const Icon(Icons.chevron_right),
                 ],
               ),
 
@@ -92,71 +68,45 @@ class SupplierListItem extends StatelessWidget {
               //----------------------------------------------------------------
               // Contact
               //----------------------------------------------------------------
-
               if (supplier.phone != null)
                 Row(
                   children: [
-
-                    const Icon(
-                      Icons.phone,
-                      size: 18,
-                    ),
+                    const Icon(Icons.phone, size: 18),
 
                     const SizedBox(width: 8),
 
-                    Expanded(
-                      child: Text(
-                        supplier.phone!,
-                      ),
-                    ),
+                    Expanded(child: Text(supplier.phone!)),
                   ],
                 ),
 
               if (supplier.email != null)
                 Padding(
-                  padding:
-                      const EdgeInsets.only(top: 8),
+                  padding: const EdgeInsets.only(top: 8),
                   child: Row(
                     children: [
-
-                      const Icon(
-                        Icons.email,
-                        size: 18,
-                      ),
+                      const Icon(Icons.email, size: 18),
 
                       const SizedBox(width: 8),
 
-                      Expanded(
-                        child: Text(
-                          supplier.email!,
-                        ),
-                      ),
+                      Expanded(child: Text(supplier.email!)),
                     ],
                   ),
                 ),
 
               if (statistics != null)
                 Padding(
-                  padding:
-                      const EdgeInsets.only(top: 16),
+                  padding: const EdgeInsets.only(top: 16),
                   child: Row(
-                    mainAxisAlignment:
-                        MainAxisAlignment
-                            .spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-
                       _SummaryItem(
                         label: 'Orders',
-                        value: statistics
-                            .totalOrders
-                            .toString(),
+                        value: statistics.totalOrders.toString(),
                       ),
 
                       _SummaryItem(
                         label: 'Purchased',
-                        value:
-                            statistics.totalPurchased
-                                .toStringAsFixed(0),
+                        value: statistics.totalPurchased.toStringAsFixed(0),
                       ),
                     ],
                   ),
@@ -164,9 +114,7 @@ class SupplierListItem extends StatelessWidget {
 
               const SizedBox(height: 16),
 
-              SupplierStatusBadges(
-                supplier: supplier,
-              ),
+              SupplierStatusBadges(supplier: supplier),
             ],
           ),
         ),
@@ -179,10 +127,7 @@ class SupplierListItem extends StatelessWidget {
 /// Summary Item
 /// ---------------------------------------------------------------------------
 class _SummaryItem extends StatelessWidget {
-  const _SummaryItem({
-    required this.label,
-    required this.value,
-  });
+  const _SummaryItem({required this.label, required this.value});
 
   final String label;
   final String value;
@@ -191,22 +136,11 @@ class _SummaryItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-
-        Text(
-          value,
-          style: Theme.of(context)
-              .textTheme
-              .titleMedium,
-        ),
+        Text(value, style: Theme.of(context).textTheme.titleMedium),
 
         const SizedBox(height: 4),
 
-        Text(
-          label,
-          style: Theme.of(context)
-              .textTheme
-              .bodySmall,
-        ),
+        Text(label, style: Theme.of(context).textTheme.bodySmall),
       ],
     );
   }

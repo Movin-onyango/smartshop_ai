@@ -31,38 +31,19 @@ class AppRadius {
   // BorderRadius Objects
   // ==========================================================
 
-  static const BorderRadius radiusXS =
-      BorderRadius.all(
-    Radius.circular(xs),
-  );
+  static const BorderRadius radiusXS = BorderRadius.all(Radius.circular(xs));
 
-  static const BorderRadius radiusSM =
-      BorderRadius.all(
-    Radius.circular(sm),
-  );
+  static const BorderRadius radiusSM = BorderRadius.all(Radius.circular(sm));
 
-  static const BorderRadius radiusMD =
-      BorderRadius.all(
-    Radius.circular(md),
-  );
+  static const BorderRadius radiusMD = BorderRadius.all(Radius.circular(md));
 
-  static const BorderRadius radiusLG =
-      BorderRadius.all(
-    Radius.circular(lg),
-  );
+  static const BorderRadius radiusLG = BorderRadius.all(Radius.circular(lg));
 
-  static const BorderRadius radiusXL =
-      BorderRadius.all(
-    Radius.circular(xl),
-  );
+  static const BorderRadius radiusXL = BorderRadius.all(Radius.circular(xl));
 
-  static const BorderRadius radiusXXL =
-      BorderRadius.all(
-    Radius.circular(xxl),
-  );
+  static const BorderRadius radiusXXL = BorderRadius.all(Radius.circular(xxl));
 
-  static const BorderRadius radiusPill =
-      BorderRadius.all(
+  static const BorderRadius radiusPill = BorderRadius.all(
     Radius.circular(pill),
   );
 }

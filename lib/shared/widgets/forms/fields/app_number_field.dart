@@ -72,15 +72,11 @@ class AppNumberField extends StatelessWidget {
     return TextFormField(
       controller: controller,
 
-      keyboardType: TextInputType.numberWithOptions(
-        decimal: allowDecimal,
-      ),
+      keyboardType: TextInputType.numberWithOptions(decimal: allowDecimal),
 
       inputFormatters: [
         FilteringTextInputFormatter.allow(
-          allowDecimal
-              ? RegExp(r'^\d*\.?\d{0,2}')
-              : RegExp(r'^\d*'),
+          allowDecimal ? RegExp(r'^\d*\.?\d{0,2}') : RegExp(r'^\d*'),
         ),
       ],
 
@@ -101,9 +97,7 @@ class AppNumberField extends StatelessWidget {
 
         hintText: hint,
 
-        prefixIcon: icon == null
-            ? null
-            : Icon(icon),
+        prefixIcon: icon == null ? null : Icon(icon),
 
         prefixText: prefixText,
 

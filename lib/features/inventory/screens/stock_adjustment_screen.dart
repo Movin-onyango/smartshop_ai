@@ -18,20 +18,15 @@ import '../providers/inventory_provider.dart';
 /// • Save changes
 /// ---------------------------------------------------------------------------
 class StockAdjustmentScreen extends StatefulWidget {
-  const StockAdjustmentScreen({
-    super.key,
-    required this.inventoryId,
-  });
+  const StockAdjustmentScreen({super.key, required this.inventoryId});
 
   final String inventoryId;
 
   @override
-  State<StockAdjustmentScreen> createState() =>
-      _StockAdjustmentScreenState();
+  State<StockAdjustmentScreen> createState() => _StockAdjustmentScreenState();
 }
 
-class _StockAdjustmentScreenState
-    extends State<StockAdjustmentScreen> {
+class _StockAdjustmentScreenState extends State<StockAdjustmentScreen> {
   final _quantityController = TextEditingController();
 
   bool _increase = true;
@@ -45,38 +40,23 @@ class _StockAdjustmentScreenState
   void _save() {
     final provider = context.read<InventoryProvider>();
 
-    final quantity =
-        int.tryParse(_quantityController.text) ?? 0;
+    final quantity = int.tryParse(_quantityController.text) ?? 0;
 
     if (quantity <= 0) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text(
-            'Enter a valid quantity.',
-          ),
-        ),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('Enter a valid quantity.')));
       return;
     }
 
     if (_increase) {
-      provider.increaseStock(
-        widget.inventoryId,
-        quantity,
-      );
+      provider.increaseStock(widget.inventoryId, quantity);
     } else {
-      provider.decreaseStock(
-        widget.inventoryId,
-        quantity,
-      );
+      provider.decreaseStock(widget.inventoryId, quantity);
     }
 
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text(
-          'Inventory updated successfully.',
-        ),
-      ),
+      const SnackBar(content: Text('Inventory updated successfully.')),
     );
 
     context.pop();
@@ -90,9 +70,7 @@ class _StockAdjustmentScreenState
 
     if (item == null) {
       return const Scaffold(
-        body: Center(
-          child: Text('Inventory item not found'),
-        ),
+        body: Center(child: Text('Inventory item not found')),
       );
     }
 
@@ -101,23 +79,18 @@ class _StockAdjustmentScreenState
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
-          crossAxisAlignment:
-              CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               item.product.name,
-              style: Theme.of(context)
-                  .textTheme
-                  .headlineSmall,
+              style: Theme.of(context).textTheme.headlineSmall,
             ),
 
             const SizedBox(height: 8),
 
             Text(
               'Current Stock: ${item.quantity}',
-              style: Theme.of(context)
-                  .textTheme
-                  .titleMedium,
+              style: Theme.of(context).textTheme.titleMedium,
             ),
 
             const SizedBox(height: 24),
@@ -161,9 +134,7 @@ class _StockAdjustmentScreenState
               child: FilledButton.icon(
                 onPressed: _save,
                 icon: const Icon(Icons.save),
-                label: const Text(
-                  'Save Adjustment',
-                ),
+                label: const Text('Save Adjustment'),
               ),
             ),
           ],

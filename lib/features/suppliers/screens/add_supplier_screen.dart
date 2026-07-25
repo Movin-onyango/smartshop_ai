@@ -19,13 +19,10 @@ class AddSupplierScreen extends StatefulWidget {
   const AddSupplierScreen({super.key});
 
   @override
-  State<AddSupplierScreen> createState() =>
-      _AddSupplierScreenState();
+  State<AddSupplierScreen> createState() => _AddSupplierScreenState();
 }
 
-class _AddSupplierScreenState
-    extends State<AddSupplierScreen> {
-
+class _AddSupplierScreenState extends State<AddSupplierScreen> {
   late final SupplierFormController controller;
 
   @override
@@ -41,17 +38,13 @@ class _AddSupplierScreenState
   }
 
   Future<void> _saveSupplier() async {
-
     if (!controller.validate()) {
       return;
     }
 
-    final supplier =
-        controller.toSupplier();
+    final supplier = controller.toSupplier();
 
-    await context
-        .read<SupplierProvider>()
-        .addSupplier(supplier);
+    await context.read<SupplierProvider>().addSupplier(supplier);
 
     if (!mounted) return;
 

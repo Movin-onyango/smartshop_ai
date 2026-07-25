@@ -9,10 +9,7 @@ import '../../models/customer.dart';
 /// Displays quick status badges for a customer.
 /// ---------------------------------------------------------------------------
 class CustomerStatusBadges extends StatelessWidget {
-  const CustomerStatusBadges({
-    super.key,
-    required this.customer,
-  });
+  const CustomerStatusBadges({super.key, required this.customer});
 
   final Customer customer;
 
@@ -24,13 +21,8 @@ class CustomerStatusBadges extends StatelessWidget {
     if (customer.creditLimit > 0) {
       badges.add(
         Chip(
-          avatar: const Icon(
-            Icons.credit_card,
-            size: 16,
-          ),
-          label: const Text(
-            'Credit',
-          ),
+          avatar: const Icon(Icons.credit_card, size: 16),
+          label: const Text('Credit'),
         ),
       );
     }
@@ -39,13 +31,8 @@ class CustomerStatusBadges extends StatelessWidget {
     if (customer.currentBalance > 0) {
       badges.add(
         Chip(
-          avatar: const Icon(
-            Icons.account_balance_wallet,
-            size: 16,
-          ),
-          label: Text(
-            'KES ${customer.currentBalance.toStringAsFixed(0)}',
-          ),
+          avatar: const Icon(Icons.account_balance_wallet, size: 16),
+          label: Text('KES ${customer.currentBalance.toStringAsFixed(0)}'),
         ),
       );
     }
@@ -54,14 +41,8 @@ class CustomerStatusBadges extends StatelessWidget {
     if (customer.loyaltyAccount != null) {
       badges.add(
         Chip(
-          avatar: const Icon(
-            Icons.workspace_premium,
-            size: 16,
-          ),
-          label: Text(
-            customer.loyaltyAccount!.tier.name
-                .toUpperCase(),
-          ),
+          avatar: const Icon(Icons.workspace_premium, size: 16),
+          label: Text(customer.loyaltyAccount!.tier.name.toUpperCase()),
         ),
       );
     }
@@ -69,15 +50,7 @@ class CustomerStatusBadges extends StatelessWidget {
     // Frequent Customer
     if (customer.totalPurchases >= 10) {
       badges.add(
-        const Chip(
-          avatar: Icon(
-            Icons.star,
-            size: 16,
-          ),
-          label: Text(
-            'Frequent',
-          ),
-        ),
+        const Chip(avatar: Icon(Icons.star, size: 16), label: Text('Frequent')),
       );
     }
 
@@ -85,10 +58,6 @@ class CustomerStatusBadges extends StatelessWidget {
       return const SizedBox.shrink();
     }
 
-    return Wrap(
-      spacing: 8,
-      runSpacing: 8,
-      children: badges,
-    );
+    return Wrap(spacing: 8, runSpacing: 8, children: badges);
   }
 }

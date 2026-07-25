@@ -62,17 +62,13 @@ class ExpenseAttachment {
         fileType.toLowerCase() == 'png';
   }
 
-  bool get isPdf =>
-      fileType.toLowerCase() == 'pdf';
+  bool get isPdf => fileType.toLowerCase() == 'pdf';
 
-  bool get hasAttachment =>
-      filePath.trim().isNotEmpty;
+  bool get hasAttachment => filePath.trim().isNotEmpty;
 
-  double get sizeInKB =>
-      fileSize / 1024;
+  double get sizeInKB => fileSize / 1024;
 
-  double get sizeInMB =>
-      fileSize / (1024 * 1024);
+  double get sizeInMB => fileSize / (1024 * 1024);
 
   //---------------------------------------------------------------------------
   // Copy
@@ -92,8 +88,7 @@ class ExpenseAttachment {
       filePath: filePath ?? this.filePath,
       fileType: fileType ?? this.fileType,
       fileSize: fileSize ?? this.fileSize,
-      uploadedAt:
-          uploadedAt ?? this.uploadedAt,
+      uploadedAt: uploadedAt ?? this.uploadedAt,
     );
   }
 }

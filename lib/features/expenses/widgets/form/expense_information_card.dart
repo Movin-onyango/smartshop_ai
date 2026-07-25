@@ -27,8 +27,7 @@ class ExpenseInformationCard extends StatelessWidget {
 
   final ExpenseCategory category;
 
-  final ValueChanged<ExpenseCategory?>
-      onCategoryChanged;
+  final ValueChanged<ExpenseCategory?> onCategoryChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -36,15 +35,11 @@ class ExpenseInformationCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
-          crossAxisAlignment:
-              CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-
             Text(
               'Expense Information',
-              style: Theme.of(context)
-                  .textTheme
-                  .titleLarge,
+              style: Theme.of(context).textTheme.titleLarge,
             ),
 
             const SizedBox(height: 20),
@@ -52,23 +47,17 @@ class ExpenseInformationCard extends StatelessWidget {
             //------------------------------------------------------------------
             // Expense Title
             //------------------------------------------------------------------
-
             TextFormField(
               controller: titleController,
               decoration: const InputDecoration(
                 labelText: 'Expense Title',
-                hintText:
-                    'Enter expense title',
-                prefixIcon: Icon(
-                  Icons.receipt_long,
-                ),
+                hintText: 'Enter expense title',
+                prefixIcon: Icon(Icons.receipt_long),
                 border: OutlineInputBorder(),
               ),
-              textCapitalization:
-                  TextCapitalization.words,
+              textCapitalization: TextCapitalization.words,
               validator: (value) {
-                if (value == null ||
-                    value.trim().isEmpty) {
+                if (value == null || value.trim().isEmpty) {
                   return 'Expense title is required';
                 }
 
@@ -81,20 +70,15 @@ class ExpenseInformationCard extends StatelessWidget {
             //------------------------------------------------------------------
             // Vendor / Payee
             //------------------------------------------------------------------
-
             TextFormField(
               controller: vendorController,
               decoration: const InputDecoration(
                 labelText: 'Vendor / Payee',
-                hintText:
-                    'Optional',
-                prefixIcon: Icon(
-                  Icons.business,
-                ),
+                hintText: 'Optional',
+                prefixIcon: Icon(Icons.business),
                 border: OutlineInputBorder(),
               ),
-              textCapitalization:
-                  TextCapitalization.words,
+              textCapitalization: TextCapitalization.words,
             ),
 
             const SizedBox(height: 16),
@@ -102,32 +86,22 @@ class ExpenseInformationCard extends StatelessWidget {
             //------------------------------------------------------------------
             // Category
             //------------------------------------------------------------------
-
-            DropdownButtonFormField<
-                ExpenseCategory>(
+            DropdownButtonFormField<ExpenseCategory>(
               initialValue: category,
-              decoration:
-                  const InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Category',
-                prefixIcon: Icon(
-                  Icons.category,
-                ),
-                border:
-                    OutlineInputBorder(),
+                prefixIcon: Icon(Icons.category),
+                border: OutlineInputBorder(),
               ),
               items: ExpenseCategory.values
                   .map(
-                    (category) =>
-                        DropdownMenuItem(
+                    (category) => DropdownMenuItem(
                       value: category,
-                      child: Text(
-                        category.label,
-                      ),
+                      child: Text(category.label),
                     ),
                   )
                   .toList(),
-              onChanged:
-                  onCategoryChanged,
+              onChanged: onCategoryChanged,
             ),
           ],
         ),

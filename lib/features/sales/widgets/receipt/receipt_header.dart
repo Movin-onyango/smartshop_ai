@@ -28,17 +28,11 @@ class ReceiptHeader extends StatelessWidget {
 
         const SizedBox(height: 8),
 
-        Text(
-          'Invoice: $invoiceNumber',
-          style: theme.textTheme.bodyMedium,
-        ),
+        Text('Invoice: $invoiceNumber', style: theme.textTheme.bodyMedium),
 
         const SizedBox(height: 4),
 
-        Text(
-          saleDate.toString(),
-          style: theme.textTheme.bodySmall,
-        ),
+        Text(saleDate.toString(), style: theme.textTheme.bodySmall),
 
         const Divider(height: 32),
       ],

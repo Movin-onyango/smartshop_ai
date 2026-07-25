@@ -38,17 +38,13 @@ class InventoryItem {
 
   bool get isOutOfStock => quantity <= 0;
 
-  bool get isLowStock =>
-      quantity > 0 && quantity <= reorderLevel;
+  bool get isLowStock => quantity > 0 && quantity <= reorderLevel;
 
-  double get stockValue =>
-      quantity * product.buyingPrice;
+  double get stockValue => quantity * product.buyingPrice;
 
-  double get retailValue =>
-      quantity * product.sellingPrice;
+  double get retailValue => quantity * product.sellingPrice;
 
-  double get expectedProfit =>
-      retailValue - stockValue;
+  double get expectedProfit => retailValue - stockValue;
 
   //--------------------------------------------------------------------------
   // Copy

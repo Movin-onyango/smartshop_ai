@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../models/expense.dart';
 import '../../models/expense_status.dart';
+
 /// ---------------------------------------------------------------------------
 /// ExpenseHeader
 /// ---------------------------------------------------------------------------
@@ -12,10 +13,7 @@ import '../../models/expense_status.dart';
 /// • ExpenseDetailsScreen
 /// ---------------------------------------------------------------------------
 class ExpenseHeader extends StatelessWidget {
-  const ExpenseHeader({
-    super.key,
-    required this.expense,
-  });
+  const ExpenseHeader({super.key, required this.expense});
 
   final Expense expense;
 
@@ -27,44 +25,32 @@ class ExpenseHeader extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
-          crossAxisAlignment:
-              CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
               children: [
                 Expanded(
                   child: Column(
-                    crossAxisAlignment:
-                        CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         expense.title,
-                        style: theme
-                            .textTheme
-                            .headlineSmall
-                            ?.copyWith(
-                              fontWeight:
-                                  FontWeight.bold,
-                            ),
+                        style: theme.textTheme.headlineSmall?.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
 
                       const SizedBox(height: 6),
 
                       Text(
                         expense.expenseNumber,
-                        style: theme
-                            .textTheme
-                            .bodyMedium,
+                        style: theme.textTheme.bodyMedium,
                       ),
                     ],
                   ),
                 ),
 
-                Chip(
-                  label: Text(
-                    expense.status.label,
-                  ),
-                ),
+                Chip(label: Text(expense.status.label)),
               ],
             ),
 
@@ -72,22 +58,15 @@ class ExpenseHeader extends StatelessWidget {
 
             Row(
               children: [
-                const Icon(
-                  Icons.payments,
-                  size: 20,
-                ),
+                const Icon(Icons.payments, size: 20),
 
                 const SizedBox(width: 8),
 
                 Text(
-                  'KES ${expense.totalAmount .toStringAsFixed(2)}',
-                  style: theme
-                      .textTheme
-                      .headlineMedium
-                      ?.copyWith(
-                        fontWeight:
-                            FontWeight.bold,
-                      ),
+                  'KES ${expense.totalAmount.toStringAsFixed(2)}',
+                  style: theme.textTheme.headlineMedium?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ],
             ),

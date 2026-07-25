@@ -18,9 +18,7 @@ class SupplierStatisticsController {
   // Aggregate Statistics
   //--------------------------------------------------------------------------
 
-  SupplierStatistics calculate(
-    List<Supplier> suppliers,
-  ) {
+  SupplierStatistics calculate(List<Supplier> suppliers) {
     int totalOrders = 0;
     int completedOrders = 0;
     int pendingOrders = 0;
@@ -42,23 +40,19 @@ class SupplierStatisticsController {
       cancelledOrders += stats.cancelledOrders;
 
       totalPurchased += stats.totalPurchased;
-      outstandingBalance +=
-          stats.outstandingBalance;
+      outstandingBalance += stats.outstandingBalance;
 
       if (stats.lastOrderDate != null) {
         if (lastOrderDate == null ||
-            stats.lastOrderDate!
-                .isAfter(lastOrderDate)) {
-          lastOrderDate =
-              stats.lastOrderDate;
+            stats.lastOrderDate!.isAfter(lastOrderDate)) {
+          lastOrderDate = stats.lastOrderDate;
         }
       }
     }
 
-    final double  averageOrderValue =
-        totalOrders == 0
-            ? 0
-            : totalPurchased / totalOrders;
+    final double averageOrderValue = totalOrders == 0
+        ? 0
+        : totalPurchased / totalOrders;
 
     return SupplierStatistics(
       totalOrders: totalOrders,
@@ -67,8 +61,7 @@ class SupplierStatisticsController {
       cancelledOrders: cancelledOrders,
       totalPurchased: totalPurchased,
       averageOrderValue: averageOrderValue,
-      outstandingBalance:
-          outstandingBalance,
+      outstandingBalance: outstandingBalance,
       lastOrderDate: lastOrderDate,
     );
   }
@@ -77,61 +70,32 @@ class SupplierStatisticsController {
   // Dashboard KPIs
   //--------------------------------------------------------------------------
 
-  int totalSuppliers(
-    List<Supplier> suppliers,
-  ) {
+  int totalSuppliers(List<Supplier> suppliers) {
     return suppliers.length;
   }
 
-  int activeSuppliers(
-    List<Supplier> suppliers,
-  ) {
-    return suppliers.where(
-      (supplier) =>
-          (supplier.statistics?.totalOrders ?? 0) >
-          0,
-    ).length;
+  int activeSuppliers(List<Supplier> suppliers) {
+    return suppliers
+        .where((supplier) => (supplier.statistics?.totalOrders ?? 0) > 0)
+        .length;
   }
 
-  int suppliersWithBalance(
-    List<Supplier> suppliers,
-  ) {
-    return suppliers.where(
-      (supplier) =>
-          supplier.currentBalance > 0,
-    ).length;
+  int suppliersWithBalance(List<Supplier> suppliers) {
+    return suppliers.where((supplier) => supplier.currentBalance > 0).length;
   }
 
-  double totalOutstandingBalance(
-    List<Supplier> suppliers,
-  ) {
+  double totalOutstandingBalance(List<Supplier> suppliers) {
+    return suppliers.fold(0, (sum, supplier) => sum + supplier.currentBalance);
+  }
+
+  double totalCreditLimit(List<Supplier> suppliers) {
+    return suppliers.fold(0, (sum, supplier) => sum + supplier.creditLimit);
+  }
+
+  double totalPurchases(List<Supplier> suppliers) {
     return suppliers.fold(
       0,
-      (sum, supplier) =>
-          sum + supplier.currentBalance,
-    );
-  }
-
-  double totalCreditLimit(
-    List<Supplier> suppliers,
-  ) {
-    return suppliers.fold(
-      0,
-      (sum, supplier) =>
-          sum + supplier.creditLimit,
-    );
-  }
-
-  double totalPurchases(
-    List<Supplier> suppliers,
-  ) {
-    return suppliers.fold(
-      0,
-      (sum, supplier) =>
-          sum +
-          (supplier.statistics
-                  ?.totalPurchased ??
-              0),
+      (sum, supplier) => sum + (supplier.statistics?.totalPurchased ?? 0),
     );
   }
 }

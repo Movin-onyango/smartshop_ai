@@ -56,8 +56,7 @@ class SupplierStatistics {
 
   bool get hasOrders => totalOrders > 0;
 
-  bool get hasOutstandingBalance =>
-      outstandingBalance > 0;
+  bool get hasOutstandingBalance => outstandingBalance > 0;
 
   double get completionRate {
     if (totalOrders == 0) {
@@ -82,22 +81,14 @@ class SupplierStatistics {
     DateTime? lastOrderDate,
   }) {
     return SupplierStatistics(
-      totalOrders:
-          totalOrders ?? this.totalOrders,
-      completedOrders:
-          completedOrders ?? this.completedOrders,
-      pendingOrders:
-          pendingOrders ?? this.pendingOrders,
-      cancelledOrders:
-          cancelledOrders ?? this.cancelledOrders,
-      totalPurchased:
-          totalPurchased ?? this.totalPurchased,
-      averageOrderValue:
-          averageOrderValue ?? this.averageOrderValue,
-      outstandingBalance:
-          outstandingBalance ?? this.outstandingBalance,
-      lastOrderDate:
-          lastOrderDate ?? this.lastOrderDate,
+      totalOrders: totalOrders ?? this.totalOrders,
+      completedOrders: completedOrders ?? this.completedOrders,
+      pendingOrders: pendingOrders ?? this.pendingOrders,
+      cancelledOrders: cancelledOrders ?? this.cancelledOrders,
+      totalPurchased: totalPurchased ?? this.totalPurchased,
+      averageOrderValue: averageOrderValue ?? this.averageOrderValue,
+      outstandingBalance: outstandingBalance ?? this.outstandingBalance,
+      lastOrderDate: lastOrderDate ?? this.lastOrderDate,
     );
   }
 }

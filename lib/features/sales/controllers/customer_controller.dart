@@ -29,13 +29,11 @@ class CustomerController extends ChangeNotifier {
 
   bool get hasCustomer =>
       _customerId != null ||
-      (_customerName != null &&
-          _customerName!.trim().isNotEmpty);
+      (_customerName != null && _customerName!.trim().isNotEmpty);
 
   bool get isWalkInCustomer => !hasCustomer;
 
-  String get displayName =>
-      hasCustomer ? _customerName! : 'Walk-in Customer';
+  String get displayName => hasCustomer ? _customerName! : 'Walk-in Customer';
 
   //---------------------------------------------------------------------------
   // Operations

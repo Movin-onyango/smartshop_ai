@@ -18,11 +18,7 @@ import '../../models/customer.dart';
 ///   • Receipts
 /// ---------------------------------------------------------------------------
 class CustomerAvatar extends StatelessWidget {
-  const CustomerAvatar({
-    super.key,
-    required this.customer,
-    this.radius = 24,
-  });
+  const CustomerAvatar({super.key, required this.customer, this.radius = 24});
 
   final Customer customer;
 
@@ -32,29 +28,19 @@ class CustomerAvatar extends StatelessWidget {
   Widget build(BuildContext context) {
     return CircleAvatar(
       radius: radius,
-      backgroundColor:
-          Theme.of(context)
-              .colorScheme
-              .primaryContainer,
+      backgroundColor: Theme.of(context).colorScheme.primaryContainer,
       child: Text(
         _initials,
-        style: Theme.of(context)
-            .textTheme
-            .titleMedium
-            ?.copyWith(
-              fontWeight: FontWeight.bold,
-              color: Theme.of(context)
-                  .colorScheme
-                  .onPrimaryContainer,
-            ),
+        style: Theme.of(context).textTheme.titleMedium?.copyWith(
+          fontWeight: FontWeight.bold,
+          color: Theme.of(context).colorScheme.onPrimaryContainer,
+        ),
       ),
     );
   }
 
   String get _initials {
-    final parts = customer.name
-        .trim()
-        .split(RegExp(r'\s+'));
+    final parts = customer.name.trim().split(RegExp(r'\s+'));
 
     if (parts.isEmpty) {
       return '?';
@@ -64,7 +50,6 @@ class CustomerAvatar extends StatelessWidget {
       return parts.first[0].toUpperCase();
     }
 
-    return (parts.first[0] + parts.last[0])
-        .toUpperCase();
+    return (parts.first[0] + parts.last[0]).toUpperCase();
   }
 }

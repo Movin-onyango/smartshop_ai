@@ -12,10 +12,7 @@ import '../../models/purchase.dart';
 /// • PurchaseDetailsScreen
 /// ---------------------------------------------------------------------------
 class PurchaseSummaryCard extends StatelessWidget {
-  const PurchaseSummaryCard({
-    super.key,
-    required this.purchase,
-  });
+  const PurchaseSummaryCard({super.key, required this.purchase});
 
   final Purchase purchase;
 
@@ -25,18 +22,14 @@ class PurchaseSummaryCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
-          crossAxisAlignment:
-              CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             //------------------------------------------------------------------
             // Header
             //------------------------------------------------------------------
-
             Text(
               'Purchase Summary',
-              style: Theme.of(context)
-                  .textTheme
-                  .titleLarge,
+              style: Theme.of(context).textTheme.titleLarge,
             ),
 
             const SizedBox(height: 20),
@@ -44,51 +37,40 @@ class PurchaseSummaryCard extends StatelessWidget {
             //------------------------------------------------------------------
             // Totals
             //------------------------------------------------------------------
-
-            _SummaryRow(
-              label: 'Items',
-              value:
-                  purchase.totalItems.toString(),
-            ),
+            _SummaryRow(label: 'Items', value: purchase.totalItems.toString()),
 
             _SummaryRow(
               label: 'Quantity',
-              value: purchase.totalQuantity
-                  .toStringAsFixed(2),
+              value: purchase.totalQuantity.toStringAsFixed(2),
             ),
 
             const Divider(),
 
             _SummaryRow(
               label: 'Subtotal',
-              value: purchase.subtotal
-                  .toStringAsFixed(2),
+              value: purchase.subtotal.toStringAsFixed(2),
             ),
 
             _SummaryRow(
               label: 'Discount',
-              value: purchase.totalDiscount
-                  .toStringAsFixed(2),
+              value: purchase.totalDiscount.toStringAsFixed(2),
             ),
 
             _SummaryRow(
               label: 'Taxable Amount',
-              value: purchase.taxableAmount
-                  .toStringAsFixed(2),
+              value: purchase.taxableAmount.toStringAsFixed(2),
             ),
 
             _SummaryRow(
               label: 'Tax',
-              value: purchase.totalTax
-                  .toStringAsFixed(2),
+              value: purchase.totalTax.toStringAsFixed(2),
             ),
 
             const Divider(),
 
             _SummaryRow(
               label: 'Grand Total',
-              value: purchase.grandTotal
-                  .toStringAsFixed(2),
+              value: purchase.grandTotal.toStringAsFixed(2),
               bold: true,
             ),
           ],
@@ -115,27 +97,16 @@ class _SummaryRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final style = TextStyle(
-      fontWeight:
-          bold ? FontWeight.bold : FontWeight.normal,
+      fontWeight: bold ? FontWeight.bold : FontWeight.normal,
       fontSize: bold ? 16 : 14,
     );
 
     return Padding(
-      padding: const EdgeInsets.symmetric(
-        vertical: 8,
-      ),
+      padding: const EdgeInsets.symmetric(vertical: 8),
       child: Row(
         children: [
-          Expanded(
-            child: Text(
-              label,
-              style: style,
-            ),
-          ),
-          Text(
-            value,
-            style: style,
-          ),
+          Expanded(child: Text(label, style: style)),
+          Text(value, style: style),
         ],
       ),
     );

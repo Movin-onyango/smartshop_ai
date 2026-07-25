@@ -29,20 +29,14 @@ class ExpenseFilterBar extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       child: Row(
         children: [
-
           //--------------------------------------------------------------------
           // All
           //--------------------------------------------------------------------
-
           Padding(
-            padding:
-                const EdgeInsets.only(
-              right: 8,
-            ),
+            padding: const EdgeInsets.only(right: 8),
             child: ChoiceChip(
               label: const Text('All'),
-              selected:
-                  selectedStatus == null,
+              selected: selectedStatus == null,
               onSelected: (_) {
                 onChanged(null);
               },
@@ -52,28 +46,18 @@ class ExpenseFilterBar extends StatelessWidget {
           //--------------------------------------------------------------------
           // Statuses
           //--------------------------------------------------------------------
-
-          ...ExpenseStatus.values.map(
-            (status) {
-              return Padding(
-                padding:
-                    const EdgeInsets.only(
-                  right: 8,
-                ),
-                child: ChoiceChip(
-                  label: Text(
-                    status.label,
-                  ),
-                  selected:
-                      selectedStatus ==
-                          status,
-                  onSelected: (_) {
-                    onChanged(status);
-                  },
-                ),
-              );
-            },
-          ),
+          ...ExpenseStatus.values.map((status) {
+            return Padding(
+              padding: const EdgeInsets.only(right: 8),
+              child: ChoiceChip(
+                label: Text(status.label),
+                selected: selectedStatus == status,
+                onSelected: (_) {
+                  onChanged(status);
+                },
+              ),
+            );
+          }),
         ],
       ),
     );

@@ -5,9 +5,7 @@ import '../providers/product_provider.dart';
 
 /// Search field for filtering products by name.
 class ProductSearchBar extends StatelessWidget {
-  const ProductSearchBar({
-    super.key,
-  });
+  const ProductSearchBar({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,9 +13,7 @@ class ProductSearchBar extends StatelessWidget {
       decoration: InputDecoration(
         hintText: 'Search products...',
         prefixIcon: const Icon(Icons.search),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(14),
-        ),
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(14)),
         filled: true,
       ),
       onChanged: (value) {

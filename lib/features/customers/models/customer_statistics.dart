@@ -42,11 +42,9 @@ class CustomerStatistics {
   // Computed Values
   //---------------------------------------------------------------------------
 
-  bool get hasPurchases =>
-      totalPurchases > 0;
+  bool get hasPurchases => totalPurchases > 0;
 
-  bool get hasOutstandingBalance =>
-      currentBalance > 0;
+  bool get hasOutstandingBalance => currentBalance > 0;
 
   double get averagePurchaseValue {
     if (totalPurchases == 0) {
@@ -67,18 +65,10 @@ class CustomerStatistics {
     DateTime? lastPurchaseDate,
   }) {
     return CustomerStatistics(
-      totalPurchases:
-          totalPurchases ??
-          this.totalPurchases,
-      totalSpent:
-          totalSpent ??
-          this.totalSpent,
-      currentBalance:
-          currentBalance ??
-          this.currentBalance,
-      lastPurchaseDate:
-          lastPurchaseDate ??
-          this.lastPurchaseDate,
+      totalPurchases: totalPurchases ?? this.totalPurchases,
+      totalSpent: totalSpent ?? this.totalSpent,
+      currentBalance: currentBalance ?? this.currentBalance,
+      lastPurchaseDate: lastPurchaseDate ?? this.lastPurchaseDate,
     );
   }
 }

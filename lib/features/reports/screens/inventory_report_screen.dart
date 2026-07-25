@@ -3,13 +3,13 @@ import 'package:provider/provider.dart';
 
 import '../../../shared/widgets/layouts/smart_scaffold.dart';
 
+import '../exporters/report_export_manager.dart';
 import '../providers/report_provider.dart';
 
 import '../widgets/cards/report_summary_card.dart';
-import '../widgets/filters/date_filter_bar.dart';
 import '../widgets/dashboard/report_section_header.dart';
+import '../widgets/filters/date_filter_bar.dart';
 import '../widgets/statistics/report_statistic_tile.dart';
-
 
 /// ---------------------------------------------------------------------------
 /// InventoryReportScreen
@@ -20,34 +20,39 @@ import '../widgets/statistics/report_statistic_tile.dart';
 /// Features:
 /// • Inventory KPIs
 /// • Stock Statistics
+/// • Export Report
 /// • Future Inventory Charts
 /// ---------------------------------------------------------------------------
 class InventoryReportScreen extends StatelessWidget {
-  const InventoryReportScreen({
-    super.key,
-  });
+  const InventoryReportScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Consumer<ReportProvider>(
-      builder: (
-        context,
-        provider,
-        _,
-      ) {
-        final totalProducts =
-            provider.inventoryRows.length;
+      builder: (context, provider, _) {
+        final totalProducts = provider.inventoryRows.length;
 
-        final lowStockProducts =
-            provider.inventoryRows.where(
-          (row) => row.last == 'Low Stock',
-        ).length;
+        final lowStockProducts = provider.inventoryRows
+            .where((row) => row.last == 'Low Stock')
+            .length;
 
         final inStockProducts =
             totalProducts - lowStockProducts;
 
         return SmartScaffold(
           title: 'Inventory Report',
+
+          actions: [
+            IconButton(
+              tooltip: 'Export Report',
+              icon: const Icon(Icons.download),
+              onPressed: () => _showExportDialog(
+                context,
+                provider,
+              ),
+            ),
+          ],
+
           body: RefreshIndicator(
             onRefresh: provider.refresh,
             child: ListView(
@@ -56,7 +61,6 @@ class InventoryReportScreen extends StatelessWidget {
                 //------------------------------------------------------------------
                 // Header
                 //------------------------------------------------------------------
-
                 const ReportSectionHeader(
                   title: 'Inventory Analytics',
                   subtitle:
@@ -75,7 +79,6 @@ class InventoryReportScreen extends StatelessWidget {
                 //------------------------------------------------------------------
                 // KPI Cards
                 //------------------------------------------------------------------
-
                 GridView.count(
                   shrinkWrap: true,
                   physics:
@@ -106,7 +109,6 @@ class InventoryReportScreen extends StatelessWidget {
                 //------------------------------------------------------------------
                 // Statistics
                 //------------------------------------------------------------------
-
                 const ReportSectionHeader(
                   title: 'Inventory Statistics',
                 ),
@@ -157,7 +159,6 @@ class InventoryReportScreen extends StatelessWidget {
                 //------------------------------------------------------------------
                 // Chart Placeholder
                 //------------------------------------------------------------------
-
                 const ReportSectionHeader(
                   title: 'Inventory Trends',
                 ),
@@ -185,6 +186,77 @@ class InventoryReportScreen extends StatelessWidget {
           ),
         );
       },
+    );
+  }
+
+  //---------------------------------------------------------------------------
+  // Export Dialog
+  //---------------------------------------------------------------------------
+
+  Future<void> _showExportDialog(
+    BuildContext context,
+    ReportProvider provider,
+  ) async {
+    await showDialog(
+      context: context,
+      builder: (_) => AlertDialog(
+        title: const Text(
+          'Export Inventory Report',
+        ),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ListTile(
+              leading:
+                  const Icon(Icons.picture_as_pdf),
+              title:
+                  const Text('Export as PDF'),
+              onTap: () async {
+                Navigator.pop(context);
+
+                await provider.exportReport(
+                  controller:
+                      provider.inventoryController,
+                  format:
+                      ExportFormat.pdf,
+                );
+              },
+            ),
+            ListTile(
+              leading:
+                  const Icon(Icons.table_chart),
+              title:
+                  const Text('Export as Excel'),
+              onTap: () async {
+                Navigator.pop(context);
+
+                await provider.exportReport(
+                  controller:
+                      provider.inventoryController,
+                  format:
+                      ExportFormat.excel,
+                );
+              },
+            ),
+            ListTile(
+              leading:
+                  const Icon(Icons.description),
+              title:
+                  const Text('Export as CSV'),
+              onTap: () async {
+                Navigator.pop(context);
+
+                await provider.exportReport(
+                  controller:
+                      provider.inventoryController,
+                  format:
+                      ExportFormat.csv,
+                );
+              },
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

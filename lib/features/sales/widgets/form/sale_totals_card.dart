@@ -36,27 +36,15 @@ class SaleTotalsCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'Sale Totals',
-              style: theme.textTheme.titleLarge,
-            ),
+            Text('Sale Totals', style: theme.textTheme.titleLarge),
 
             const SizedBox(height: 20),
 
-            _buildRow(
-              context,
-              'Gross Total',
-              grossTotal,
-            ),
+            _buildRow(context, 'Gross Total', grossTotal),
 
             const SizedBox(height: 10),
 
-            _buildRow(
-              context,
-              'Discount',
-              discount,
-              valueColor: Colors.red,
-            ),
+            _buildRow(context, 'Discount', discount, valueColor: Colors.red),
 
             const Divider(height: 32),
 
@@ -94,22 +82,15 @@ class SaleTotalsCard extends StatelessWidget {
 
     return Row(
       children: [
-        Expanded(
-          child: Text(
-            label,
-            style: theme.textTheme.bodyLarge,
-          ),
-        ),
+        Expanded(child: Text(label, style: theme.textTheme.bodyLarge)),
         Text(
           'KSh ${value.toStringAsFixed(2)}',
-          style: (isBold
-                  ? theme.textTheme.titleMedium
-                  : theme.textTheme.bodyLarge)
-              ?.copyWith(
-            fontWeight:
-                isBold ? FontWeight.bold : FontWeight.w500,
-            color: valueColor,
-          ),
+          style:
+              (isBold ? theme.textTheme.titleMedium : theme.textTheme.bodyLarge)
+                  ?.copyWith(
+                    fontWeight: isBold ? FontWeight.bold : FontWeight.w500,
+                    color: valueColor,
+                  ),
         ),
       ],
     );

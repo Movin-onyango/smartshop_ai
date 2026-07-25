@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import '../../../../shared/widgets/layouts/smart_scaffold.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/theme/app_spacing.dart';
-import  '/features/authentication/widgets/login_header.dart';
+import '/features/authentication/widgets/login_header.dart';
 import '../../../../app/router/app_routes.dart';
 import '../../../../shared/widgets/buttons/app_button.dart';
 import '../../../../shared/widgets/forms/app_password_field.dart';
 import '../../../../shared/widgets/forms/app_text_field.dart';
+
 /// Login screen for SmartShop AI.
 ///
 /// Currently this screen performs local validation only.
@@ -53,9 +54,7 @@ class _LoginPageState extends State<LoginPage> {
     });
 
     // Temporary fake login.
-    await Future.delayed(
-      const Duration(seconds: 1),
-    );
+    await Future.delayed(const Duration(seconds: 1));
 
     if (!mounted) return;
 
@@ -69,13 +68,11 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return SmartScaffold(
-            title: 'Login',
+      title: 'Login',
 
       body: Center(
         child: ConstrainedBox(
-          constraints: const BoxConstraints(
-            maxWidth: 450,
-          ),
+          constraints: const BoxConstraints(maxWidth: 450),
           child: SingleChildScrollView(
             child: Form(
               key: _formKey,
@@ -136,9 +133,7 @@ class _LoginPageState extends State<LoginPage> {
                     onPressed: () {
                       // Forgot Password screen
                     },
-                    child: const Text(
-                      'Forgot Password?',
-                    ),
+                    child: const Text('Forgot Password?'),
                   ),
                 ],
               ),

@@ -29,9 +29,7 @@ class CustomerRepository {
         totalPurchases: 18,
         totalSpent: 52300,
         currentBalance: 2500,
-        lastPurchaseDate: DateTime.now().subtract(
-          const Duration(days: 2),
-        ),
+        lastPurchaseDate: DateTime.now().subtract(const Duration(days: 2)),
       ),
 
       loyaltyAccount: LoyaltyAccount(
@@ -40,9 +38,7 @@ class CustomerRepository {
         totalPointsEarned: 900,
         totalPointsRedeemed: 320,
         tier: LoyaltyTier.gold,
-        joinedAt: DateTime.now().subtract(
-          const Duration(days: 420),
-        ),
+        joinedAt: DateTime.now().subtract(const Duration(days: 420)),
       ),
 
       createdAt: DateTime.now(),
@@ -60,9 +56,7 @@ class CustomerRepository {
         totalPurchases: 7,
         totalSpent: 18450,
         currentBalance: 0,
-        lastPurchaseDate: DateTime.now().subtract(
-          const Duration(days: 7),
-        ),
+        lastPurchaseDate: DateTime.now().subtract(const Duration(days: 7)),
       ),
 
       createdAt: DateTime.now(),
@@ -81,9 +75,7 @@ class CustomerRepository {
         totalPurchases: 11,
         totalSpent: 26700,
         currentBalance: 1200,
-        lastPurchaseDate: DateTime.now().subtract(
-          const Duration(days: 1),
-        ),
+        lastPurchaseDate: DateTime.now().subtract(const Duration(days: 1)),
       ),
 
       loyaltyAccount: LoyaltyAccount(
@@ -92,9 +84,7 @@ class CustomerRepository {
         totalPointsEarned: 200,
         totalPointsRedeemed: 55,
         tier: LoyaltyTier.silver,
-        joinedAt: DateTime.now().subtract(
-          const Duration(days: 180),
-        ),
+        joinedAt: DateTime.now().subtract(const Duration(days: 180)),
       ),
 
       createdAt: DateTime.now(),
@@ -106,14 +96,11 @@ class CustomerRepository {
   // Read
   //--------------------------------------------------------------------------
 
-  static List<Customer> getAll() =>
-      List.unmodifiable(_customers);
+  static List<Customer> getAll() => List.unmodifiable(_customers);
 
   static Customer? getById(String id) {
     try {
-      return _customers.firstWhere(
-        (customer) => customer.id == id,
-      );
+      return _customers.firstWhere((customer) => customer.id == id);
     } catch (_) {
       return null;
     }
@@ -132,9 +119,7 @@ class CustomerRepository {
   //--------------------------------------------------------------------------
 
   static void update(Customer customer) {
-    final index = _customers.indexWhere(
-      (c) => c.id == customer.id,
-    );
+    final index = _customers.indexWhere((c) => c.id == customer.id);
 
     if (index != -1) {
       _customers[index] = customer;
@@ -146,18 +131,14 @@ class CustomerRepository {
   //--------------------------------------------------------------------------
 
   static void delete(String id) {
-    _customers.removeWhere(
-      (customer) => customer.id == id,
-    );
+    _customers.removeWhere((customer) => customer.id == id);
   }
 
   //--------------------------------------------------------------------------
   // Search
   //--------------------------------------------------------------------------
 
-  static List<Customer> search(
-    String query,
-  ) {
+  static List<Customer> search(String query) {
     final q = query.trim().toLowerCase();
 
     if (q.isEmpty) {
@@ -165,15 +146,9 @@ class CustomerRepository {
     }
 
     return _customers.where((customer) {
-      return customer.name
-              .toLowerCase()
-              .contains(q) ||
-          (customer.phone ?? '')
-              .toLowerCase()
-              .contains(q) ||
-          (customer.email ?? '')
-              .toLowerCase()
-              .contains(q);
+      return customer.name.toLowerCase().contains(q) ||
+          (customer.phone ?? '').toLowerCase().contains(q) ||
+          (customer.email ?? '').toLowerCase().contains(q);
     }).toList();
   }
 
@@ -181,36 +156,17 @@ class CustomerRepository {
   // Dashboard Statistics
   //--------------------------------------------------------------------------
 
-  static int totalCustomers() =>
-      _customers.length;
+  static int totalCustomers() => _customers.length;
 
   static int customersWithCredit() =>
-      _customers
-          .where(
-            (customer) =>
-                customer.creditLimit > 0,
-          )
-          .length;
+      _customers.where((customer) => customer.creditLimit > 0).length;
 
   static int loyaltyMembers() =>
-      _customers
-          .where(
-            (customer) =>
-                customer.loyaltyAccount != null,
-          )
-          .length;
+      _customers.where((customer) => customer.loyaltyAccount != null).length;
 
   static double totalSales() =>
-      _customers.fold(
-        0.0,
-        (sum, customer) =>
-            sum + customer.totalSpent,
-      );
+      _customers.fold(0.0, (sum, customer) => sum + customer.totalSpent);
 
   static double outstandingCredit() =>
-      _customers.fold(
-        0.0,
-        (sum, customer) =>
-            sum + customer.currentBalance,
-      );
+      _customers.fold(0.0, (sum, customer) => sum + customer.currentBalance);
 }

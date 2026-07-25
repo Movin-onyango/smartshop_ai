@@ -12,10 +12,7 @@ import '../../models/supplier.dart';
 /// • Supplier Details Screen
 /// ---------------------------------------------------------------------------
 class NotesSection extends StatelessWidget {
-  const NotesSection({
-    super.key,
-    required this.supplier,
-  });
+  const NotesSection({super.key, required this.supplier});
 
   final Supplier supplier;
 
@@ -27,53 +24,33 @@ class NotesSection extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
-          crossAxisAlignment:
-              CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-
-            Text(
-              'Notes',
-              style: Theme.of(context)
-                  .textTheme
-                  .titleLarge,
-            ),
+            Text('Notes', style: Theme.of(context).textTheme.titleLarge),
 
             const SizedBox(height: 20),
 
-            if (notes == null ||
-                notes.trim().isEmpty)
+            if (notes == null || notes.trim().isEmpty)
               Container(
                 width: double.infinity,
-                padding:
-                    const EdgeInsets.all(16),
+                padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  color: Theme.of(context)
-                      .colorScheme
-                      .surfaceContainerHighest,
-                  borderRadius:
-                      BorderRadius.circular(12),
+                  color: Theme.of(context).colorScheme.surfaceContainerHighest,
+                  borderRadius: BorderRadius.circular(12),
                 ),
-                child: const Text(
-                  'No notes available.',
-                ),
+                child: const Text('No notes available.'),
               )
             else
               Container(
                 width: double.infinity,
-                padding:
-                    const EdgeInsets.all(16),
+                padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  color: Theme.of(context)
-                      .colorScheme
-                      .surfaceContainerHighest,
-                  borderRadius:
-                      BorderRadius.circular(12),
+                  color: Theme.of(context).colorScheme.surfaceContainerHighest,
+                  borderRadius: BorderRadius.circular(12),
                 ),
                 child: Text(
                   notes,
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyLarge,
+                  style: Theme.of(context).textTheme.bodyLarge,
                 ),
               ),
           ],

@@ -10,11 +10,7 @@ import 'stock_badge.dart';
 /// easy-to-scan layout with responsive spacing and clearly
 /// separated sections.
 class ProductCard extends StatelessWidget {
-  const ProductCard({
-    super.key,
-    required this.product,
-    required this.onTap,
-  });
+  const ProductCard({super.key, required this.product, required this.onTap});
 
   final Product product;
   final VoidCallback onTap;
@@ -27,9 +23,7 @@ class ProductCard extends StatelessWidget {
     return Card(
       elevation: 0,
       clipBehavior: Clip.antiAlias,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(18),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
       child: InkWell(
         onTap: onTap,
         child: Padding(
@@ -42,9 +36,7 @@ class ProductCard extends StatelessWidget {
               // of the product name.
               CircleAvatar(
                 radius: 28,
-                child: Text(
-                  product.name.substring(0, 1).toUpperCase(),
-                ),
+                child: Text(product.name.substring(0, 1).toUpperCase()),
               ),
 
               const SizedBox(width: 16),
@@ -56,12 +48,9 @@ class ProductCard extends StatelessWidget {
                     // Product name.
                     Text(
                       product.name,
-                      style: Theme.of(context)
-                          .textTheme
-                          .titleMedium
-                          ?.copyWith(
-                            fontWeight: FontWeight.bold,
-                          ),
+                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
 
                     const SizedBox(height: 4),
@@ -79,12 +68,8 @@ class ProductCard extends StatelessWidget {
                       spacing: 8,
                       runSpacing: 8,
                       children: [
-                        StockBadge(
-                          quantity: product.quantity,
-                        ),
-                        ExpiryBadge(
-                          expiryDate: product.expiryDate,
-                        ),
+                        StockBadge(quantity: product.quantity),
+                        ExpiryBadge(expiryDate: product.expiryDate),
                       ],
                     ),
 
@@ -126,9 +111,7 @@ class ProductCard extends StatelessWidget {
               const SizedBox(width: 8),
 
               // Indicates the card is tappable.
-              const Icon(
-                Icons.chevron_right_rounded,
-              ),
+              const Icon(Icons.chevron_right_rounded),
             ],
           ),
         ),
@@ -142,10 +125,7 @@ class ProductCard extends StatelessWidget {
 /// This layout is easier to scan than placing multiple metrics
 /// side-by-side, especially on smaller screens.
 class _MetricRow extends StatelessWidget {
-  const _MetricRow({
-    required this.label,
-    required this.value,
-  });
+  const _MetricRow({required this.label, required this.value});
 
   final String label;
   final String value;
@@ -155,16 +135,13 @@ class _MetricRow extends StatelessWidget {
     return Row(
       children: [
         Expanded(
-          child: Text(
-            label,
-            style: Theme.of(context).textTheme.bodyMedium,
-          ),
+          child: Text(label, style: Theme.of(context).textTheme.bodyMedium),
         ),
         Text(
           value,
-          style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                fontWeight: FontWeight.bold,
-              ),
+          style: Theme.of(
+            context,
+          ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
         ),
       ],
     );

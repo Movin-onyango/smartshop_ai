@@ -39,37 +39,19 @@ class TotalsController extends ChangeNotifier {
   //---------------------------------------------------------------------------
 
   double get grossTotal =>
-      _items.fold(
-        0.0,
-        (sum, item) => sum + item.grossTotal,
-      );
+      _items.fold(0.0, (sum, item) => sum + item.grossTotal);
 
   double get totalDiscount =>
-      _items.fold(
-        0.0,
-        (sum, item) => sum + item.discount,
-      );
+      _items.fold(0.0, (sum, item) => sum + item.discount);
 
   /// Compatibility alias used by the UI.
   double get discount => totalDiscount;
 
-  double get subtotal =>
-      _items.fold(
-        0.0,
-        (sum, item) => sum + item.subtotal,
-      );
+  double get subtotal => _items.fold(0.0, (sum, item) => sum + item.subtotal);
 
-  double get totalCost =>
-      _items.fold(
-        0.0,
-        (sum, item) => sum + item.cost,
-      );
+  double get totalCost => _items.fold(0.0, (sum, item) => sum + item.cost);
 
-  double get totalProfit =>
-      _items.fold(
-        0.0,
-        (sum, item) => sum + item.profit,
-      );
+  double get totalProfit => _items.fold(0.0, (sum, item) => sum + item.profit);
 
   /// Compatibility alias used by the UI.
   double get expectedProfit => totalProfit;
@@ -88,11 +70,7 @@ class TotalsController extends ChangeNotifier {
 
   int get totalItems => _items.length;
 
-  int get totalQuantity =>
-      _items.fold(
-        0,
-        (sum, item) => sum + item.quantity,
-      );
+  int get totalQuantity => _items.fold(0, (sum, item) => sum + item.quantity);
 
   bool get isEmpty => _items.isEmpty;
 

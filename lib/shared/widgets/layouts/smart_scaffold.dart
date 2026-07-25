@@ -54,10 +54,7 @@ class SmartScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Widget page = SafeArea(
-      child: Padding(
-        padding: padding,
-        child: body,
-      ),
+      child: Padding(padding: padding, child: body),
     );
 
     if (onRefresh != null) {
@@ -76,8 +73,7 @@ class SmartScaffold extends StatelessWidget {
     }
 
     return Scaffold(
-      backgroundColor:
-          backgroundColor ?? Theme.of(context).colorScheme.surface,
+      backgroundColor: backgroundColor ?? Theme.of(context).colorScheme.surface,
       drawer: drawer,
       appBar: AppBar(
         centerTitle: false,
@@ -92,9 +88,7 @@ class SmartScaffold extends StatelessWidget {
           if (isLoading)
             Container(
               color: Colors.black26,
-              child: const Center(
-                child: CircularProgressIndicator(),
-              ),
+              child: const Center(child: CircularProgressIndicator()),
             ),
         ],
       ),

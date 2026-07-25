@@ -12,10 +12,7 @@ import '../../models/expense.dart';
 /// • ExpenseDetailsScreen
 /// ---------------------------------------------------------------------------
 class ExpensePaymentSection extends StatelessWidget {
-  const ExpensePaymentSection({
-    super.key,
-    required this.expense,
-  });
+  const ExpensePaymentSection({super.key, required this.expense});
 
   final Expense expense;
 
@@ -34,17 +31,11 @@ class ExpensePaymentSection extends StatelessWidget {
 
             const SizedBox(height: 20),
 
-            _AmountRow(
-              title: 'Amount',
-              value: expense.amount,
-            ),
+            _AmountRow(title: 'Amount', value: expense.amount),
 
             const Divider(),
 
-            _AmountRow(
-              title: 'Tax',
-              value: expense.taxAmount,
-            ),
+            _AmountRow(title: 'Tax', value: expense.taxAmount),
 
             const Divider(),
 
@@ -93,9 +84,9 @@ class _AmountRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final style = isTotal
-        ? Theme.of(context).textTheme.titleLarge?.copyWith(
-              fontWeight: FontWeight.bold,
-            )
+        ? Theme.of(
+            context,
+          ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold)
         : Theme.of(context).textTheme.bodyLarge;
 
     return Padding(
@@ -104,10 +95,7 @@ class _AmountRow extends StatelessWidget {
         children: [
           Text(title),
           const Spacer(),
-          Text(
-            'KES ${value.toStringAsFixed(2)}',
-            style: style,
-          ),
+          Text('KES ${value.toStringAsFixed(2)}', style: style),
         ],
       ),
     );
@@ -134,21 +122,13 @@ class _InfoRow extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: Row(
         children: [
-          Icon(
-            icon,
-            size: 20,
-          ),
+          Icon(icon, size: 20),
 
           const SizedBox(width: 12),
 
-          Expanded(
-            child: Text(title),
-          ),
+          Expanded(child: Text(title)),
 
-          Text(
-            value,
-            style: Theme.of(context).textTheme.titleMedium,
-          ),
+          Text(value, style: Theme.of(context).textTheme.titleMedium),
         ],
       ),
     );

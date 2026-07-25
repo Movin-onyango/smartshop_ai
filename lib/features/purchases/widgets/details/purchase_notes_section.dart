@@ -14,10 +14,7 @@ import '../../models/purchase.dart';
 /// • Print Preview
 /// ---------------------------------------------------------------------------
 class PurchaseNotesSection extends StatelessWidget {
-  const PurchaseNotesSection({
-    super.key,
-    required this.purchase,
-  });
+  const PurchaseNotesSection({super.key, required this.purchase});
 
   final Purchase purchase;
 
@@ -29,35 +26,24 @@ class PurchaseNotesSection extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
-          crossAxisAlignment:
-              CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             //------------------------------------------------------------------
             // Header
             //------------------------------------------------------------------
-
-            Text(
-              'Notes',
-              style: Theme.of(context)
-                  .textTheme
-                  .titleLarge,
-            ),
+            Text('Notes', style: Theme.of(context).textTheme.titleLarge),
 
             const SizedBox(height: 20),
 
             //------------------------------------------------------------------
             // Notes
             //------------------------------------------------------------------
-
-            if (notes == null ||
-                notes.isEmpty)
+            if (notes == null || notes.isEmpty)
               const _EmptyNotes()
             else
               SelectableText(
                 notes,
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyLarge,
+                style: Theme.of(context).textTheme.bodyLarge,
               ),
           ],
         ),
@@ -75,17 +61,12 @@ class _EmptyNotes extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:
-          const EdgeInsets.symmetric(
-        vertical: 12,
-      ),
+      padding: const EdgeInsets.symmetric(vertical: 12),
       child: Row(
         children: [
           Icon(
             Icons.notes_outlined,
-            color: Theme.of(context)
-                .colorScheme
-                .outline,
+            color: Theme.of(context).colorScheme.outline,
           ),
 
           const SizedBox(width: 12),
@@ -93,9 +74,7 @@ class _EmptyNotes extends StatelessWidget {
           Expanded(
             child: Text(
               'No notes were provided for this purchase.',
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyMedium,
+              style: Theme.of(context).textTheme.bodyMedium,
             ),
           ),
         ],

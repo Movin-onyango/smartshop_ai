@@ -22,8 +22,7 @@ class PurchaseListView extends StatelessWidget {
     required this.purchases,
     required this.onRefresh,
     required this.onPurchaseTap,
-    this.emptyMessage =
-        'No purchases found.',
+    this.emptyMessage = 'No purchases found.',
   });
 
   final List<Purchase> purchases;
@@ -40,18 +39,11 @@ class PurchaseListView extends StatelessWidget {
       return RefreshIndicator(
         onRefresh: onRefresh,
         child: ListView(
-          physics:
-              const AlwaysScrollableScrollPhysics(),
+          physics: const AlwaysScrollableScrollPhysics(),
           children: [
             SizedBox(
-              height:
-                  MediaQuery.of(context)
-                          .size
-                          .height *
-                      .6,
-              child: PurchaseEmptyState(
-                message: emptyMessage,
-              ),
+              height: MediaQuery.of(context).size.height * .6,
+              child: PurchaseEmptyState(message: emptyMessage),
             ),
           ],
         ),
@@ -61,24 +53,15 @@ class PurchaseListView extends StatelessWidget {
     return RefreshIndicator(
       onRefresh: onRefresh,
       child: ListView.builder(
-        physics:
-            const AlwaysScrollableScrollPhysics(),
-        padding:
-            const EdgeInsets.symmetric(
-          horizontal: 16,
-          vertical: 8,
-        ),
+        physics: const AlwaysScrollableScrollPhysics(),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         itemCount: purchases.length,
         itemBuilder: (context, index) {
-          final purchase =
-              purchases[index];
+          final purchase = purchases[index];
 
           return PurchaseListItem(
             purchase: purchase,
-            onTap: () =>
-                onPurchaseTap(
-              purchase,
-            ),
+            onTap: () => onPurchaseTap(purchase),
           );
         },
       ),

@@ -27,13 +27,10 @@ class InventoryListScreen extends StatefulWidget {
   const InventoryListScreen({super.key});
 
   @override
-  State<InventoryListScreen> createState() =>
-      _InventoryListScreenState();
+  State<InventoryListScreen> createState() => _InventoryListScreenState();
 }
 
-class _InventoryListScreenState
-    extends State<InventoryListScreen> {
-
+class _InventoryListScreenState extends State<InventoryListScreen> {
   @override
   void initState() {
     super.initState();
@@ -66,7 +63,6 @@ class _InventoryListScreenState
           physics: const AlwaysScrollableScrollPhysics(),
           padding: const EdgeInsets.all(16),
           children: const [
-
             InventorySearchBar(),
 
             SizedBox(height: 16),
@@ -78,7 +74,6 @@ class _InventoryListScreenState
             InventoryGrid(),
 
             SizedBox(height: 24),
-
           ],
         ),
       ),

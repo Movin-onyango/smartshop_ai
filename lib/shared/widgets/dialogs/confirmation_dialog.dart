@@ -32,9 +32,7 @@ class ConfirmationDialog extends StatelessWidget {
           child: Text(cancelText),
         ),
         FilledButton(
-          style: FilledButton.styleFrom(
-            backgroundColor: confirmButtonColor,
-          ),
+          style: FilledButton.styleFrom(backgroundColor: confirmButtonColor),
           onPressed: () {
             Navigator.pop(context);
             onConfirm();

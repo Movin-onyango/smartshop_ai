@@ -28,9 +28,7 @@ class SupplierSearchController {
     _query = value.trim();
   }
 
-  List<Supplier> search(
-    List<Supplier> suppliers,
-  ) {
+  List<Supplier> search(List<Supplier> suppliers) {
     if (_query.isEmpty) {
       return suppliers;
     }
@@ -38,29 +36,11 @@ class SupplierSearchController {
     final search = _query.toLowerCase();
 
     return suppliers.where((supplier) {
-      return supplier.name
-              .toLowerCase()
-              .contains(search) ||
-
-          (supplier.contactPerson
-                  ?.toLowerCase()
-                  .contains(search) ??
-              false) ||
-
-          (supplier.phone
-                  ?.toLowerCase()
-                  .contains(search) ??
-              false) ||
-
-          (supplier.email
-                  ?.toLowerCase()
-                  .contains(search) ??
-              false) ||
-
-          (supplier.taxNumber
-                  ?.toLowerCase()
-                  .contains(search) ??
-              false);
+      return supplier.name.toLowerCase().contains(search) ||
+          (supplier.contactPerson?.toLowerCase().contains(search) ?? false) ||
+          (supplier.phone?.toLowerCase().contains(search) ?? false) ||
+          (supplier.email?.toLowerCase().contains(search) ?? false) ||
+          (supplier.taxNumber?.toLowerCase().contains(search) ?? false);
     }).toList();
   }
 

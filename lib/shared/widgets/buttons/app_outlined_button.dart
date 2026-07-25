@@ -23,31 +23,20 @@ class AppOutlinedButton extends StatelessWidget {
 
     if (icon != null) {
       child = Row(
-        mainAxisSize:
-            expand ? MainAxisSize.max : MainAxisSize.min,
+        mainAxisSize: expand ? MainAxisSize.max : MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(icon),
-          AppSpacing.gapHorizontalSM,
-          Text(label),
-        ],
+        children: [Icon(icon), AppSpacing.gapHorizontalSM, Text(label)],
       );
     } else {
       child = Text(label);
     }
 
-    final button = OutlinedButton(
-      onPressed: onPressed,
-      child: child,
-    );
+    final button = OutlinedButton(onPressed: onPressed, child: child);
 
     if (!expand) {
       return button;
     }
 
-    return SizedBox(
-      width: double.infinity,
-      child: button,
-    );
+    return SizedBox(width: double.infinity, child: button);
   }
 }

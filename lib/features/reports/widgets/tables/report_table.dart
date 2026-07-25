@@ -36,15 +36,9 @@ class ReportTable extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
-          crossAxisAlignment:
-              CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              heading,
-              style: Theme.of(context)
-                  .textTheme
-                  .titleLarge,
-            ),
+            Text(heading, style: Theme.of(context).textTheme.titleLarge),
 
             const SizedBox(height: 20),
 
@@ -59,10 +53,7 @@ class ReportTable extends StatelessWidget {
                       (column) => DataColumn(
                         label: Text(
                           column,
-                          style: const TextStyle(
-                            fontWeight:
-                                FontWeight.bold,
-                          ),
+                          style: const TextStyle(fontWeight: FontWeight.bold),
                         ),
                       ),
                     )
@@ -70,13 +61,7 @@ class ReportTable extends StatelessWidget {
                 rows: rows
                     .map(
                       (row) => DataRow(
-                        cells: row
-                            .map(
-                              (cell) => DataCell(
-                                Text(cell),
-                              ),
-                            )
-                            .toList(),
+                        cells: row.map((cell) => DataCell(Text(cell))).toList(),
                       ),
                     )
                     .toList(),

@@ -30,11 +30,9 @@ class SalesProvider extends ChangeNotifier {
 
   bool get isLoading => _isLoading;
 
-  double get totalRevenue =>
-      _sales.fold(0, (sum, sale) => sum + sale.subtotal);
+  double get totalRevenue => _sales.fold(0, (sum, sale) => sum + sale.subtotal);
 
-  double get totalProfit =>
-      _sales.fold(0, (sum, sale) => sum + sale.profit);
+  double get totalProfit => _sales.fold(0, (sum, sale) => sum + sale.profit);
 
   int get totalTransactions => _sales.length;
 
@@ -86,9 +84,7 @@ class SalesProvider extends ChangeNotifier {
 
   Sale? findById(String id) {
     try {
-      return _sales.firstWhere(
-        (sale) => sale.id == id,
-      );
+      return _sales.firstWhere((sale) => sale.id == id);
     } catch (_) {
       return null;
     }
@@ -117,16 +113,10 @@ class SalesProvider extends ChangeNotifier {
   }
 
   double get todayRevenue =>
-      todaySales.fold(
-        0,
-        (sum, sale) => sum + sale.subtotal,
-      );
+      todaySales.fold(0, (sum, sale) => sum + sale.subtotal);
 
   double get todayProfit =>
-      todaySales.fold(
-        0,
-        (sum, sale) => sum + sale.profit,
-      );
+      todaySales.fold(0, (sum, sale) => sum + sale.profit);
 
   //---------------------------------------------------------------------------
   // Payment Statistics

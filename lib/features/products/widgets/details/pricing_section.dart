@@ -6,10 +6,7 @@ import '/features/dashboard/widgets/section_header.dart';
 import 'detail_tile.dart';
 
 class PricingSection extends StatelessWidget {
-  const PricingSection({
-    super.key,
-    required this.product,
-  });
+  const PricingSection({super.key, required this.product});
 
   final Product product;
 

@@ -23,11 +23,9 @@ class PurchaseFormController extends ChangeNotifier {
   // Controllers
   //---------------------------------------------------------------------------
 
-  final supplierController =
-      TextEditingController();
+  final supplierController = TextEditingController();
 
-  final notesController =
-      TextEditingController();
+  final notesController = TextEditingController();
 
   //---------------------------------------------------------------------------
   // Fields
@@ -39,8 +37,7 @@ class PurchaseFormController extends ChangeNotifier {
 
   DateTime? expectedDeliveryDate;
 
-  PurchaseStatus status =
-      PurchaseStatus.draft;
+  PurchaseStatus status = PurchaseStatus.draft;
 
   final List<PurchaseItem> items = [];
 
@@ -50,37 +47,27 @@ class PurchaseFormController extends ChangeNotifier {
 
   PurchaseFormController();
 
-  PurchaseFormController.fromPurchase(
-    Purchase purchase,
-  ) {
+  PurchaseFormController.fromPurchase(Purchase purchase) {
     supplierId = purchase.supplierId;
 
-    supplierController.text =
-        purchase.supplierName;
+    supplierController.text = purchase.supplierName;
 
-    notesController.text =
-        purchase.notes ?? '';
+    notesController.text = purchase.notes ?? '';
 
     orderDate = purchase.orderDate;
 
-    expectedDeliveryDate =
-        purchase.expectedDeliveryDate;
+    expectedDeliveryDate = purchase.expectedDeliveryDate;
 
     status = purchase.status;
 
-    items.addAll(
-      purchase.items,
-    );
+    items.addAll(purchase.items);
   }
 
   //---------------------------------------------------------------------------
   // Supplier
   //---------------------------------------------------------------------------
 
-  void setSupplier({
-    required String id,
-    required String name,
-  }) {
+  void setSupplier({required String id, required String name}) {
     supplierId = id;
     supplierController.text = name;
     notifyListeners();
@@ -90,16 +77,12 @@ class PurchaseFormController extends ChangeNotifier {
   // Dates
   //---------------------------------------------------------------------------
 
-  void setOrderDate(
-    DateTime value,
-  ) {
+  void setOrderDate(DateTime value) {
     orderDate = value;
     notifyListeners();
   }
 
-  void setExpectedDeliveryDate(
-    DateTime value,
-  ) {
+  void setExpectedDeliveryDate(DateTime value) {
     expectedDeliveryDate = value;
     notifyListeners();
   }
@@ -108,9 +91,7 @@ class PurchaseFormController extends ChangeNotifier {
   // Status
   //---------------------------------------------------------------------------
 
-  void setStatus(
-    PurchaseStatus value,
-  ) {
+  void setStatus(PurchaseStatus value) {
     status = value;
     notifyListeners();
   }
@@ -119,24 +100,17 @@ class PurchaseFormController extends ChangeNotifier {
   // Items
   //---------------------------------------------------------------------------
 
-  void addItem(
-    PurchaseItem item,
-  ) {
+  void addItem(PurchaseItem item) {
     items.add(item);
     notifyListeners();
   }
 
-  void updateItem(
-    int index,
-    PurchaseItem item,
-  ) {
+  void updateItem(int index, PurchaseItem item) {
     items[index] = item;
     notifyListeners();
   }
 
-  void removeItem(
-    PurchaseItem item,
-  ) {
+  void removeItem(PurchaseItem item) {
     items.remove(item);
     notifyListeners();
   }
@@ -150,33 +124,14 @@ class PurchaseFormController extends ChangeNotifier {
   // Totals
   //---------------------------------------------------------------------------
 
-  double get subtotal =>
-      items.fold(
-        0.0,
-        (sum, item) =>
-            sum + item.subtotal,
-      );
+  double get subtotal => items.fold(0.0, (sum, item) => sum + item.subtotal);
 
   double get totalDiscount =>
-      items.fold(
-        0.0,
-        (sum, item) =>
-            sum + item.discountAmount,
-      );
+      items.fold(0.0, (sum, item) => sum + item.discountAmount);
 
-  double get totalTax =>
-      items.fold(
-        0.0,
-        (sum, item) =>
-            sum + item.taxAmount,
-      );
+  double get totalTax => items.fold(0.0, (sum, item) => sum + item.taxAmount);
 
-  double get grandTotal =>
-      items.fold(
-        0.0,
-        (sum, item) =>
-            sum + item.total,
-      );
+  double get grandTotal => items.fold(0.0, (sum, item) => sum + item.total);
 
   //---------------------------------------------------------------------------
   // Validation
@@ -202,33 +157,26 @@ class PurchaseFormController extends ChangeNotifier {
   // Conversion
   //---------------------------------------------------------------------------
 
-  Purchase toPurchase({
-    String? id,
-    String? purchaseNumber,
-  }) {
+  Purchase toPurchase({String? id, String? purchaseNumber}) {
     return Purchase(
       id: id,
 
       purchaseNumber:
-          purchaseNumber ??
-          'PO-${DateTime.now().millisecondsSinceEpoch}',
+          purchaseNumber ?? 'PO-${DateTime.now().millisecondsSinceEpoch}',
 
       supplierId: supplierId!,
 
-      supplierName:
-          supplierController.text.trim(),
+      supplierName: supplierController.text.trim(),
 
       orderDate: orderDate,
 
-      expectedDeliveryDate:
-          expectedDeliveryDate,
+      expectedDeliveryDate: expectedDeliveryDate,
 
       status: status,
 
-      notes:
-          notesController.text.trim().isEmpty
-              ? null
-              : notesController.text.trim(),
+      notes: notesController.text.trim().isEmpty
+          ? null
+          : notesController.text.trim(),
 
       items: List.from(items),
 

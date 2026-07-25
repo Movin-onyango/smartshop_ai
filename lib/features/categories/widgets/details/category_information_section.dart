@@ -15,10 +15,7 @@ import '../../models/category.dart';
 /// • Last Updated
 /// ---------------------------------------------------------------------------
 class CategoryInformationSection extends StatelessWidget {
-  const CategoryInformationSection({
-    super.key,
-    required this.category,
-  });
+  const CategoryInformationSection({super.key, required this.category});
 
   final Category category;
 
@@ -30,17 +27,11 @@ class CategoryInformationSection extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'Information',
-              style: Theme.of(context).textTheme.titleLarge,
-            ),
+            Text('Information', style: Theme.of(context).textTheme.titleLarge),
 
             const SizedBox(height: 20),
 
-            _InfoRow(
-              label: 'Category Name',
-              value: category.name,
-            ),
+            _InfoRow(label: 'Category Name', value: category.name),
 
             _InfoRow(
               label: 'Description',
@@ -70,10 +61,7 @@ class CategoryInformationSection extends StatelessWidget {
 }
 
 class _InfoRow extends StatelessWidget {
-  const _InfoRow({
-    required this.label,
-    required this.value,
-  });
+  const _InfoRow({required this.label, required this.value});
 
   final String label;
   final String value;
@@ -87,17 +75,11 @@ class _InfoRow extends StatelessWidget {
         children: [
           SizedBox(
             width: 140,
-            child: Text(
-              label,
-              style: Theme.of(context).textTheme.titleSmall,
-            ),
+            child: Text(label, style: Theme.of(context).textTheme.titleSmall),
           ),
 
           Expanded(
-            child: Text(
-              value,
-              style: Theme.of(context).textTheme.bodyMedium,
-            ),
+            child: Text(value, style: Theme.of(context).textTheme.bodyMedium),
           ),
         ],
       ),

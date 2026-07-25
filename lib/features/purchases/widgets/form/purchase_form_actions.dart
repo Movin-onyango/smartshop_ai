@@ -33,19 +33,11 @@ class PurchaseFormActions extends StatelessWidget {
         //----------------------------------------------------------------------
         // Cancel
         //----------------------------------------------------------------------
-
         Expanded(
           child: OutlinedButton.icon(
-            onPressed:
-                isSaving
-                    ? null
-                    : onCancel,
-            icon: const Icon(
-              Icons.close,
-            ),
-            label: const Text(
-              'Cancel',
-            ),
+            onPressed: isSaving ? null : onCancel,
+            icon: const Icon(Icons.close),
+            label: const Text('Cancel'),
           ),
         ),
 
@@ -54,33 +46,17 @@ class PurchaseFormActions extends StatelessWidget {
         //----------------------------------------------------------------------
         // Save
         //----------------------------------------------------------------------
-
         Expanded(
           child: FilledButton.icon(
-            onPressed:
-                isSaving
-                    ? null
-                    : onSave,
-            icon:
-                isSaving
-                    ? const SizedBox(
-                        width: 18,
-                        height: 18,
-                        child:
-                            CircularProgressIndicator(
-                          strokeWidth: 2,
-                        ),
-                      )
-                    : Icon(
-                        isEditing
-                            ? Icons.save
-                            : Icons.add,
-                      ),
-            label: Text(
-              isEditing
-                  ? 'Update Purchase'
-                  : 'Create Purchase',
-            ),
+            onPressed: isSaving ? null : onSave,
+            icon: isSaving
+                ? const SizedBox(
+                    width: 18,
+                    height: 18,
+                    child: CircularProgressIndicator(strokeWidth: 2),
+                  )
+                : Icon(isEditing ? Icons.save : Icons.add),
+            label: Text(isEditing ? 'Update Purchase' : 'Create Purchase'),
           ),
         ),
       ],

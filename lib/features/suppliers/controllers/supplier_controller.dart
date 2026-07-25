@@ -13,9 +13,8 @@ import '../providers/supplier_provider.dart';
 /// accessing the provider directly whenever business logic is needed.
 /// ---------------------------------------------------------------------------
 class SupplierController {
-  SupplierController({
-    required SupplierProvider provider,
-  }) : _provider = provider;
+  SupplierController({required SupplierProvider provider})
+    : _provider = provider;
 
   final SupplierProvider _provider;
 
@@ -23,26 +22,19 @@ class SupplierController {
   // Getters
   //--------------------------------------------------------------------------
 
-  List<Supplier> get suppliers =>
-      _provider.suppliers;
+  List<Supplier> get suppliers => _provider.suppliers;
 
-  bool get isLoading =>
-      _provider.isLoading;
+  bool get isLoading => _provider.isLoading;
 
-  int get totalSuppliers =>
-      _provider.totalSuppliers;
+  int get totalSuppliers => _provider.totalSuppliers;
 
-  double get totalCreditLimit =>
-      _provider.totalCreditLimit;
+  double get totalCreditLimit => _provider.totalCreditLimit;
 
-  double get totalOutstandingBalance =>
-      _provider.totalOutstandingBalance;
+  double get totalOutstandingBalance => _provider.totalOutstandingBalance;
 
-  int get suppliersWithBalance =>
-      _provider.suppliersWithBalance;
+  int get suppliersWithBalance => _provider.suppliersWithBalance;
 
-  int get suppliersWithoutBalance =>
-      _provider.suppliersWithoutBalance;
+  int get suppliersWithoutBalance => _provider.suppliersWithoutBalance;
 
   //--------------------------------------------------------------------------
   // Loading

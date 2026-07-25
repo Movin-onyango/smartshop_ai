@@ -4,10 +4,7 @@ import '../../models/purchase_item.dart';
 import 'purchase_value_tile.dart';
 
 class PurchaseItemCard extends StatelessWidget {
-  const PurchaseItemCard({
-    super.key,
-    required this.item,
-  });
+  const PurchaseItemCard({super.key, required this.item});
 
   final PurchaseItem item;
 
@@ -16,9 +13,7 @@ class PurchaseItemCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        border: Border.all(
-          color: Theme.of(context).dividerColor,
-        ),
+        border: Border.all(color: Theme.of(context).dividerColor),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Column(
@@ -26,9 +21,7 @@ class PurchaseItemCard extends StatelessWidget {
         children: [
           Text(
             item.productName,
-            style: Theme.of(context)
-                .textTheme
-                .titleMedium,
+            style: Theme.of(context).textTheme.titleMedium,
           ),
 
           const SizedBox(height: 16),
@@ -38,22 +31,19 @@ class PurchaseItemCard extends StatelessWidget {
               Expanded(
                 child: PurchaseValueTile(
                   label: 'Ordered',
-                  value: item.quantity
-                      .toStringAsFixed(2),
+                  value: item.quantity.toStringAsFixed(2),
                 ),
               ),
               Expanded(
                 child: PurchaseValueTile(
                   label: 'Received',
-                  value: item.receivedQuantity
-                      .toStringAsFixed(2),
+                  value: item.receivedQuantity.toStringAsFixed(2),
                 ),
               ),
               Expanded(
                 child: PurchaseValueTile(
                   label: 'Remaining',
-                  value: item.remainingQuantity
-                      .toStringAsFixed(2),
+                  value: item.remainingQuantity.toStringAsFixed(2),
                 ),
               ),
             ],
@@ -66,22 +56,19 @@ class PurchaseItemCard extends StatelessWidget {
               Expanded(
                 child: PurchaseValueTile(
                   label: 'Unit Cost',
-                  value: item.unitCost
-                      .toStringAsFixed(2),
+                  value: item.unitCost.toStringAsFixed(2),
                 ),
               ),
               Expanded(
                 child: PurchaseValueTile(
                   label: 'Discount',
-                  value:
-                      '${item.discount.toStringAsFixed(1)}%',
+                  value: '${item.discount.toStringAsFixed(1)}%',
                 ),
               ),
               Expanded(
                 child: PurchaseValueTile(
                   label: 'Tax',
-                  value:
-                      '${item.tax.toStringAsFixed(1)}%',
+                  value: '${item.tax.toStringAsFixed(1)}%',
                 ),
               ),
             ],
@@ -93,9 +80,7 @@ class PurchaseItemCard extends StatelessWidget {
             alignment: Alignment.centerRight,
             child: Text(
               'Line Total: ${item.total.toStringAsFixed(2)}',
-              style: Theme.of(context)
-                  .textTheme
-                  .titleMedium,
+              style: Theme.of(context).textTheme.titleMedium,
             ),
           ),
         ],

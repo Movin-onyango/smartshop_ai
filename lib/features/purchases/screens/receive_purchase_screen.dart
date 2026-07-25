@@ -23,20 +23,15 @@ import '../widgets/receive/receive_purchase_actions.dart';
 /// • Submit receipt
 /// ---------------------------------------------------------------------------
 class ReceivePurchaseScreen extends StatefulWidget {
-  const ReceivePurchaseScreen({
-    super.key,
-    required this.purchaseId,
-  });
+  const ReceivePurchaseScreen({super.key, required this.purchaseId});
 
   final String purchaseId;
 
   @override
-  State<ReceivePurchaseScreen> createState() =>
-      _ReceivePurchaseScreenState();
+  State<ReceivePurchaseScreen> createState() => _ReceivePurchaseScreenState();
 }
 
-class _ReceivePurchaseScreenState
-    extends State<ReceivePurchaseScreen> {
+class _ReceivePurchaseScreenState extends State<ReceivePurchaseScreen> {
   late Purchase purchase;
 
   late List<PurchaseItem> items;
@@ -51,13 +46,9 @@ class _ReceivePurchaseScreenState
 
     if (_initialized) return;
 
-    purchase = context
-        .read<PurchaseProvider>()
-        .findById(widget.purchaseId)!;
+    purchase = context.read<PurchaseProvider>().findById(widget.purchaseId)!;
 
-    items = purchase.items
-        .map((e) => e.copyWith())
-        .toList();
+    items = purchase.items.map((e) => e.copyWith()).toList();
 
     _initialized = true;
   }
@@ -66,14 +57,9 @@ class _ReceivePurchaseScreenState
   // Update Quantity
   //---------------------------------------------------------------------------
 
-  void _updateQuantity(
-    int index,
-    double quantity,
-  ) {
+  void _updateQuantity(int index, double quantity) {
     setState(() {
-      items[index] = items[index].copyWith(
-        receivedQuantity: quantity,
-      );
+      items[index] = items[index].copyWith(receivedQuantity: quantity);
     });
   }
 
@@ -86,15 +72,12 @@ class _ReceivePurchaseScreenState
       _isSaving = true;
     });
 
-    final updatedPurchase =
-        purchase.copyWith(
+    final updatedPurchase = purchase.copyWith(
       receivedDate: DateTime.now(),
       items: items,
     );
 
-    await context
-        .read<PurchaseProvider>()
-        .updatePurchase(updatedPurchase);
+    await context.read<PurchaseProvider>().updatePurchase(updatedPurchase);
 
     if (!mounted) return;
 
@@ -111,16 +94,12 @@ class _ReceivePurchaseScreenState
         children: [
           ReceivePurchaseItemsCard(
             items: items,
-            onQuantityChanged:
-                _updateQuantity,
+            onQuantityChanged: _updateQuantity,
           ),
 
           const SizedBox(height: 16),
 
-          ReceivePurchaseSummaryCard(
-            purchase: purchase,
-            items: items,
-          ),
+          ReceivePurchaseSummaryCard(purchase: purchase, items: items),
 
           const SizedBox(height: 24),
 

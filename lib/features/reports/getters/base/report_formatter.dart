@@ -21,9 +21,7 @@ class ReportFormatter {
   // Currency
   //--------------------------------------------------------------------------
 
-  static String currency(
-    num value,
-  ) {
+  static String currency(num value) {
     return 'KES ${value.toStringAsFixed(2)}';
   }
 
@@ -31,9 +29,7 @@ class ReportFormatter {
   // Integer
   //--------------------------------------------------------------------------
 
-  static String integer(
-    num value,
-  ) {
+  static String integer(num value) {
     return value.toInt().toString();
   }
 
@@ -41,22 +37,15 @@ class ReportFormatter {
   // Decimal
   //--------------------------------------------------------------------------
 
-  static String decimal(
-    num value, {
-    int fractionDigits = 2,
-  }) {
-    return value.toStringAsFixed(
-      fractionDigits,
-    );
+  static String decimal(num value, {int fractionDigits = 2}) {
+    return value.toStringAsFixed(fractionDigits);
   }
 
   //--------------------------------------------------------------------------
   // Percentage
   //--------------------------------------------------------------------------
 
-  static String percentage(
-    num value,
-  ) {
+  static String percentage(num value) {
     return '${value.toStringAsFixed(2)}%';
   }
 
@@ -64,9 +53,7 @@ class ReportFormatter {
   // Date
   //--------------------------------------------------------------------------
 
-  static String date(
-    DateTime value,
-  ) {
+  static String date(DateTime value) {
     return value.toIso8601String().split('T').first;
   }
 
@@ -74,21 +61,15 @@ class ReportFormatter {
   // Empty String
   //--------------------------------------------------------------------------
 
-  static String empty(
-    String? value,
-  ) {
-    return value == null || value.trim().isEmpty
-        ? '-'
-        : value;
+  static String empty(String? value) {
+    return value == null || value.trim().isEmpty ? '-' : value;
   }
 
   //--------------------------------------------------------------------------
   // Generic Text
   //--------------------------------------------------------------------------
 
-  static String text(
-    Object? value,
-  ) {
+  static String text(Object? value) {
     return value?.toString() ?? '-';
   }
 
@@ -96,9 +77,7 @@ class ReportFormatter {
   // Yes / No
   //--------------------------------------------------------------------------
 
-  static String yesNo(
-    bool value,
-  ) {
+  static String yesNo(bool value) {
     return value ? 'Yes' : 'No';
   }
 
@@ -106,9 +85,7 @@ class ReportFormatter {
   // Active / Inactive
   //--------------------------------------------------------------------------
 
-  static String active(
-    bool value,
-  ) {
+  static String active(bool value) {
     return value ? 'Active' : 'Inactive';
   }
 }

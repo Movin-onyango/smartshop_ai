@@ -25,12 +25,10 @@ class CategoryListScreen extends StatefulWidget {
   const CategoryListScreen({super.key});
 
   @override
-  State<CategoryListScreen> createState() =>
-      _CategoryListScreenState();
+  State<CategoryListScreen> createState() => _CategoryListScreenState();
 }
 
-class _CategoryListScreenState
-    extends State<CategoryListScreen> {
+class _CategoryListScreenState extends State<CategoryListScreen> {
   @override
   void initState() {
     super.initState();

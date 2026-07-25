@@ -19,9 +19,7 @@ class PurchaseStatisticsController {
   // Aggregate Statistics
   //---------------------------------------------------------------------------
 
-  PurchaseStatistics calculate(
-    List<Purchase> purchases,
-  ) {
+  PurchaseStatistics calculate(List<Purchase> purchases) {
     int totalPurchases = purchases.length;
     int pendingPurchases = 0;
     int receivedPurchases = 0;
@@ -61,48 +59,33 @@ class PurchaseStatisticsController {
       totalTax += purchase.totalTax;
       totalDiscount += purchase.totalDiscount;
 
-      if (purchase.status !=
-          PurchaseStatus.received) {
-        outstandingAmount +=
-            purchase.grandTotal;
+      if (purchase.status != PurchaseStatus.received) {
+        outstandingAmount += purchase.grandTotal;
       }
 
       if (lastPurchaseDate == null ||
-          purchase.orderDate.isAfter(
-            lastPurchaseDate,
-          )) {
-        lastPurchaseDate =
-            purchase.orderDate;
+          purchase.orderDate.isAfter(lastPurchaseDate)) {
+        lastPurchaseDate = purchase.orderDate;
       }
     }
 
-    final double averagePurchaseValue =
-        totalPurchases == 0
-            ? 0.0
-            : totalSpent / totalPurchases;
+    final double averagePurchaseValue = totalPurchases == 0
+        ? 0.0
+        : totalSpent / totalPurchases;
 
     return PurchaseStatistics(
       totalPurchases: totalPurchases,
-      pendingPurchases:
-          pendingPurchases,
-      receivedPurchases:
-          receivedPurchases,
-      cancelledPurchases:
-          cancelledPurchases,
-      totalItemsPurchased:
-          totalItemsPurchased,
-      totalQuantityPurchased:
-          totalQuantityPurchased,
+      pendingPurchases: pendingPurchases,
+      receivedPurchases: receivedPurchases,
+      cancelledPurchases: cancelledPurchases,
+      totalItemsPurchased: totalItemsPurchased,
+      totalQuantityPurchased: totalQuantityPurchased,
       totalSpent: totalSpent,
-      averagePurchaseValue:
-          averagePurchaseValue,
+      averagePurchaseValue: averagePurchaseValue,
       totalTax: totalTax,
-      totalDiscount:
-          totalDiscount,
-      outstandingAmount:
-          outstandingAmount,
-      lastPurchaseDate:
-          lastPurchaseDate,
+      totalDiscount: totalDiscount,
+      outstandingAmount: outstandingAmount,
+      lastPurchaseDate: lastPurchaseDate,
     );
   }
 
@@ -110,69 +93,45 @@ class PurchaseStatisticsController {
   // Dashboard KPIs
   //---------------------------------------------------------------------------
 
-  int totalPurchases(
-    List<Purchase> purchases,
-  ) {
+  int totalPurchases(List<Purchase> purchases) {
     return purchases.length;
   }
 
-  int pendingPurchases(
-    List<Purchase> purchases,
-  ) {
-    return purchases.where(
-      (purchase) =>
-          purchase.status !=
-              PurchaseStatus.received &&
-          purchase.status !=
-              PurchaseStatus.cancelled,
-    ).length;
+  int pendingPurchases(List<Purchase> purchases) {
+    return purchases
+        .where(
+          (purchase) =>
+              purchase.status != PurchaseStatus.received &&
+              purchase.status != PurchaseStatus.cancelled,
+        )
+        .length;
   }
 
-  int completedPurchases(
-    List<Purchase> purchases,
-  ) {
-    return purchases.where(
-      (purchase) =>
-          purchase.status ==
-          PurchaseStatus.received,
-    ).length;
+  int completedPurchases(List<Purchase> purchases) {
+    return purchases
+        .where((purchase) => purchase.status == PurchaseStatus.received)
+        .length;
   }
 
-  double totalSpent(
-    List<Purchase> purchases,
-  ) {
-    return purchases.fold(
-      0.0,
-      (sum, purchase) =>
-          sum + purchase.grandTotal,
-    );
+  double totalSpent(List<Purchase> purchases) {
+    return purchases.fold(0.0, (sum, purchase) => sum + purchase.grandTotal);
   }
 
-  double outstandingAmount(
-    List<Purchase> purchases,
-  ) {
-    return purchases.fold(
-      0.0,
-      (sum, purchase) {
-        if (purchase.status ==
-            PurchaseStatus.received) {
-          return sum;
-        }
+  double outstandingAmount(List<Purchase> purchases) {
+    return purchases.fold(0.0, (sum, purchase) {
+      if (purchase.status == PurchaseStatus.received) {
+        return sum;
+      }
 
-        return sum +
-            purchase.grandTotal;
-      },
-    );
+      return sum + purchase.grandTotal;
+    });
   }
 
-  double averagePurchaseValue(
-    List<Purchase> purchases,
-  ) {
+  double averagePurchaseValue(List<Purchase> purchases) {
     if (purchases.isEmpty) {
       return 0.0;
     }
 
-    return totalSpent(purchases) /
-        purchases.length;
+    return totalSpent(purchases) / purchases.length;
   }
 }

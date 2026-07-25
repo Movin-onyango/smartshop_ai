@@ -29,19 +29,13 @@ class SupplierActionButtons extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-
         //----------------------------------------------------------------------
         // Edit
         //----------------------------------------------------------------------
-
         Expanded(
           child: OutlinedButton.icon(
             onPressed: () {
-              context.push(
-                AppRoutes.editSupplier(
-                  supplier.id!,
-                ),
-              );
+              context.push(AppRoutes.editSupplier(supplier.id!));
             },
             icon: const Icon(Icons.edit_outlined),
             label: const Text('Edit'),
@@ -53,54 +47,35 @@ class SupplierActionButtons extends StatelessWidget {
         //----------------------------------------------------------------------
         // Delete
         //----------------------------------------------------------------------
-
         Expanded(
           child: FilledButton.icon(
-            style: FilledButton.styleFrom(
-              backgroundColor: Colors.red,
-            ),
+            style: FilledButton.styleFrom(backgroundColor: Colors.red),
             onPressed: () async {
-              final delete =
-                  await showDialog<bool>(
+              final delete = await showDialog<bool>(
                 context: context,
                 builder: (context) {
                   return AlertDialog(
-                    title: const Text(
-                      'Delete Supplier',
-                    ),
+                    title: const Text('Delete Supplier'),
                     content: Text(
                       'Delete "${supplier.name}"?\n\n'
                       'This action cannot be undone.',
                     ),
                     actions: [
-
                       TextButton(
                         onPressed: () {
-                          Navigator.pop(
-                            context,
-                            false,
-                          );
+                          Navigator.pop(context, false);
                         },
-                        child: const Text(
-                          'Cancel',
-                        ),
+                        child: const Text('Cancel'),
                       ),
 
                       FilledButton(
-                        style:
-                            FilledButton.styleFrom(
-                          backgroundColor:
-                              Colors.red,
+                        style: FilledButton.styleFrom(
+                          backgroundColor: Colors.red,
                         ),
                         onPressed: () {
-                          Navigator.pop(
-                            context,
-                            true,
-                          );
+                          Navigator.pop(context, true);
                         },
-                        child: const Text(
-                          'Delete',
-                        ),
+                        child: const Text('Delete'),
                       ),
                     ],
                   );

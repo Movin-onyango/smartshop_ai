@@ -3,13 +3,13 @@ import 'package:provider/provider.dart';
 
 import '../../../shared/widgets/layouts/smart_scaffold.dart';
 
+import '../exporters/report_export_manager.dart';
 import '../providers/report_provider.dart';
 
 import '../widgets/cards/report_summary_card.dart';
 import '../widgets/dashboard/report_section_header.dart';
 import '../widgets/filters/date_filter_bar.dart';
 import '../widgets/statistics/report_statistic_tile.dart';
-
 
 /// ---------------------------------------------------------------------------
 /// SalesReportScreen
@@ -21,23 +21,30 @@ import '../widgets/statistics/report_statistic_tile.dart';
 /// • Sales KPIs
 /// • Sales Performance
 /// • Profit Summary
+/// • Export Report
 /// • Future Charts
 /// ---------------------------------------------------------------------------
 class SalesReportScreen extends StatelessWidget {
-  const SalesReportScreen({
-    super.key,
-  });
+  const SalesReportScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Consumer<ReportProvider>(
-      builder: (
-        context,
-        provider,
-        _,
-      ) {
+      builder: (context, provider, _) {
         return SmartScaffold(
           title: 'Sales Report',
+
+          actions: [
+            IconButton(
+              tooltip: 'Export Report',
+              icon: const Icon(Icons.download),
+              onPressed: () => _showExportDialog(
+                context,
+                provider,
+              ),
+            ),
+          ],
+
           body: RefreshIndicator(
             onRefresh: provider.refresh,
             child: ListView(
@@ -46,11 +53,9 @@ class SalesReportScreen extends StatelessWidget {
                 //------------------------------------------------------------------
                 // Header
                 //------------------------------------------------------------------
-
                 const ReportSectionHeader(
                   title: 'Sales Analytics',
-                  subtitle:
-                      'Overview of your sales performance.',
+                  subtitle: 'Overview of your sales performance.',
                 ),
 
                 const SizedBox(height: 20),
@@ -65,11 +70,9 @@ class SalesReportScreen extends StatelessWidget {
                 //------------------------------------------------------------------
                 // KPI Cards
                 //------------------------------------------------------------------
-
                 GridView.count(
                   shrinkWrap: true,
-                  physics:
-                      const NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   crossAxisCount: 2,
                   crossAxisSpacing: 16,
                   mainAxisSpacing: 16,
@@ -98,7 +101,6 @@ class SalesReportScreen extends StatelessWidget {
                 //------------------------------------------------------------------
                 // Statistics
                 //------------------------------------------------------------------
-
                 const ReportSectionHeader(
                   title: 'Sales Statistics',
                 ),
@@ -128,8 +130,7 @@ class SalesReportScreen extends StatelessWidget {
 
                         ReportStatisticTile(
                           title: 'Transactions',
-                          value:
-                              provider.salesRows.length.toString(),
+                          value: provider.salesRows.length.toString(),
                         ),
                       ],
                     ),
@@ -141,7 +142,6 @@ class SalesReportScreen extends StatelessWidget {
                 //------------------------------------------------------------------
                 // Chart Placeholder
                 //------------------------------------------------------------------
-
                 const ReportSectionHeader(
                   title: 'Monthly Sales',
                 ),
@@ -169,6 +169,59 @@ class SalesReportScreen extends StatelessWidget {
           ),
         );
       },
+    );
+  }
+
+  Future<void> _showExportDialog(
+    BuildContext context,
+    ReportProvider provider,
+  ) async {
+    await showDialog(
+      context: context,
+      builder: (_) => AlertDialog(
+        title: const Text('Export Sales Report'),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ListTile(
+              leading: const Icon(Icons.picture_as_pdf),
+              title: const Text('Export as PDF'),
+              onTap: () async {
+                Navigator.pop(context);
+
+                await provider.exportReport(
+                  controller: provider.salesController,
+                  format: ExportFormat.pdf,
+                );
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.table_chart),
+              title: const Text('Export as Excel'),
+              onTap: () async {
+                Navigator.pop(context);
+
+                await provider.exportReport(
+                  controller: provider.salesController,
+                  format: ExportFormat.excel,
+                );
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.description),
+              title: const Text('Export as CSV'),
+              onTap: () async {
+                Navigator.pop(context);
+
+                await provider.exportReport(
+                  controller: provider.salesController,
+                  format: ExportFormat.csv,
+                );
+              },
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

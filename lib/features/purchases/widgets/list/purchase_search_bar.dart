@@ -10,10 +10,7 @@ import 'package:flutter/material.dart';
 /// • PurchaseListScreen
 /// ---------------------------------------------------------------------------
 class PurchaseSearchBar extends StatelessWidget {
-  const PurchaseSearchBar({
-    super.key,
-    required this.onChanged,
-  });
+  const PurchaseSearchBar({super.key, required this.onChanged});
 
   final ValueChanged<String> onChanged;
 

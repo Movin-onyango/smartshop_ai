@@ -11,9 +11,7 @@ import '../models/expense_status.dart';
 class ExpenseStatisticsController {
   const ExpenseStatisticsController();
 
-  ExpenseStatistics calculate(
-    List<Expense> expenses,
-  ) {
+  ExpenseStatistics calculate(List<Expense> expenses) {
     if (expenses.isEmpty) {
       return const ExpenseStatistics();
     }
@@ -21,102 +19,53 @@ class ExpenseStatisticsController {
     final totalExpenses = expenses.length;
 
     final draftExpenses = expenses
-        .where(
-          (expense) =>
-              expense.status ==
-              ExpenseStatus.draft,
-        )
+        .where((expense) => expense.status == ExpenseStatus.draft)
         .length;
 
     final pendingExpenses = expenses
-        .where(
-          (expense) =>
-              expense.status ==
-              ExpenseStatus.pending,
-        )
+        .where((expense) => expense.status == ExpenseStatus.pending)
         .length;
 
     final approvedExpenses = expenses
-        .where(
-          (expense) =>
-              expense.status ==
-              ExpenseStatus.approved,
-        )
+        .where((expense) => expense.status == ExpenseStatus.approved)
         .length;
 
     final paidExpenses = expenses
-        .where(
-          (expense) =>
-              expense.status ==
-              ExpenseStatus.paid,
-        )
+        .where((expense) => expense.status == ExpenseStatus.paid)
         .length;
 
     final cancelledExpenses = expenses
-        .where(
-          (expense) =>
-              expense.status ==
-              ExpenseStatus.cancelled,
-        )
+        .where((expense) => expense.status == ExpenseStatus.cancelled)
         .length;
 
     final totalAmount = expenses.fold(
       0.0,
-      (sum, expense) =>
-          sum + expense.totalAmount,
+      (sum, expense) => sum + expense.totalAmount,
     );
 
     final paidAmount = expenses
-        .where(
-          (expense) =>
-              expense.status ==
-              ExpenseStatus.paid,
-        )
-        .fold(
-          0.0,
-          (sum, expense) =>
-              sum + expense.totalAmount,
-        );
+        .where((expense) => expense.status == ExpenseStatus.paid)
+        .fold(0.0, (sum, expense) => sum + expense.totalAmount);
 
     final pendingAmount = expenses
-        .where(
-          (expense) =>
-              expense.status ==
-              ExpenseStatus.pending,
-        )
-        .fold(
-          0.0,
-          (sum, expense) =>
-              sum + expense.totalAmount,
-        );
+        .where((expense) => expense.status == ExpenseStatus.pending)
+        .fold(0.0, (sum, expense) => sum + expense.totalAmount);
 
-    final averageExpense =
-        totalAmount / totalExpenses;
+    final averageExpense = totalAmount / totalExpenses;
 
     final highestExpense = expenses
-        .map(
-          (expense) =>
-              expense.totalAmount,
-        )
-        .reduce(
-          (a, b) => a > b ? a : b,
-        );
+        .map((expense) => expense.totalAmount)
+        .reduce((a, b) => a > b ? a : b);
 
     final now = DateTime.now();
 
     final monthlyTotal = expenses
         .where(
           (expense) =>
-              expense.expenseDate.year ==
-                  now.year &&
-              expense.expenseDate.month ==
-                  now.month,
+              expense.expenseDate.year == now.year &&
+              expense.expenseDate.month == now.month,
         )
-        .fold(
-          0.0,
-          (sum, expense) =>
-              sum + expense.totalAmount,
-        );
+        .fold(0.0, (sum, expense) => sum + expense.totalAmount);
 
     return ExpenseStatistics(
       totalExpenses: totalExpenses,
@@ -124,15 +73,12 @@ class ExpenseStatisticsController {
       pendingExpenses: pendingExpenses,
       approvedExpenses: approvedExpenses,
       paidExpenses: paidExpenses,
-      cancelledExpenses:
-          cancelledExpenses,
+      cancelledExpenses: cancelledExpenses,
       totalAmount: totalAmount,
       paidAmount: paidAmount,
       pendingAmount: pendingAmount,
-      averageExpense:
-          averageExpense,
-      highestExpense:
-          highestExpense,
+      averageExpense: averageExpense,
+      highestExpense: highestExpense,
       monthlyTotal: monthlyTotal,
     );
   }

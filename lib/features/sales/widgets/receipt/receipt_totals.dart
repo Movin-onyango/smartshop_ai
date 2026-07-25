@@ -16,10 +16,7 @@ class ReceiptTotals extends StatelessWidget {
   final double amountPaid;
   final double change;
 
-  Widget _row(
-    String label,
-    double value,
-  ) {
+  Widget _row(String label, double value) {
     return Row(
       children: [
         Expanded(child: Text(label)),

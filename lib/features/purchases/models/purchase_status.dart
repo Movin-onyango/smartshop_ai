@@ -77,7 +77,6 @@ extension PurchaseStatusExtension on PurchaseStatus {
   }
 
   bool get canReceive {
-    return this == PurchaseStatus.ordered ||
-        this == PurchaseStatus.partial;
+    return this == PurchaseStatus.ordered || this == PurchaseStatus.partial;
   }
 }

@@ -41,9 +41,7 @@ class CustomerFilterController extends ChangeNotifier {
   // Initialization
   //---------------------------------------------------------------------------
 
-  void loadCustomers(
-    List<Customer> customers,
-  ) {
+  void loadCustomers(List<Customer> customers) {
     _customers = List.from(customers);
     notifyListeners();
   }
@@ -78,23 +76,19 @@ class CustomerFilterController extends ChangeNotifier {
 
   List<Customer> get filteredCustomers {
     return _customers.where((customer) {
-      if (_creditOnly &&
-          customer.creditLimit <= 0) {
+      if (_creditOnly && customer.creditLimit <= 0) {
         return false;
       }
 
-      if (_loyaltyOnly &&
-          customer.loyaltyAccount == null) {
+      if (_loyaltyOnly && customer.loyaltyAccount == null) {
         return false;
       }
 
-      if (_purchasedOnly &&
-          customer.totalPurchases == 0) {
+      if (_purchasedOnly && customer.totalPurchases == 0) {
         return false;
       }
 
-      if (_balanceOnly &&
-          customer.currentBalance <= 0) {
+      if (_balanceOnly && customer.currentBalance <= 0) {
         return false;
       }
 

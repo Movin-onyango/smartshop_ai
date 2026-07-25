@@ -56,11 +56,9 @@ class LoyaltyAccount {
 
   bool get hasPoints => points > 0;
 
-  bool get isGold =>
-      tier == LoyaltyTier.gold;
+  bool get isGold => tier == LoyaltyTier.gold;
 
-  bool get isPlatinum =>
-      tier == LoyaltyTier.platinum;
+  bool get isPlatinum => tier == LoyaltyTier.platinum;
 
   //---------------------------------------------------------------------------
   // Copy
@@ -76,21 +74,13 @@ class LoyaltyAccount {
     DateTime? lastActivityDate,
   }) {
     return LoyaltyAccount(
-      accountNumber:
-          accountNumber ?? this.accountNumber,
+      accountNumber: accountNumber ?? this.accountNumber,
       points: points ?? this.points,
-      totalPointsEarned:
-          totalPointsEarned ??
-          this.totalPointsEarned,
-      totalPointsRedeemed:
-          totalPointsRedeemed ??
-          this.totalPointsRedeemed,
+      totalPointsEarned: totalPointsEarned ?? this.totalPointsEarned,
+      totalPointsRedeemed: totalPointsRedeemed ?? this.totalPointsRedeemed,
       tier: tier ?? this.tier,
-      joinedAt:
-          joinedAt ?? this.joinedAt,
-      lastActivityDate:
-          lastActivityDate ??
-          this.lastActivityDate,
+      joinedAt: joinedAt ?? this.joinedAt,
+      lastActivityDate: lastActivityDate ?? this.lastActivityDate,
     );
   }
 }
@@ -99,9 +89,4 @@ class LoyaltyAccount {
 /// LoyaltyTier
 /// ---------------------------------------------------------------------------
 
-enum LoyaltyTier {
-  standard,
-  silver,
-  gold,
-  platinum,
-}
+enum LoyaltyTier { standard, silver, gold, platinum }

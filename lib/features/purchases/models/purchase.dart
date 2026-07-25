@@ -54,31 +54,19 @@ class Purchase {
   int get totalItems => items.length;
 
   double get totalQuantity {
-    return items.fold(
-      0.0,
-      (sum, item) => sum + item.quantity,
-    );
+    return items.fold(0.0, (sum, item) => sum + item.quantity);
   }
 
   double get totalReceivedQuantity {
-    return items.fold(
-      0.0,
-      (sum, item) => sum + item.receivedQuantity,
-    );
+    return items.fold(0.0, (sum, item) => sum + item.receivedQuantity);
   }
 
   double get subtotal {
-    return items.fold(
-      0.0,
-      (sum, item) => sum + item.subtotal,
-    );
+    return items.fold(0.0, (sum, item) => sum + item.subtotal);
   }
 
   double get totalDiscount {
-    return items.fold(
-      0.0,
-      (sum, item) => sum + item.discountAmount,
-    );
+    return items.fold(0.0, (sum, item) => sum + item.discountAmount);
   }
 
   double get taxableAmount {
@@ -86,29 +74,19 @@ class Purchase {
   }
 
   double get totalTax {
-    return items.fold(
-      0.0,
-      (sum, item) => sum + item.taxAmount,
-    );
+    return items.fold(0.0, (sum, item) => sum + item.taxAmount);
   }
 
   double get grandTotal {
-    return items.fold(
-      0.0,
-      (sum, item) => sum + item.total,
-    );
+    return items.fold(0.0, (sum, item) => sum + item.total);
   }
 
   bool get isFullyReceived {
-    return items.isNotEmpty &&
-        items.every((item) => item.isFullyReceived);
+    return items.isNotEmpty && items.every((item) => item.isFullyReceived);
   }
 
   bool get isPartiallyReceived {
-    return items.any(
-          (item) => item.receivedQuantity > 0,
-        ) &&
-        !isFullyReceived;
+    return items.any((item) => item.receivedQuantity > 0) && !isFullyReceived;
   }
 
   //--------------------------------------------------------------------------
@@ -131,17 +109,12 @@ class Purchase {
   }) {
     return Purchase(
       id: id ?? this.id,
-      purchaseNumber:
-          purchaseNumber ?? this.purchaseNumber,
+      purchaseNumber: purchaseNumber ?? this.purchaseNumber,
       supplierId: supplierId ?? this.supplierId,
-      supplierName:
-          supplierName ?? this.supplierName,
+      supplierName: supplierName ?? this.supplierName,
       orderDate: orderDate ?? this.orderDate,
-      expectedDeliveryDate:
-          expectedDeliveryDate ??
-              this.expectedDeliveryDate,
-      receivedDate:
-          receivedDate ?? this.receivedDate,
+      expectedDeliveryDate: expectedDeliveryDate ?? this.expectedDeliveryDate,
+      receivedDate: receivedDate ?? this.receivedDate,
       status: status ?? this.status,
       items: items ?? this.items,
       notes: notes ?? this.notes,

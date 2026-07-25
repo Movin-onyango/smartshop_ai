@@ -9,10 +9,7 @@ import '../../models/customer.dart';
 /// Displays the customer's contact information.
 /// ---------------------------------------------------------------------------
 class ContactInformation extends StatelessWidget {
-  const ContactInformation({
-    super.key,
-    required this.customer,
-  });
+  const ContactInformation({super.key, required this.customer});
 
   final Customer customer;
 
@@ -30,22 +27,17 @@ class ContactInformation extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-
           Icon(icon, size: 20),
 
           const SizedBox(width: 16),
 
           Expanded(
             child: Column(
-              crossAxisAlignment:
-                  CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-
                 Text(
                   label,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.w600,
-                  ),
+                  style: const TextStyle(fontWeight: FontWeight.w600),
                 ),
 
                 const SizedBox(height: 4),
@@ -65,30 +57,18 @@ class ContactInformation extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
-          crossAxisAlignment:
-              CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-
             Text(
               'Contact Information',
-              style: Theme.of(context)
-                  .textTheme
-                  .titleLarge,
+              style: Theme.of(context).textTheme.titleLarge,
             ),
 
             const SizedBox(height: 24),
 
-            _infoTile(
-              icon: Icons.phone,
-              label: 'Phone',
-              value: customer.phone,
-            ),
+            _infoTile(icon: Icons.phone, label: 'Phone', value: customer.phone),
 
-            _infoTile(
-              icon: Icons.email,
-              label: 'Email',
-              value: customer.email,
-            ),
+            _infoTile(icon: Icons.email, label: 'Email', value: customer.email),
 
             _infoTile(
               icon: Icons.location_on,
@@ -96,11 +76,7 @@ class ContactInformation extends StatelessWidget {
               value: customer.address,
             ),
 
-            _infoTile(
-              icon: Icons.note,
-              label: 'Notes',
-              value: customer.notes,
-            ),
+            _infoTile(icon: Icons.note, label: 'Notes', value: customer.notes),
           ],
         ),
       ),

@@ -5,10 +5,7 @@ import '../../models/product.dart';
 import 'status_chip.dart';
 
 class ProductHeader extends StatelessWidget {
-  const ProductHeader({
-    super.key,
-    required this.product,
-  });
+  const ProductHeader({super.key, required this.product});
 
   final Product product;
 
@@ -39,22 +36,13 @@ class ProductHeader extends StatelessWidget {
               runSpacing: 8,
               children: [
                 if (product.isLowStock)
-                  const StatusChip(
-                    label: 'Low Stock',
-                    color: Colors.orange,
-                  ),
+                  const StatusChip(label: 'Low Stock', color: Colors.orange),
 
                 if (product.hasExpired)
-                  const StatusChip(
-                    label: 'Expired',
-                    color: Colors.red,
-                  ),
+                  const StatusChip(label: 'Expired', color: Colors.red),
 
                 if (!product.isLowStock && !product.hasExpired)
-                  const StatusChip(
-                    label: 'Healthy',
-                    color: Colors.green,
-                  ),
+                  const StatusChip(label: 'Healthy', color: Colors.green),
               ],
             ),
           ],

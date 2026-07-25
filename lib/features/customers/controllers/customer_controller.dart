@@ -23,20 +23,15 @@ class CustomerController extends ChangeNotifier {
   // Getters
   //---------------------------------------------------------------------------
 
-  List<Customer> get customers =>
-      List.unmodifiable(_customers);
+  List<Customer> get customers => List.unmodifiable(_customers);
 
-  bool get isLoading =>
-      _isLoading;
+  bool get isLoading => _isLoading;
 
-  bool get isEmpty =>
-      _customers.isEmpty;
+  bool get isEmpty => _customers.isEmpty;
 
-  bool get isNotEmpty =>
-      _customers.isNotEmpty;
+  bool get isNotEmpty => _customers.isNotEmpty;
 
-  int get customerCount =>
-      _customers.length;
+  int get customerCount => _customers.length;
 
   //---------------------------------------------------------------------------
   // Initialization
@@ -45,9 +40,7 @@ class CustomerController extends ChangeNotifier {
   void loadCustomers() {
     _customers
       ..clear()
-      ..addAll(
-        CustomerRepository.getAll(),
-      );
+      ..addAll(CustomerRepository.getAll());
 
     notifyListeners();
   }
@@ -81,9 +74,7 @@ class CustomerController extends ChangeNotifier {
 
   Customer? findById(String id) {
     try {
-      return _customers.firstWhere(
-        (customer) => customer.id == id,
-      );
+      return _customers.firstWhere((customer) => customer.id == id);
     } catch (_) {
       return null;
     }
@@ -103,32 +94,14 @@ class CustomerController extends ChangeNotifier {
   //---------------------------------------------------------------------------
 
   int get customersWithCredit =>
-      _customers
-          .where(
-            (customer) =>
-                customer.creditLimit > 0,
-          )
-          .length;
+      _customers.where((customer) => customer.creditLimit > 0).length;
 
   int get loyaltyMembers =>
-      _customers
-          .where(
-            (customer) =>
-                customer.loyaltyAccount != null,
-          )
-          .length;
+      _customers.where((customer) => customer.loyaltyAccount != null).length;
 
   double get totalCustomerSales =>
-      _customers.fold(
-        0.0,
-        (sum, customer) =>
-            sum + customer.totalSpent,
-      );
+      _customers.fold(0.0, (sum, customer) => sum + customer.totalSpent);
 
   double get outstandingCredit =>
-      _customers.fold(
-        0.0,
-        (sum, customer) =>
-            sum + customer.currentBalance,
-      );
+      _customers.fold(0.0, (sum, customer) => sum + customer.currentBalance);
 }

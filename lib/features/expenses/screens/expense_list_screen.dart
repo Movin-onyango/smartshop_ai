@@ -27,19 +27,14 @@ import '../widgets/list/expense_summary_tile.dart';
 /// • Navigation
 /// ---------------------------------------------------------------------------
 class ExpenseListScreen extends StatefulWidget {
-  const ExpenseListScreen({
-    super.key,
-  });
+  const ExpenseListScreen({super.key});
 
   @override
-  State<ExpenseListScreen> createState() =>
-      _ExpenseListScreenState();
+  State<ExpenseListScreen> createState() => _ExpenseListScreenState();
 }
 
-class _ExpenseListScreenState
-    extends State<ExpenseListScreen> {
-  final searchController =
-      TextEditingController();
+class _ExpenseListScreenState extends State<ExpenseListScreen> {
+  final searchController = TextEditingController();
 
   ExpenseStatus? selectedStatus;
 
@@ -47,11 +42,8 @@ class _ExpenseListScreenState
   void initState() {
     super.initState();
 
-    WidgetsBinding.instance
-        .addPostFrameCallback((_) {
-      context
-          .read<ExpenseProvider>()
-          .loadExpenses();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<ExpenseProvider>().loadExpenses();
     });
   }
 
@@ -64,76 +56,52 @@ class _ExpenseListScreenState
   @override
   Widget build(BuildContext context) {
     return Consumer<ExpenseProvider>(
-      builder: (
-        context,
-        provider,
-        _,
-      ) {
+      builder: (context, provider, _) {
         //------------------------------------------------------------
         // Filtering
         //------------------------------------------------------------
 
         var expenses = provider.expenses;
 
-        final query =
-            searchController.text
-                .trim()
-                .toLowerCase();
+        final query = searchController.text.trim().toLowerCase();
 
         if (query.isNotEmpty) {
           expenses = expenses
               .where(
                 (expense) =>
-                    expense.title
-                        .toLowerCase()
-                        .contains(query) ||
-                    expense
-                        .expenseNumber
-                        .toLowerCase()
-                        .contains(query),
+                    expense.title.toLowerCase().contains(query) ||
+                    expense.expenseNumber.toLowerCase().contains(query),
               )
               .toList();
         }
 
         if (selectedStatus != null) {
           expenses = expenses
-              .where(
-                (expense) =>
-                    expense.status ==
-                    selectedStatus,
-              )
+              .where((expense) => expense.status == selectedStatus)
               .toList();
         }
 
         return SmartScaffold(
           title: 'Expenses',
 
-          floatingActionButton:
-              FloatingActionButton.extended(
+          floatingActionButton: FloatingActionButton.extended(
             onPressed: () {
-              context.push(
-                AppRoutes.addExpense,
-              );
+              context.push(AppRoutes.addExpense);
             },
             icon: const Icon(Icons.add),
-            label:
-                const Text('New Expense'),
+            label: const Text('New Expense'),
           ),
 
           body: RefreshIndicator(
-            onRefresh:
-                provider.loadExpenses,
+            onRefresh: provider.loadExpenses,
             child: ListView(
-              padding:
-                  const EdgeInsets.all(16),
+              padding: const EdgeInsets.all(16),
               children: [
                 //----------------------------------------------------
                 // Search
                 //----------------------------------------------------
-
                 ExpenseSearchBar(
-                  controller:
-                      searchController,
+                  controller: searchController,
                   onChanged: (_) {
                     setState(() {});
                   },
@@ -147,14 +115,11 @@ class _ExpenseListScreenState
                 //----------------------------------------------------
                 // Filter
                 //----------------------------------------------------
-
                 ExpenseFilterBar(
-                  selectedStatus:
-                      selectedStatus,
+                  selectedStatus: selectedStatus,
                   onChanged: (value) {
                     setState(() {
-                      selectedStatus =
-                          value;
+                      selectedStatus = value;
                     });
                   },
                 ),
@@ -164,73 +129,44 @@ class _ExpenseListScreenState
                 //----------------------------------------------------
                 // KPI Cards
                 //----------------------------------------------------
-
                 GridView.count(
                   shrinkWrap: true,
-                  physics:
-                      const NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   crossAxisCount: 2,
                   crossAxisSpacing: 12,
                   mainAxisSpacing: 12,
                   childAspectRatio: 2.2,
                   children: [
-
                     ExpenseSummaryTile(
-                      title:
-                          'Total',
-                      value: provider
-                          .totalExpenses
-                          .toString(),
-                      subtitle:
-                          'Expenses',
-                      icon:
-                          Icons.receipt_long,
-                      color:
-                          Colors.blue,
+                      title: 'Total',
+                      value: provider.totalExpenses.toString(),
+                      subtitle: 'Expenses',
+                      icon: Icons.receipt_long,
+                      color: Colors.blue,
                     ),
 
                     ExpenseSummaryTile(
-                      title:
-                          'Pending',
-                      value: provider
-                          .pendingExpenses
-                          .toString(),
-                      subtitle:
-                          'Awaiting',
-                      icon:
-                          Icons.schedule,
-                      color:
-                          Colors.orange,
+                      title: 'Pending',
+                      value: provider.pendingExpenses.toString(),
+                      subtitle: 'Awaiting',
+                      icon: Icons.schedule,
+                      color: Colors.orange,
                     ),
 
                     ExpenseSummaryTile(
-                      title:
-                          'Paid',
-                      value: provider
-                          .paidExpenses
-                          .toString(),
-                      subtitle:
-                          'Completed',
-                      icon:
-                          Icons.check_circle,
-                      color:
-                          Colors.green,
+                      title: 'Paid',
+                      value: provider.paidExpenses.toString(),
+                      subtitle: 'Completed',
+                      icon: Icons.check_circle,
+                      color: Colors.green,
                     ),
 
                     ExpenseSummaryTile(
-                      title:
-                          'Spent',
-                      value: provider
-                          .totalAmount
-                          .toStringAsFixed(
-                            2,
-                          ),
-                      subtitle:
-                          'KES',
-                      icon:
-                          Icons.payments,
-                      color:
-                          Colors.purple,
+                      title: 'Spent',
+                      value: provider.totalAmount.toStringAsFixed(2),
+                      subtitle: 'KES',
+                      icon: Icons.payments,
+                      color: Colors.purple,
                     ),
                   ],
                 ),
@@ -240,38 +176,19 @@ class _ExpenseListScreenState
                 //----------------------------------------------------
                 // Expense List
                 //----------------------------------------------------
-
                 if (expenses.isEmpty)
                   const Padding(
-                    padding:
-                        EdgeInsets.only(
-                      top: 80,
-                    ),
-                    child: Center(
-                      child: Text(
-                        'No expenses found.',
-                      ),
-                    ),
+                    padding: EdgeInsets.only(top: 80),
+                    child: Center(child: Text('No expenses found.')),
                   )
                 else
                   ...expenses.map(
-                    (expense) =>
-                        Padding(
-                      padding:
-                          const EdgeInsets.only(
-                        bottom: 12,
-                      ),
-                      child:
-                          ExpenseCard(
-                        expense:
-                            expense,
+                    (expense) => Padding(
+                      padding: const EdgeInsets.only(bottom: 12),
+                      child: ExpenseCard(
+                        expense: expense,
                         onTap: () {
-                          context.push(
-                            AppRoutes
-                                .expenseDetails(
-                              expense.id!,
-                            ),
-                          );
+                          context.push(AppRoutes.expenseDetails(expense.id!));
                         },
                       ),
                     ),

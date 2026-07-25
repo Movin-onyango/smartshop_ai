@@ -3,11 +3,12 @@ import 'package:provider/provider.dart';
 
 import '../../../shared/widgets/layouts/smart_scaffold.dart';
 
+import '../exporters/report_export_manager.dart';
 import '../providers/report_provider.dart';
 
 import '../widgets/cards/report_summary_card.dart';
-import '../widgets/filters/date_filter_bar.dart';
 import '../widgets/dashboard/report_section_header.dart';
+import '../widgets/filters/date_filter_bar.dart';
 import '../widgets/statistics/report_statistic_tile.dart';
 
 /// ---------------------------------------------------------------------------
@@ -20,34 +21,39 @@ import '../widgets/statistics/report_statistic_tile.dart';
 /// • Customer KPIs
 /// • Customer Statistics
 /// • Customer Growth
+/// • Export Report
 /// • Future Charts
 /// ---------------------------------------------------------------------------
 class CustomerReportScreen extends StatelessWidget {
-  const CustomerReportScreen({
-    super.key,
-  });
+  const CustomerReportScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Consumer<ReportProvider>(
-      builder: (
-        context,
-        provider,
-        _,
-      ) {
-        final totalCustomers =
-            provider.customerRows.length;
+      builder: (context, provider, _) {
+        final totalCustomers = provider.customerRows.length;
 
         // Until customer activity tracking is added,
         // assume all loaded customers are active.
-        final activeCustomers =
-            totalCustomers;
+        final activeCustomers = totalCustomers;
 
         // Placeholder until registration history exists.
         final newCustomers = 0;
 
         return SmartScaffold(
           title: 'Customer Report',
+
+          actions: [
+            IconButton(
+              tooltip: 'Export Report',
+              icon: const Icon(Icons.download),
+              onPressed: () => _showExportDialog(
+                context,
+                provider,
+              ),
+            ),
+          ],
+
           body: RefreshIndicator(
             onRefresh: provider.refresh,
             child: ListView(
@@ -56,7 +62,6 @@ class CustomerReportScreen extends StatelessWidget {
                 //------------------------------------------------------------------
                 // Header
                 //------------------------------------------------------------------
-
                 const ReportSectionHeader(
                   title: 'Customer Analytics',
                   subtitle:
@@ -75,7 +80,6 @@ class CustomerReportScreen extends StatelessWidget {
                 //------------------------------------------------------------------
                 // KPI Cards
                 //------------------------------------------------------------------
-
                 GridView.count(
                   shrinkWrap: true,
                   physics:
@@ -120,7 +124,6 @@ class CustomerReportScreen extends StatelessWidget {
                 //------------------------------------------------------------------
                 // Statistics
                 //------------------------------------------------------------------
-
                 const ReportSectionHeader(
                   title: 'Customer Statistics',
                 ),
@@ -141,24 +144,21 @@ class CustomerReportScreen extends StatelessWidget {
 
                         ReportStatisticTile(
                           title: 'Active Customers',
-                          value:
-                              activeCustomers.toString(),
+                          value: activeCustomers.toString(),
                         ),
 
                         const Divider(),
 
                         ReportStatisticTile(
                           title: 'New Customers',
-                          value:
-                              newCustomers.toString(),
+                          value: newCustomers.toString(),
                         ),
 
                         const Divider(),
 
                         ReportStatisticTile(
                           title: 'Customer Records',
-                          value: provider
-                              .customerRows.length
+                          value: provider.customerRows.length
                               .toString(),
                         ),
                       ],
@@ -171,7 +171,6 @@ class CustomerReportScreen extends StatelessWidget {
                 //------------------------------------------------------------------
                 // Chart Placeholder
                 //------------------------------------------------------------------
-
                 const ReportSectionHeader(
                   title: 'Customer Growth',
                 ),
@@ -199,6 +198,68 @@ class CustomerReportScreen extends StatelessWidget {
           ),
         );
       },
+    );
+  }
+
+  //---------------------------------------------------------------------------
+  // Export Dialog
+  //---------------------------------------------------------------------------
+
+  Future<void> _showExportDialog(
+    BuildContext context,
+    ReportProvider provider,
+  ) async {
+    await showDialog(
+      context: context,
+      builder: (_) => AlertDialog(
+        title: const Text(
+          'Export Customer Report',
+        ),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ListTile(
+              leading: const Icon(Icons.picture_as_pdf),
+              title: const Text('Export as PDF'),
+              onTap: () async {
+                Navigator.pop(context);
+
+                await provider.exportReport(
+                  controller:
+                      provider.customerController,
+                  format: ExportFormat.pdf,
+                );
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.table_chart),
+              title: const Text('Export as Excel'),
+              onTap: () async {
+                Navigator.pop(context);
+
+                await provider.exportReport(
+                  controller:
+                      provider.customerController,
+                  format: ExportFormat.excel,
+                );
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.description),
+              title: const Text('Export as CSV'),
+              onTap: () async {
+                Navigator.pop(context);
+
+                await provider.exportReport(
+                  controller:
+                      provider.customerController,
+                  format: ExportFormat.csv,
+                );
+              },
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

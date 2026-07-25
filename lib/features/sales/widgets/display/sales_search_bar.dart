@@ -16,17 +16,13 @@ import '../../providers/sales_provider.dart';
 /// to work without modification.
 /// ---------------------------------------------------------------------------
 class SalesSearchBar extends StatefulWidget {
-  const SalesSearchBar({
-    super.key,
-  });
+  const SalesSearchBar({super.key});
 
   @override
-  State<SalesSearchBar> createState() =>
-      _SalesSearchBarState();
+  State<SalesSearchBar> createState() => _SalesSearchBarState();
 }
 
-class _SalesSearchBarState
-    extends State<SalesSearchBar> {
+class _SalesSearchBarState extends State<SalesSearchBar> {
   late final TextEditingController _controller;
 
   @override
@@ -52,8 +48,7 @@ class _SalesSearchBarState
       controller: _controller,
       onChanged: _onChanged,
       decoration: InputDecoration(
-        hintText:
-            'Search by invoice or customer...',
+        hintText: 'Search by invoice or customer...',
         prefixIcon: const Icon(Icons.search),
         suffixIcon: _controller.text.isEmpty
             ? null
@@ -62,9 +57,7 @@ class _SalesSearchBarState
                 onPressed: () {
                   _controller.clear();
 
-                  context
-                      .read<SalesProvider>()
-                      .loadSales();
+                  context.read<SalesProvider>().loadSales();
 
                   setState(() {});
                 },

@@ -70,19 +70,16 @@ class PurchaseStatistics {
   // Derived KPIs
   //---------------------------------------------------------------------------
 
-  int get completedPurchases =>
-      receivedPurchases;
+  int get completedPurchases => receivedPurchases;
 
-  int get openPurchases =>
-      pendingPurchases;
+  int get openPurchases => pendingPurchases;
 
   double get completionRate {
     if (totalPurchases == 0) {
       return 0;
     }
 
-    return receivedPurchases /
-        totalPurchases;
+    return receivedPurchases / totalPurchases;
   }
 
   double get cancellationRate {
@@ -90,8 +87,7 @@ class PurchaseStatistics {
       return 0;
     }
 
-    return cancelledPurchases /
-        totalPurchases;
+    return cancelledPurchases / totalPurchases;
   }
 
   //---------------------------------------------------------------------------
@@ -113,42 +109,19 @@ class PurchaseStatistics {
     DateTime? lastPurchaseDate,
   }) {
     return PurchaseStatistics(
-      totalPurchases:
-          totalPurchases ??
-              this.totalPurchases,
-      pendingPurchases:
-          pendingPurchases ??
-              this.pendingPurchases,
-      receivedPurchases:
-          receivedPurchases ??
-              this.receivedPurchases,
-      cancelledPurchases:
-          cancelledPurchases ??
-              this.cancelledPurchases,
-      totalItemsPurchased:
-          totalItemsPurchased ??
-              this.totalItemsPurchased,
+      totalPurchases: totalPurchases ?? this.totalPurchases,
+      pendingPurchases: pendingPurchases ?? this.pendingPurchases,
+      receivedPurchases: receivedPurchases ?? this.receivedPurchases,
+      cancelledPurchases: cancelledPurchases ?? this.cancelledPurchases,
+      totalItemsPurchased: totalItemsPurchased ?? this.totalItemsPurchased,
       totalQuantityPurchased:
-          totalQuantityPurchased ??
-              this.totalQuantityPurchased,
-      totalSpent:
-          totalSpent ??
-              this.totalSpent,
-      averagePurchaseValue:
-          averagePurchaseValue ??
-              this.averagePurchaseValue,
-      totalTax:
-          totalTax ??
-              this.totalTax,
-      totalDiscount:
-          totalDiscount ??
-              this.totalDiscount,
-      outstandingAmount:
-          outstandingAmount ??
-              this.outstandingAmount,
-      lastPurchaseDate:
-          lastPurchaseDate ??
-              this.lastPurchaseDate,
+          totalQuantityPurchased ?? this.totalQuantityPurchased,
+      totalSpent: totalSpent ?? this.totalSpent,
+      averagePurchaseValue: averagePurchaseValue ?? this.averagePurchaseValue,
+      totalTax: totalTax ?? this.totalTax,
+      totalDiscount: totalDiscount ?? this.totalDiscount,
+      outstandingAmount: outstandingAmount ?? this.outstandingAmount,
+      lastPurchaseDate: lastPurchaseDate ?? this.lastPurchaseDate,
     );
   }
 }

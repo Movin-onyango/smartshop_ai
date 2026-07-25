@@ -9,10 +9,7 @@ import '../../controllers/customer_form_controller.dart';
 /// Customer contact and address.
 /// ---------------------------------------------------------------------------
 class ContactInformationCard extends StatelessWidget {
-  const ContactInformationCard({
-    super.key,
-    required this.controller,
-  });
+  const ContactInformationCard({super.key, required this.controller});
 
   final CustomerFormController controller;
 
@@ -22,26 +19,20 @@ class ContactInformationCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
-          crossAxisAlignment:
-              CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-
             Text(
               'Contact Information',
-              style: Theme.of(context)
-                  .textTheme
-                  .titleLarge,
+              style: Theme.of(context).textTheme.titleLarge,
             ),
 
             const SizedBox(height: 24),
 
             TextFormField(
-              controller:
-                  controller.addressController,
+              controller: controller.addressController,
               decoration: const InputDecoration(
                 labelText: 'Address',
-                prefixIcon:
-                    Icon(Icons.location_on),
+                prefixIcon: Icon(Icons.location_on),
               ),
               maxLines: 2,
             ),
@@ -49,11 +40,9 @@ class ContactInformationCard extends StatelessWidget {
             const SizedBox(height: 20),
 
             TextFormField(
-              controller:
-                  controller.notesController,
+              controller: controller.notesController,
               decoration: const InputDecoration(
-                labelText:
-                    'Additional Contact Notes',
+                labelText: 'Additional Contact Notes',
                 prefixIcon: Icon(Icons.note),
                 alignLabelWithHint: true,
               ),

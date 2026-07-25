@@ -7,10 +7,7 @@ import '../../../../shared/widgets/forms/fields/app_number_field.dart';
 import '../../controllers/product_form_controller.dart';
 
 class PricingCard extends StatelessWidget {
-  const PricingCard({
-    super.key,
-    required this.controller,
-  });
+  const PricingCard({super.key, required this.controller});
 
   final ProductFormController controller;
 
@@ -67,16 +64,14 @@ class PricingCard extends StatelessWidget {
 
                   _SummaryRow(
                     label: 'Profit Per Unit',
-                    value:
-                        'KES ${controller.profit.toStringAsFixed(2)}',
+                    value: 'KES ${controller.profit.toStringAsFixed(2)}',
                   ),
 
                   const Divider(),
 
                   _SummaryRow(
                     label: 'Profit Margin',
-                    value:
-                        '${controller.margin.toStringAsFixed(1)}%',
+                    value: '${controller.margin.toStringAsFixed(1)}%',
                   ),
                 ],
               ),
@@ -89,10 +84,7 @@ class PricingCard extends StatelessWidget {
 }
 
 class _SummaryRow extends StatelessWidget {
-  const _SummaryRow({
-    required this.label,
-    required this.value,
-  });
+  const _SummaryRow({required this.label, required this.value});
 
   final String label;
   final String value;
@@ -104,16 +96,13 @@ class _SummaryRow extends StatelessWidget {
       child: Row(
         children: [
           Expanded(
-            child: Text(
-              label,
-              style: Theme.of(context).textTheme.bodyMedium,
-            ),
+            child: Text(label, style: Theme.of(context).textTheme.bodyMedium),
           ),
           Text(
             value,
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
           ),
         ],
       ),

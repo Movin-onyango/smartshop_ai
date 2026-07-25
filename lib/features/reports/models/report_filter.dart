@@ -1,11 +1,4 @@
-enum ReportPeriod {
-  today,
-  week,
-  month,
-  quarter,
-  year,
-  custom,
-}
+enum ReportPeriod { today, week, month, quarter, year, custom }
 
 class ReportFilter {
   const ReportFilter({

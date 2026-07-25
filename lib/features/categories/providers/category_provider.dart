@@ -20,8 +20,7 @@ class CategoryProvider extends ChangeNotifier {
   // Getters
   //--------------------------------------------------------------------------
 
-  List<Category> get categories =>
-      List.unmodifiable(_filteredCategories);
+  List<Category> get categories => List.unmodifiable(_filteredCategories);
 
   bool get isLoading => _isLoading;
 
@@ -60,9 +59,7 @@ class CategoryProvider extends ChangeNotifier {
     loadCategories();
   }
 
-  void addCategoryFromController(
-    CategoryFormController controller,
-  ) {
+  void addCategoryFromController(CategoryFormController controller) {
     addCategory(controller.toCategory());
   }
 
@@ -75,9 +72,7 @@ class CategoryProvider extends ChangeNotifier {
     String id,
     CategoryFormController controller,
   ) {
-    updateCategory(
-      controller.toCategory(id: id),
-    );
+    updateCategory(controller.toCategory(id: id));
   }
 
   void deleteCategory(String id) {
@@ -91,9 +86,7 @@ class CategoryProvider extends ChangeNotifier {
 
   Category? findById(String id) {
     try {
-      return _categories.firstWhere(
-        (category) => category.id == id,
-      );
+      return _categories.firstWhere((category) => category.id == id);
     } catch (_) {
       return null;
     }
@@ -113,9 +106,7 @@ class CategoryProvider extends ChangeNotifier {
     } else {
       _filteredCategories = _allCategories.where((category) {
         return category.name.toLowerCase().contains(q) ||
-            (category.description ?? '')
-                .toLowerCase()
-                .contains(q);
+            (category.description ?? '').toLowerCase().contains(q);
       }).toList();
     }
 
@@ -128,9 +119,7 @@ class CategoryProvider extends ChangeNotifier {
 
   bool exists(String name) {
     return _categories.any(
-      (category) =>
-          category.name.toLowerCase() ==
-          name.trim().toLowerCase(),
+      (category) => category.name.toLowerCase() == name.trim().toLowerCase(),
     );
   }
 

@@ -66,8 +66,7 @@ class PurchaseItem {
   }
 
   bool get isPartiallyReceived {
-    return receivedQuantity > 0 &&
-        receivedQuantity < quantity;
+    return receivedQuantity > 0 && receivedQuantity < quantity;
   }
 
   //---------------------------------------------------------------------------
@@ -92,9 +91,7 @@ class PurchaseItem {
       unitCost: unitCost ?? this.unitCost,
       discount: discount ?? this.discount,
       tax: tax ?? this.tax,
-      receivedQuantity:
-          receivedQuantity ??
-          this.receivedQuantity,
+      receivedQuantity: receivedQuantity ?? this.receivedQuantity,
     );
   }
 }

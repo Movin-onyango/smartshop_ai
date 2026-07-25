@@ -49,17 +49,13 @@ class SaleFormController extends ChangeNotifier {
 
   final CartController cart = CartController();
 
-  final ProductSearchController productSearch =
-      ProductSearchController();
+  final ProductSearchController productSearch = ProductSearchController();
 
-  final CustomerController customer =
-      CustomerController();
+  final CustomerController customer = CustomerController();
 
-  final PaymentController payment =
-      PaymentController();
+  final PaymentController payment = PaymentController();
 
-  final TotalsController totals =
-      TotalsController();
+  final TotalsController totals = TotalsController();
 
   //--------------------------------------------------------------------------
   // Synchronization
@@ -83,8 +79,7 @@ class SaleFormController extends ChangeNotifier {
     notifyListeners();
   }
 
-  List<Product> get filteredProducts =>
-      productSearch.filteredProducts;
+  List<Product> get filteredProducts => productSearch.filteredProducts;
 
   //--------------------------------------------------------------------------
   // Cart
@@ -150,11 +145,9 @@ class SaleFormController extends ChangeNotifier {
   // Customer
   //--------------------------------------------------------------------------
 
-  String? get customerName =>
-      customer.customerName;
+  String? get customerName => customer.customerName;
 
-  String? get customerPhone =>
-      customer.customerPhone;
+  String? get customerPhone => customer.customerPhone;
 
   void clearCustomer() {
     customer.clearCustomer();
@@ -170,12 +163,9 @@ class SaleFormController extends ChangeNotifier {
   // Payment
   //--------------------------------------------------------------------------
 
-  PaymentMethod get paymentMethod =>
-      payment.paymentMethod;
+  PaymentMethod get paymentMethod => payment.paymentMethod;
 
-  void setPaymentMethod(
-    PaymentMethod method,
-  ) {
+  void setPaymentMethod(PaymentMethod method) {
     payment.setPaymentMethod(method);
     notifyListeners();
   }

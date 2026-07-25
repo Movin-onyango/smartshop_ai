@@ -16,10 +16,7 @@ import '../../models/sale.dart';
 /// • Notes
 /// ---------------------------------------------------------------------------
 class PaymentSection extends StatelessWidget {
-  const PaymentSection({
-    super.key,
-    required this.sale,
-  });
+  const PaymentSection({super.key, required this.sale});
 
   final Sale sale;
 
@@ -34,18 +31,11 @@ class PaymentSection extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'Payment',
-              style: theme.textTheme.titleLarge,
-            ),
+            Text('Payment', style: theme.textTheme.titleLarge),
 
             const SizedBox(height: 20),
 
-            _row(
-              context,
-              'Method',
-              _paymentMethod(payment.method.name),
-            ),
+            _row(context, 'Method', _paymentMethod(payment.method.name)),
 
             _row(
               context,
@@ -59,37 +49,20 @@ class PaymentSection extends StatelessWidget {
               'KSh ${sale.subtotal.toStringAsFixed(2)}',
             ),
 
-            _row(
-              context,
-              'Change',
-              'KSh ${payment.change.toStringAsFixed(2)}',
-            ),
+            _row(context, 'Change', 'KSh ${payment.change.toStringAsFixed(2)}'),
 
-            if (payment.reference != null &&
-                payment.reference!.isNotEmpty)
-              _row(
-                context,
-                'Reference',
-                payment.reference!,
-              ),
+            if (payment.reference != null && payment.reference!.isNotEmpty)
+              _row(context, 'Reference', payment.reference!),
 
-            if (payment.notes != null &&
-                payment.notes!.isNotEmpty)
+            if (payment.notes != null && payment.notes!.isNotEmpty)
               Padding(
                 padding: const EdgeInsets.only(top: 16),
                 child: Column(
-                  crossAxisAlignment:
-                      CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      'Notes',
-                      style: theme.textTheme.titleMedium,
-                    ),
+                    Text('Notes', style: theme.textTheme.titleMedium),
                     const SizedBox(height: 8),
-                    Text(
-                      payment.notes!,
-                      style: theme.textTheme.bodyMedium,
-                    ),
+                    Text(payment.notes!, style: theme.textTheme.bodyMedium),
                   ],
                 ),
               ),
@@ -99,25 +72,14 @@ class PaymentSection extends StatelessWidget {
     );
   }
 
-  Widget _row(
-    BuildContext context,
-    String label,
-    String value,
-  ) {
+  Widget _row(BuildContext context, String label, String value) {
     final theme = Theme.of(context);
 
     return Padding(
-      padding: const EdgeInsets.symmetric(
-        vertical: 6,
-      ),
+      padding: const EdgeInsets.symmetric(vertical: 6),
       child: Row(
         children: [
-          Expanded(
-            child: Text(
-              label,
-              style: theme.textTheme.bodyMedium,
-            ),
-          ),
+          Expanded(child: Text(label, style: theme.textTheme.bodyMedium)),
           Text(
             value,
             style: theme.textTheme.bodyMedium?.copyWith(

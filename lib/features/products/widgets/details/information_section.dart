@@ -5,10 +5,7 @@ import '/features/dashboard/widgets/section_header.dart';
 import 'detail_tile.dart';
 
 class InformationSection extends StatelessWidget {
-  const InformationSection({
-    super.key,
-    required this.product,
-  });
+  const InformationSection({super.key, required this.product});
 
   final Product product;
 

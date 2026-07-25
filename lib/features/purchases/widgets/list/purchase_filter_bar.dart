@@ -40,16 +40,12 @@ class PurchaseFilterBar extends StatelessWidget {
 
           ...PurchaseStatus.values.map(
             (status) => Padding(
-              padding: const EdgeInsets.only(
-                right: 8,
-              ),
+              padding: const EdgeInsets.only(right: 8),
               child: _buildChip(
                 context,
                 label: _label(status),
-                selected:
-                    selectedStatus == status,
-                onTap: () =>
-                    onChanged(status),
+                selected: selectedStatus == status,
+                onTap: () => onChanged(status),
               ),
             ),
           ),
@@ -71,15 +67,13 @@ class PurchaseFilterBar extends StatelessWidget {
     );
   }
 
-  String _label(
-    PurchaseStatus status,
-  ) {
+  String _label(PurchaseStatus status) {
     switch (status) {
       case PurchaseStatus.draft:
         return 'Draft';
 
-       case PurchaseStatus.pendingApproval:
-         return 'Draft';
+      case PurchaseStatus.pendingApproval:
+        return 'Draft';
 
       case PurchaseStatus.ordered:
         return 'Ordered';

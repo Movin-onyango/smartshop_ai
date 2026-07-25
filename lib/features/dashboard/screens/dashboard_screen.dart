@@ -44,9 +44,7 @@ class DashboardScreen extends StatelessWidget {
             SizedBox(height: 32),
 
             /// Business Overview
-            SectionHeader(
-              title: 'Business Overview',
-            ),
+            SectionHeader(title: 'Business Overview'),
 
             SizedBox(height: 16),
 
@@ -56,9 +54,7 @@ class DashboardScreen extends StatelessWidget {
             SizedBox(height: 32),
 
             /// Quick Actions
-            SectionHeader(
-              title: 'Quick Actions',
-            ),
+            SectionHeader(title: 'Quick Actions'),
 
             SizedBox(height: 16),
 
@@ -67,9 +63,7 @@ class DashboardScreen extends StatelessWidget {
             SizedBox(height: 32),
 
             /// Sales Performance
-            SectionHeader(
-              title: 'Sales Performance',
-            ),
+            SectionHeader(title: 'Sales Performance'),
 
             SizedBox(height: 16),
 
@@ -78,9 +72,7 @@ class DashboardScreen extends StatelessWidget {
             SizedBox(height: 32),
 
             /// Inventory Health
-            SectionHeader(
-              title: 'Inventory Health',
-            ),
+            SectionHeader(title: 'Inventory Health'),
 
             SizedBox(height: 16),
 
@@ -89,9 +81,7 @@ class DashboardScreen extends StatelessWidget {
             SizedBox(height: 32),
 
             /// Fast Moving Products
-            SectionHeader(
-              title: 'Fast Moving Products',
-            ),
+            SectionHeader(title: 'Fast Moving Products'),
 
             SizedBox(height: 16),
 
@@ -100,9 +90,7 @@ class DashboardScreen extends StatelessWidget {
             SizedBox(height: 32),
 
             /// Recent Activity
-            SectionHeader(
-              title: 'Recent Activity',
-            ),
+            SectionHeader(title: 'Recent Activity'),
 
             SizedBox(height: 16),
 
@@ -111,9 +99,7 @@ class DashboardScreen extends StatelessWidget {
             SizedBox(height: 32),
 
             /// Notifications
-            SectionHeader(
-              title: 'Notifications',
-            ),
+            SectionHeader(title: 'Notifications'),
 
             SizedBox(height: 16),
 

@@ -8,4 +8,3 @@ class PurchaseReportRepository {
     return PurchaseRepository.getAll();
   }
 }
-

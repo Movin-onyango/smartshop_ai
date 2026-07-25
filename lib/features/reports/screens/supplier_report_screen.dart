@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../../../shared/widgets/layouts/smart_scaffold.dart';
 
+import '../exporters/report_export_manager.dart';
 import '../providers/report_provider.dart';
 
 import '../widgets/cards/report_summary_card.dart';
@@ -20,30 +21,35 @@ import '../widgets/statistics/report_statistic_tile.dart';
 /// • Supplier KPIs
 /// • Supplier Statistics
 /// • Supplier Overview
+/// • Export Report
 /// • Chart Placeholder
 /// ---------------------------------------------------------------------------
 class SupplierReportScreen extends StatelessWidget {
-  const SupplierReportScreen({
-    super.key,
-  });
+  const SupplierReportScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Consumer<ReportProvider>(
-      builder: (
-        context,
-        provider,
-        _,
-      ) {
-        final totalSuppliers =
-            provider.supplierRows.length;
+      builder: (context, provider, _) {
+        final totalSuppliers = provider.supplierRows.length;
 
         // Assuming supplierRows contains only active suppliers.
-        // If an active flag is added later, this calculation can be updated.
         final activeSuppliers = totalSuppliers;
 
         return SmartScaffold(
           title: 'Supplier Report',
+
+          actions: [
+            IconButton(
+              tooltip: 'Export Report',
+              icon: const Icon(Icons.download),
+              onPressed: () => _showExportDialog(
+                context,
+                provider,
+              ),
+            ),
+          ],
+
           body: RefreshIndicator(
             onRefresh: provider.refresh,
             child: ListView(
@@ -52,7 +58,6 @@ class SupplierReportScreen extends StatelessWidget {
                 //------------------------------------------------------------------
                 // Header
                 //------------------------------------------------------------------
-
                 const ReportSectionHeader(
                   title: 'Supplier Analytics',
                   subtitle:
@@ -71,11 +76,9 @@ class SupplierReportScreen extends StatelessWidget {
                 //------------------------------------------------------------------
                 // KPI Cards
                 //------------------------------------------------------------------
-
                 GridView.count(
                   shrinkWrap: true,
-                  physics:
-                      const NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   crossAxisCount: 2,
                   crossAxisSpacing: 16,
                   mainAxisSpacing: 16,
@@ -102,7 +105,6 @@ class SupplierReportScreen extends StatelessWidget {
                 //------------------------------------------------------------------
                 // Statistics
                 //------------------------------------------------------------------
-
                 const ReportSectionHeader(
                   title: 'Supplier Statistics',
                 ),
@@ -130,9 +132,7 @@ class SupplierReportScreen extends StatelessWidget {
 
                         ReportStatisticTile(
                           title: 'Supplier Records',
-                          value: provider
-                              .supplierRows.length
-                              .toString(),
+                          value: provider.supplierRows.length.toString(),
                         ),
                       ],
                     ),
@@ -144,7 +144,6 @@ class SupplierReportScreen extends StatelessWidget {
                 //------------------------------------------------------------------
                 // Chart Placeholder
                 //------------------------------------------------------------------
-
                 const ReportSectionHeader(
                   title: 'Supplier Activity',
                 ),
@@ -172,6 +171,63 @@ class SupplierReportScreen extends StatelessWidget {
           ),
         );
       },
+    );
+  }
+
+  //---------------------------------------------------------------------------
+  // Export Dialog
+  //---------------------------------------------------------------------------
+
+  Future<void> _showExportDialog(
+    BuildContext context,
+    ReportProvider provider,
+  ) async {
+    await showDialog(
+      context: context,
+      builder: (_) => AlertDialog(
+        title: const Text('Export Supplier Report'),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ListTile(
+              leading: const Icon(Icons.picture_as_pdf),
+              title: const Text('Export as PDF'),
+              onTap: () async {
+                Navigator.pop(context);
+
+                await provider.exportReport(
+                  controller: provider.supplierController,
+                  format: ExportFormat.pdf,
+                );
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.table_chart),
+              title: const Text('Export as Excel'),
+              onTap: () async {
+                Navigator.pop(context);
+
+                await provider.exportReport(
+                  controller: provider.supplierController,
+                  format: ExportFormat.excel,
+                );
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.description),
+              title: const Text('Export as CSV'),
+              onTap: () async {
+                Navigator.pop(context);
+
+                await provider.exportReport(
+                  controller: provider.supplierController,
+                  format: ExportFormat.csv,
+                );
+              },
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

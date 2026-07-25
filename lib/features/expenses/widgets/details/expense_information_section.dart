@@ -12,10 +12,7 @@ import '../../models/expense_category.dart';
 /// • ExpenseDetailsScreen
 /// ---------------------------------------------------------------------------
 class ExpenseInformationSection extends StatelessWidget {
-  const ExpenseInformationSection({
-    super.key,
-    required this.expense,
-  });
+  const ExpenseInformationSection({super.key, required this.expense});
 
   final Expense expense;
 
@@ -25,14 +22,11 @@ class ExpenseInformationSection extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
-          crossAxisAlignment:
-              CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               'Expense Information',
-              style: Theme.of(context)
-                  .textTheme
-                  .titleLarge,
+              style: Theme.of(context).textTheme.titleLarge,
             ),
 
             const SizedBox(height: 20),
@@ -48,10 +42,9 @@ class ExpenseInformationSection extends StatelessWidget {
             _InfoRow(
               icon: Icons.store,
               title: 'Vendor',
-              value:
-                  expense.vendor?.isNotEmpty == true
-                      ? expense.vendor!
-                      : 'Not specified',
+              value: expense.vendor?.isNotEmpty == true
+                  ? expense.vendor!
+                  : 'Not specified',
             ),
 
             const Divider(),
@@ -107,35 +100,22 @@ class _InfoRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:
-          const EdgeInsets.symmetric(
-        vertical: 8,
-      ),
+      padding: const EdgeInsets.symmetric(vertical: 8),
       child: Row(
         children: [
-          Icon(
-            icon,
-            size: 20,
-          ),
+          Icon(icon, size: 20),
 
           const SizedBox(width: 12),
 
           Expanded(
-            child: Text(
-              title,
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyMedium,
-            ),
+            child: Text(title, style: Theme.of(context).textTheme.bodyMedium),
           ),
 
           Flexible(
             child: Text(
               value,
               textAlign: TextAlign.end,
-              style: Theme.of(context)
-                  .textTheme
-                  .titleMedium,
+              style: Theme.of(context).textTheme.titleMedium,
             ),
           ),
         ],

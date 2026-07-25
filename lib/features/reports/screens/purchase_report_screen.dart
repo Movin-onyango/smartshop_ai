@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../../../shared/widgets/layouts/smart_scaffold.dart';
 
+import '../exporters/report_export_manager.dart';
 import '../providers/report_provider.dart';
 
 import '../widgets/cards/report_summary_card.dart';
@@ -19,34 +20,38 @@ import '../widgets/statistics/report_statistic_tile.dart';
 /// Features:
 /// • Purchase KPIs
 /// • Purchase Statistics
+/// • Export Report
 /// • Future Purchase Charts
 /// ---------------------------------------------------------------------------
 class PurchaseReportScreen extends StatelessWidget {
-  const PurchaseReportScreen({
-    super.key,
-  });
+  const PurchaseReportScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Consumer<ReportProvider>(
-      builder: (
-        context,
-        provider,
-        _,
-      ) {
-        final totalOrders =
-            provider.purchaseRows.length;
+      builder: (context, provider, _) {
+        final totalOrders = provider.purchaseRows.length;
 
-        final totalPurchases =
-            provider.purchases;
+        final totalPurchases = provider.purchases;
 
-        final averagePurchase =
-            totalOrders == 0
-                ? 0.0
-                : totalPurchases / totalOrders;
+        final averagePurchase = totalOrders == 0
+            ? 0.0
+            : totalPurchases / totalOrders;
 
         return SmartScaffold(
           title: 'Purchase Report',
+
+          actions: [
+            IconButton(
+              tooltip: 'Export Report',
+              icon: const Icon(Icons.download),
+              onPressed: () => _showExportDialog(
+                context,
+                provider,
+              ),
+            ),
+          ],
+
           body: RefreshIndicator(
             onRefresh: provider.refresh,
             child: ListView(
@@ -55,7 +60,6 @@ class PurchaseReportScreen extends StatelessWidget {
                 //------------------------------------------------------------------
                 // Header
                 //------------------------------------------------------------------
-
                 const ReportSectionHeader(
                   title: 'Purchase Analytics',
                   subtitle:
@@ -74,7 +78,6 @@ class PurchaseReportScreen extends StatelessWidget {
                 //------------------------------------------------------------------
                 // KPI Cards
                 //------------------------------------------------------------------
-
                 GridView.count(
                   shrinkWrap: true,
                   physics:
@@ -106,7 +109,6 @@ class PurchaseReportScreen extends StatelessWidget {
                 //------------------------------------------------------------------
                 // Statistics
                 //------------------------------------------------------------------
-
                 const ReportSectionHeader(
                   title: 'Purchase Statistics',
                 ),
@@ -148,7 +150,6 @@ class PurchaseReportScreen extends StatelessWidget {
                 //------------------------------------------------------------------
                 // Chart Placeholder
                 //------------------------------------------------------------------
-
                 const ReportSectionHeader(
                   title: 'Purchase Trends',
                 ),
@@ -176,6 +177,70 @@ class PurchaseReportScreen extends StatelessWidget {
           ),
         );
       },
+    );
+  }
+
+  //---------------------------------------------------------------------------
+  // Export Dialog
+  //---------------------------------------------------------------------------
+
+  Future<void> _showExportDialog(
+    BuildContext context,
+    ReportProvider provider,
+  ) async {
+    await showDialog(
+      context: context,
+      builder: (_) => AlertDialog(
+        title: const Text('Export Purchase Report'),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ListTile(
+              leading: const Icon(Icons.picture_as_pdf),
+              title: const Text('Export as PDF'),
+              onTap: () async {
+                Navigator.pop(context);
+
+                await provider.exportReport(
+                  controller:
+                      provider.purchaseController,
+                  format: ExportFormat.pdf,
+                );
+              },
+            ),
+            ListTile(
+              leading:
+                  const Icon(Icons.table_chart),
+              title:
+                  const Text('Export as Excel'),
+              onTap: () async {
+                Navigator.pop(context);
+
+                await provider.exportReport(
+                  controller:
+                      provider.purchaseController,
+                  format: ExportFormat.excel,
+                );
+              },
+            ),
+            ListTile(
+              leading:
+                  const Icon(Icons.description),
+              title:
+                  const Text('Export as CSV'),
+              onTap: () async {
+                Navigator.pop(context);
+
+                await provider.exportReport(
+                  controller:
+                      provider.purchaseController,
+                  format: ExportFormat.csv,
+                );
+              },
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

@@ -33,10 +33,7 @@ class CategoryListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: const EdgeInsets.symmetric(
-        horizontal: 16,
-        vertical: 8,
-      ),
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: ListTile(
         contentPadding: const EdgeInsets.symmetric(
           horizontal: 16,
@@ -44,12 +41,8 @@ class CategoryListItem extends StatelessWidget {
         ),
 
         leading: CircleAvatar(
-          backgroundColor:
-              category.colorValue.withValues(alpha: 0.15),
-          child: Icon(
-            category.iconData,
-            color: category.colorValue,
-          ),
+          backgroundColor: category.colorValue.withValues(alpha: 0.15),
+          child: Icon(category.iconData, color: category.colorValue),
         ),
 
         title: Text(
@@ -85,18 +78,9 @@ class CategoryListItem extends StatelessWidget {
             }
           },
           itemBuilder: (context) => const [
-            PopupMenuItem(
-              value: 'view',
-              child: Text('View'),
-            ),
-            PopupMenuItem(
-              value: 'edit',
-              child: Text('Edit'),
-            ),
-            PopupMenuItem(
-              value: 'delete',
-              child: Text('Delete'),
-            ),
+            PopupMenuItem(value: 'view', child: Text('View')),
+            PopupMenuItem(value: 'edit', child: Text('Edit')),
+            PopupMenuItem(value: 'delete', child: Text('Delete')),
           ],
         ),
 

@@ -20,9 +20,7 @@ import 'empty_categories.dart';
 /// • Desktop -> 3–4 columns
 /// ---------------------------------------------------------------------------
 class CategoryGrid extends StatelessWidget {
-  const CategoryGrid({
-    super.key,
-  });
+  const CategoryGrid({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -50,8 +48,7 @@ class CategoryGrid extends StatelessWidget {
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               itemCount: categories.length,
-              gridDelegate:
-                  SliverGridDelegateWithFixedCrossAxisCount(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: columns,
                 crossAxisSpacing: 16,
                 mainAxisSpacing: 16,
@@ -63,9 +60,7 @@ class CategoryGrid extends StatelessWidget {
                 return CategoryCard(
                   category: category,
                   onTap: () {
-                    context.push(
-                      '${AppRoutes.categories}/${category.id}',
-                    );
+                    context.push('${AppRoutes.categories}/${category.id}');
                   },
                 );
               },

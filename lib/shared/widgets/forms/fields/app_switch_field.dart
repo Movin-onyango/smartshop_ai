@@ -26,8 +26,10 @@ class AppSwitchField extends StatelessWidget {
     this.subtitle,
     this.enabled = true,
     this.secondary,
-    this.contentPadding =
-        const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+    this.contentPadding = const EdgeInsets.symmetric(
+      horizontal: 16,
+      vertical: 4,
+    ),
   });
 
   final String title;
@@ -57,17 +59,11 @@ class AppSwitchField extends StatelessWidget {
 
       secondary: secondary,
 
-      title: Text(
-        title,
-        style: theme.textTheme.titleMedium,
-      ),
+      title: Text(title, style: theme.textTheme.titleMedium),
 
       subtitle: subtitle == null
           ? null
-          : Text(
-              subtitle!,
-              style: theme.textTheme.bodyMedium,
-            ),
+          : Text(subtitle!, style: theme.textTheme.bodyMedium),
 
       activeThumbColor: theme.colorScheme.primary,
     );

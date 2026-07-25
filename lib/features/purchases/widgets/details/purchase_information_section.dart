@@ -12,10 +12,7 @@ import '../../models/purchase.dart';
 /// • PurchaseDetailsScreen
 /// ---------------------------------------------------------------------------
 class PurchaseInformationSection extends StatelessWidget {
-  const PurchaseInformationSection({
-    super.key,
-    required this.purchase,
-  });
+  const PurchaseInformationSection({super.key, required this.purchase});
 
   final Purchase purchase;
 
@@ -25,18 +22,14 @@ class PurchaseInformationSection extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
-          crossAxisAlignment:
-              CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             //------------------------------------------------------------------
             // Header
             //------------------------------------------------------------------
-
             Text(
               'Purchase Information',
-              style: Theme.of(context)
-                  .textTheme
-                  .titleLarge,
+              style: Theme.of(context).textTheme.titleLarge,
             ),
 
             const SizedBox(height: 20),
@@ -44,7 +37,6 @@ class PurchaseInformationSection extends StatelessWidget {
             //------------------------------------------------------------------
             // Purchase Number
             //------------------------------------------------------------------
-
             _InformationTile(
               icon: Icons.tag,
               title: 'Purchase Number',
@@ -54,7 +46,6 @@ class PurchaseInformationSection extends StatelessWidget {
             //------------------------------------------------------------------
             // Supplier
             //------------------------------------------------------------------
-
             _InformationTile(
               icon: Icons.business,
               title: 'Supplier',
@@ -64,54 +55,37 @@ class PurchaseInformationSection extends StatelessWidget {
             //------------------------------------------------------------------
             // Order Date
             //------------------------------------------------------------------
-
             _InformationTile(
               icon: Icons.calendar_today,
               title: 'Order Date',
-              value: _formatDate(
-                purchase.orderDate,
-              ),
+              value: _formatDate(purchase.orderDate),
             ),
 
             //------------------------------------------------------------------
             // Expected Delivery
             //------------------------------------------------------------------
-
             _InformationTile(
               icon: Icons.local_shipping,
-              title:
-                  'Expected Delivery',
-              value:
-                  purchase.expectedDeliveryDate ==
-                          null
-                      ? '-'
-                      : _formatDate(
-                          purchase
-                              .expectedDeliveryDate!,
-                        ),
+              title: 'Expected Delivery',
+              value: purchase.expectedDeliveryDate == null
+                  ? '-'
+                  : _formatDate(purchase.expectedDeliveryDate!),
             ),
 
             //------------------------------------------------------------------
             // Received Date
             //------------------------------------------------------------------
-
             _InformationTile(
               icon: Icons.inventory,
               title: 'Received Date',
-              value:
-                  purchase.receivedDate ==
-                          null
-                      ? '-'
-                      : _formatDate(
-                          purchase
-                              .receivedDate!,
-                        ),
+              value: purchase.receivedDate == null
+                  ? '-'
+                  : _formatDate(purchase.receivedDate!),
             ),
 
             //------------------------------------------------------------------
             // Status
             //------------------------------------------------------------------
-
             _InformationTile(
               icon: Icons.flag,
               title: 'Status',
@@ -123,9 +97,7 @@ class PurchaseInformationSection extends StatelessWidget {
     );
   }
 
-  String _formatDate(
-    DateTime date,
-  ) {
+  String _formatDate(DateTime date) {
     return '${date.day}/${date.month}/${date.year}';
   }
 }
@@ -133,8 +105,7 @@ class PurchaseInformationSection extends StatelessWidget {
 /// ---------------------------------------------------------------------------
 /// Information Tile
 /// ---------------------------------------------------------------------------
-class _InformationTile
-    extends StatelessWidget {
+class _InformationTile extends StatelessWidget {
   const _InformationTile({
     required this.icon,
     required this.title,
@@ -148,8 +119,7 @@ class _InformationTile
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      contentPadding:
-          EdgeInsets.zero,
+      contentPadding: EdgeInsets.zero,
       leading: Icon(icon),
       title: Text(title),
       subtitle: Text(value),

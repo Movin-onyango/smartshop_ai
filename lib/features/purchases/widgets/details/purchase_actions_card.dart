@@ -16,50 +16,33 @@ import '../../providers/purchase_provider.dart';
 /// • PurchaseDetailsScreen
 /// ---------------------------------------------------------------------------
 class PurchaseActionsCard extends StatelessWidget {
-  const PurchaseActionsCard({
-    super.key,
-    required this.purchase,
-  });
+  const PurchaseActionsCard({super.key, required this.purchase});
 
   final Purchase purchase;
 
   @override
   Widget build(BuildContext context) {
-    final provider =
-        context.read<PurchaseProvider>();
+    final provider = context.read<PurchaseProvider>();
 
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
-          crossAxisAlignment:
-              CrossAxisAlignment.stretch,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text(
-              'Actions',
-              style: Theme.of(context)
-                  .textTheme
-                  .titleLarge,
-            ),
+            Text('Actions', style: Theme.of(context).textTheme.titleLarge),
 
             const SizedBox(height: 20),
 
             //------------------------------------------------------------------
             // Edit Purchase
             //------------------------------------------------------------------
-
             FilledButton.icon(
               onPressed: () {
-                context.push(
-                  AppRoutes.editPurchase(
-                    purchase.id!,
-                  ),
-                );
+                context.push(AppRoutes.editPurchase(purchase.id!));
               },
               icon: const Icon(Icons.edit),
-              label: const Text(
-                'Edit Purchase',
-              ),
+              label: const Text('Edit Purchase'),
             ),
 
             const SizedBox(height: 12),
@@ -67,25 +50,14 @@ class PurchaseActionsCard extends StatelessWidget {
             //------------------------------------------------------------------
             // Receive Purchase
             //------------------------------------------------------------------
-
             FilledButton.icon(
-              onPressed:
-                  purchase.isFullyReceived
-                      ? null
-                      : () {
-                          context.push(
-                            AppRoutes
-                                .receivePurchase(
-                              purchase.id!,
-                            ),
-                          );
-                        },
-              icon: const Icon(
-                Icons.inventory,
-              ),
-              label: const Text(
-                'Receive Stock',
-              ),
+              onPressed: purchase.isFullyReceived
+                  ? null
+                  : () {
+                      context.push(AppRoutes.receivePurchase(purchase.id!));
+                    },
+              icon: const Icon(Icons.inventory),
+              label: const Text('Receive Stock'),
             ),
 
             const SizedBox(height: 12),
@@ -93,19 +65,10 @@ class PurchaseActionsCard extends StatelessWidget {
             //------------------------------------------------------------------
             // Cancel Purchase
             //------------------------------------------------------------------
-
             OutlinedButton.icon(
-              onPressed: () =>
-                  _cancelPurchase(
-                context,
-                provider,
-              ),
-              icon: const Icon(
-                Icons.cancel_outlined,
-              ),
-              label: const Text(
-                'Cancel Purchase',
-              ),
+              onPressed: () => _cancelPurchase(context, provider),
+              icon: const Icon(Icons.cancel_outlined),
+              label: const Text('Cancel Purchase'),
             ),
 
             const SizedBox(height: 12),
@@ -113,17 +76,10 @@ class PurchaseActionsCard extends StatelessWidget {
             //------------------------------------------------------------------
             // Delete Purchase
             //------------------------------------------------------------------
-
             FilledButton.tonalIcon(
-              onPressed: () =>
-                  _deletePurchase(
-                context,
-                provider,
-              ),
+              onPressed: () => _deletePurchase(context, provider),
               icon: const Icon(Icons.delete),
-              label: const Text(
-                'Delete Purchase',
-              ),
+              label: const Text('Delete Purchase'),
             ),
           ],
         ),
@@ -141,45 +97,29 @@ class PurchaseActionsCard extends StatelessWidget {
   ) async {
     final confirmed =
         await showDialog<bool>(
-              context: context,
-              builder: (context) {
-                return AlertDialog(
-                  title: const Text(
-                    'Delete Purchase',
-                  ),
-                  content: const Text(
-                    'Delete this purchase permanently?',
-                  ),
-                  actions: [
-                    TextButton(
-                      onPressed: () =>
-                          Navigator.pop(
-                        context,
-                        false,
-                      ),
-                      child:
-                          const Text('Cancel'),
-                    ),
-                    FilledButton(
-                      onPressed: () =>
-                          Navigator.pop(
-                        context,
-                        true,
-                      ),
-                      child:
-                          const Text('Delete'),
-                    ),
-                  ],
-                );
-              },
-            ) ??
-            false;
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              title: const Text('Delete Purchase'),
+              content: const Text('Delete this purchase permanently?'),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(context, false),
+                  child: const Text('Cancel'),
+                ),
+                FilledButton(
+                  onPressed: () => Navigator.pop(context, true),
+                  child: const Text('Delete'),
+                ),
+              ],
+            );
+          },
+        ) ??
+        false;
 
     if (!confirmed) return;
 
-    await provider.deletePurchase(
-      purchase.id!,
-    );
+    await provider.deletePurchase(purchase.id!);
 
     if (context.mounted) {
       context.pop();
@@ -196,55 +136,34 @@ class PurchaseActionsCard extends StatelessWidget {
   ) async {
     final confirmed =
         await showDialog<bool>(
-              context: context,
-              builder: (context) {
-                return AlertDialog(
-                  title: const Text(
-                    'Cancel Purchase',
-                  ),
-                  content: const Text(
-                    'Cancel this purchase?',
-                  ),
-                  actions: [
-                    TextButton(
-                      onPressed: () =>
-                          Navigator.pop(
-                        context,
-                        false,
-                      ),
-                      child:
-                          const Text('No'),
-                    ),
-                    FilledButton(
-                      onPressed: () =>
-                          Navigator.pop(
-                        context,
-                        true,
-                      ),
-                      child:
-                          const Text('Yes'),
-                    ),
-                  ],
-                );
-              },
-            ) ??
-            false;
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              title: const Text('Cancel Purchase'),
+              content: const Text('Cancel this purchase?'),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(context, false),
+                  child: const Text('No'),
+                ),
+                FilledButton(
+                  onPressed: () => Navigator.pop(context, true),
+                  child: const Text('Yes'),
+                ),
+              ],
+            );
+          },
+        ) ??
+        false;
 
     if (!confirmed) return;
 
-    await provider.cancelPurchase(
-      purchase.id!,
-    );
+    await provider.cancelPurchase(purchase.id!);
 
     if (context.mounted) {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(
-        const SnackBar(
-          content: Text(
-            'Purchase cancelled.',
-          ),
-        ),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('Purchase cancelled.')));
     }
   }
 }

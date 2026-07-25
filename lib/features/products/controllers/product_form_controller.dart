@@ -31,23 +31,17 @@ class ProductFormController extends ChangeNotifier {
 
     controller.nameController.text = product.name;
     controller.barcodeController.text = product.barcode ?? '';
-    controller.descriptionController.text =
-        product.description ?? '';
+    controller.descriptionController.text = product.description ?? '';
 
-    controller.buyingPriceController.text =
-        product.buyingPrice.toString();
+    controller.buyingPriceController.text = product.buyingPrice.toString();
 
-    controller.sellingPriceController.text =
-        product.sellingPrice.toString();
+    controller.sellingPriceController.text = product.sellingPrice.toString();
 
-    controller.discountController.text =
-        product.discount.toString();
+    controller.discountController.text = product.discount.toString();
 
-    controller.quantityController.text =
-        product.quantity.toString();
+    controller.quantityController.text = product.quantity.toString();
 
-    controller.reorderLevelController.text =
-        product.reorderLevel.toString();
+    controller.reorderLevelController.text = product.reorderLevel.toString();
 
     controller.expiryDateController.text =
         product.expiryDate?.toIso8601String() ?? '';
@@ -73,16 +67,13 @@ class ProductFormController extends ChangeNotifier {
 
   final sellingPriceController = TextEditingController();
 
-  final discountController =
-      TextEditingController(text: '0');
+  final discountController = TextEditingController(text: '0');
 
   final quantityController = TextEditingController();
 
-  final reorderLevelController =
-      TextEditingController();
+  final reorderLevelController = TextEditingController();
 
-  final expiryDateController =
-      TextEditingController();
+  final expiryDateController = TextEditingController();
 
   //--------------------------------------------------------------------------
   // Category
@@ -93,8 +84,7 @@ class ProductFormController extends ChangeNotifier {
   String? get selectedCategory => _selectedCategory;
 
   bool get hasCategory =>
-      _selectedCategory != null &&
-      _selectedCategory!.isNotEmpty;
+      _selectedCategory != null && _selectedCategory!.isNotEmpty;
 
   void setCategory(String? value) {
     _selectedCategory = value;
@@ -127,37 +117,21 @@ class ProductFormController extends ChangeNotifier {
   // Pricing Helpers
   //--------------------------------------------------------------------------
 
-  double get buyingPrice =>
-      double.tryParse(
-        buyingPriceController.text,
-      ) ??
-      0;
+  double get buyingPrice => double.tryParse(buyingPriceController.text) ?? 0;
   double get effectiveSellingPrice =>
-    sellingPrice - ((sellingPrice * discount) / 100);
+      sellingPrice - ((sellingPrice * discount) / 100);
 
-  double get sellingPrice =>
-      double.tryParse(
-        sellingPriceController.text,
-      ) ??
-      0;
+  double get sellingPrice => double.tryParse(sellingPriceController.text) ?? 0;
 
-  double get discount =>
-      double.tryParse(
-        discountController.text,
-      ) ??
-      0;
+  double get discount => double.tryParse(discountController.text) ?? 0;
 
   double get discountedSellingPrice =>
-      sellingPrice -
-      ((sellingPrice * discount) / 100);
+      sellingPrice - ((sellingPrice * discount) / 100);
 
-  double get profit =>
-      discountedSellingPrice - buyingPrice;
+  double get profit => discountedSellingPrice - buyingPrice;
 
   double get margin =>
-      discountedSellingPrice == 0
-          ? 0
-          : (profit / discountedSellingPrice) * 100;
+      discountedSellingPrice == 0 ? 0 : (profit / discountedSellingPrice) * 100;
 
   //--------------------------------------------------------------------------
   // Validation
@@ -174,11 +148,7 @@ class ProductFormController extends ChangeNotifier {
   // Convert To Product
   //--------------------------------------------------------------------------
 
-  Product toProduct({
-    String? id,
-    String? imageUrl,
-    DateTime? createdAt,
-  }) {
+  Product toProduct({String? id, String? imageUrl, DateTime? createdAt}) {
     return Product(
       id: id,
 
@@ -190,10 +160,9 @@ class ProductFormController extends ChangeNotifier {
           ? null
           : barcodeController.text.trim(),
 
-      description:
-          descriptionController.text.trim().isEmpty
-              ? null
-              : descriptionController.text.trim(),
+      description: descriptionController.text.trim().isEmpty
+          ? null
+          : descriptionController.text.trim(),
 
       buyingPrice: buyingPrice,
 
@@ -201,22 +170,13 @@ class ProductFormController extends ChangeNotifier {
 
       discount: discount,
 
-      quantity:
-          int.tryParse(quantityController.text) ??
-              0,
+      quantity: int.tryParse(quantityController.text) ?? 0,
 
-      reorderLevel:
-          int.tryParse(
-                reorderLevelController.text,
-              ) ??
-              0,
+      reorderLevel: int.tryParse(reorderLevelController.text) ?? 0,
 
-      expiryDate:
-          expiryDateController.text.trim().isEmpty
-              ? null
-              : DateTime.tryParse(
-                  expiryDateController.text,
-                ),
+      expiryDate: expiryDateController.text.trim().isEmpty
+          ? null
+          : DateTime.tryParse(expiryDateController.text),
 
       trackExpiry: _trackExpiry,
 
@@ -252,7 +212,6 @@ class ProductFormController extends ChangeNotifier {
     reorderLevelController.clear();
 
     expiryDateController.clear();
-    
 
     _selectedCategory = null;
 

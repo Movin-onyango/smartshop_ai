@@ -22,10 +22,7 @@ class ExpenseAttachmentSection extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'Attachment',
-              style: Theme.of(context).textTheme.titleLarge,
-            ),
+            Text('Attachment', style: Theme.of(context).textTheme.titleLarge),
             const SizedBox(height: 20),
             if (expense.attachment == null)
               const Center(
@@ -33,11 +30,7 @@ class ExpenseAttachmentSection extends StatelessWidget {
                   padding: EdgeInsets.symmetric(vertical: 24),
                   child: Column(
                     children: [
-                      Icon(
-                        Icons.attach_file,
-                        size: 48,
-                        color: Colors.grey,
-                      ),
+                      Icon(Icons.attach_file, size: 48, color: Colors.grey),
                       SizedBox(height: 12),
                       Text('No attachment available.'),
                     ],
@@ -48,9 +41,7 @@ class ExpenseAttachmentSection extends StatelessWidget {
               Column(
                 children: [
                   _AttachmentTile(
-                    icon: _fileIcon(
-                      expense.attachment!.fileName,
-                    ),
+                    icon: _fileIcon(expense.attachment!.fileName),
                     title: expense.attachment!.fileName,
                     subtitle: 'Expense attachment',
                   ),
@@ -114,9 +105,7 @@ class _AttachmentTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       contentPadding: EdgeInsets.zero,
-      leading: CircleAvatar(
-        child: Icon(icon),
-      ),
+      leading: CircleAvatar(child: Icon(icon)),
       title: Text(title),
       subtitle: Text(subtitle),
     );

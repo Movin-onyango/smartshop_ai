@@ -17,11 +17,7 @@ import '../../models/sale.dart';
 /// • Profit
 /// ---------------------------------------------------------------------------
 class SalesCard extends StatelessWidget {
-  const SalesCard({
-    super.key,
-    required this.sale,
-    required this.onTap,
-  });
+  const SalesCard({super.key, required this.sale, required this.onTap});
 
   final Sale sale;
   final VoidCallback onTap;
@@ -37,77 +33,49 @@ class SalesCard extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Column(
-            crossAxisAlignment:
-                CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-
               Row(
                 children: [
-
                   CircleAvatar(
-                    backgroundColor:
-                        colorScheme.primaryContainer,
-                    child: Icon(
-                      Icons.receipt_long,
-                      color: colorScheme.primary,
-                    ),
+                    backgroundColor: colorScheme.primaryContainer,
+                    child: Icon(Icons.receipt_long, color: colorScheme.primary),
                   ),
 
                   const SizedBox(width: 12),
 
                   Expanded(
                     child: Column(
-                      crossAxisAlignment:
-                          CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-
                         Text(
                           sale.invoiceNumber,
-                          style: Theme.of(context)
-                              .textTheme
-                              .titleMedium,
+                          style: Theme.of(context).textTheme.titleMedium,
                           maxLines: 1,
-                          overflow:
-                              TextOverflow.ellipsis,
+                          overflow: TextOverflow.ellipsis,
                         ),
 
                         Text(
                           sale.hasCustomer
                               ? sale.customerName!
                               : 'Walk-in Customer',
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodySmall,
+                          style: Theme.of(context).textTheme.bodySmall,
                         ),
-
                       ],
                     ),
                   ),
-
                 ],
               ),
 
               const SizedBox(height: 20),
 
-              _infoRow(
-                'Items',
-                '${sale.totalQuantity}',
-              ),
+              _infoRow('Items', '${sale.totalQuantity}'),
 
-              _infoRow(
-                'Payment',
-                sale.payment.method.name.toUpperCase(),
-              ),
+              _infoRow('Payment', sale.payment.method.name.toUpperCase()),
 
-              _infoRow(
-                'Revenue',
-                'KSh ${sale.subtotal.toStringAsFixed(2)}',
-              ),
+              _infoRow('Revenue', 'KSh ${sale.subtotal.toStringAsFixed(2)}'),
 
-              _infoRow(
-                'Profit',
-                'KSh ${sale.profit.toStringAsFixed(2)}',
-              ),
+              _infoRow('Profit', 'KSh ${sale.profit.toStringAsFixed(2)}'),
 
               const Spacer(),
 
@@ -115,9 +83,7 @@ class SalesCard extends StatelessWidget {
                 alignment: Alignment.centerRight,
                 child: Text(
                   _formatDate(sale.saleDate),
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodySmall,
+                  style: Theme.of(context).textTheme.bodySmall,
                 ),
               ),
             ],
@@ -127,31 +93,19 @@ class SalesCard extends StatelessWidget {
     );
   }
 
-  Widget _infoRow(
-    String title,
-    String value,
-  ) {
+  Widget _infoRow(String title, String value) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 8),
       child: Row(
         children: [
-          Expanded(
-            child: Text(title),
-          ),
-          Text(
-            value,
-            style: const TextStyle(
-              fontWeight: FontWeight.w600,
-            ),
-          ),
+          Expanded(child: Text(title)),
+          Text(value, style: const TextStyle(fontWeight: FontWeight.w600)),
         ],
       ),
     );
   }
 
-  static String _formatDate(
-    DateTime date,
-  ) {
+  static String _formatDate(DateTime date) {
     return '${date.day}/${date.month}/${date.year}';
   }
 }

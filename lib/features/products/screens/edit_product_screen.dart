@@ -28,10 +28,7 @@ import '../controllers/product_form_controller.dart';
 /// • Implement repository logic
 /// ---------------------------------------------------------------------------
 class EditProductScreen extends StatefulWidget {
-  const EditProductScreen({
-    super.key,
-    required this.productId,
-  });
+  const EditProductScreen({super.key, required this.productId});
 
   final String productId;
 
@@ -59,9 +56,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
 
     if (_initialized) return;
 
-    product = context
-        .read<ProductProvider>()
-        .findById(widget.productId)!;
+    product = context.read<ProductProvider>().findById(widget.productId)!;
 
     controller = ProductFormController.fromProduct(product);
 
@@ -77,9 +72,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
   void _updateProduct() {
     if (!controller.isValid) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Please complete all required fields.'),
-        ),
+        const SnackBar(content: Text('Please complete all required fields.')),
       );
       return;
     }
@@ -89,9 +82,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
     // await ProductRepository.update(updatedProduct);
 
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text('Product updated successfully.'),
-      ),
+      const SnackBar(content: Text('Product updated successfully.')),
     );
 
     context.pop();

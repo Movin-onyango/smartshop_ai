@@ -33,16 +33,12 @@ class CustomerFormActions extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-
         Expanded(
           child: OutlinedButton.icon(
-            onPressed:
-                isLoading ? null : onCancel,
+            onPressed: isLoading ? null : onCancel,
             icon: const Icon(Icons.close),
             label: const Padding(
-              padding: EdgeInsets.symmetric(
-                vertical: 14,
-              ),
+              padding: EdgeInsets.symmetric(vertical: 14),
               child: Text('Cancel'),
             ),
           ),
@@ -53,27 +49,20 @@ class CustomerFormActions extends StatelessWidget {
         Expanded(
           flex: 2,
           child: FilledButton.icon(
-            onPressed:
-                isLoading ? null : onSave,
+            onPressed: isLoading ? null : onSave,
             icon: isLoading
                 ? const SizedBox(
                     width: 18,
                     height: 18,
-                    child:
-                        CircularProgressIndicator(
-                      strokeWidth: 2,
-                    ),
+                    child: CircularProgressIndicator(strokeWidth: 2),
                   )
                 : const Icon(Icons.save),
             label: Padding(
-              padding: const EdgeInsets.symmetric(
-                vertical: 14,
-              ),
+              padding: const EdgeInsets.symmetric(vertical: 14),
               child: Text(saveLabel),
             ),
           ),
         ),
-
       ],
     );
   }

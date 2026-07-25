@@ -14,10 +14,7 @@ import '../../models/purchase_status.dart';
 /// • Edit Purchase
 /// ---------------------------------------------------------------------------
 class PurchaseInformationCard extends StatelessWidget {
-  const PurchaseInformationCard({
-    super.key,
-    required this.controller,
-  });
+  const PurchaseInformationCard({super.key, required this.controller});
 
   final PurchaseFormController controller;
 
@@ -27,15 +24,11 @@ class PurchaseInformationCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
-          crossAxisAlignment:
-              CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-
             Text(
               'Purchase Information',
-              style: Theme.of(context)
-                  .textTheme
-                  .titleLarge,
+              style: Theme.of(context).textTheme.titleLarge,
             ),
 
             const SizedBox(height: 20),
@@ -43,25 +36,17 @@ class PurchaseInformationCard extends StatelessWidget {
             //------------------------------------------------------------------
             // Supplier
             //------------------------------------------------------------------
-
             TextFormField(
-              controller:
-                  controller.supplierController,
+              controller: controller.supplierController,
               readOnly: true,
-              decoration:
-                  const InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Supplier',
-                hintText:
-                    'Select supplier',
-                prefixIcon: Icon(
-                  Icons.local_shipping,
-                ),
-                border:
-                    OutlineInputBorder(),
+                hintText: 'Select supplier',
+                prefixIcon: Icon(Icons.local_shipping),
+                border: OutlineInputBorder(),
               ),
               validator: (value) {
-                if (controller.supplierId ==
-                    null) {
+                if (controller.supplierId == null) {
                   return 'Supplier is required';
                 }
 
@@ -74,38 +59,23 @@ class PurchaseInformationCard extends StatelessWidget {
             //------------------------------------------------------------------
             // Order Date
             //------------------------------------------------------------------
-
             ListTile(
-              leading: const Icon(
-                Icons.calendar_today,
-              ),
-              title:
-                  const Text('Order Date'),
+              leading: const Icon(Icons.calendar_today),
+              title: const Text('Order Date'),
               subtitle: Text(
-                controller.orderDate
-                    .toLocal()
-                    .toString()
-                    .split(' ')
-                    .first,
+                controller.orderDate.toLocal().toString().split(' ').first,
               ),
-              trailing: const Icon(
-                Icons.edit_calendar,
-              ),
+              trailing: const Icon(Icons.edit_calendar),
               onTap: () async {
-                final date =
-                    await showDatePicker(
+                final date = await showDatePicker(
                   context: context,
-                  initialDate:
-                      controller.orderDate,
-                  firstDate:
-                      DateTime(2020),
-                  lastDate:
-                      DateTime(2100),
+                  initialDate: controller.orderDate,
+                  firstDate: DateTime(2020),
+                  lastDate: DateTime(2100),
                 );
 
                 if (date != null) {
-                  controller
-                      .setOrderDate(date);
+                  controller.setOrderDate(date);
                 }
               },
             ),
@@ -115,48 +85,30 @@ class PurchaseInformationCard extends StatelessWidget {
             //------------------------------------------------------------------
             // Expected Delivery
             //------------------------------------------------------------------
-
             ListTile(
-              leading: const Icon(
-                Icons.local_shipping,
-              ),
-              title: const Text(
-                'Expected Delivery',
-              ),
+              leading: const Icon(Icons.local_shipping),
+              title: const Text('Expected Delivery'),
               subtitle: Text(
-                controller
-                            .expectedDeliveryDate ==
-                        null
+                controller.expectedDeliveryDate == null
                     ? 'Not selected'
-                    : controller
-                        .expectedDeliveryDate!
-                        .toLocal()
-                        .toString()
-                        .split(' ')
-                        .first,
+                    : controller.expectedDeliveryDate!
+                          .toLocal()
+                          .toString()
+                          .split(' ')
+                          .first,
               ),
-              trailing: const Icon(
-                Icons.edit_calendar,
-              ),
+              trailing: const Icon(Icons.edit_calendar),
               onTap: () async {
-                final date =
-                    await showDatePicker(
+                final date = await showDatePicker(
                   context: context,
                   initialDate:
-                      controller
-                              .expectedDeliveryDate ??
-                          DateTime.now(),
-                  firstDate:
-                      DateTime(2020),
-                  lastDate:
-                      DateTime(2100),
+                      controller.expectedDeliveryDate ?? DateTime.now(),
+                  firstDate: DateTime(2020),
+                  lastDate: DateTime(2100),
                 );
 
                 if (date != null) {
-                  controller
-                      .setExpectedDeliveryDate(
-                    date,
-                  );
+                  controller.setExpectedDeliveryDate(date);
                 }
               },
             ),
@@ -166,32 +118,23 @@ class PurchaseInformationCard extends StatelessWidget {
             //------------------------------------------------------------------
             // Status
             //------------------------------------------------------------------
-
-            DropdownButtonFormField<
-                PurchaseStatus>(
+            DropdownButtonFormField<PurchaseStatus>(
               initialValue: controller.status,
-              decoration:
-                  const InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Status',
-                border:
-                    OutlineInputBorder(),
+                border: OutlineInputBorder(),
               ),
-              items:
-                  PurchaseStatus.values
-                      .map(
-                        (status) =>
-                            DropdownMenuItem(
-                          value: status,
-                          child: Text(
-                            status.label,
-                          ),
-                        ),
-                      )
-                      .toList(),
+              items: PurchaseStatus.values
+                  .map(
+                    (status) => DropdownMenuItem(
+                      value: status,
+                      child: Text(status.label),
+                    ),
+                  )
+                  .toList(),
               onChanged: (value) {
                 if (value != null) {
-                  controller
-                      .setStatus(value);
+                  controller.setStatus(value);
                 }
               },
             ),

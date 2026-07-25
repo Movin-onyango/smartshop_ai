@@ -13,11 +13,7 @@ import 'customer_status_badges.dart';
 /// • Customer Picker
 /// ---------------------------------------------------------------------------
 class CustomerListItem extends StatelessWidget {
-  const CustomerListItem({
-    super.key,
-    required this.customer,
-    this.onTap,
-  });
+  const CustomerListItem({super.key, required this.customer, this.onTap});
 
   final Customer customer;
 
@@ -28,18 +24,14 @@ class CustomerListItem extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Card(
-      margin: const EdgeInsets.symmetric(
-        horizontal: 16,
-        vertical: 6,
-      ),
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
       child: InkWell(
         onTap: onTap,
         borderRadius: BorderRadius.circular(12),
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Column(
-            crossAxisAlignment:
-                CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
                 children: [
@@ -48,8 +40,7 @@ class CustomerListItem extends StatelessWidget {
                     child: Text(
                       customer.name.isEmpty
                           ? '?'
-                          : customer.name[0]
-                              .toUpperCase(),
+                          : customer.name[0].toUpperCase(),
                     ),
                   ),
 
@@ -57,62 +48,42 @@ class CustomerListItem extends StatelessWidget {
 
                   Expanded(
                     child: Column(
-                      crossAxisAlignment:
-                          CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          customer.name,
-                          style: theme
-                              .textTheme
-                              .titleMedium,
-                        ),
+                        Text(customer.name, style: theme.textTheme.titleMedium),
 
-                        if ((customer.phone ?? '')
-                            .isNotEmpty)
+                        if ((customer.phone ?? '').isNotEmpty)
                           Text(
                             customer.phone!,
-                            style: theme
-                                .textTheme
-                                .bodyMedium,
+                            style: theme.textTheme.bodyMedium,
                           ),
 
-                        if ((customer.email ?? '')
-                            .isNotEmpty)
+                        if ((customer.email ?? '').isNotEmpty)
                           Text(
                             customer.email!,
-                            style: theme
-                                .textTheme
-                                .bodySmall,
+                            style: theme.textTheme.bodySmall,
                           ),
                       ],
                     ),
                   ),
 
-                  const Icon(
-                    Icons.chevron_right,
-                  ),
+                  const Icon(Icons.chevron_right),
                 ],
               ),
 
-              if ((customer.address ?? '')
-                  .isNotEmpty) ...[
+              if ((customer.address ?? '').isNotEmpty) ...[
                 const SizedBox(height: 12),
 
                 Row(
                   children: [
-                    const Icon(
-                      Icons.location_on,
-                      size: 16,
-                    ),
+                    const Icon(Icons.location_on, size: 16),
 
                     const SizedBox(width: 8),
 
                     Expanded(
                       child: Text(
                         customer.address!,
-                        style: theme
-                            .textTheme
-                            .bodySmall,
+                        style: theme.textTheme.bodySmall,
                       ),
                     ),
                   ],
@@ -121,72 +92,44 @@ class CustomerListItem extends StatelessWidget {
 
               const SizedBox(height: 16),
 
-              CustomerStatusBadges(
-                customer: customer,
-              ),
+              CustomerStatusBadges(customer: customer),
 
               const SizedBox(height: 16),
 
               const Divider(),
 
               Row(
-                mainAxisAlignment:
-                    MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Column(
-                    crossAxisAlignment:
-                        CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      Text('Purchases', style: theme.textTheme.labelMedium),
                       Text(
-                        'Purchases',
-                        style: theme
-                            .textTheme
-                            .labelMedium,
-                      ),
-                      Text(
-                        customer.totalPurchases
-                            .toString(),
-                        style: theme
-                            .textTheme
-                            .titleMedium,
+                        customer.totalPurchases.toString(),
+                        style: theme.textTheme.titleMedium,
                       ),
                     ],
                   ),
 
                   Column(
-                    crossAxisAlignment:
-                        CrossAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text(
-                        'Spent',
-                        style: theme
-                            .textTheme
-                            .labelMedium,
-                      ),
+                      Text('Spent', style: theme.textTheme.labelMedium),
                       Text(
                         'KES ${customer.totalSpent.toStringAsFixed(2)}',
-                        style: theme
-                            .textTheme
-                            .titleMedium,
+                        style: theme.textTheme.titleMedium,
                       ),
                     ],
                   ),
 
                   Column(
-                    crossAxisAlignment:
-                        CrossAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      Text(
-                        'Balance',
-                        style: theme
-                            .textTheme
-                            .labelMedium,
-                      ),
+                      Text('Balance', style: theme.textTheme.labelMedium),
                       Text(
                         'KES ${customer.currentBalance.toStringAsFixed(2)}',
-                        style: theme
-                            .textTheme
-                            .titleMedium,
+                        style: theme.textTheme.titleMedium,
                       ),
                     ],
                   ),

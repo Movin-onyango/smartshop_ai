@@ -38,35 +38,22 @@ class PurchaseActions extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
-          crossAxisAlignment:
-              CrossAxisAlignment.stretch,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             //------------------------------------------------------------------
             // Header
             //------------------------------------------------------------------
-
-            Text(
-              'Actions',
-              style: Theme.of(context)
-                  .textTheme
-                  .titleLarge,
-            ),
+            Text('Actions', style: Theme.of(context).textTheme.titleLarge),
 
             const SizedBox(height: 20),
 
             //------------------------------------------------------------------
             // Edit Purchase
             //------------------------------------------------------------------
-
             FilledButton.icon(
-              onPressed:
-                  canEdit ? onEdit : null,
-              icon: const Icon(
-                Icons.edit,
-              ),
-              label: const Text(
-                'Edit Purchase',
-              ),
+              onPressed: canEdit ? onEdit : null,
+              icon: const Icon(Icons.edit),
+              label: const Text('Edit Purchase'),
             ),
 
             const SizedBox(height: 12),
@@ -74,18 +61,10 @@ class PurchaseActions extends StatelessWidget {
             //------------------------------------------------------------------
             // Receive Purchase
             //------------------------------------------------------------------
-
             FilledButton.tonalIcon(
-              onPressed:
-                  canReceive
-                      ? onReceive
-                      : null,
-              icon: const Icon(
-                Icons.inventory_2,
-              ),
-              label: const Text(
-                'Receive Purchase',
-              ),
+              onPressed: canReceive ? onReceive : null,
+              icon: const Icon(Icons.inventory_2),
+              label: const Text('Receive Purchase'),
             ),
 
             const SizedBox(height: 12),
@@ -93,18 +72,10 @@ class PurchaseActions extends StatelessWidget {
             //------------------------------------------------------------------
             // Delete Purchase
             //------------------------------------------------------------------
-
             OutlinedButton.icon(
-              onPressed:
-                  canDelete
-                      ? onDelete
-                      : null,
-              icon: const Icon(
-                Icons.delete_outline,
-              ),
-              label: const Text(
-                'Delete Purchase',
-              ),
+              onPressed: canDelete ? onDelete : null,
+              icon: const Icon(Icons.delete_outline),
+              label: const Text('Delete Purchase'),
             ),
           ],
         ),

@@ -33,46 +33,29 @@ class ExpenseAttachmentCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
-          crossAxisAlignment:
-              CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'Attachment',
-              style: Theme.of(context)
-                  .textTheme
-                  .titleLarge,
-            ),
+            Text('Attachment', style: Theme.of(context).textTheme.titleLarge),
 
             const SizedBox(height: 20),
 
             if (attachment == null)
               OutlinedButton.icon(
                 onPressed: onAttach,
-                icon: const Icon(
-                  Icons.attach_file,
-                ),
-                label: const Text(
-                  'Attach Receipt / Invoice',
-                ),
+                icon: const Icon(Icons.attach_file),
+                label: const Text('Attach Receipt / Invoice'),
               )
             else
               Container(
-                padding:
-                    const EdgeInsets.all(16),
+                padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  border: Border.all(
-                    color: Theme.of(context)
-                        .dividerColor,
-                  ),
-                  borderRadius:
-                      BorderRadius.circular(12),
+                  border: Border.all(color: Theme.of(context).dividerColor),
+                  borderRadius: BorderRadius.circular(12),
                 ),
                 child: Row(
                   children: [
                     Icon(
-                      attachment!.isPdf
-                          ? Icons.picture_as_pdf
-                          : Icons.image,
+                      attachment!.isPdf ? Icons.picture_as_pdf : Icons.image,
                       size: 40,
                     ),
 
@@ -80,46 +63,30 @@ class ExpenseAttachmentCard extends StatelessWidget {
 
                     Expanded(
                       child: Column(
-                        crossAxisAlignment:
-                            CrossAxisAlignment
-                                .start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            attachment!
-                                .fileName,
+                            attachment!.fileName,
                             maxLines: 1,
-                            overflow:
-                                TextOverflow
-                                    .ellipsis,
-                            style: Theme.of(
-                                    context)
-                                .textTheme
-                                .titleMedium,
+                            overflow: TextOverflow.ellipsis,
+                            style: Theme.of(context).textTheme.titleMedium,
                           ),
 
-                          const SizedBox(
-                            height: 4,
-                          ),
+                          const SizedBox(height: 4),
 
                           Text(
                             '${attachment!.fileType.toUpperCase()} • '
                             '${attachment!.sizeInKB.toStringAsFixed(1)} KB',
-                            style: Theme.of(
-                                    context)
-                                .textTheme
-                                .bodySmall,
+                            style: Theme.of(context).textTheme.bodySmall,
                           ),
                         ],
                       ),
                     ),
 
                     IconButton(
-                      tooltip:
-                          'Remove Attachment',
+                      tooltip: 'Remove Attachment',
                       onPressed: onRemove,
-                      icon: const Icon(
-                        Icons.delete_outline,
-                      ),
+                      icon: const Icon(Icons.delete_outline),
                     ),
                   ],
                 ),

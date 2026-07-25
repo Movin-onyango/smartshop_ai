@@ -2,10 +2,7 @@ import 'package:flutter/material.dart';
 
 /// Displays the dashboard greeting and current date.
 class GreetingSection extends StatelessWidget {
-  const GreetingSection({
-    super.key,
-    this.userName = 'Owner',
-  });
+  const GreetingSection({super.key, this.userName = 'Owner'});
 
   final String userName;
 
@@ -28,8 +25,8 @@ class GreetingSection extends StatelessWidget {
               Text(
                 '${_greeting()}, $userName 👋',
                 style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               const SizedBox(height: 6),
               Text(
@@ -39,10 +36,7 @@ class GreetingSection extends StatelessWidget {
             ],
           ),
         ),
-        CircleAvatar(
-          radius: 24,
-          child: Icon(Icons.store),
-        ),
+        CircleAvatar(radius: 24, child: Icon(Icons.store)),
       ],
     );
   }

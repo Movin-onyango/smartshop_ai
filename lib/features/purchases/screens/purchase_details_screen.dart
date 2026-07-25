@@ -25,29 +25,18 @@ import '../widgets/details/purchase_summary_section.dart';
 /// • Delete purchase
 /// ---------------------------------------------------------------------------
 class PurchaseDetailsScreen extends StatelessWidget {
-  const PurchaseDetailsScreen({
-    super.key,
-    required this.purchaseId,
-  });
+  const PurchaseDetailsScreen({super.key, required this.purchaseId});
 
   final String purchaseId;
 
   @override
   Widget build(BuildContext context) {
-    final provider =
-        context.watch<PurchaseProvider>();
+    final provider = context.watch<PurchaseProvider>();
 
-    final Purchase? purchase =
-        provider.findById(purchaseId);
+    final Purchase? purchase = provider.findById(purchaseId);
 
     if (purchase == null) {
-      return const Scaffold(
-        body: Center(
-          child: Text(
-            'Purchase not found.',
-          ),
-        ),
-      );
+      return const Scaffold(body: Center(child: Text('Purchase not found.')));
     }
 
     return SmartScaffold(
@@ -59,64 +48,47 @@ class PurchaseDetailsScreen extends StatelessWidget {
           //--------------------------------------------------------------------
           // Header
           //--------------------------------------------------------------------
-
-          PurchaseHeader(
-            purchase: purchase,
-          ),
+          PurchaseHeader(purchase: purchase),
 
           const SizedBox(height: 16),
 
           //--------------------------------------------------------------------
           // Information
           //--------------------------------------------------------------------
-
-          PurchaseInformationSection(
-            purchase: purchase,
-          ),
+          PurchaseInformationSection(purchase: purchase),
 
           const SizedBox(height: 16),
 
           //--------------------------------------------------------------------
           // Items
           //--------------------------------------------------------------------
-
-          PurchaseItemsSection(
-            purchase: purchase,
-          ),
+          PurchaseItemsSection(purchase: purchase),
 
           const SizedBox(height: 16),
 
           //--------------------------------------------------------------------
           // Summary
           //--------------------------------------------------------------------
-
-          PurchaseSummarySection(
-            purchase: purchase,
-          ),
+          PurchaseSummarySection(purchase: purchase),
 
           const SizedBox(height: 16),
 
           //--------------------------------------------------------------------
           // Notes
           //--------------------------------------------------------------------
-
-          PurchaseNotesSection(
-            purchase: purchase,
-          ),
+          PurchaseNotesSection(purchase: purchase),
 
           const SizedBox(height: 16),
 
           //--------------------------------------------------------------------
           // Actions
           //--------------------------------------------------------------------
-
           PurchaseActions(
             canEdit: true,
 
             canDelete: true,
 
-            canReceive:
-                !purchase.isFullyReceived,
+            canReceive: !purchase.isFullyReceived,
 
             onEdit: () {
               // TODO:
@@ -129,9 +101,7 @@ class PurchaseDetailsScreen extends StatelessWidget {
             },
 
             onDelete: () async {
-              await provider.deletePurchase(
-                purchase.id!,
-              );
+              await provider.deletePurchase(purchase.id!);
 
               if (!context.mounted) return;
 

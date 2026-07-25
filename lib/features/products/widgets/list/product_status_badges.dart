@@ -5,10 +5,7 @@ import '../../models/product.dart';
 import '../details/status_chip.dart';
 
 class ProductStatusBadges extends StatelessWidget {
-  const ProductStatusBadges({
-    super.key,
-    required this.product,
-  });
+  const ProductStatusBadges({super.key, required this.product});
 
   final Product product;
 
@@ -19,30 +16,16 @@ class ProductStatusBadges extends StatelessWidget {
       runSpacing: 8,
       children: [
         if (product.isLowStock)
-          const StatusChip(
-            label: 'Low Stock',
-            color: Colors.orange,
-          ),
+          const StatusChip(label: 'Low Stock', color: Colors.orange),
 
         if (product.hasExpired)
-          const StatusChip(
-            label: 'Expired',
-            color: Colors.red,
-          ),
+          const StatusChip(label: 'Expired', color: Colors.red),
 
         if (product.expiresSoon && !product.hasExpired)
-          const StatusChip(
-            label: 'Expires Soon',
-            color: Colors.amber,
-          ),
+          const StatusChip(label: 'Expires Soon', color: Colors.amber),
 
-        if (!product.isLowStock &&
-            !product.hasExpired &&
-            !product.expiresSoon)
-          const StatusChip(
-            label: 'Healthy',
-            color: Colors.green,
-          ),
+        if (!product.isLowStock && !product.hasExpired && !product.expiresSoon)
+          const StatusChip(label: 'Healthy', color: Colors.green),
       ],
     );
   }

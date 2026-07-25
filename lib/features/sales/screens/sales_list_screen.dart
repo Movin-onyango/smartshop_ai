@@ -21,17 +21,13 @@ import '../widgets/display/sales_search_bar.dart';
 /// • Navigate to Create Sale
 /// ---------------------------------------------------------------------------
 class SalesListScreen extends StatefulWidget {
-  const SalesListScreen({
-    super.key,
-  });
+  const SalesListScreen({super.key});
 
   @override
-  State<SalesListScreen> createState() =>
-      _SalesListScreenState();
+  State<SalesListScreen> createState() => _SalesListScreenState();
 }
 
-class _SalesListScreenState
-    extends State<SalesListScreen> {
+class _SalesListScreenState extends State<SalesListScreen> {
   @override
   void initState() {
     super.initState();
@@ -61,11 +57,9 @@ class _SalesListScreenState
       body: RefreshIndicator(
         onRefresh: _refresh,
         child: ListView(
-          physics:
-              const AlwaysScrollableScrollPhysics(),
+          physics: const AlwaysScrollableScrollPhysics(),
           padding: const EdgeInsets.all(16),
           children: const [
-
             SalesSearchBar(),
 
             SizedBox(height: 24),
@@ -73,7 +67,6 @@ class _SalesListScreenState
             SalesGrid(),
 
             SizedBox(height: 24),
-
           ],
         ),
       ),

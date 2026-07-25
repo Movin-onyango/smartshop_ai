@@ -47,9 +47,7 @@ class CategoryForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        CategoryInformationCard(
-          controller: controller,
-        ),
+        CategoryInformationCard(controller: controller),
 
         AppFormSpacing.sectionGap,
 

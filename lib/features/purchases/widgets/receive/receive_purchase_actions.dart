@@ -30,14 +30,10 @@ class ReceivePurchaseActions extends StatelessWidget {
         //----------------------------------------------------------------------
         // Cancel
         //----------------------------------------------------------------------
-
         Expanded(
           child: OutlinedButton(
-            onPressed:
-                isSaving ? null : onCancel,
-            child: const Text(
-              'Cancel',
-            ),
+            onPressed: isSaving ? null : onCancel,
+            child: const Text('Cancel'),
           ),
         ),
 
@@ -46,24 +42,17 @@ class ReceivePurchaseActions extends StatelessWidget {
         //----------------------------------------------------------------------
         // Receive Purchase
         //----------------------------------------------------------------------
-
         Expanded(
           flex: 2,
           child: FilledButton(
-            onPressed:
-                isSaving ? null : onSave,
+            onPressed: isSaving ? null : onSave,
             child: isSaving
                 ? const SizedBox(
                     width: 20,
                     height: 20,
-                    child:
-                        CircularProgressIndicator(
-                      strokeWidth: 2,
-                    ),
+                    child: CircularProgressIndicator(strokeWidth: 2),
                   )
-                : const Text(
-                    'Receive Purchase',
-                  ),
+                : const Text('Receive Purchase'),
           ),
         ),
       ],

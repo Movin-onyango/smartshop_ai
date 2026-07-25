@@ -39,43 +39,26 @@ class ReportSummaryCard extends StatelessWidget {
           children: [
             CircleAvatar(
               radius: 24,
-              backgroundColor: color.withValues(
-                alpha: 0.12,
-              ),
-              child: Icon(
-                icon,
-                color: color,
-                size: 26,
-              ),
+              backgroundColor: color.withValues(alpha: 0.12),
+              child: Icon(icon, color: color, size: 26),
             ),
 
             const SizedBox(width: 18),
 
             Expanded(
               child: Column(
-                crossAxisAlignment:
-                    CrossAxisAlignment.start,
-                mainAxisAlignment:
-                    MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    title,
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyMedium,
-                  ),
+                  Text(title, style: Theme.of(context).textTheme.bodyMedium),
 
                   const SizedBox(height: 6),
 
                   Text(
                     value,
-                    style: Theme.of(context)
-                        .textTheme
-                        .headlineSmall
-                        ?.copyWith(
-                          fontWeight:
-                              FontWeight.bold,
-                        ),
+                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
 
                   if (subtitle != null) ...[
@@ -83,9 +66,7 @@ class ReportSummaryCard extends StatelessWidget {
 
                     Text(
                       subtitle!,
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodySmall,
+                      style: Theme.of(context).textTheme.bodySmall,
                     ),
                   ],
                 ],

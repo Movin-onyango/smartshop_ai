@@ -3,11 +3,12 @@ import 'package:provider/provider.dart';
 
 import '../../../shared/widgets/layouts/smart_scaffold.dart';
 
+import '../exporters/report_export_manager.dart';
 import '../providers/report_provider.dart';
 
 import '../widgets/cards/report_summary_card.dart';
-import '../widgets/filters/date_filter_bar.dart';
 import '../widgets/dashboard/report_section_header.dart';
+import '../widgets/filters/date_filter_bar.dart';
 import '../widgets/statistics/report_statistic_tile.dart';
 
 /// ---------------------------------------------------------------------------
@@ -20,21 +21,16 @@ import '../widgets/statistics/report_statistic_tile.dart';
 /// • Expense KPIs
 /// • Expense Statistics
 /// • Expense Trends
+/// • Export Report
 /// • Future Charts
 /// ---------------------------------------------------------------------------
 class ExpenseReportScreen extends StatelessWidget {
-  const ExpenseReportScreen({
-    super.key,
-  });
+  const ExpenseReportScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Consumer<ReportProvider>(
-      builder: (
-        context,
-        provider,
-        _,
-      ) {
+      builder: (context, provider, _) {
         final totalTransactions =
             provider.expenseRows.length;
 
@@ -49,6 +45,18 @@ class ExpenseReportScreen extends StatelessWidget {
 
         return SmartScaffold(
           title: 'Expense Report',
+
+          actions: [
+            IconButton(
+              tooltip: 'Export Report',
+              icon: const Icon(Icons.download),
+              onPressed: () => _showExportDialog(
+                context,
+                provider,
+              ),
+            ),
+          ],
+
           body: RefreshIndicator(
             onRefresh: provider.refresh,
             child: ListView(
@@ -57,7 +65,6 @@ class ExpenseReportScreen extends StatelessWidget {
                 //------------------------------------------------------------------
                 // Header
                 //------------------------------------------------------------------
-
                 const ReportSectionHeader(
                   title: 'Expense Analytics',
                   subtitle:
@@ -67,8 +74,10 @@ class ExpenseReportScreen extends StatelessWidget {
                 const SizedBox(height: 20),
 
                 DateFilterBar(
-                  selected: provider.selectedPeriod,
-                  onChanged: provider.setPeriod,
+                  selected:
+                      provider.selectedPeriod,
+                  onChanged:
+                      provider.setPeriod,
                 ),
 
                 const SizedBox(height: 24),
@@ -76,7 +85,6 @@ class ExpenseReportScreen extends StatelessWidget {
                 //------------------------------------------------------------------
                 // KPI Cards
                 //------------------------------------------------------------------
-
                 GridView.count(
                   shrinkWrap: true,
                   physics:
@@ -90,14 +98,16 @@ class ExpenseReportScreen extends StatelessWidget {
                       title: 'Expenses',
                       value:
                           'KES ${totalExpenses.toStringAsFixed(2)}',
-                      icon: Icons.receipt_long,
+                      icon:
+                          Icons.receipt_long,
                       color: Colors.red,
                     ),
 
                     ReportSummaryCard(
                       title: 'Transactions',
                       value:
-                          totalTransactions.toString(),
+                          totalTransactions
+                              .toString(),
                       icon: Icons.receipt,
                       color: Colors.orange,
                     ),
@@ -109,20 +119,24 @@ class ExpenseReportScreen extends StatelessWidget {
                 //------------------------------------------------------------------
                 // Statistics
                 //------------------------------------------------------------------
-
                 const ReportSectionHeader(
-                  title: 'Expense Statistics',
+                  title:
+                      'Expense Statistics',
                 ),
 
                 const SizedBox(height: 16),
 
                 Card(
                   child: Padding(
-                    padding: const EdgeInsets.all(20),
+                    padding:
+                        const EdgeInsets.all(
+                          20,
+                        ),
                     child: Column(
                       children: [
                         ReportStatisticTile(
-                          title: 'Total Expenses',
+                          title:
+                              'Total Expenses',
                           value:
                               'KES ${totalExpenses.toStringAsFixed(2)}',
                         ),
@@ -130,15 +144,18 @@ class ExpenseReportScreen extends StatelessWidget {
                         const Divider(),
 
                         ReportStatisticTile(
-                          title: 'Transactions',
+                          title:
+                              'Transactions',
                           value:
-                              totalTransactions.toString(),
+                              totalTransactions
+                                  .toString(),
                         ),
 
                         const Divider(),
 
                         ReportStatisticTile(
-                          title: 'Average Expense',
+                          title:
+                              'Average Expense',
                           value:
                               'KES ${averageExpense.toStringAsFixed(2)}',
                         ),
@@ -146,9 +163,11 @@ class ExpenseReportScreen extends StatelessWidget {
                         const Divider(),
 
                         ReportStatisticTile(
-                          title: 'Expense Records',
+                          title:
+                              'Expense Records',
                           value: provider
-                              .expenseRows.length
+                              .expenseRows
+                              .length
                               .toString(),
                         ),
                       ],
@@ -161,9 +180,9 @@ class ExpenseReportScreen extends StatelessWidget {
                 //------------------------------------------------------------------
                 // Chart Placeholder
                 //------------------------------------------------------------------
-
                 const ReportSectionHeader(
-                  title: 'Expense Trends',
+                  title:
+                      'Expense Trends',
                 ),
 
                 const SizedBox(height: 16),
@@ -174,10 +193,12 @@ class ExpenseReportScreen extends StatelessWidget {
                     child: Center(
                       child: Text(
                         'Expense Chart\n(Coming Soon)',
-                        textAlign: TextAlign.center,
-                        style: Theme.of(context)
-                            .textTheme
-                            .titleMedium,
+                        textAlign:
+                            TextAlign.center,
+                        style:
+                            Theme.of(context)
+                                .textTheme
+                                .titleMedium,
                       ),
                     ),
                   ),
@@ -189,6 +210,90 @@ class ExpenseReportScreen extends StatelessWidget {
           ),
         );
       },
+    );
+  }
+
+  //---------------------------------------------------------------------------
+  // Export Dialog
+  //---------------------------------------------------------------------------
+
+  Future<void> _showExportDialog(
+    BuildContext context,
+    ReportProvider provider,
+  ) async {
+    await showDialog(
+      context: context,
+      builder: (_) => AlertDialog(
+        title: const Text(
+          'Export Expense Report',
+        ),
+        content: Column(
+          mainAxisSize:
+              MainAxisSize.min,
+          children: [
+            ListTile(
+              leading: const Icon(
+                Icons.picture_as_pdf,
+              ),
+              title: const Text(
+                'Export as PDF',
+              ),
+              onTap: () async {
+                Navigator.pop(context);
+
+                await provider.exportReport(
+                  controller:
+                      provider
+                          .expenseController,
+                  format:
+                      ExportFormat
+                          .pdf,
+                );
+              },
+            ),
+            ListTile(
+              leading: const Icon(
+                Icons.table_chart,
+              ),
+              title: const Text(
+                'Export as Excel',
+              ),
+              onTap: () async {
+                Navigator.pop(context);
+
+                await provider.exportReport(
+                  controller:
+                      provider
+                          .expenseController,
+                  format:
+                      ExportFormat
+                          .excel,
+                );
+              },
+            ),
+            ListTile(
+              leading: const Icon(
+                Icons.description,
+              ),
+              title: const Text(
+                'Export as CSV',
+              ),
+              onTap: () async {
+                Navigator.pop(context);
+
+                await provider.exportReport(
+                  controller:
+                      provider
+                          .expenseController,
+                  format:
+                      ExportFormat
+                          .csv,
+                );
+              },
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

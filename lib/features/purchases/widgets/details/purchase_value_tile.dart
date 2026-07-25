@@ -31,21 +31,11 @@ class PurchaseValueTile extends StatelessWidget {
     return Column(
       crossAxisAlignment: alignment,
       children: [
-        Text(
-          label,
-          style: Theme.of(context)
-              .textTheme
-              .labelMedium,
-        ),
+        Text(label, style: Theme.of(context).textTheme.labelMedium),
 
         const SizedBox(height: 4),
 
-        Text(
-          value,
-          style: Theme.of(context)
-              .textTheme
-              .bodyLarge,
-        ),
+        Text(value, style: Theme.of(context).textTheme.bodyLarge),
       ],
     );
   }

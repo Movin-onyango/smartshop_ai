@@ -30,113 +30,73 @@ import '../widgets/details/customer_notes.dart';
 /// • Notes
 /// ---------------------------------------------------------------------------
 class CustomerDetailsScreen extends StatelessWidget {
-  const CustomerDetailsScreen({
-    super.key,
-    required this.customerId,
-  });
+  const CustomerDetailsScreen({super.key, required this.customerId});
 
   final String customerId;
 
   @override
   Widget build(BuildContext context) {
-    final provider =
-        context.watch<CustomerProvider>();
+    final provider = context.watch<CustomerProvider>();
 
-    final Customer? customer =
-        provider.findById(customerId);
+    final Customer? customer = provider.findById(customerId);
 
     if (customer == null) {
-      return const Scaffold(
-        body: Center(
-          child: Text(
-            'Customer not found.',
-          ),
-        ),
-      );
+      return const Scaffold(body: Center(child: Text('Customer not found.')));
     }
 
     return SmartScaffold(
       title: customer.name,
 
       actions: [
-
         IconButton(
           icon: const Icon(Icons.edit),
           tooltip: 'Edit Customer',
           onPressed: () {
-            context.push(
-              AppRoutes.editCustomer(
-                customer.id!,
-              ),
-            );
+            context.push(AppRoutes.editCustomer(customer.id!));
           },
         ),
 
         PopupMenuButton<String>(
           onSelected: (value) {
             if (value == 'delete') {
-              provider.deleteCustomer(
-                customer.id!,
-              );
+              provider.deleteCustomer(customer.id!);
 
               context.pop();
             }
           },
           itemBuilder: (context) => const [
-
-            PopupMenuItem(
-              value: 'delete',
-              child: Text(
-                'Delete Customer',
-              ),
-            ),
-
+            PopupMenuItem(value: 'delete', child: Text('Delete Customer')),
           ],
         ),
-
       ],
 
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-
-            CustomerHeader(
-              customer: customer,
-            ),
+            CustomerHeader(customer: customer),
 
             const SizedBox(height: 24),
 
-            ContactInformation(
-              customer: customer,
-            ),
+            ContactInformation(customer: customer),
 
             const SizedBox(height: 24),
 
-            CreditSummary(
-              customer: customer,
-            ),
+            CreditSummary(customer: customer),
 
             const SizedBox(height: 24),
 
-            LoyaltySummary(
-              customer: customer,
-            ),
+            LoyaltySummary(customer: customer),
 
             const SizedBox(height: 24),
 
-            PurchaseSummary(
-              customer: customer,
-            ),
+            PurchaseSummary(customer: customer),
 
             const SizedBox(height: 24),
 
-            CustomerNotes(
-              customer: customer,
-            ),
+            CustomerNotes(customer: customer),
 
             const SizedBox(height: 40),
-
           ],
         ),
       ),

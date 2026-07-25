@@ -108,26 +108,19 @@ class Supplier {
   // Computed Properties
   //--------------------------------------------------------------------------
 
-  bool get hasPhone =>
-      phone != null && phone!.trim().isNotEmpty;
+  bool get hasPhone => phone != null && phone!.trim().isNotEmpty;
 
-  bool get hasEmail =>
-      email != null && email!.trim().isNotEmpty;
+  bool get hasEmail => email != null && email!.trim().isNotEmpty;
 
-  bool get hasAddress =>
-      address != null;
+  bool get hasAddress => address != null;
 
-  bool get hasOutstandingBalance =>
-      currentBalance > 0;
+  bool get hasOutstandingBalance => currentBalance > 0;
 
-  bool get hasCredit =>
-      creditLimit > 0;
+  bool get hasCredit => creditLimit > 0;
 
-  double get availableCredit =>
-      creditLimit - currentBalance;
+  double get availableCredit => creditLimit - currentBalance;
 
-  bool get isOverLimit =>
-      currentBalance > creditLimit;
+  bool get isOverLimit => currentBalance > creditLimit;
 
   //--------------------------------------------------------------------------
   // Copy
@@ -152,26 +145,18 @@ class Supplier {
     return Supplier(
       id: id ?? this.id,
       name: name ?? this.name,
-      contactPerson:
-          contactPerson ?? this.contactPerson,
+      contactPerson: contactPerson ?? this.contactPerson,
       phone: phone ?? this.phone,
       email: email ?? this.email,
       address: address ?? this.address,
-      taxNumber:
-          taxNumber ?? this.taxNumber,
-      paymentTerms:
-          paymentTerms ?? this.paymentTerms,
+      taxNumber: taxNumber ?? this.taxNumber,
+      paymentTerms: paymentTerms ?? this.paymentTerms,
       notes: notes ?? this.notes,
-      creditLimit:
-          creditLimit ?? this.creditLimit,
-      currentBalance:
-          currentBalance ?? this.currentBalance,
-      statistics:
-          statistics ?? this.statistics,
-      createdAt:
-          createdAt ?? this.createdAt,
-      updatedAt:
-          updatedAt ?? this.updatedAt,
+      creditLimit: creditLimit ?? this.creditLimit,
+      currentBalance: currentBalance ?? this.currentBalance,
+      statistics: statistics ?? this.statistics,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
     );
   }
 }

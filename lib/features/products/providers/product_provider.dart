@@ -66,9 +66,7 @@ class ProductProvider extends ChangeNotifier {
 
   Product? findById(String id) {
     try {
-      return _products.firstWhere(
-        (product) => product.id == id,
-      );
+      return _products.firstWhere((product) => product.id == id);
     } catch (_) {
       return null;
     }
@@ -92,9 +90,7 @@ class ProductProvider extends ChangeNotifier {
       return products;
     }
 
-    return products
-        .where((p) => p.category == category)
-        .toList();
+    return products.where((p) => p.category == category).toList();
   }
 
   //---------------------------------------------------------------------------

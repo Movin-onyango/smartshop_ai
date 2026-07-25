@@ -28,12 +28,10 @@ class ReportFilterCard extends StatefulWidget {
   final VoidCallback onReset;
 
   @override
-  State<ReportFilterCard> createState() =>
-      _ReportFilterCardState();
+  State<ReportFilterCard> createState() => _ReportFilterCardState();
 }
 
-class _ReportFilterCardState
-    extends State<ReportFilterCard> {
+class _ReportFilterCardState extends State<ReportFilterCard> {
   late ReportPeriod _period;
 
   DateTime? _startDate;
@@ -51,8 +49,7 @@ class _ReportFilterCardState
   Future<void> _pickStartDate() async {
     final picked = await showDatePicker(
       context: context,
-      initialDate:
-          _startDate ?? DateTime.now(),
+      initialDate: _startDate ?? DateTime.now(),
       firstDate: DateTime(2020),
       lastDate: DateTime(2100),
     );
@@ -67,8 +64,7 @@ class _ReportFilterCardState
   Future<void> _pickEndDate() async {
     final picked = await showDatePicker(
       context: context,
-      initialDate:
-          _endDate ?? DateTime.now(),
+      initialDate: _endDate ?? DateTime.now(),
       firstDate: DateTime(2020),
       lastDate: DateTime(2100),
     );
@@ -84,35 +80,25 @@ class _ReportFilterCardState
   Widget build(BuildContext context) {
     return Card(
       child: Padding(
-        padding:
-            const EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         child: Column(
-          crossAxisAlignment:
-              CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               'Report Filters',
-              style: Theme.of(context)
-                  .textTheme
-                  .titleLarge,
+              style: Theme.of(context).textTheme.titleLarge,
             ),
 
             const SizedBox(height: 20),
 
             DropdownButtonFormField<ReportPeriod>(
               initialValue: _period,
-              decoration:
-                  const InputDecoration(
-                labelText: 'Period',
-              ),
+              decoration: const InputDecoration(labelText: 'Period'),
               items: ReportPeriod.values
                   .map(
-                    (period) =>
-                        DropdownMenuItem(
+                    (period) => DropdownMenuItem(
                       value: period,
-                      child: Text(
-                        _label(period),
-                      ),
+                      child: Text(_label(period)),
                     ),
                   )
                   .toList(),
@@ -131,17 +117,12 @@ class _ReportFilterCardState
               children: [
                 Expanded(
                   child: OutlinedButton.icon(
-                    onPressed:
-                        _pickStartDate,
-                    icon: const Icon(
-                      Icons.calendar_today,
-                    ),
+                    onPressed: _pickStartDate,
+                    icon: const Icon(Icons.calendar_today),
                     label: Text(
                       _startDate == null
                           ? 'Start Date'
-                          : _formatDate(
-                              _startDate!,
-                            ),
+                          : _formatDate(_startDate!),
                     ),
                   ),
                 ),
@@ -150,17 +131,10 @@ class _ReportFilterCardState
 
                 Expanded(
                   child: OutlinedButton.icon(
-                    onPressed:
-                        _pickEndDate,
-                    icon: const Icon(
-                      Icons.calendar_today,
-                    ),
+                    onPressed: _pickEndDate,
+                    icon: const Icon(Icons.calendar_today),
                     label: Text(
-                      _endDate == null
-                          ? 'End Date'
-                          : _formatDate(
-                              _endDate!,
-                            ),
+                      _endDate == null ? 'End Date' : _formatDate(_endDate!),
                     ),
                   ),
                 ),
@@ -172,12 +146,9 @@ class _ReportFilterCardState
             Row(
               children: [
                 OutlinedButton.icon(
-                  onPressed:
-                      widget.onReset,
-                  icon:
-                      const Icon(Icons.refresh),
-                  label:
-                      const Text('Reset'),
+                  onPressed: widget.onReset,
+                  icon: const Icon(Icons.refresh),
+                  label: const Text('Reset'),
                 ),
 
                 const Spacer(),
@@ -187,17 +158,13 @@ class _ReportFilterCardState
                     widget.onApply(
                       ReportFilter(
                         period: _period,
-                        startDate:
-                            _startDate,
-                        endDate:
-                            _endDate,
+                        startDate: _startDate,
+                        endDate: _endDate,
                       ),
                     );
                   },
-                  icon:
-                      const Icon(Icons.check),
-                  label:
-                      const Text('Apply'),
+                  icon: const Icon(Icons.check),
+                  label: const Text('Apply'),
                 ),
               ],
             ),
@@ -207,9 +174,7 @@ class _ReportFilterCardState
     );
   }
 
-  String _label(
-    ReportPeriod period,
-  ) {
+  String _label(ReportPeriod period) {
     switch (period) {
       case ReportPeriod.today:
         return 'Today';
@@ -231,9 +196,7 @@ class _ReportFilterCardState
     }
   }
 
-  String _formatDate(
-    DateTime date,
-  ) {
+  String _formatDate(DateTime date) {
     return '${date.day}/${date.month}/${date.year}';
   }
 }

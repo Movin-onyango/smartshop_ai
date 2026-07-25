@@ -129,9 +129,7 @@ class CustomerAddress {
     };
   }
 
-  factory CustomerAddress.fromMap(
-    Map<String, dynamic> map,
-  ) {
+  factory CustomerAddress.fromMap(Map<String, dynamic> map) {
     return CustomerAddress(
       country: map['country'],
       county: map['county'],
@@ -169,16 +167,16 @@ class CustomerAddress {
 
   @override
   int get hashCode => Object.hash(
-        country,
-        county,
-        city,
-        area,
-        street,
-        building,
-        houseNumber,
-        postalCode,
-        landmark,
-        latitude,
-        longitude,
-      );
+    country,
+    county,
+    city,
+    area,
+    street,
+    building,
+    houseNumber,
+    postalCode,
+    landmark,
+    latitude,
+    longitude,
+  );
 }

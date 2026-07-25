@@ -42,44 +42,29 @@ class CustomerForm extends StatelessWidget {
           child: SingleChildScrollView(
             padding: const EdgeInsets.all(16),
             child: Column(
-              crossAxisAlignment:
-                  CrossAxisAlignment.stretch,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-
-                CustomerInformationCard(
-                  controller: controller,
-                ),
+                CustomerInformationCard(controller: controller),
 
                 const SizedBox(height: 24),
 
-                ContactInformationCard(
-                  controller: controller,
-                ),
+                ContactInformationCard(controller: controller),
 
                 const SizedBox(height: 24),
 
-                CreditInformationCard(
-                  controller: controller,
-                ),
+                CreditInformationCard(controller: controller),
 
                 const SizedBox(height: 24),
 
-                LoyaltyInformationCard(
-                  controller: controller,
-                ),
+                LoyaltyInformationCard(controller: controller),
 
                 const SizedBox(height: 24),
 
-                NotesCard(
-                  controller: controller,
-                ),
+                NotesCard(controller: controller),
 
                 const SizedBox(height: 32),
 
-                CustomerFormActions(
-                  onSave: onSave,
-                  onCancel: onCancel,
-                ),
+                CustomerFormActions(onSave: onSave, onCancel: onCancel),
               ],
             ),
           ),

@@ -7,27 +7,16 @@ class FastMoversCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 0,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(18),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
           children: const [
-            _FastMover(
-              product: "Milk",
-              progress: .95,
-            ),
+            _FastMover(product: "Milk", progress: .95),
             SizedBox(height: 20),
-            _FastMover(
-              product: "Bread",
-              progress: .82,
-            ),
+            _FastMover(product: "Bread", progress: .82),
             SizedBox(height: 20),
-            _FastMover(
-              product: "Sugar",
-              progress: .71,
-            ),
+            _FastMover(product: "Sugar", progress: .71),
           ],
         ),
       ),
@@ -36,10 +25,7 @@ class FastMoversCard extends StatelessWidget {
 }
 
 class _FastMover extends StatelessWidget {
-  const _FastMover({
-    required this.product,
-    required this.progress,
-  });
+  const _FastMover({required this.product, required this.progress});
 
   final String product;
   final double progress;

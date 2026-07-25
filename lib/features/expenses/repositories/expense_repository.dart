@@ -27,12 +27,8 @@ class ExpenseRepository {
       tax: 0,
       vendor: 'ABC Properties',
       paymentMethod: 'Bank Transfer',
-      expenseDate: DateTime.now().subtract(
-        const Duration(days: 10),
-      ),
-      paidDate: DateTime.now().subtract(
-        const Duration(days: 9),
-      ),
+      expenseDate: DateTime.now().subtract(const Duration(days: 10)),
+      paidDate: DateTime.now().subtract(const Duration(days: 9)),
       status: ExpenseStatus.paid,
       notes: 'Monthly shop rent.',
       attachment: ExpenseAttachment(
@@ -41,16 +37,10 @@ class ExpenseRepository {
         filePath: '/documents/rent_receipt.pdf',
         fileType: 'pdf',
         fileSize: 245760,
-        uploadedAt: DateTime.now().subtract(
-          const Duration(days: 9),
-        ),
+        uploadedAt: DateTime.now().subtract(const Duration(days: 9)),
       ),
-      createdAt: DateTime.now().subtract(
-        const Duration(days: 10),
-      ),
-      updatedAt: DateTime.now().subtract(
-        const Duration(days: 9),
-      ),
+      createdAt: DateTime.now().subtract(const Duration(days: 10)),
+      updatedAt: DateTime.now().subtract(const Duration(days: 9)),
     ),
 
     Expense(
@@ -62,20 +52,12 @@ class ExpenseRepository {
       tax: 16,
       vendor: 'Kenya Power',
       paymentMethod: 'M-Pesa',
-      expenseDate: DateTime.now().subtract(
-        const Duration(days: 5),
-      ),
-      dueDate: DateTime.now().add(
-        const Duration(days: 5),
-      ),
+      expenseDate: DateTime.now().subtract(const Duration(days: 5)),
+      dueDate: DateTime.now().add(const Duration(days: 5)),
       status: ExpenseStatus.pending,
       notes: 'July electricity bill.',
-      createdAt: DateTime.now().subtract(
-        const Duration(days: 5),
-      ),
-      updatedAt: DateTime.now().subtract(
-        const Duration(days: 5),
-      ),
+      createdAt: DateTime.now().subtract(const Duration(days: 5)),
+      updatedAt: DateTime.now().subtract(const Duration(days: 5)),
     ),
 
     Expense(
@@ -87,17 +69,11 @@ class ExpenseRepository {
       tax: 16,
       vendor: 'Stationery World',
       paymentMethod: 'Cash',
-      expenseDate: DateTime.now().subtract(
-        const Duration(days: 2),
-      ),
+      expenseDate: DateTime.now().subtract(const Duration(days: 2)),
       status: ExpenseStatus.approved,
       notes: 'Printer paper and pens.',
-      createdAt: DateTime.now().subtract(
-        const Duration(days: 2),
-      ),
-      updatedAt: DateTime.now().subtract(
-        const Duration(days: 2),
-      ),
+      createdAt: DateTime.now().subtract(const Duration(days: 2)),
+      updatedAt: DateTime.now().subtract(const Duration(days: 2)),
     ),
   ];
 
@@ -109,51 +85,33 @@ class ExpenseRepository {
     return List.unmodifiable(_expenses);
   }
 
-  static Expense? findById(
-    String id,
-  ) {
+  static Expense? findById(String id) {
     try {
-      return _expenses.firstWhere(
-        (expense) => expense.id == id,
-      );
+      return _expenses.firstWhere((expense) => expense.id == id);
     } catch (_) {
       return null;
     }
   }
 
-  static void add(
-    Expense expense,
-  ) {
+  static void add(Expense expense) {
     _expenses.add(
       expense.copyWith(
-        id: DateTime.now()
-            .millisecondsSinceEpoch
-            .toString(),
+        id: DateTime.now().millisecondsSinceEpoch.toString(),
         createdAt: DateTime.now(),
         updatedAt: DateTime.now(),
       ),
     );
   }
 
-  static void update(
-    Expense expense,
-  ) {
-    final index = _expenses.indexWhere(
-      (item) => item.id == expense.id,
-    );
+  static void update(Expense expense) {
+    final index = _expenses.indexWhere((item) => item.id == expense.id);
 
     if (index == -1) return;
 
-    _expenses[index] = expense.copyWith(
-      updatedAt: DateTime.now(),
-    );
+    _expenses[index] = expense.copyWith(updatedAt: DateTime.now());
   }
 
-  static void delete(
-    String id,
-  ) {
-    _expenses.removeWhere(
-      (expense) => expense.id == id,
-    );
+  static void delete(String id) {
+    _expenses.removeWhere((expense) => expense.id == id);
   }
 }

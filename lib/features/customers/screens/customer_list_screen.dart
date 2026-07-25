@@ -23,19 +23,14 @@ import '../widgets/list/customer_list_item.dart';
 /// • Add customer
 /// ---------------------------------------------------------------------------
 class CustomerListScreen extends StatefulWidget {
-  const CustomerListScreen({
-    super.key,
-  });
+  const CustomerListScreen({super.key});
 
   @override
-  State<CustomerListScreen> createState() =>
-      _CustomerListScreenState();
+  State<CustomerListScreen> createState() => _CustomerListScreenState();
 }
 
-class _CustomerListScreenState
-    extends State<CustomerListScreen> {
-  final _searchController =
-      TextEditingController();
+class _CustomerListScreenState extends State<CustomerListScreen> {
+  final _searchController = TextEditingController();
 
   String _query = '';
 
@@ -43,11 +38,8 @@ class _CustomerListScreenState
   void initState() {
     super.initState();
 
-    WidgetsBinding.instance
-        .addPostFrameCallback((_) {
-      context
-          .read<CustomerProvider>()
-          .loadCustomers();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<CustomerProvider>().loadCustomers();
     });
   }
 
@@ -61,34 +53,25 @@ class _CustomerListScreenState
   Widget build(BuildContext context) {
     return Consumer<CustomerProvider>(
       builder: (context, provider, _) {
-        final customers =
-            provider.search(_query);
+        final customers = provider.search(_query);
 
         return SmartScaffold(
           title: 'Customers',
 
-          floatingActionButton:
-              FloatingActionButton.extended(
+          floatingActionButton: FloatingActionButton.extended(
             onPressed: () {
-              context.push(
-                AppRoutes.addCustomer,
-              );
+              context.push(AppRoutes.addCustomer);
             },
             icon: const Icon(Icons.add),
-            label: const Text(
-              'Customer',
-            ),
+            label: const Text('Customer'),
           ),
 
           body: Column(
             children: [
-
               Padding(
-                padding:
-                    const EdgeInsets.all(16),
+                padding: const EdgeInsets.all(16),
                 child: CustomerSearchBar(
-                  controller:
-                      _searchController,
+                  controller: _searchController,
                   onChanged: (value) {
                     setState(() {
                       _query = value;
@@ -99,46 +82,29 @@ class _CustomerListScreenState
 
               Expanded(
                 child: customers.isEmpty
-                    ? const Center(
-                        child: Text(
-                          'No customers found.',
-                        ),
-                      )
+                    ? const Center(child: Text('No customers found.'))
                     : ListView.separated(
-                        padding:
-                            const EdgeInsets.only(
+                        padding: const EdgeInsets.only(
                           left: 16,
                           right: 16,
                           bottom: 16,
                         ),
-                        itemCount:
-                            customers.length,
-                        separatorBuilder:
-                            (_, __) =>
-                                const SizedBox(
-                          height: 12,
-                        ),
-                        itemBuilder:
-                            (context, index) {
-                          final customer =
-                              customers[index];
+                        itemCount: customers.length,
+                        separatorBuilder: (_, __) => const SizedBox(height: 12),
+                        itemBuilder: (context, index) {
+                          final customer = customers[index];
 
                           return CustomerListItem(
-                            customer:
-                                customer,
+                            customer: customer,
                             onTap: () {
                               context.push(
-                                AppRoutes
-                                    .customerDetails(
-                                  customer.id!,
-                                ),
+                                AppRoutes.customerDetails(customer.id!),
                               );
                             },
                           );
                         },
                       ),
               ),
-
             ],
           ),
         );

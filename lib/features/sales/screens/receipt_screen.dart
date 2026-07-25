@@ -23,11 +23,7 @@ import '../widgets/receipt/receipt_totals.dart';
 /// • Send via Email
 /// ---------------------------------------------------------------------------
 class ReceiptScreen extends StatelessWidget {
-  const ReceiptScreen({
-    super.key,
-    required this.sale,
-    required this.shopName,
-  });
+  const ReceiptScreen({super.key, required this.sale, required this.shopName});
 
   final Sale sale;
   final String shopName;
@@ -60,19 +56,15 @@ class ReceiptScreen extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(24),
             child: Column(
-              crossAxisAlignment:
-                  CrossAxisAlignment.stretch,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-
                 ReceiptHeader(
                   shopName: shopName,
                   invoiceNumber: sale.invoiceNumber,
                   saleDate: sale.saleDate,
                 ),
 
-                ReceiptItems(
-                  items: sale.items,
-                ),
+                ReceiptItems(items: sale.items),
 
                 const SizedBox(height: 24),
 

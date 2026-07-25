@@ -22,14 +22,8 @@ final GoRouter appRouter = GoRouter(
 
   errorBuilder: (context, state) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Page Not Found'),
-      ),
-      body: Center(
-        child: Text(
-          state.error.toString(),
-        ),
-      ),
+      appBar: AppBar(title: const Text('Page Not Found')),
+      body: Center(child: Text(state.error.toString())),
     );
   },
 );

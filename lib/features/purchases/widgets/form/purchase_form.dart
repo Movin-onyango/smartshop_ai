@@ -38,10 +38,7 @@ class PurchaseForm extends StatelessWidget {
 
   final VoidCallback onAddItem;
 
-  final void Function(
-    int index,
-    PurchaseItem item,
-  ) onEditItem;
+  final void Function(int index, PurchaseItem item) onEditItem;
 
   final VoidCallback onSave;
 
@@ -61,11 +58,9 @@ class PurchaseForm extends StatelessWidget {
           //--------------------------------------------------------------------
           // Supplier
           //--------------------------------------------------------------------
-
           PurchaseSupplierCard(
             controller: controller,
-            onSelectSupplier:
-                onSelectSupplier,
+            onSelectSupplier: onSelectSupplier,
           ),
 
           const SizedBox(height: 16),
@@ -73,17 +68,13 @@ class PurchaseForm extends StatelessWidget {
           //--------------------------------------------------------------------
           // Dates
           //--------------------------------------------------------------------
-
-          PurchaseDatesCard(
-            controller: controller,
-          ),
+          PurchaseDatesCard(controller: controller),
 
           const SizedBox(height: 16),
 
           //--------------------------------------------------------------------
           // Items
           //--------------------------------------------------------------------
-
           PurchaseItemsCard(
             controller: controller,
             onAddItem: onAddItem,
@@ -95,27 +86,20 @@ class PurchaseForm extends StatelessWidget {
           //--------------------------------------------------------------------
           // Totals
           //--------------------------------------------------------------------
-
-          PurchaseTotalsCard(
-            controller: controller,
-          ),
+          PurchaseTotalsCard(controller: controller),
 
           const SizedBox(height: 16),
 
           //--------------------------------------------------------------------
           // Notes
           //--------------------------------------------------------------------
-
-          PurchaseNotesCard(
-            controller: controller,
-          ),
+          PurchaseNotesCard(controller: controller),
 
           const SizedBox(height: 24),
 
           //--------------------------------------------------------------------
           // Actions
           //--------------------------------------------------------------------
-
           PurchaseFormActions(
             isEditing: isEditing,
             isSaving: isSaving,

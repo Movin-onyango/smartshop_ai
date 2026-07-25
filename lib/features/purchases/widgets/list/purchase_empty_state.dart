@@ -13,8 +13,7 @@ import 'package:flutter/material.dart';
 class PurchaseEmptyState extends StatelessWidget {
   const PurchaseEmptyState({
     super.key,
-    this.message =
-        'No purchases found.',
+    this.message = 'No purchases found.',
     this.onRefresh,
   });
 
@@ -26,22 +25,17 @@ class PurchaseEmptyState extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Padding(
-        padding:
-            const EdgeInsets.all(32),
+        padding: const EdgeInsets.all(32),
         child: Column(
-          mainAxisSize:
-              MainAxisSize.min,
+          mainAxisSize: MainAxisSize.min,
           children: [
             //------------------------------------------------------------------
             // Icon
             //------------------------------------------------------------------
-
             Icon(
               Icons.receipt_long_outlined,
               size: 72,
-              color: Theme.of(context)
-                  .colorScheme
-                  .outline,
+              color: Theme.of(context).colorScheme.outline,
             ),
 
             const SizedBox(height: 24),
@@ -49,12 +43,9 @@ class PurchaseEmptyState extends StatelessWidget {
             //------------------------------------------------------------------
             // Title
             //------------------------------------------------------------------
-
             Text(
               'No Purchases',
-              style: Theme.of(context)
-                  .textTheme
-                  .headlineSmall,
+              style: Theme.of(context).textTheme.headlineSmall,
             ),
 
             const SizedBox(height: 12),
@@ -62,13 +53,10 @@ class PurchaseEmptyState extends StatelessWidget {
             //------------------------------------------------------------------
             // Message
             //------------------------------------------------------------------
-
             Text(
               message,
               textAlign: TextAlign.center,
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyMedium,
+              style: Theme.of(context).textTheme.bodyMedium,
             ),
 
             if (onRefresh != null) ...[
@@ -76,12 +64,8 @@ class PurchaseEmptyState extends StatelessWidget {
 
               FilledButton.icon(
                 onPressed: onRefresh,
-                icon: const Icon(
-                  Icons.refresh,
-                ),
-                label: const Text(
-                  'Refresh',
-                ),
+                icon: const Icon(Icons.refresh),
+                label: const Text('Refresh'),
               ),
             ],
           ],

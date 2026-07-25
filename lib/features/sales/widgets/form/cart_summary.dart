@@ -17,10 +17,7 @@ import '../../controllers/sale_form_controller.dart';
 /// • Expected Profit
 /// ---------------------------------------------------------------------------
 class CartSummary extends StatelessWidget {
-  const CartSummary({
-    super.key,
-    required this.controller,
-  });
+  const CartSummary({super.key, required this.controller});
 
   final SaleFormController controller;
 
@@ -35,19 +32,11 @@ class CartSummary extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            _summaryRow(
-              context,
-              'Products',
-              '${controller.itemCount}',
-            ),
+            _summaryRow(context, 'Products', '${controller.itemCount}'),
 
             const SizedBox(height: 8),
 
-            _summaryRow(
-              context,
-              'Quantity',
-              '${controller.totalQuantity}',
-            ),
+            _summaryRow(context, 'Quantity', '${controller.totalQuantity}'),
 
             const Divider(height: 24),
 
@@ -104,18 +93,12 @@ class CartSummary extends StatelessWidget {
 
     return Row(
       children: [
-        Expanded(
-          child: Text(
-            label,
-            style: theme.textTheme.bodyMedium,
-          ),
-        ),
+        Expanded(child: Text(label, style: theme.textTheme.bodyMedium)),
         Text(
           value,
-          style: valueStyle ??
-              theme.textTheme.bodyMedium?.copyWith(
-                fontWeight: FontWeight.w600,
-              ),
+          style:
+              valueStyle ??
+              theme.textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w600),
         ),
       ],
     );

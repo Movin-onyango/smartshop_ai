@@ -28,10 +28,7 @@ class AppScaffold extends StatelessWidget {
     return Scaffold(
       appBar: title == null
           ? null
-          : AppBar(
-              title: Text(title!),
-              actions: actions,
-            ),
+          : AppBar(title: Text(title!), actions: actions),
       drawer: drawer,
       floatingActionButton: floatingActionButton,
       bottomNavigationBar: bottomNavigationBar,
@@ -39,12 +36,10 @@ class AppScaffold extends StatelessWidget {
         child: Center(
           child: ConstrainedBox(
             constraints: BoxConstraints(
-              maxWidth:
-                  ResponsiveHelper.maxContentWidth(context),
+              maxWidth: ResponsiveHelper.maxContentWidth(context),
             ),
             child: Padding(
-              padding:
-                  ResponsiveHelper.screenPadding(context),
+              padding: ResponsiveHelper.screenPadding(context),
               child: body,
             ),
           ),

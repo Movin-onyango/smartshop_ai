@@ -13,10 +13,7 @@ import '../../models/purchase_status.dart';
 /// • PurchaseForm
 /// ---------------------------------------------------------------------------
 class PurchaseDatesCard extends StatelessWidget {
-  const PurchaseDatesCard({
-    super.key,
-    required this.controller,
-  });
+  const PurchaseDatesCard({super.key, required this.controller});
 
   final PurchaseFormController controller;
 
@@ -26,18 +23,14 @@ class PurchaseDatesCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
-          crossAxisAlignment:
-              CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             //------------------------------------------------------------------
             // Header
             //------------------------------------------------------------------
-
             Text(
               'Order Details',
-              style: Theme.of(context)
-                  .textTheme
-                  .titleLarge,
+              style: Theme.of(context).textTheme.titleLarge,
             ),
 
             const SizedBox(height: 20),
@@ -45,39 +38,22 @@ class PurchaseDatesCard extends StatelessWidget {
             //------------------------------------------------------------------
             // Order Date
             //------------------------------------------------------------------
-
             ListTile(
               contentPadding: EdgeInsets.zero,
-              leading: const Icon(
-                Icons.calendar_today,
-              ),
-              title: const Text(
-                'Order Date',
-              ),
-              subtitle: Text(
-                _formatDate(
-                  controller.orderDate,
-                ),
-              ),
-              trailing: const Icon(
-                Icons.edit_calendar,
-              ),
+              leading: const Icon(Icons.calendar_today),
+              title: const Text('Order Date'),
+              subtitle: Text(_formatDate(controller.orderDate)),
+              trailing: const Icon(Icons.edit_calendar),
               onTap: () async {
-                final date =
-                    await showDatePicker(
+                final date = await showDatePicker(
                   context: context,
-                  initialDate:
-                      controller.orderDate,
-                  firstDate:
-                      DateTime(2020),
-                  lastDate:
-                      DateTime(2100),
+                  initialDate: controller.orderDate,
+                  firstDate: DateTime(2020),
+                  lastDate: DateTime(2100),
                 );
 
                 if (date != null) {
-                  controller.setOrderDate(
-                    date,
-                  );
+                  controller.setOrderDate(date);
                 }
               },
             ),
@@ -87,47 +63,27 @@ class PurchaseDatesCard extends StatelessWidget {
             //------------------------------------------------------------------
             // Expected Delivery
             //------------------------------------------------------------------
-
             ListTile(
               contentPadding: EdgeInsets.zero,
-              leading: const Icon(
-                Icons.local_shipping,
-              ),
-              title: const Text(
-                'Expected Delivery',
-              ),
+              leading: const Icon(Icons.local_shipping),
+              title: const Text('Expected Delivery'),
               subtitle: Text(
-                controller
-                            .expectedDeliveryDate ==
-                        null
+                controller.expectedDeliveryDate == null
                     ? 'Not selected'
-                    : _formatDate(
-                        controller
-                            .expectedDeliveryDate!,
-                      ),
+                    : _formatDate(controller.expectedDeliveryDate!),
               ),
-              trailing: const Icon(
-                Icons.edit_calendar,
-              ),
+              trailing: const Icon(Icons.edit_calendar),
               onTap: () async {
-                final date =
-                    await showDatePicker(
+                final date = await showDatePicker(
                   context: context,
                   initialDate:
-                      controller
-                              .expectedDeliveryDate ??
-                          controller.orderDate,
-                  firstDate:
-                      controller.orderDate,
-                  lastDate:
-                      DateTime(2100),
+                      controller.expectedDeliveryDate ?? controller.orderDate,
+                  firstDate: controller.orderDate,
+                  lastDate: DateTime(2100),
                 );
 
                 if (date != null) {
-                  controller
-                      .setExpectedDeliveryDate(
-                    date,
-                  );
+                  controller.setExpectedDeliveryDate(date);
                 }
               },
             ),
@@ -137,39 +93,24 @@ class PurchaseDatesCard extends StatelessWidget {
             //------------------------------------------------------------------
             // Status
             //------------------------------------------------------------------
-
-            DropdownButtonFormField<
-                PurchaseStatus>(
+            DropdownButtonFormField<PurchaseStatus>(
               initialValue: controller.status,
-              decoration:
-                  const InputDecoration(
-                labelText:
-                    'Purchase Status',
-                prefixIcon: Icon(
-                  Icons.flag,
-                ),
-                border:
-                    OutlineInputBorder(),
+              decoration: const InputDecoration(
+                labelText: 'Purchase Status',
+                prefixIcon: Icon(Icons.flag),
+                border: OutlineInputBorder(),
               ),
-              items:
-                  PurchaseStatus.values
-                      .map(
-                        (status) =>
-                            DropdownMenuItem(
-                          value: status,
-                          child: Text(
-                            _statusLabel(
-                              status,
-                            ),
-                          ),
-                        ),
-                      )
-                      .toList(),
+              items: PurchaseStatus.values
+                  .map(
+                    (status) => DropdownMenuItem(
+                      value: status,
+                      child: Text(_statusLabel(status)),
+                    ),
+                  )
+                  .toList(),
               onChanged: (value) {
                 if (value != null) {
-                  controller.setStatus(
-                    value,
-                  );
+                  controller.setStatus(value);
                 }
               },
             ),
@@ -183,15 +124,11 @@ class PurchaseDatesCard extends StatelessWidget {
   // Helpers
   //---------------------------------------------------------------------------
 
-  String _formatDate(
-    DateTime date,
-  ) {
+  String _formatDate(DateTime date) {
     return '${date.day}/${date.month}/${date.year}';
   }
 
-  String _statusLabel(
-    PurchaseStatus status,
-  ) {
+  String _statusLabel(PurchaseStatus status) {
     switch (status) {
       case PurchaseStatus.draft:
         return 'Draft';

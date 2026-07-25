@@ -19,18 +19,14 @@ import 'sales_card.dart';
 /// • Desktop -> 3–4 columns
 /// ---------------------------------------------------------------------------
 class SalesGrid extends StatelessWidget {
-  const SalesGrid({
-    super.key,
-  });
+  const SalesGrid({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Consumer<SalesProvider>(
       builder: (context, provider, child) {
         if (provider.isLoading) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
+          return const Center(child: CircularProgressIndicator());
         }
 
         final sales = provider.sales;
@@ -55,8 +51,7 @@ class SalesGrid extends StatelessWidget {
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               itemCount: sales.length,
-              gridDelegate:
-                  SliverGridDelegateWithFixedCrossAxisCount(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: columns,
                 crossAxisSpacing: 16,
                 mainAxisSpacing: 16,
@@ -68,9 +63,7 @@ class SalesGrid extends StatelessWidget {
                 return SalesCard(
                   sale: sale,
                   onTap: () {
-                    context.push(
-                      '${AppRoutes.sales}/${sale.id}',
-                    );
+                    context.push('${AppRoutes.sales}/${sale.id}');
                   },
                 );
               },

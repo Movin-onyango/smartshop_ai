@@ -14,10 +14,7 @@ import '../../models/category.dart';
 /// • Description
 /// ---------------------------------------------------------------------------
 class CategoryHeader extends StatelessWidget {
-  const CategoryHeader({
-    super.key,
-    required this.category,
-  });
+  const CategoryHeader({super.key, required this.category});
 
   final Category category;
 
@@ -31,12 +28,8 @@ class CategoryHeader extends StatelessWidget {
             CircleAvatar(
               radius: 34,
               child: Text(
-                category.name.isNotEmpty
-                    ? category.name[0].toUpperCase()
-                    : '?',
-                style: Theme.of(context)
-                    .textTheme
-                    .headlineSmall,
+                category.name.isNotEmpty ? category.name[0].toUpperCase() : '?',
+                style: Theme.of(context).textTheme.headlineSmall,
               ),
             ),
 
@@ -44,14 +37,11 @@ class CategoryHeader extends StatelessWidget {
 
             Expanded(
               child: Column(
-                crossAxisAlignment:
-                    CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     category.name,
-                    style: Theme.of(context)
-                        .textTheme
-                        .headlineSmall,
+                    style: Theme.of(context).textTheme.headlineSmall,
                   ),
 
                   const SizedBox(height: 8),
@@ -60,9 +50,7 @@ class CategoryHeader extends StatelessWidget {
                     category.description?.isNotEmpty == true
                         ? category.description!
                         : 'No description available.',
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyMedium,
+                    style: Theme.of(context).textTheme.bodyMedium,
                   ),
                 ],
               ),

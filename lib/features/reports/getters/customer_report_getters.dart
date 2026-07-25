@@ -4,9 +4,7 @@ import 'base/base_report_getters.dart';
 class CustomerReportGetters extends BaseReportGetters {
   const CustomerReportGetters();
 
-  static List<List<String>> tableRows(
-    CustomerReportRepository repository,
-  ) {
+  static List<List<String>> tableRows(CustomerReportRepository repository) {
     return const CustomerReportRepository()
         .getAllCustomers()
         .map(
@@ -15,31 +13,21 @@ class CustomerReportGetters extends BaseReportGetters {
             customer.name,
             customer.phone ?? '',
             customer.email ?? '',
-           // currency(customer.creditLimit) ?? '',
-            customer.hasLoyalty
-                ? 'Loyalty Member'
-                : 'Regular',
+            // currency(customer.creditLimit) ?? '',
+            customer.hasLoyalty ? 'Loyalty Member' : 'Regular',
           ],
         )
         .toList();
   }
 
-  static int totalCustomers(
-    CustomerReportRepository repository,
-  ) {
-    return const CustomerReportRepository()
-        .getAllCustomers()
-        .length;
+  static int totalCustomers(CustomerReportRepository repository) {
+    return const CustomerReportRepository().getAllCustomers().length;
   }
 
-  static int activeCustomers(
-    CustomerReportRepository repository,
-  ) {
+  static int activeCustomers(CustomerReportRepository repository) {
     return const CustomerReportRepository()
         .getAllCustomers()
-        .where(
-          (customer) => customer.hasLoyalty,
-        )
+        .where((customer) => customer.hasLoyalty)
         .length;
   }
 }

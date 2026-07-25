@@ -27,15 +27,11 @@ class SupplierInformationCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
-          crossAxisAlignment:
-              CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-
             Text(
               'Supplier Information',
-              style: Theme.of(context)
-                  .textTheme
-                  .titleLarge,
+              style: Theme.of(context).textTheme.titleLarge,
             ),
 
             const SizedBox(height: 20),
@@ -43,23 +39,17 @@ class SupplierInformationCard extends StatelessWidget {
             //------------------------------------------------------------------
             // Supplier Name
             //------------------------------------------------------------------
-
             TextFormField(
               controller: nameController,
               decoration: const InputDecoration(
                 labelText: 'Supplier Name',
-                hintText:
-                    'Enter supplier name',
-                prefixIcon: Icon(
-                  Icons.business,
-                ),
+                hintText: 'Enter supplier name',
+                prefixIcon: Icon(Icons.business),
                 border: OutlineInputBorder(),
               ),
-              textCapitalization:
-                  TextCapitalization.words,
+              textCapitalization: TextCapitalization.words,
               validator: (value) {
-                if (value == null ||
-                    value.trim().isEmpty) {
+                if (value == null || value.trim().isEmpty) {
                   return 'Supplier name is required';
                 }
 
@@ -72,21 +62,15 @@ class SupplierInformationCard extends StatelessWidget {
             //------------------------------------------------------------------
             // Contact Person
             //------------------------------------------------------------------
-
             TextFormField(
-              controller:
-                  contactPersonController,
+              controller: contactPersonController,
               decoration: const InputDecoration(
                 labelText: 'Contact Person',
-                hintText:
-                    'Primary contact person',
-                prefixIcon: Icon(
-                  Icons.person_outline,
-                ),
+                hintText: 'Primary contact person',
+                prefixIcon: Icon(Icons.person_outline),
                 border: OutlineInputBorder(),
               ),
-              textCapitalization:
-                  TextCapitalization.words,
+              textCapitalization: TextCapitalization.words,
             ),
           ],
         ),

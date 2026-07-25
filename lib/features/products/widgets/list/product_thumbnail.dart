@@ -3,10 +3,7 @@ import 'package:flutter/material.dart';
 import '../../models/product.dart';
 
 class ProductThumbnail extends StatelessWidget {
-  const ProductThumbnail({
-    super.key,
-    required this.product,
-  });
+  const ProductThumbnail({super.key, required this.product});
 
   final Product product;
 
@@ -15,13 +12,8 @@ class ProductThumbnail extends StatelessWidget {
     return CircleAvatar(
       radius: 28,
       child: Text(
-        product.name.isNotEmpty
-            ? product.name[0].toUpperCase()
-            : '?',
-        style: const TextStyle(
-          fontWeight: FontWeight.bold,
-          fontSize: 22,
-        ),
+        product.name.isNotEmpty ? product.name[0].toUpperCase() : '?',
+        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
       ),
     );
   }

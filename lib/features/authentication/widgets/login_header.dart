@@ -21,9 +21,7 @@ class LoginHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const AppLogo(
-          size: 100,
-        ),
+        const AppLogo(size: 100),
 
         AppSpacing.gapXL,
 

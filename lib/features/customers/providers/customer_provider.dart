@@ -24,14 +24,11 @@ class CustomerProvider extends ChangeNotifier {
   // Getters
   //---------------------------------------------------------------------------
 
-  List<Customer> get customers =>
-      List.unmodifiable(_customers);
+  List<Customer> get customers => List.unmodifiable(_customers);
 
-  bool get isLoading =>
-      _isLoading;
+  bool get isLoading => _isLoading;
 
-  int get customerCount =>
-      _customers.length;
+  int get customerCount => _customers.length;
 
   //---------------------------------------------------------------------------
   // Loading
@@ -40,9 +37,7 @@ class CustomerProvider extends ChangeNotifier {
   void loadCustomers() {
     _customers
       ..clear()
-      ..addAll(
-        CustomerRepository.getAll(),
-      );
+      ..addAll(CustomerRepository.getAll());
 
     notifyListeners();
   }
@@ -81,9 +76,7 @@ class CustomerProvider extends ChangeNotifier {
 
   Customer? findById(String id) {
     try {
-      return _customers.firstWhere(
-        (customer) => customer.id == id,
-      );
+      return _customers.firstWhere((customer) => customer.id == id);
     } catch (_) {
       return null;
     }
@@ -101,15 +94,9 @@ class CustomerProvider extends ChangeNotifier {
     }
 
     return _customers.where((customer) {
-      return customer.name
-              .toLowerCase()
-              .contains(q) ||
-          (customer.phone ?? '')
-              .toLowerCase()
-              .contains(q) ||
-          (customer.email ?? '')
-              .toLowerCase()
-              .contains(q);
+      return customer.name.toLowerCase().contains(q) ||
+          (customer.phone ?? '').toLowerCase().contains(q) ||
+          (customer.email ?? '').toLowerCase().contains(q);
     }).toList();
   }
 
@@ -117,31 +104,14 @@ class CustomerProvider extends ChangeNotifier {
   // Dashboard Helpers
   //---------------------------------------------------------------------------
 
-  int get creditCustomers =>
-      _customers
-          .where(
-            (c) => c.creditLimit > 0,
-          )
-          .length;
+  int get creditCustomers => _customers.where((c) => c.creditLimit > 0).length;
 
   int get loyaltyMembers =>
-      _customers
-          .where(
-            (c) => c.loyaltyAccount != null,
-          )
-          .length;
+      _customers.where((c) => c.loyaltyAccount != null).length;
 
   double get totalSales =>
-      _customers.fold(
-        0.0,
-        (sum, customer) =>
-            sum + customer.totalSpent,
-      );
+      _customers.fold(0.0, (sum, customer) => sum + customer.totalSpent);
 
   double get outstandingCredit =>
-      _customers.fold(
-        0.0,
-        (sum, customer) =>
-            sum + customer.currentBalance,
-      );
+      _customers.fold(0.0, (sum, customer) => sum + customer.currentBalance);
 }

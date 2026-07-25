@@ -16,31 +16,15 @@ class PurchaseSupplierCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
-          crossAxisAlignment:
-              CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'Supplier',
-              style: Theme.of(context)
-                  .textTheme
-                  .titleLarge,
-            ),
+            Text('Supplier', style: Theme.of(context).textTheme.titleLarge),
             const SizedBox(height: 16),
             ListTile(
-              contentPadding:
-                  EdgeInsets.zero,
-              leading:
-                  const CircleAvatar(
-                child: Icon(
-                  Icons.business,
-                ),
-              ),
-              title: Text(
-                supplierName,
-              ),
-              subtitle: Text(
-                'Supplier ID: $supplierId',
-              ),
+              contentPadding: EdgeInsets.zero,
+              leading: const CircleAvatar(child: Icon(Icons.business)),
+              title: Text(supplierName),
+              subtitle: Text('Supplier ID: $supplierId'),
             ),
           ],
         ),

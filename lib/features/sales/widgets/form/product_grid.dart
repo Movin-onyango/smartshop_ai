@@ -40,9 +40,7 @@ class ProductGrid extends StatelessWidget {
           elevation: 0,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16),
-            side: BorderSide(
-              color: Colors.grey.shade300,
-            ),
+            side: BorderSide(color: Colors.grey.shade300),
           ),
           child: InkWell(
             borderRadius: BorderRadius.circular(16),
@@ -83,12 +81,8 @@ class ProductGrid extends StatelessWidget {
                       Expanded(
                         child: Text(
                           'KSh ${product.sellingPrice.toStringAsFixed(2)}',
-                          style: Theme.of(context)
-                              .textTheme
-                              .titleSmall
-                              ?.copyWith(
-                                fontWeight: FontWeight.bold,
-                              ),
+                          style: Theme.of(context).textTheme.titleSmall
+                              ?.copyWith(fontWeight: FontWeight.bold),
                         ),
                       ),
                       FilledButton.icon(

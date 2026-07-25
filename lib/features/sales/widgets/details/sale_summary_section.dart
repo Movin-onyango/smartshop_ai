@@ -15,10 +15,7 @@ import '../../models/sale.dart';
 /// • Expected Profit
 /// ---------------------------------------------------------------------------
 class SaleSummarySection extends StatelessWidget {
-  const SaleSummarySection({
-    super.key,
-    required this.sale,
-  });
+  const SaleSummarySection({super.key, required this.sale});
 
   final Sale sale;
 
@@ -32,10 +29,7 @@ class SaleSummarySection extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'Sale Summary',
-              style: theme.textTheme.titleLarge,
-            ),
+            Text('Sale Summary', style: theme.textTheme.titleLarge),
 
             const SizedBox(height: 20),
 
@@ -92,18 +86,12 @@ class SaleSummarySection extends StatelessWidget {
 
     return Row(
       children: [
-        Expanded(
-          child: Text(
-            label,
-            style: theme.textTheme.bodyLarge,
-          ),
-        ),
+        Expanded(child: Text(label, style: theme.textTheme.bodyLarge)),
         Text(
           value,
-          style: valueStyle ??
-              theme.textTheme.bodyLarge?.copyWith(
-                fontWeight: FontWeight.w600,
-              ),
+          style:
+              valueStyle ??
+              theme.textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.w600),
         ),
       ],
     );

@@ -29,21 +29,16 @@ import '../widgets/form/sale_totals_card.dart';
 /// → Checkout
 /// ---------------------------------------------------------------------------
 class CreateSaleScreen extends StatefulWidget {
-  const CreateSaleScreen({
-    super.key,
-  });
+  const CreateSaleScreen({super.key});
 
   @override
-  State<CreateSaleScreen> createState() =>
-      _CreateSaleScreenState();
+  State<CreateSaleScreen> createState() => _CreateSaleScreenState();
 }
 
-class _CreateSaleScreenState
-    extends State<CreateSaleScreen> {
+class _CreateSaleScreenState extends State<CreateSaleScreen> {
   late final SaleFormController controller;
 
-  final _searchController =
-      TextEditingController();
+  final _searchController = TextEditingController();
 
   @override
   void initState() {
@@ -51,9 +46,7 @@ class _CreateSaleScreenState
 
     controller = SaleFormController();
 
-    controller.loadProducts(
-      ProductRepository.getAll(),
-    );
+    controller.loadProducts(ProductRepository.getAll());
   }
 
   @override
@@ -73,8 +66,7 @@ class _CreateSaleScreenState
           return SingleChildScrollView(
             padding: const EdgeInsets.all(16),
             child: Column(
-              crossAxisAlignment:
-                  CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 /// Search
                 ProductSearchBar(
@@ -86,10 +78,8 @@ class _CreateSaleScreenState
 
                 /// Products
                 ProductGrid(
-                  products:
-                      controller.filteredProducts,
-                  onProductSelected:
-                      controller.addProduct,
+                  products: controller.filteredProducts,
+                  onProductSelected: controller.addProduct,
                 ),
 
                 const SizedBox(height: 24),
@@ -97,38 +87,29 @@ class _CreateSaleScreenState
                 /// Cart
                 SaleCart(
                   items: controller.cartItems,
-                  onIncrease:
-                      controller.increaseQuantity,
-                  onDecrease:
-                      controller.decreaseQuantity,
-                  onRemove:
-                      controller.removeItem,
+                  onIncrease: controller.increaseQuantity,
+                  onDecrease: controller.decreaseQuantity,
+                  onRemove: controller.removeItem,
                 ),
 
                 const SizedBox(height: 24),
 
                 /// Customer
                 CustomerSelector(
-                  customerName:
-                      controller.customerName,
-                  customerPhone:
-                      controller.customerPhone,
+                  customerName: controller.customerName,
+                  customerPhone: controller.customerPhone,
                   onTap: controller.selectCustomer,
-                  onClear:
-                      controller.clearCustomer,
+                  onClear: controller.clearCustomer,
                 ),
 
                 const SizedBox(height: 24),
 
                 /// Payment
                 PaymentSelector(
-                  method:
-                      controller.paymentMethod,
+                  method: controller.paymentMethod,
                   onChanged: (method) {
                     if (method != null) {
-                      controller.setPaymentMethod(
-                        method,
-                      );
+                      controller.setPaymentMethod(method);
                     }
                   },
                 ),
@@ -137,14 +118,10 @@ class _CreateSaleScreenState
 
                 /// Totals
                 SaleTotalsCard(
-                  grossTotal:
-                      controller.grossTotal,
-                  discount:
-                      controller.discount,
-                  subtotal:
-                      controller.subtotal,
-                  profit:
-                      controller.expectedProfit,
+                  grossTotal: controller.grossTotal,
+                  discount: controller.discount,
+                  subtotal: controller.subtotal,
+                  profit: controller.expectedProfit,
                 ),
 
                 const SizedBox(height: 32),
@@ -152,20 +129,13 @@ class _CreateSaleScreenState
                 SizedBox(
                   width: double.infinity,
                   child: FilledButton.icon(
-                    onPressed:
-                        controller.cartItems.isEmpty
-                            ? null
-                            : controller.checkout,
-                    icon: const Icon(
-                      Icons.shopping_cart_checkout,
-                    ),
+                    onPressed: controller.cartItems.isEmpty
+                        ? null
+                        : controller.checkout,
+                    icon: const Icon(Icons.shopping_cart_checkout),
                     label: const Padding(
-                      padding: EdgeInsets.symmetric(
-                        vertical: 16,
-                      ),
-                      child: Text(
-                        'Proceed to Checkout',
-                      ),
+                      padding: EdgeInsets.symmetric(vertical: 16),
+                      child: Text('Proceed to Checkout'),
                     ),
                   ),
                 ),

@@ -1,14 +1,14 @@
-/*import '../repositories/report_repository.dart';
-
 /// ---------------------------------------------------------------------------
-/// ReportService
+/// ReportShareService
 /// ---------------------------------------------------------------------------
 ///
-/// Base service shared by all report services.
+/// Shares exported reports.
 /// ---------------------------------------------------------------------------
-abstract class ReportService {
-  const ReportService(this.repository);
+class ReportShareService {
+  const ReportShareService();
 
-  final ReportRepository repository;
+  Future<void> share() async {
+    // TODO(Movin):
+    // Share report.
+  }
 }
-*/

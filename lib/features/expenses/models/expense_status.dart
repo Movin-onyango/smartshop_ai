@@ -18,13 +18,7 @@
 ///   ↓
 /// Cancelled
 /// ---------------------------------------------------------------------------
-enum ExpenseStatus {
-  draft,
-  pending,
-  approved,
-  paid,
-  cancelled,
-}
+enum ExpenseStatus { draft, pending, approved, paid, cancelled }
 
 extension ExpenseStatusExtension on ExpenseStatus {
   /// User-friendly label.
@@ -62,16 +56,12 @@ extension ExpenseStatusExtension on ExpenseStatus {
   bool get isCancelled => this == ExpenseStatus.cancelled;
 
   bool get canEdit =>
-      this == ExpenseStatus.draft ||
-      this == ExpenseStatus.pending;
+      this == ExpenseStatus.draft || this == ExpenseStatus.pending;
 
-  bool get canApprove =>
-      this == ExpenseStatus.pending;
+  bool get canApprove => this == ExpenseStatus.pending;
 
-  bool get canMarkAsPaid =>
-      this == ExpenseStatus.approved;
+  bool get canMarkAsPaid => this == ExpenseStatus.approved;
 
   bool get canCancel =>
-      this != ExpenseStatus.paid &&
-      this != ExpenseStatus.cancelled;
+      this != ExpenseStatus.paid && this != ExpenseStatus.cancelled;
 }

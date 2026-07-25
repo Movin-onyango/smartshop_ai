@@ -34,24 +34,17 @@ class DateFilterBar extends StatelessWidget {
     return Wrap(
       spacing: 12,
       runSpacing: 8,
-      children: ReportPeriod.values.map(
-        (period) {
-          return ChoiceChip(
-            label: Text(
-              _title(period),
-            ),
-            selected: selected == period,
-            onSelected: (_) =>
-                onChanged(period),
-          );
-        },
-      ).toList(),
+      children: ReportPeriod.values.map((period) {
+        return ChoiceChip(
+          label: Text(_title(period)),
+          selected: selected == period,
+          onSelected: (_) => onChanged(period),
+        );
+      }).toList(),
     );
   }
 
-  String _title(
-    ReportPeriod period,
-  ) {
+  String _title(ReportPeriod period) {
     switch (period) {
       case ReportPeriod.today:
         return 'Today';

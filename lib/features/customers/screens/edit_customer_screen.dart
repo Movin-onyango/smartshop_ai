@@ -17,20 +17,15 @@ import '../widgets/form/customer_form.dart';
 /// Used to edit an existing customer.
 /// ---------------------------------------------------------------------------
 class EditCustomerScreen extends StatefulWidget {
-  const EditCustomerScreen({
-    super.key,
-    required this.customerId,
-  });
+  const EditCustomerScreen({super.key, required this.customerId});
 
   final String customerId;
 
   @override
-  State<EditCustomerScreen> createState() =>
-      _EditCustomerScreenState();
+  State<EditCustomerScreen> createState() => _EditCustomerScreenState();
 }
 
-class _EditCustomerScreenState
-    extends State<EditCustomerScreen> {
+class _EditCustomerScreenState extends State<EditCustomerScreen> {
   late Customer customer;
   late CustomerFormController controller;
 
@@ -42,13 +37,9 @@ class _EditCustomerScreenState
 
     if (_initialized) return;
 
-    customer = context
-        .read<CustomerProvider>()
-        .findById(widget.customerId)!;
+    customer = context.read<CustomerProvider>().findById(widget.customerId)!;
 
-    controller = CustomerFormController(
-      customer: customer,
-    );
+    controller = CustomerFormController(customer: customer);
 
     _initialized = true;
   }
@@ -66,9 +57,7 @@ class _EditCustomerScreenState
 
     final updatedCustomer = controller.toCustomer();
 
-    context
-        .read<CustomerProvider>()
-        .updateCustomer(updatedCustomer);
+    context.read<CustomerProvider>().updateCustomer(updatedCustomer);
 
     context.pop();
   }
@@ -77,10 +66,7 @@ class _EditCustomerScreenState
   Widget build(BuildContext context) {
     return SmartScaffold(
       title: 'Edit Customer',
-      body: CustomerForm(
-        controller: controller,
-        onSave: _updateCustomer,
-      ),
+      body: CustomerForm(controller: controller, onSave: _updateCustomer),
     );
   }
 }

@@ -46,16 +46,10 @@ class AppFormCard extends StatelessWidget {
         elevation: elevation,
         color: theme.colorScheme.surface,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular
-           (AppRadius.lg,),
-          side: BorderSide(
-            color: theme.dividerColor.withValues(alpha: 0.35),
-          ),
+          borderRadius: BorderRadius.circular(AppRadius.lg),
+          side: BorderSide(color: theme.dividerColor.withValues(alpha: 0.35)),
         ),
-        child: Padding(
-          padding: padding,
-          child: child,
-        ),
+        child: Padding(padding: padding, child: child),
       ),
     );
   }

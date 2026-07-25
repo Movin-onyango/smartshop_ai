@@ -96,14 +96,11 @@ class SupplierRepository {
   // CRUD
   //--------------------------------------------------------------------------
 
-  static List<Supplier> getAll() =>
-      List.unmodifiable(_suppliers);
+  static List<Supplier> getAll() => List.unmodifiable(_suppliers);
 
   static Supplier? findById(String id) {
     try {
-      return _suppliers.firstWhere(
-        (supplier) => supplier.id == id,
-      );
+      return _suppliers.firstWhere((supplier) => supplier.id == id);
     } catch (_) {
       return null;
     }
@@ -114,9 +111,7 @@ class SupplierRepository {
   }
 
   static void update(Supplier supplier) {
-    final index = _suppliers.indexWhere(
-      (item) => item.id == supplier.id,
-    );
+    final index = _suppliers.indexWhere((item) => item.id == supplier.id);
 
     if (index != -1) {
       _suppliers[index] = supplier;
@@ -124,9 +119,7 @@ class SupplierRepository {
   }
 
   static void delete(String id) {
-    _suppliers.removeWhere(
-      (supplier) => supplier.id == id,
-    );
+    _suppliers.removeWhere((supplier) => supplier.id == id);
   }
 
   //--------------------------------------------------------------------------
@@ -142,18 +135,9 @@ class SupplierRepository {
 
     return _suppliers.where((supplier) {
       return supplier.name.toLowerCase().contains(q) ||
-          (supplier.contactPerson
-                  ?.toLowerCase()
-                  .contains(q) ??
-              false) ||
-          (supplier.phone
-                  ?.toLowerCase()
-                  .contains(q) ??
-              false) ||
-          (supplier.email
-                  ?.toLowerCase()
-                  .contains(q) ??
-              false);
+          (supplier.contactPerson?.toLowerCase().contains(q) ?? false) ||
+          (supplier.phone?.toLowerCase().contains(q) ?? false) ||
+          (supplier.email?.toLowerCase().contains(q) ?? false);
     }).toList();
   }
 }

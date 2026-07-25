@@ -27,15 +27,11 @@ class FinancialInformationCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
-          crossAxisAlignment:
-              CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-
             Text(
               'Financial Information',
-              style: Theme.of(context)
-                  .textTheme
-                  .titleLarge,
+              style: Theme.of(context).textTheme.titleLarge,
             ),
 
             const SizedBox(height: 20),
@@ -43,19 +39,15 @@ class FinancialInformationCard extends StatelessWidget {
             //------------------------------------------------------------------
             // Credit Limit
             //------------------------------------------------------------------
-
             TextFormField(
               controller: creditLimitController,
-              keyboardType:
-                  const TextInputType.numberWithOptions(
+              keyboardType: const TextInputType.numberWithOptions(
                 decimal: true,
               ),
               decoration: const InputDecoration(
                 labelText: 'Credit Limit',
                 hintText: '0.00',
-                prefixIcon: Icon(
-                  Icons.credit_score_outlined,
-                ),
+                prefixIcon: Icon(Icons.credit_score_outlined),
                 border: OutlineInputBorder(),
               ),
             ),
@@ -65,20 +57,15 @@ class FinancialInformationCard extends StatelessWidget {
             //------------------------------------------------------------------
             // Current Balance
             //------------------------------------------------------------------
-
             TextFormField(
-              controller:
-                  currentBalanceController,
-              keyboardType:
-                  const TextInputType.numberWithOptions(
+              controller: currentBalanceController,
+              keyboardType: const TextInputType.numberWithOptions(
                 decimal: true,
               ),
               decoration: const InputDecoration(
                 labelText: 'Current Balance',
                 hintText: '0.00',
-                prefixIcon: Icon(
-                  Icons.account_balance_wallet_outlined,
-                ),
+                prefixIcon: Icon(Icons.account_balance_wallet_outlined),
                 border: OutlineInputBorder(),
               ),
             ),
@@ -89,22 +76,15 @@ class FinancialInformationCard extends StatelessWidget {
               width: double.infinity,
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: Theme.of(context)
-                    .colorScheme
-                    .surfaceContainerHighest,
-                borderRadius:
-                    BorderRadius.circular(12),
+                color: Theme.of(context).colorScheme.surfaceContainerHighest,
+                borderRadius: BorderRadius.circular(12),
               ),
               child: Row(
-                crossAxisAlignment:
-                    CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-
                   Icon(
                     Icons.info_outline,
-                    color: Theme.of(context)
-                        .colorScheme
-                        .primary,
+                    color: Theme.of(context).colorScheme.primary,
                   ),
 
                   const SizedBox(width: 12),
@@ -113,9 +93,7 @@ class FinancialInformationCard extends StatelessWidget {
                     child: Text(
                       'Credit limits help track outstanding supplier balances. '
                       'Leave both values as 0.00 if purchases are always paid immediately.',
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyMedium,
+                      style: Theme.of(context).textTheme.bodyMedium,
                     ),
                   ),
                 ],

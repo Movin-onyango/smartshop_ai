@@ -59,15 +59,11 @@ class Category {
   bool get hasColor => color != null;
 
   /// Flutter IconData used by the UI.
-  IconData get iconData => IconData(
-        icon ?? Icons.category.codePoint,
-        fontFamily: 'MaterialIcons',
-      );
+  IconData get iconData =>
+      IconData(icon ?? Icons.category.codePoint, fontFamily: 'MaterialIcons');
 
   /// Flutter Color used by the UI.
-  Color get colorValue => Color(
-        color ?? Colors.blue.toARGB32(),
-      );
+  Color get colorValue => Color(color ?? Colors.blue.toARGB32());
 
   //--------------------------------------------------------------------------
   // Copy

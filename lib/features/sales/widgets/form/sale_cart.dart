@@ -24,18 +24,11 @@ class SaleCart extends StatelessWidget {
           padding: const EdgeInsets.all(32),
           child: Column(
             children: const [
-              Icon(
-                Icons.shopping_cart_outlined,
-                size: 64,
-                color: Colors.grey,
-              ),
+              Icon(Icons.shopping_cart_outlined, size: 64, color: Colors.grey),
               SizedBox(height: 16),
               Text(
                 'No products added',
-                style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 18,
-                ),
+                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
               ),
               SizedBox(height: 8),
               Text(
@@ -80,39 +73,28 @@ class SaleCart extends StatelessWidget {
                 return Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    CircleAvatar(
-                      child: Text(
-                        item.quantity.toString(),
-                      ),
-                    ),
+                    CircleAvatar(child: Text(item.quantity.toString())),
 
                     const SizedBox(width: 12),
 
                     Expanded(
                       child: Column(
-                        crossAxisAlignment:
-                            CrossAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
                             item.productName,
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleMedium,
+                            style: Theme.of(context).textTheme.titleMedium,
                           ),
 
                           const SizedBox(height: 4),
 
-                          Text(
-                            'KSh ${item.unitPrice.toStringAsFixed(2)} each',
-                          ),
+                          Text('KSh ${item.unitPrice.toStringAsFixed(2)} each'),
 
                           const SizedBox(height: 8),
 
                           Text(
                             'Total: KSh ${item.subtotal.toStringAsFixed(2)}',
-                            style: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ),
+                            style: const TextStyle(fontWeight: FontWeight.bold),
                           ),
                         ],
                       ),
@@ -127,9 +109,7 @@ class SaleCart extends StatelessWidget {
 
                         Text(
                           item.quantity.toString(),
-                          style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
+                          style: const TextStyle(fontWeight: FontWeight.bold),
                         ),
 
                         IconButton(
@@ -141,10 +121,7 @@ class SaleCart extends StatelessWidget {
 
                     IconButton(
                       tooltip: 'Remove',
-                      icon: const Icon(
-                        Icons.delete_outline,
-                        color: Colors.red,
-                      ),
+                      icon: const Icon(Icons.delete_outline, color: Colors.red),
                       onPressed: () => onRemove(item),
                     ),
                   ],

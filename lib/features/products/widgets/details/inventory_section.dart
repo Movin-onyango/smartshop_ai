@@ -6,10 +6,7 @@ import '/features/dashboard/widgets/section_header.dart';
 import 'detail_tile.dart';
 
 class InventorySection extends StatelessWidget {
-  const InventorySection({
-    super.key,
-    required this.product,
-  });
+  const InventorySection({super.key, required this.product});
 
   final Product product;
 
@@ -47,10 +44,7 @@ class InventorySection extends StatelessWidget {
               label: 'Expiry Date',
               value: product.expiryDate == null
                   ? '-'
-                  : product.expiryDate!
-                      .toIso8601String()
-                      .split('T')
-                      .first,
+                  : product.expiryDate!.toIso8601String().split('T').first,
               icon: Icons.calendar_today_outlined,
             ),
 

@@ -25,38 +25,27 @@ import '../widgets/details/expense_payment_section.dart';
 /// • ExpenseListScreen
 /// ---------------------------------------------------------------------------
 class ExpenseDetailsScreen extends StatefulWidget {
-  const ExpenseDetailsScreen({
-    super.key,
-    required this.expenseId,
-  });
+  const ExpenseDetailsScreen({super.key, required this.expenseId});
 
   final String expenseId;
 
   @override
-  State<ExpenseDetailsScreen> createState() =>
-      _ExpenseDetailsScreenState();
+  State<ExpenseDetailsScreen> createState() => _ExpenseDetailsScreenState();
 }
 
-class _ExpenseDetailsScreenState
-    extends State<ExpenseDetailsScreen> {
+class _ExpenseDetailsScreenState extends State<ExpenseDetailsScreen> {
   bool isDeleting = false;
 
   @override
   Widget build(BuildContext context) {
-    final provider =
-        context.watch<ExpenseProvider>();
+    final provider = context.watch<ExpenseProvider>();
 
-    final Expense? expense =
-        provider.findById(widget.expenseId);
+    final Expense? expense = provider.findById(widget.expenseId);
 
     if (expense == null) {
       return const SmartScaffold(
         title: 'Expense',
-        body: Center(
-          child: Text(
-            'Expense not found.',
-          ),
-        ),
+        body: Center(child: Text('Expense not found.')),
       );
     }
 
@@ -69,37 +58,27 @@ class _ExpenseDetailsScreenState
           //------------------------------------------------------------------
           // Header
           //------------------------------------------------------------------
-
-          ExpenseHeader(
-            expense: expense,
-          ),
+          ExpenseHeader(expense: expense),
 
           const SizedBox(height: 24),
 
           //------------------------------------------------------------------
           // Information
           //------------------------------------------------------------------
-
-          ExpenseInformationSection(
-            expense: expense,
-          ),
+          ExpenseInformationSection(expense: expense),
 
           const SizedBox(height: 24),
 
           //------------------------------------------------------------------
           // Payment
           //------------------------------------------------------------------
-
-          ExpensePaymentSection(
-            expense: expense,
-          ),
+          ExpensePaymentSection(expense: expense),
 
           const SizedBox(height: 24),
 
           //------------------------------------------------------------------
           // Attachment
           //------------------------------------------------------------------
-
           ExpenseAttachmentSection(
             expense: expense,
             onView: () {
@@ -117,70 +96,46 @@ class _ExpenseDetailsScreenState
           //------------------------------------------------------------------
           // Notes
           //------------------------------------------------------------------
-
-          ExpenseNotesSection(
-            expense: expense,
-          ),
+          ExpenseNotesSection(expense: expense),
 
           const SizedBox(height: 32),
 
           //------------------------------------------------------------------
           // Actions
           //------------------------------------------------------------------
-
           ExpenseActionButtons(
             isDeleting: isDeleting,
 
             onEdit: () {
-              context.push(
-                AppRoutes.editExpense(
-                  expense.id!,
-                ),
-              );
+              context.push(AppRoutes.editExpense(expense.id!));
             },
 
             onDelete: () async {
               final confirmed =
                   await showDialog<bool>(
-                        context: context,
-                        builder: (_) =>
-                            AlertDialog(
-                          title: const Text(
-                            'Delete Expense',
-                          ),
-                          content:
-                              const Text(
-                            'Are you sure you want to delete this expense?',
-                          ),
-                          actions: [
-                            TextButton(
-                              onPressed: () {
-                                Navigator.pop(
-                                  context,
-                                  false,
-                                );
-                              },
-                              child:
-                                  const Text(
-                                'Cancel',
-                              ),
-                            ),
-                            FilledButton(
-                              onPressed: () {
-                                Navigator.pop(
-                                  context,
-                                  true,
-                                );
-                              },
-                              child:
-                                  const Text(
-                                'Delete',
-                              ),
-                            ),
-                          ],
+                    context: context,
+                    builder: (_) => AlertDialog(
+                      title: const Text('Delete Expense'),
+                      content: const Text(
+                        'Are you sure you want to delete this expense?',
+                      ),
+                      actions: [
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pop(context, false);
+                          },
+                          child: const Text('Cancel'),
                         ),
-                      ) ??
-                      false;
+                        FilledButton(
+                          onPressed: () {
+                            Navigator.pop(context, true);
+                          },
+                          child: const Text('Delete'),
+                        ),
+                      ],
+                    ),
+                  ) ??
+                  false;
 
               if (!confirmed) return;
 
@@ -188,9 +143,7 @@ class _ExpenseDetailsScreenState
                 isDeleting = true;
               });
 
-              await provider.deleteExpense(
-                expense.id!,
-              );
+              await provider.deleteExpense(expense.id!);
 
               if (!mounted) return;
 

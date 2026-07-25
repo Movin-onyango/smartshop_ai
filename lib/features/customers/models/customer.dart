@@ -26,10 +26,8 @@ class Customer {
 
     this.createdAt,
     this.updatedAt,
-  })  : statistics =
-            statistics ??
-            const CustomerStatistics(),
-        loyaltyAccount = loyaltyAccount;
+  }) : statistics = statistics ?? const CustomerStatistics(),
+       loyaltyAccount = loyaltyAccount;
 
   //---------------------------------------------------------------------------
   // Identity
@@ -77,46 +75,31 @@ class Customer {
   // Convenience Getters
   //---------------------------------------------------------------------------
 
-  bool get hasPhone =>
-      phone != null &&
-      phone!.trim().isNotEmpty;
+  bool get hasPhone => phone != null && phone!.trim().isNotEmpty;
 
-  bool get hasEmail =>
-      email != null &&
-      email!.trim().isNotEmpty;
+  bool get hasEmail => email != null && email!.trim().isNotEmpty;
 
-  bool get hasAddress =>
-      address != null &&
-      address!.trim().isNotEmpty;
+  bool get hasAddress => address != null && address!.trim().isNotEmpty;
 
-  bool get hasCredit =>
-      creditLimit > 0;
+  bool get hasCredit => creditLimit > 0;
 
-  double get currentBalance =>
-      statistics.currentBalance;
+  double get currentBalance => statistics.currentBalance;
 
-  double get availableCredit =>
-      creditLimit - statistics.currentBalance;
+  double get availableCredit => creditLimit - statistics.currentBalance;
 
-  bool get isOverLimit =>
-      statistics.currentBalance >
-      creditLimit;
+  bool get isOverLimit => statistics.currentBalance > creditLimit;
 
-  int get totalPurchases =>
-      statistics.totalPurchases;
+  int get totalPurchases => statistics.totalPurchases;
 
-  double get totalSpent =>
-      statistics.totalSpent;
+  double get totalSpent => statistics.totalSpent;
 
-  DateTime? get lastPurchaseDate =>
-      statistics.lastPurchaseDate;
+  DateTime? get lastPurchaseDate => statistics.lastPurchaseDate;
 
   //---------------------------------------------------------------------------
   // Loyalty Helpers
   //---------------------------------------------------------------------------
 
-  bool get hasLoyalty =>
-      loyaltyAccount != null;
+  bool get hasLoyalty => loyaltyAccount != null;
 
   //---------------------------------------------------------------------------
   // Copy
@@ -142,16 +125,11 @@ class Customer {
       email: email ?? this.email,
       address: address ?? this.address,
       notes: notes ?? this.notes,
-      creditLimit:
-          creditLimit ?? this.creditLimit,
-      statistics:
-          statistics ?? this.statistics,
-      loyaltyAccount:
-          loyaltyAccount ?? this.loyaltyAccount,
-      createdAt:
-          createdAt ?? this.createdAt,
-      updatedAt:
-          updatedAt ?? this.updatedAt,
+      creditLimit: creditLimit ?? this.creditLimit,
+      statistics: statistics ?? this.statistics,
+      loyaltyAccount: loyaltyAccount ?? this.loyaltyAccount,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
     );
   }
 }

@@ -1,6 +1,7 @@
 import '../repositories/expense_report_repository.dart';
 import 'base/base_report_getters.dart';
 import 'base/report_formatter.dart';
+
 /// ---------------------------------------------------------------------------
 /// ExpenseReportGetters
 /// ---------------------------------------------------------------------------
@@ -10,9 +11,7 @@ import 'base/report_formatter.dart';
 class ExpenseReportGetters extends BaseReportGetters {
   const ExpenseReportGetters();
 
-  static List<List<String>> tableRows(
-    ExpenseReportRepository repository,
-  ) {
+  static List<List<String>> tableRows(ExpenseReportRepository repository) {
     return repository
         .getAllExpenses()
         .map(
@@ -26,35 +25,24 @@ class ExpenseReportGetters extends BaseReportGetters {
         .toList();
   }
 
-  static double totalExpenses(
-    ExpenseReportRepository repository,
-  ) {
-    return repository
-        .getAllExpenses()
-        .fold(
-          0.0,
-          (sum, expense) => sum + expense.amount,
-        );
+  static double totalExpenses(ExpenseReportRepository repository) {
+    return repository.getAllExpenses().fold(
+      0.0,
+      (sum, expense) => sum + expense.amount,
+    );
   }
 
-  static int expenseCount(
-    ExpenseReportRepository repository,
-  ) {
-    return repository
-        .getAllExpenses()
-        .length;
+  static int expenseCount(ExpenseReportRepository repository) {
+    return repository.getAllExpenses().length;
   }
 
-  static double averageExpense(
-    ExpenseReportRepository repository,
-  ) {
+  static double averageExpense(ExpenseReportRepository repository) {
     final expenses = repository.getAllExpenses();
 
     if (expenses.isEmpty) {
       return 0.0;
     }
 
-    return totalExpenses(repository) /
-        expenses.length;
+    return totalExpenses(repository) / expenses.length;
   }
 }

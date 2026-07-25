@@ -40,7 +40,6 @@ class CheckoutTotals extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-
             _row(
               context,
               'Total Payable',
@@ -77,9 +76,7 @@ class CheckoutTotals extends StatelessWidget {
               'Outstanding Balance',
               'KSh ${balance.toStringAsFixed(2)}',
               valueStyle: theme.textTheme.titleMedium?.copyWith(
-                color: balance > 0
-                    ? theme.colorScheme.error
-                    : Colors.green,
+                color: balance > 0 ? theme.colorScheme.error : Colors.green,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -99,18 +96,12 @@ class CheckoutTotals extends StatelessWidget {
 
     return Row(
       children: [
-        Expanded(
-          child: Text(
-            label,
-            style: theme.textTheme.bodyLarge,
-          ),
-        ),
+        Expanded(child: Text(label, style: theme.textTheme.bodyLarge)),
         Text(
           value,
-          style: valueStyle ??
-              theme.textTheme.bodyLarge?.copyWith(
-                fontWeight: FontWeight.w600,
-              ),
+          style:
+              valueStyle ??
+              theme.textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.w600),
         ),
       ],
     );

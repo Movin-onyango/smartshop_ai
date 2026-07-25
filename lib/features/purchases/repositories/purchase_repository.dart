@@ -23,29 +23,19 @@ class PurchaseRepository {
       supplierId: '1',
       supplierName: 'Fresh Foods Ltd',
 
-      orderDate: DateTime.now().subtract(
-        const Duration(days: 7),
-      ),
+      orderDate: DateTime.now().subtract(const Duration(days: 7)),
 
-      expectedDeliveryDate: DateTime.now().subtract(
-        const Duration(days: 3),
-      ),
+      expectedDeliveryDate: DateTime.now().subtract(const Duration(days: 3)),
 
-      receivedDate: DateTime.now().subtract(
-        const Duration(days: 2),
-      ),
+      receivedDate: DateTime.now().subtract(const Duration(days: 2)),
 
       status: PurchaseStatus.received,
 
       notes: 'Weekly inventory restock.',
 
-      createdAt: DateTime.now().subtract(
-        const Duration(days: 7),
-      ),
+      createdAt: DateTime.now().subtract(const Duration(days: 7)),
 
-      updatedAt: DateTime.now().subtract(
-        const Duration(days: 2),
-      ),
+      updatedAt: DateTime.now().subtract(const Duration(days: 2)),
 
       items: [
         PurchaseItem(
@@ -77,25 +67,17 @@ class PurchaseRepository {
       supplierId: '2',
       supplierName: 'City Wholesalers',
 
-      orderDate: DateTime.now().subtract(
-        const Duration(days: 1),
-      ),
+      orderDate: DateTime.now().subtract(const Duration(days: 1)),
 
-      expectedDeliveryDate: DateTime.now().add(
-        const Duration(days: 2),
-      ),
+      expectedDeliveryDate: DateTime.now().add(const Duration(days: 2)),
 
       status: PurchaseStatus.ordered,
 
       notes: 'Monthly grocery stock.',
 
-      createdAt: DateTime.now().subtract(
-        const Duration(days: 1),
-      ),
+      createdAt: DateTime.now().subtract(const Duration(days: 1)),
 
-      updatedAt: DateTime.now().subtract(
-        const Duration(days: 1),
-      ),
+      updatedAt: DateTime.now().subtract(const Duration(days: 1)),
 
       items: [
         PurchaseItem(
@@ -121,9 +103,7 @@ class PurchaseRepository {
 
   static Purchase? findById(String id) {
     try {
-      return _purchases.firstWhere(
-        (purchase) => purchase.id == id,
-      );
+      return _purchases.firstWhere((purchase) => purchase.id == id);
     } catch (_) {
       return null;
     }
@@ -132,9 +112,7 @@ class PurchaseRepository {
   static void add(Purchase purchase) {
     _purchases.add(
       purchase.copyWith(
-        id: DateTime.now()
-            .millisecondsSinceEpoch
-            .toString(),
+        id: DateTime.now().millisecondsSinceEpoch.toString(),
         createdAt: DateTime.now(),
         updatedAt: DateTime.now(),
       ),
@@ -142,20 +120,14 @@ class PurchaseRepository {
   }
 
   static void update(Purchase purchase) {
-    final index = _purchases.indexWhere(
-      (element) => element.id == purchase.id,
-    );
+    final index = _purchases.indexWhere((element) => element.id == purchase.id);
 
     if (index == -1) return;
 
-    _purchases[index] = purchase.copyWith(
-      updatedAt: DateTime.now(),
-    );
+    _purchases[index] = purchase.copyWith(updatedAt: DateTime.now());
   }
 
   static void delete(String id) {
-    _purchases.removeWhere(
-      (purchase) => purchase.id == id,
-    );
+    _purchases.removeWhere((purchase) => purchase.id == id);
   }
 }

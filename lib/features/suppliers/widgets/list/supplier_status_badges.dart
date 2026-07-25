@@ -14,10 +14,7 @@ import '../../models/supplier.dart';
 /// • Over Credit Limit
 /// ---------------------------------------------------------------------------
 class SupplierStatusBadges extends StatelessWidget {
-  const SupplierStatusBadges({
-    super.key,
-    required this.supplier,
-  });
+  const SupplierStatusBadges({super.key, required this.supplier});
 
   final Supplier supplier;
 
@@ -30,16 +27,14 @@ class SupplierStatusBadges extends StatelessWidget {
         if (supplier.hasOutstandingBalance)
           _Badge(
             icon: Icons.account_balance_wallet_outlined,
-            label:
-                'Balance ${supplier.currentBalance.toStringAsFixed(2)}',
+            label: 'Balance ${supplier.currentBalance.toStringAsFixed(2)}',
             color: Colors.orange,
           ),
 
         if (supplier.hasCredit)
           _Badge(
             icon: Icons.credit_score,
-            label:
-                'Credit ${supplier.creditLimit.toStringAsFixed(0)}',
+            label: 'Credit ${supplier.creditLimit.toStringAsFixed(0)}',
             color: Colors.blue,
           ),
 
@@ -58,11 +53,7 @@ class SupplierStatusBadges extends StatelessWidget {
 /// Badge Widget
 /// ---------------------------------------------------------------------------
 class _Badge extends StatelessWidget {
-  const _Badge({
-    required this.icon,
-    required this.label,
-    required this.color,
-  });
+  const _Badge({required this.icon, required this.label, required this.color});
 
   final IconData icon;
   final String label;
@@ -71,23 +62,15 @@ class _Badge extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 10,
-        vertical: 6,
-      ),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
       decoration: BoxDecoration(
         color: color.withValues(alpha: .12),
-        borderRadius:
-            BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(20),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(
-            icon,
-            size: 16,
-            color: color,
-          ),
+          Icon(icon, size: 16, color: color),
 
           const SizedBox(width: 4),
 

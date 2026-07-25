@@ -80,9 +80,7 @@ final GoRouter appRouter = GoRouter(
           builder: (context, state) {
             final id = state.pathParameters['id']!;
 
-            return ProductDetailsScreen(
-              productId: id,
-            );
+            return ProductDetailsScreen(productId: id);
           },
         ),
         GoRoute(
@@ -90,9 +88,7 @@ final GoRouter appRouter = GoRouter(
           builder: (context, state) {
             final id = state.pathParameters['id']!;
 
-            return EditProductScreen(
-              productId: id,
-            );
+            return EditProductScreen(productId: id);
           },
         ),
       ],
@@ -111,9 +107,7 @@ final GoRouter appRouter = GoRouter(
           builder: (context, state) {
             final id = state.pathParameters['id']!;
 
-            return CategoryDetailsScreen(
-              categoryId: id,
-            );
+            return CategoryDetailsScreen(categoryId: id);
           },
         ),
         GoRoute(
@@ -121,9 +115,7 @@ final GoRouter appRouter = GoRouter(
           builder: (context, state) {
             final id = state.pathParameters['id']!;
 
-            return EditCategoryScreen(
-              categoryId: id,
-            );
+            return EditCategoryScreen(categoryId: id);
           },
         ),
       ],
@@ -142,9 +134,7 @@ final GoRouter appRouter = GoRouter(
           builder: (context, state) {
             final id = state.pathParameters['id']!;
 
-            return CustomerDetailsScreen(
-              customerId: id,
-            );
+            return CustomerDetailsScreen(customerId: id);
           },
         ),
         GoRoute(
@@ -152,9 +142,7 @@ final GoRouter appRouter = GoRouter(
           builder: (context, state) {
             final id = state.pathParameters['id']!;
 
-            return EditCustomerScreen(
-              customerId: id,
-            );
+            return EditCustomerScreen(customerId: id);
           },
         ),
       ],
@@ -173,9 +161,7 @@ final GoRouter appRouter = GoRouter(
           builder: (context, state) {
             final id = state.pathParameters['id']!;
 
-            return SupplierDetailsScreen(
-              supplierId: id,
-            );
+            return SupplierDetailsScreen(supplierId: id);
           },
         ),
         GoRoute(
@@ -183,9 +169,7 @@ final GoRouter appRouter = GoRouter(
           builder: (context, state) {
             final id = state.pathParameters['id']!;
 
-            return EditSupplierScreen(
-              supplierId: id,
-            );
+            return EditSupplierScreen(supplierId: id);
           },
         ),
       ],
@@ -203,23 +187,20 @@ final GoRouter appRouter = GoRouter(
 
     GoRoute(
       path: '/purchases/:id',
-      builder: (context, state) => PurchaseDetailsScreen(
-        purchaseId: state.pathParameters['id']!,
-      ),
+      builder: (context, state) =>
+          PurchaseDetailsScreen(purchaseId: state.pathParameters['id']!),
     ),
 
     GoRoute(
       path: '/purchases/:id/edit',
-      builder: (context, state) => EditPurchaseScreen(
-        purchaseId: state.pathParameters['id']!,
-      ),
+      builder: (context, state) =>
+          EditPurchaseScreen(purchaseId: state.pathParameters['id']!),
     ),
 
     GoRoute(
       path: '/purchases/:id/receive',
-      builder: (context, state) => ReceivePurchaseScreen(
-        purchaseId: state.pathParameters['id']!,
-      ),
+      builder: (context, state) =>
+          ReceivePurchaseScreen(purchaseId: state.pathParameters['id']!),
     ),
 
     GoRoute(
@@ -231,9 +212,7 @@ final GoRouter appRouter = GoRouter(
           builder: (context, state) {
             final id = state.pathParameters['id']!;
 
-            return InventoryDetailsScreen(
-              inventoryId: id,
-            );
+            return InventoryDetailsScreen(inventoryId: id);
           },
         ),
         GoRoute(
@@ -241,9 +220,7 @@ final GoRouter appRouter = GoRouter(
           builder: (context, state) {
             final id = state.pathParameters['id']!;
 
-            return StockAdjustmentScreen(
-              inventoryId: id,
-            );
+            return StockAdjustmentScreen(inventoryId: id);
           },
         ),
       ],
@@ -260,12 +237,9 @@ final GoRouter appRouter = GoRouter(
         GoRoute(
           path: 'checkout',
           builder: (context, state) {
-            final controller =
-                state.extra as SaleFormController;
+            final controller = state.extra as SaleFormController;
 
-            return CheckoutScreen(
-              saleController: controller,
-            );
+            return CheckoutScreen(saleController: controller);
           },
         ),
         GoRoute(
@@ -273,9 +247,7 @@ final GoRouter appRouter = GoRouter(
           builder: (context, state) {
             final id = state.pathParameters['id']!;
 
-            return SaleDetailsScreen(
-              saleId: id,
-            );
+            return SaleDetailsScreen(saleId: id);
           },
         ),
       ],
@@ -284,85 +256,69 @@ final GoRouter appRouter = GoRouter(
     // ---------------------------------------------------------------------------
     // Expenses
     // ---------------------------------------------------------------------------
-
     GoRoute(
       path: AppRoutes.expenses,
-      builder: (context, state) =>
-          const ExpenseListScreen(),
+      builder: (context, state) => const ExpenseListScreen(),
     ),
 
     GoRoute(
       path: AppRoutes.addExpense,
-      builder: (context, state) =>
-          const AddExpenseScreen(),
+      builder: (context, state) => const AddExpenseScreen(),
     ),
 
     GoRoute(
       path: '/expenses/:id',
       builder: (context, state) =>
-          ExpenseDetailsScreen(
-        expenseId: state.pathParameters['id']!,
-      ),
+          ExpenseDetailsScreen(expenseId: state.pathParameters['id']!),
     ),
 
     GoRoute(
       path: '/expenses/:id/edit',
       builder: (context, state) =>
-          EditExpenseScreen(
-        expenseId: state.pathParameters['id']!,
-      ),
+          EditExpenseScreen(expenseId: state.pathParameters['id']!),
     ),
 
     //---------------------------------------------------------------------------
     // Reports
     //---------------------------------------------------------------------------
-
     GoRoute(
       path: AppRoutes.reports,
-      builder: (_, _) =>
-          const ReportsDashboardScreen(),
+      builder: (_, _) => const ReportsDashboardScreen(),
     ),
 
     GoRoute(
       path: AppRoutes.salesReport,
-      builder: (_,_) =>
-          const SalesReportScreen(),
+      builder: (_, _) => const SalesReportScreen(),
     ),
 
     GoRoute(
       path: AppRoutes.inventoryReport,
-      builder: (_, _) =>
-          const InventoryReportScreen(),
+      builder: (_, _) => const InventoryReportScreen(),
     ),
 
     GoRoute(
       path: AppRoutes.purchaseReport,
-      builder: (_, _) =>
-          const PurchaseReportScreen(),
+      builder: (_, _) => const PurchaseReportScreen(),
     ),
 
     GoRoute(
       path: AppRoutes.expenseReport,
-      builder: (_, _) =>
-          const ExpenseReportScreen(),
+      builder: (_, _) => const ExpenseReportScreen(),
     ),
 
     GoRoute(
       path: AppRoutes.customerReport,
-      builder: (_, _) =>
-          const CustomerReportScreen(),
+      builder: (_, _) => const CustomerReportScreen(),
     ),
 
     GoRoute(
       path: AppRoutes.supplierReport,
-      builder: (_, _) =>
-          const SupplierReportScreen(),
+      builder: (_, _) => const SupplierReportScreen(),
     ),
 
     GoRoute(
       path: AppRoutes.financialReport,
-      builder: (_, _) =>
-          const FinancialReportScreen(),
+      builder: (_, _) => const FinancialReportScreen(),
     ),
   ],
 );

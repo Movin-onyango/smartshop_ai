@@ -21,10 +21,7 @@ class ReceivePurchaseItemsCard extends StatelessWidget {
 
   final List<PurchaseItem> items;
 
-  final void Function(
-    int index,
-    double quantity,
-  ) onQuantityChanged;
+  final void Function(int index, double quantity) onQuantityChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -32,14 +29,11 @@ class ReceivePurchaseItemsCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
-          crossAxisAlignment:
-              CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               'Items Received',
-              style: Theme.of(context)
-                  .textTheme
-                  .titleLarge,
+              style: Theme.of(context).textTheme.titleLarge,
             ),
 
             const SizedBox(height: 20),
@@ -47,44 +41,26 @@ class ReceivePurchaseItemsCard extends StatelessWidget {
             if (items.isEmpty)
               const Center(
                 child: Padding(
-                  padding:
-                      EdgeInsets.symmetric(
-                    vertical: 24,
-                  ),
-                  child: Text(
-                    'No purchase items.',
-                  ),
+                  padding: EdgeInsets.symmetric(vertical: 24),
+                  child: Text('No purchase items.'),
                 ),
               ),
 
-            ...List.generate(
-              items.length,
-              (index) {
-                final item = items[index];
+            ...List.generate(items.length, (index) {
+              final item = items[index];
 
-                return Padding(
-                  padding:
-                      const EdgeInsets.only(
-                    bottom: 20,
-                  ),
-                  child: _ReceiveItemTile(
-                    item: item,
-                    onChanged: (value) {
-                      final quantity =
-                          double.tryParse(
-                                value,
-                              ) ??
-                              0;
+              return Padding(
+                padding: const EdgeInsets.only(bottom: 20),
+                child: _ReceiveItemTile(
+                  item: item,
+                  onChanged: (value) {
+                    final quantity = double.tryParse(value) ?? 0;
 
-                      onQuantityChanged(
-                        index,
-                        quantity,
-                      );
-                    },
-                  ),
-                );
-              },
-            ),
+                    onQuantityChanged(index, quantity);
+                  },
+                ),
+              );
+            }),
           ],
         ),
       ),
@@ -95,12 +71,8 @@ class ReceivePurchaseItemsCard extends StatelessWidget {
 /// ---------------------------------------------------------------------------
 /// Receive Item Tile
 /// ---------------------------------------------------------------------------
-class _ReceiveItemTile
-    extends StatelessWidget {
-  const _ReceiveItemTile({
-    required this.item,
-    required this.onChanged,
-  });
+class _ReceiveItemTile extends StatelessWidget {
+  const _ReceiveItemTile({required this.item, required this.onChanged});
 
   final PurchaseItem item;
 
@@ -109,46 +81,26 @@ class _ReceiveItemTile
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment:
-          CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          item.productName,
-          style: Theme.of(context)
-              .textTheme
-              .titleMedium,
-        ),
+        Text(item.productName, style: Theme.of(context).textTheme.titleMedium),
 
         const SizedBox(height: 6),
 
-        Text(
-          'Ordered: ${item.quantity}',
-        ),
+        Text('Ordered: ${item.quantity}'),
 
-        Text(
-          'Already Received: ${item.receivedQuantity}',
-        ),
+        Text('Already Received: ${item.receivedQuantity}'),
 
-        Text(
-          'Remaining: ${item.remainingQuantity}',
-        ),
+        Text('Remaining: ${item.remainingQuantity}'),
 
         const SizedBox(height: 12),
 
         TextFormField(
-          initialValue:
-              item.receivedQuantity
-                  .toString(),
-          keyboardType:
-              const TextInputType.numberWithOptions(
-            decimal: true,
-          ),
-          decoration:
-              const InputDecoration(
-            labelText:
-                'Receive Quantity',
-            border:
-                OutlineInputBorder(),
+          initialValue: item.receivedQuantity.toString(),
+          keyboardType: const TextInputType.numberWithOptions(decimal: true),
+          decoration: const InputDecoration(
+            labelText: 'Receive Quantity',
+            border: OutlineInputBorder(),
           ),
           onChanged: onChanged,
         ),

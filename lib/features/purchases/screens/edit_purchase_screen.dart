@@ -23,20 +23,15 @@ import '../widgets/form/purchase_form.dart';
 /// • Navigation
 /// ---------------------------------------------------------------------------
 class EditPurchaseScreen extends StatefulWidget {
-  const EditPurchaseScreen({
-    super.key,
-    required this.purchaseId,
-  });
+  const EditPurchaseScreen({super.key, required this.purchaseId});
 
   final String purchaseId;
 
   @override
-  State<EditPurchaseScreen> createState() =>
-      _EditPurchaseScreenState();
+  State<EditPurchaseScreen> createState() => _EditPurchaseScreenState();
 }
 
-class _EditPurchaseScreenState
-    extends State<EditPurchaseScreen> {
+class _EditPurchaseScreenState extends State<EditPurchaseScreen> {
   late Purchase purchase;
 
   late PurchaseFormController controller;
@@ -51,14 +46,9 @@ class _EditPurchaseScreenState
 
     if (_initialized) return;
 
-    purchase = context
-        .read<PurchaseProvider>()
-        .findById(widget.purchaseId)!;
+    purchase = context.read<PurchaseProvider>().findById(widget.purchaseId)!;
 
-    controller =
-        PurchaseFormController.fromPurchase(
-      purchase,
-    );
+    controller = PurchaseFormController.fromPurchase(purchase);
 
     _initialized = true;
   }
@@ -82,18 +72,12 @@ class _EditPurchaseScreenState
       _isSaving = true;
     });
 
-    final updatedPurchase =
-        controller.toPurchase(
+    final updatedPurchase = controller.toPurchase(
       id: purchase.id,
-      purchaseNumber:
-          purchase.purchaseNumber,
+      purchaseNumber: purchase.purchaseNumber,
     );
 
-    await context
-        .read<PurchaseProvider>()
-        .updatePurchase(
-          updatedPurchase,
-        );
+    await context.read<PurchaseProvider>().updatePurchase(updatedPurchase);
 
     if (!mounted) return;
 
@@ -125,10 +109,7 @@ class _EditPurchaseScreenState
   // Edit Item
   //---------------------------------------------------------------------------
 
-  Future<void> _editItem(
-    int index,
-    PurchaseItem item,
-  ) async {
+  Future<void> _editItem(int index, PurchaseItem item) async {
     // TODO
   }
 
@@ -144,8 +125,7 @@ class _EditPurchaseScreenState
 
         isSaving: _isSaving,
 
-        onSelectSupplier:
-            _selectSupplier,
+        onSelectSupplier: _selectSupplier,
 
         onAddItem: _addItem,
 

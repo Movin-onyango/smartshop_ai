@@ -14,13 +14,13 @@ class AppSpacing {
   // Fixed Spacing
   // ==========================================================
 
-  static const double xs = unit;          // 4
-  static const double sm = unit * 2;      // 8
-  static const double md = unit * 4;      // 16
-  static const double lg = unit * 6;      // 24
-  static const double xl = unit * 8;      // 32
-  static const double xxl = unit * 12;    // 48
-  static const double xxxl = unit * 16;   // 64
+  static const double xs = unit; // 4
+  static const double sm = unit * 2; // 8
+  static const double md = unit * 4; // 16
+  static const double lg = unit * 6; // 24
+  static const double xl = unit * 8; // 32
+  static const double xxl = unit * 12; // 48
+  static const double xxxl = unit * 16; // 64
 
   // ==========================================================
   // Screen Padding
@@ -28,11 +28,13 @@ class AppSpacing {
 
   static const EdgeInsets screenPadding = EdgeInsets.all(md);
 
-  static const EdgeInsets screenPaddingHorizontal =
-      EdgeInsets.symmetric(horizontal: md);
+  static const EdgeInsets screenPaddingHorizontal = EdgeInsets.symmetric(
+    horizontal: md,
+  );
 
-  static const EdgeInsets screenPaddingVertical =
-      EdgeInsets.symmetric(vertical: md);
+  static const EdgeInsets screenPaddingVertical = EdgeInsets.symmetric(
+    vertical: md,
+  );
 
   // ==========================================================
   // Card Padding
@@ -44,8 +46,7 @@ class AppSpacing {
   // List Item Padding
   // ==========================================================
 
-  static const EdgeInsets listItemPadding =
-      EdgeInsets.symmetric(
+  static const EdgeInsets listItemPadding = EdgeInsets.symmetric(
     horizontal: md,
     vertical: sm,
   );
@@ -60,8 +61,7 @@ class AppSpacing {
   // Button Padding
   // ==========================================================
 
-  static const EdgeInsets buttonPadding =
-      EdgeInsets.symmetric(
+  static const EdgeInsets buttonPadding = EdgeInsets.symmetric(
     horizontal: lg,
     vertical: md,
   );
@@ -75,23 +75,17 @@ class AppSpacing {
   static const SizedBox gapMD = SizedBox(height: md);
   static const SizedBox gapLG = SizedBox(height: lg);
   static const SizedBox gapXL = SizedBox(height: xl);
-static const SizedBox gapXXL = SizedBox(height: 48);
+  static const SizedBox gapXXL = SizedBox(height: 48);
 
-static const SizedBox gapHorizontalXXL =
-    SizedBox(width: 48);
+  static const SizedBox gapHorizontalXXL = SizedBox(width: 48);
 
-  static const SizedBox gapHorizontalXS =
-      SizedBox(width: xs);
+  static const SizedBox gapHorizontalXS = SizedBox(width: xs);
 
-  static const SizedBox gapHorizontalSM =
-      SizedBox(width: sm);
+  static const SizedBox gapHorizontalSM = SizedBox(width: sm);
 
-  static const SizedBox gapHorizontalMD =
-      SizedBox(width: md);
+  static const SizedBox gapHorizontalMD = SizedBox(width: md);
 
-  static const SizedBox gapHorizontalLG =
-      SizedBox(width: lg);
+  static const SizedBox gapHorizontalLG = SizedBox(width: lg);
 
-  static const SizedBox gapHorizontalXL =
-      SizedBox(width: xl);
+  static const SizedBox gapHorizontalXL = SizedBox(width: xl);
 }

@@ -50,14 +50,11 @@ class ExpensePaymentCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
-          crossAxisAlignment:
-              CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               'Payment Information',
-              style: Theme.of(context)
-                  .textTheme
-                  .titleLarge,
+              style: Theme.of(context).textTheme.titleLarge,
             ),
 
             const SizedBox(height: 20),
@@ -65,11 +62,9 @@ class ExpensePaymentCard extends StatelessWidget {
             //------------------------------------------------------------------
             // Amount
             //------------------------------------------------------------------
-
             TextFormField(
               controller: amountController,
-              keyboardType:
-                  const TextInputType.numberWithOptions(
+              keyboardType: const TextInputType.numberWithOptions(
                 decimal: true,
               ),
               decoration: const InputDecoration(
@@ -78,11 +73,9 @@ class ExpensePaymentCard extends StatelessWidget {
                 border: OutlineInputBorder(),
               ),
               validator: (value) {
-                final amount =
-                    double.tryParse(value ?? '');
+                final amount = double.tryParse(value ?? '');
 
-                if (amount == null ||
-                    amount <= 0) {
+                if (amount == null || amount <= 0) {
                   return 'Enter a valid amount';
                 }
 
@@ -95,17 +88,14 @@ class ExpensePaymentCard extends StatelessWidget {
             //------------------------------------------------------------------
             // Tax
             //------------------------------------------------------------------
-
             TextFormField(
               controller: taxController,
-              keyboardType:
-                  const TextInputType.numberWithOptions(
+              keyboardType: const TextInputType.numberWithOptions(
                 decimal: true,
               ),
               decoration: const InputDecoration(
                 labelText: 'Tax (%)',
-                prefixIcon:
-                    Icon(Icons.percent),
+                prefixIcon: Icon(Icons.percent),
                 border: OutlineInputBorder(),
               ),
             ),
@@ -115,19 +105,12 @@ class ExpensePaymentCard extends StatelessWidget {
             //------------------------------------------------------------------
             // Payment Method
             //------------------------------------------------------------------
-
             TextFormField(
-              controller:
-                  paymentMethodController,
-              decoration:
-                  const InputDecoration(
-                labelText:
-                    'Payment Method',
-                prefixIcon: Icon(
-                  Icons.account_balance_wallet,
-                ),
-                border:
-                    OutlineInputBorder(),
+              controller: paymentMethodController,
+              decoration: const InputDecoration(
+                labelText: 'Payment Method',
+                prefixIcon: Icon(Icons.account_balance_wallet),
+                border: OutlineInputBorder(),
               ),
             ),
 
@@ -136,31 +119,22 @@ class ExpensePaymentCard extends StatelessWidget {
             //------------------------------------------------------------------
             // Status
             //------------------------------------------------------------------
-
-            DropdownButtonFormField<
-                ExpenseStatus>(
+            DropdownButtonFormField<ExpenseStatus>(
               initialValue: status,
-              decoration:
-                  const InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Status',
-                prefixIcon:
-                    Icon(Icons.flag),
-                border:
-                    OutlineInputBorder(),
+                prefixIcon: Icon(Icons.flag),
+                border: OutlineInputBorder(),
               ),
               items: ExpenseStatus.values
                   .map(
-                    (status) =>
-                        DropdownMenuItem(
+                    (status) => DropdownMenuItem(
                       value: status,
-                      child: Text(
-                        status.label,
-                      ),
+                      child: Text(status.label),
                     ),
                   )
                   .toList(),
-              onChanged:
-                  onStatusChanged,
+              onChanged: onStatusChanged,
             ),
 
             const SizedBox(height: 20),
@@ -168,40 +142,30 @@ class ExpensePaymentCard extends StatelessWidget {
             //------------------------------------------------------------------
             // Expense Date
             //------------------------------------------------------------------
-
             ListTile(
               contentPadding: EdgeInsets.zero,
-              leading: const Icon(
-                Icons.calendar_today,
-              ),
-              title:
-                  const Text('Expense Date'),
+              leading: const Icon(Icons.calendar_today),
+              title: const Text('Expense Date'),
               subtitle: Text(
                 '${expenseDate.day}/${expenseDate.month}/${expenseDate.year}',
               ),
-              trailing:
-                  const Icon(Icons.edit),
+              trailing: const Icon(Icons.edit),
               onTap: onExpenseDateTap,
             ),
 
             //------------------------------------------------------------------
             // Due Date
             //------------------------------------------------------------------
-
             ListTile(
               contentPadding: EdgeInsets.zero,
-              leading: const Icon(
-                Icons.event,
-              ),
-              title:
-                  const Text('Due Date'),
+              leading: const Icon(Icons.event),
+              title: const Text('Due Date'),
               subtitle: Text(
                 dueDate == null
                     ? 'Not set'
                     : '${dueDate!.day}/${dueDate!.month}/${dueDate!.year}',
               ),
-              trailing:
-                  const Icon(Icons.edit),
+              trailing: const Icon(Icons.edit),
               onTap: onDueDateTap,
             ),
           ],

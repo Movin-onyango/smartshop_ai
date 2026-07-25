@@ -40,13 +40,8 @@ class ReportShortcutCard extends StatelessWidget {
               children: [
                 CircleAvatar(
                   radius: 28,
-                  backgroundColor:
-                      color.withValues(alpha: 0.12),
-                  child: Icon(
-                    icon,
-                    color: color,
-                    size: 30,
-                  ),
+                  backgroundColor: color.withValues(alpha: 0.12),
+                  child: Icon(icon, color: color, size: 30),
                 ),
 
                 const SizedBox(height: 16),
@@ -54,39 +49,27 @@ class ReportShortcutCard extends StatelessWidget {
                 Text(
                   title,
                   textAlign: TextAlign.center,
-                  style: Theme.of(context)
-                      .textTheme
-                      .titleMedium
-                      ?.copyWith(
-                        fontWeight: FontWeight.w600,
-                      ),
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
 
                 const SizedBox(height: 8),
 
                 Row(
-                  mainAxisAlignment:
-                      MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
                       'Open Report',
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodySmall
-                          ?.copyWith(
-                            color: color,
-                            fontWeight:
-                                FontWeight.w600,
-                          ),
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        color: color,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
 
                     const SizedBox(width: 4),
 
-                    Icon(
-                      Icons.arrow_forward,
-                      size: 16,
-                      color: color,
-                    ),
+                    Icon(Icons.arrow_forward, size: 16, color: color),
                   ],
                 ),
               ],

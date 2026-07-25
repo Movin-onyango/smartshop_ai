@@ -9,10 +9,7 @@ import '../../models/customer.dart';
 /// Displays customer purchase statistics.
 /// ---------------------------------------------------------------------------
 class PurchaseSummary extends StatelessWidget {
-  const PurchaseSummary({
-    super.key,
-    required this.customer,
-  });
+  const PurchaseSummary({super.key, required this.customer});
 
   final Customer customer;
 
@@ -22,57 +19,33 @@ class PurchaseSummary extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
-          crossAxisAlignment:
-              CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-
             Text(
               'Purchase Summary',
-              style: Theme.of(context)
-                  .textTheme
-                  .titleLarge,
+              style: Theme.of(context).textTheme.titleLarge,
             ),
 
             const SizedBox(height: 24),
 
             ListTile(
-              contentPadding:
-                  EdgeInsets.zero,
-              leading: const Icon(
-                Icons.shopping_cart,
-              ),
-              title: const Text(
-                'Total Purchases',
-              ),
-              trailing: Text(
-                customer.totalPurchases
-                    .toString(),
-              ),
+              contentPadding: EdgeInsets.zero,
+              leading: const Icon(Icons.shopping_cart),
+              title: const Text('Total Purchases'),
+              trailing: Text(customer.totalPurchases.toString()),
             ),
 
             ListTile(
-              contentPadding:
-                  EdgeInsets.zero,
-              leading: const Icon(
-                Icons.payments,
-              ),
-              title: const Text(
-                'Total Spent',
-              ),
-              trailing: Text(
-                'KES ${customer.totalSpent.toStringAsFixed(2)}',
-              ),
+              contentPadding: EdgeInsets.zero,
+              leading: const Icon(Icons.payments),
+              title: const Text('Total Spent'),
+              trailing: Text('KES ${customer.totalSpent.toStringAsFixed(2)}'),
             ),
 
             ListTile(
-              contentPadding:
-                  EdgeInsets.zero,
-              leading: const Icon(
-                Icons.bar_chart,
-              ),
-              title: const Text(
-                'Average Purchase',
-              ),
+              contentPadding: EdgeInsets.zero,
+              leading: const Icon(Icons.bar_chart),
+              title: const Text('Average Purchase'),
               trailing: Text(
                 customer.totalPurchases == 0
                     ? 'KES 0.00'
@@ -82,14 +55,9 @@ class PurchaseSummary extends StatelessWidget {
 
             if (customer.lastPurchaseDate != null)
               ListTile(
-                contentPadding:
-                    EdgeInsets.zero,
-                leading: const Icon(
-                  Icons.calendar_today,
-                ),
-                title: const Text(
-                  'Last Purchase',
-                ),
+                contentPadding: EdgeInsets.zero,
+                leading: const Icon(Icons.calendar_today),
+                title: const Text('Last Purchase'),
                 trailing: Text(
                   '${customer.lastPurchaseDate!.day}/${customer.lastPurchaseDate!.month}/${customer.lastPurchaseDate!.year}',
                 ),

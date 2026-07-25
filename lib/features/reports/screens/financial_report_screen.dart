@@ -3,11 +3,12 @@ import 'package:provider/provider.dart';
 
 import '../../../shared/widgets/layouts/smart_scaffold.dart';
 
+import '../exporters/report_export_manager.dart';
 import '../providers/report_provider.dart';
 
 import '../widgets/cards/report_summary_card.dart';
-import '../widgets/filters/date_filter_bar.dart';
 import '../widgets/dashboard/report_section_header.dart';
+import '../widgets/filters/date_filter_bar.dart';
 import '../widgets/statistics/report_statistic_tile.dart';
 
 /// ---------------------------------------------------------------------------
@@ -20,31 +21,37 @@ import '../widgets/statistics/report_statistic_tile.dart';
 /// • Financial KPIs
 /// • Financial Statistics
 /// • Profit Analysis
+/// • Export Report
 /// • Future Charts
 /// ---------------------------------------------------------------------------
 class FinancialReportScreen extends StatelessWidget {
-  const FinancialReportScreen({
-    super.key,
-  });
+  const FinancialReportScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Consumer<ReportProvider>(
-      builder: (
-        context,
-        provider,
-        _,
-      ) {
+      builder: (context, provider, _) {
         final revenue = provider.revenue;
         final expenses = provider.totalExpenses;
         final profit = provider.netProfit;
 
-        final margin = revenue == 0
-            ? 0.0
-            : (profit / revenue) * 100;
+        final margin =
+            revenue == 0 ? 0.0 : (profit / revenue) * 100;
 
         return SmartScaffold(
           title: 'Financial Report',
+
+          actions: [
+            IconButton(
+              tooltip: 'Export Report',
+              icon: const Icon(Icons.download),
+              onPressed: () => _showExportDialog(
+                context,
+                provider,
+              ),
+            ),
+          ],
+
           body: RefreshIndicator(
             onRefresh: provider.refresh,
             child: ListView(
@@ -53,7 +60,6 @@ class FinancialReportScreen extends StatelessWidget {
                 //------------------------------------------------------------------
                 // Header
                 //------------------------------------------------------------------
-
                 const ReportSectionHeader(
                   title: 'Financial Overview',
                   subtitle:
@@ -72,7 +78,6 @@ class FinancialReportScreen extends StatelessWidget {
                 //------------------------------------------------------------------
                 // KPI Cards
                 //------------------------------------------------------------------
-
                 GridView.count(
                   shrinkWrap: true,
                   physics:
@@ -121,7 +126,6 @@ class FinancialReportScreen extends StatelessWidget {
                 //------------------------------------------------------------------
                 // Statistics
                 //------------------------------------------------------------------
-
                 const ReportSectionHeader(
                   title: 'Financial Statistics',
                 ),
@@ -172,7 +176,6 @@ class FinancialReportScreen extends StatelessWidget {
                 //------------------------------------------------------------------
                 // Chart Placeholder
                 //------------------------------------------------------------------
-
                 const ReportSectionHeader(
                   title: 'Financial Trend',
                 ),
@@ -185,8 +188,7 @@ class FinancialReportScreen extends StatelessWidget {
                     child: Center(
                       child: Text(
                         'Financial Chart\n(Coming Soon)',
-                        textAlign:
-                            TextAlign.center,
+                        textAlign: TextAlign.center,
                         style: Theme.of(context)
                             .textTheme
                             .titleMedium,
@@ -201,6 +203,77 @@ class FinancialReportScreen extends StatelessWidget {
           ),
         );
       },
+    );
+  }
+
+  //---------------------------------------------------------------------------
+  // Export Dialog
+  //---------------------------------------------------------------------------
+
+  Future<void> _showExportDialog(
+    BuildContext context,
+    ReportProvider provider,
+  ) async {
+    await showDialog(
+      context: context,
+      builder: (_) => AlertDialog(
+        title: const Text(
+          'Export Financial Report',
+        ),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ListTile(
+              leading:
+                  const Icon(Icons.picture_as_pdf),
+              title:
+                  const Text('Export as PDF'),
+              onTap: () async {
+                Navigator.pop(context);
+
+                await provider.exportReport(
+                  controller:
+                      provider.financialController,
+                  format:
+                      ExportFormat.pdf,
+                );
+              },
+            ),
+            ListTile(
+              leading:
+                  const Icon(Icons.table_chart),
+              title:
+                  const Text('Export as Excel'),
+              onTap: () async {
+                Navigator.pop(context);
+
+                await provider.exportReport(
+                  controller:
+                      provider.financialController,
+                  format:
+                      ExportFormat.excel,
+                );
+              },
+            ),
+            ListTile(
+              leading:
+                  const Icon(Icons.description),
+              title:
+                  const Text('Export as CSV'),
+              onTap: () async {
+                Navigator.pop(context);
+
+                await provider.exportReport(
+                  controller:
+                      provider.financialController,
+                  format:
+                      ExportFormat.csv,
+                );
+              },
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

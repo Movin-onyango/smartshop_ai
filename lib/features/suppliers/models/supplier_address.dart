@@ -64,10 +64,7 @@ class SupplierAddress {
       county,
       postalCode,
       country,
-    ]
-        .whereType<String>()
-        .where((e) => e.trim().isNotEmpty)
-        .toList();
+    ].whereType<String>().where((e) => e.trim().isNotEmpty).toList();
 
     return parts.join(', ');
   }

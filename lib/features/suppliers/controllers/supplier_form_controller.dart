@@ -13,57 +13,40 @@ import '../models/supplier_statistics.dart';
 class SupplierFormController {
   SupplierFormController();
 
-  SupplierFormController.fromSupplier(
-    Supplier supplier,
-  ) {
+  SupplierFormController.fromSupplier(Supplier supplier) {
     id = supplier.id;
 
     nameController.text = supplier.name;
-    contactPersonController.text =
-        supplier.contactPerson ?? '';
+    contactPersonController.text = supplier.contactPerson ?? '';
 
-    phoneController.text =
-        supplier.phone ?? '';
+    phoneController.text = supplier.phone ?? '';
 
-    emailController.text =
-        supplier.email ?? '';
+    emailController.text = supplier.email ?? '';
 
-    taxNumberController.text =
-        supplier.taxNumber ?? '';
+    taxNumberController.text = supplier.taxNumber ?? '';
 
-    paymentTermsController.text =
-        supplier.paymentTerms ?? '';
+    paymentTermsController.text = supplier.paymentTerms ?? '';
 
-    notesController.text =
-        supplier.notes ?? '';
+    notesController.text = supplier.notes ?? '';
 
-    creditLimitController.text =
-        supplier.creditLimit.toString();
+    creditLimitController.text = supplier.creditLimit.toString();
 
-    currentBalanceController.text =
-        supplier.currentBalance.toString();
+    currentBalanceController.text = supplier.currentBalance.toString();
 
     if (supplier.address != null) {
-      countryController.text =
-          supplier.address!.country ?? '';
+      countryController.text = supplier.address!.country ?? '';
 
-      countyController.text =
-          supplier.address!.county ?? '';
+      countyController.text = supplier.address!.county ?? '';
 
-      cityController.text =
-          supplier.address!.city ?? '';
+      cityController.text = supplier.address!.city ?? '';
 
-      postalCodeController.text =
-          supplier.address!.postalCode ?? '';
+      postalCodeController.text = supplier.address!.postalCode ?? '';
 
-      streetController.text =
-          supplier.address!.street ?? '';
+      streetController.text = supplier.address!.street ?? '';
 
-      buildingController.text =
-          supplier.address!.building ?? '';
+      buildingController.text = supplier.address!.building ?? '';
 
-      landmarkController.text =
-          supplier.address!.landmark ?? '';
+      landmarkController.text = supplier.address!.landmark ?? '';
     }
   }
 
@@ -79,81 +62,64 @@ class SupplierFormController {
   // Supplier Information
   //---------------------------------------------------------------------------
 
-  final nameController =
-      TextEditingController();
+  final nameController = TextEditingController();
 
-  final contactPersonController =
-      TextEditingController();
+  final contactPersonController = TextEditingController();
 
   //---------------------------------------------------------------------------
   // Contact
   //---------------------------------------------------------------------------
 
-  final phoneController =
-      TextEditingController();
+  final phoneController = TextEditingController();
 
-  final emailController =
-      TextEditingController();
+  final emailController = TextEditingController();
 
   //---------------------------------------------------------------------------
   // Address
   //---------------------------------------------------------------------------
 
-  final countryController =
-      TextEditingController();
+  final countryController = TextEditingController();
 
-  final countyController =
-      TextEditingController();
+  final countyController = TextEditingController();
 
-  final cityController =
-      TextEditingController();
+  final cityController = TextEditingController();
 
-  final postalCodeController =
-      TextEditingController();
+  final postalCodeController = TextEditingController();
 
-  final streetController =
-      TextEditingController();
+  final streetController = TextEditingController();
 
-  final buildingController =
-      TextEditingController();
+  final buildingController = TextEditingController();
 
-  final landmarkController =
-      TextEditingController();
+  final landmarkController = TextEditingController();
 
   //---------------------------------------------------------------------------
   // Business
   //---------------------------------------------------------------------------
 
-  final taxNumberController =
-      TextEditingController();
+  final taxNumberController = TextEditingController();
 
-  final paymentTermsController =
-      TextEditingController();
+  final paymentTermsController = TextEditingController();
 
   //---------------------------------------------------------------------------
   // Financial
   //---------------------------------------------------------------------------
 
-  final creditLimitController =
-      TextEditingController();
+  final creditLimitController = TextEditingController();
 
-  final currentBalanceController =
-      TextEditingController();
+  final currentBalanceController = TextEditingController();
 
   //---------------------------------------------------------------------------
   // Notes
   //---------------------------------------------------------------------------
 
-  final notesController =
-      TextEditingController();
+  final notesController = TextEditingController();
 
   //---------------------------------------------------------------------------
   // Validation
   //---------------------------------------------------------------------------
 
   bool validate() {
-    return formKey.currentState?.validate() ??
-        false;
+    return formKey.currentState?.validate() ?? false;
   }
 
   //---------------------------------------------------------------------------
@@ -166,53 +132,39 @@ class SupplierFormController {
 
       name: nameController.text.trim(),
 
-      contactPerson:
-          contactPersonController.text.trim(),
+      contactPerson: contactPersonController.text.trim(),
 
       phone: phoneController.text.trim(),
 
       email: emailController.text.trim(),
 
-      taxNumber:
-          taxNumberController.text.trim(),
+      taxNumber: taxNumberController.text.trim(),
 
-      paymentTerms:
-          paymentTermsController.text.trim(),
+      paymentTerms: paymentTermsController.text.trim(),
 
       notes: notesController.text.trim(),
 
-      creditLimit: double.tryParse(
-              creditLimitController.text) ??
-          0,
+      creditLimit: double.tryParse(creditLimitController.text) ?? 0,
 
-      currentBalance: double.tryParse(
-              currentBalanceController.text) ??
-          0,
+      currentBalance: double.tryParse(currentBalanceController.text) ?? 0,
 
       address: SupplierAddress(
-        country:
-            countryController.text.trim(),
+        country: countryController.text.trim(),
 
-        county:
-            countyController.text.trim(),
+        county: countyController.text.trim(),
 
         city: cityController.text.trim(),
 
-        postalCode:
-            postalCodeController.text.trim(),
+        postalCode: postalCodeController.text.trim(),
 
-        street:
-            streetController.text.trim(),
+        street: streetController.text.trim(),
 
-        building:
-            buildingController.text.trim(),
+        building: buildingController.text.trim(),
 
-        landmark:
-            landmarkController.text.trim(),
+        landmark: landmarkController.text.trim(),
       ),
 
-      statistics:
-          const SupplierStatistics(),
+      statistics: const SupplierStatistics(),
 
       createdAt: DateTime.now(),
 

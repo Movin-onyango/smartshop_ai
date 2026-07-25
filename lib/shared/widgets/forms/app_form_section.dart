@@ -49,11 +49,7 @@ class AppFormSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          AppSectionTitle(
-            title: title,
-            subtitle: subtitle,
-            trailing: trailing,
-          ),
+          AppSectionTitle(title: title, subtitle: subtitle, trailing: trailing),
 
           SizedBox(height: contentSpacing),
 

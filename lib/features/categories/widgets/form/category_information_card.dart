@@ -24,10 +24,7 @@ import '../../controllers/category_form_controller.dart';
 /// • EditCategoryScreen
 /// ---------------------------------------------------------------------------
 class CategoryInformationCard extends StatelessWidget {
-  const CategoryInformationCard({
-    super.key,
-    required this.controller,
-  });
+  const CategoryInformationCard({super.key, required this.controller});
 
   final CategoryFormController controller;
 
@@ -88,10 +85,7 @@ class CategoryInformationCard extends StatelessWidget {
 
           AppFormSpacing.sectionGap,
 
-          Text(
-            'Category Icon',
-            style: Theme.of(context).textTheme.titleMedium,
-          ),
+          Text('Category Icon', style: Theme.of(context).textTheme.titleMedium),
 
           const SizedBox(height: 12),
 
@@ -99,26 +93,19 @@ class CategoryInformationCard extends StatelessWidget {
             spacing: 12,
             runSpacing: 12,
             children: _icons.map((icon) {
-              final selected =
-                  controller.selectedIcon == icon.codePoint;
+              final selected = controller.selectedIcon == icon.codePoint;
 
               return InkWell(
                 borderRadius: BorderRadius.circular(12),
-                onTap: () =>
-                    controller.setIcon(icon.codePoint),
+                onTap: () => controller.setIcon(icon.codePoint),
                 child: Container(
                   width: 52,
                   height: 52,
                   decoration: BoxDecoration(
                     color: selected
-                        ? Theme.of(context)
-                            .colorScheme
-                            .primaryContainer
-                        : Theme.of(context)
-                            .colorScheme
-                            .surfaceContainerHighest,
-                    borderRadius:
-                        BorderRadius.circular(12),
+                        ? Theme.of(context).colorScheme.primaryContainer
+                        : Theme.of(context).colorScheme.surfaceContainerHighest,
+                    borderRadius: BorderRadius.circular(12),
                   ),
                   child: Icon(icon),
                 ),
@@ -139,13 +126,11 @@ class CategoryInformationCard extends StatelessWidget {
             spacing: 12,
             runSpacing: 12,
             children: _colors.map((color) {
-              final selected =
-                  controller.selectedColor == color.toARGB32();
+              final selected = controller.selectedColor == color.toARGB32();
 
               return InkWell(
                 borderRadius: BorderRadius.circular(100),
-                onTap: () =>
-                    controller.setColor(color.toARGB32()),
+                onTap: () => controller.setColor(color.toARGB32()),
                 child: Container(
                   width: 40,
                   height: 40,
@@ -153,9 +138,7 @@ class CategoryInformationCard extends StatelessWidget {
                     color: color,
                     shape: BoxShape.circle,
                     border: Border.all(
-                      color: selected
-                          ? Colors.black
-                          : Colors.transparent,
+                      color: selected ? Colors.black : Colors.transparent,
                       width: 3,
                     ),
                   ),

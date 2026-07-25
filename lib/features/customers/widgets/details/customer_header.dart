@@ -9,10 +9,7 @@ import '../../models/customer.dart';
 /// Displays the customer's basic profile information.
 /// ---------------------------------------------------------------------------
 class CustomerHeader extends StatelessWidget {
-  const CustomerHeader({
-    super.key,
-    required this.customer,
-  });
+  const CustomerHeader({super.key, required this.customer});
 
   final Customer customer;
 
@@ -26,13 +23,10 @@ class CustomerHeader extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-
             CircleAvatar(
               radius: 32,
               child: Text(
-                customer.name.isNotEmpty
-                    ? customer.name[0].toUpperCase()
-                    : '?',
+                customer.name.isNotEmpty ? customer.name[0].toUpperCase() : '?',
               ),
             ),
 
@@ -40,49 +34,28 @@ class CustomerHeader extends StatelessWidget {
 
             Expanded(
               child: Column(
-                crossAxisAlignment:
-                    CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-
-                  Text(
-                    customer.name,
-                    style: theme.textTheme.headlineSmall,
-                  ),
+                  Text(customer.name, style: theme.textTheme.headlineSmall),
 
                   const SizedBox(height: 8),
 
-                  if (customer.phone != null &&
-                      customer.phone!.isNotEmpty)
+                  if (customer.phone != null && customer.phone!.isNotEmpty)
                     Row(
                       children: [
-                        const Icon(
-                          Icons.phone,
-                          size: 18,
-                        ),
+                        const Icon(Icons.phone, size: 18),
                         const SizedBox(width: 8),
-                        Expanded(
-                          child: Text(
-                            customer.phone!,
-                          ),
-                        ),
+                        Expanded(child: Text(customer.phone!)),
                       ],
                     ),
 
-                  if (customer.email != null &&
-                      customer.email!.isNotEmpty) ...[
+                  if (customer.email != null && customer.email!.isNotEmpty) ...[
                     const SizedBox(height: 6),
                     Row(
                       children: [
-                        const Icon(
-                          Icons.email,
-                          size: 18,
-                        ),
+                        const Icon(Icons.email, size: 18),
                         const SizedBox(width: 8),
-                        Expanded(
-                          child: Text(
-                            customer.email!,
-                          ),
-                        ),
+                        Expanded(child: Text(customer.email!)),
                       ],
                     ),
                   ],
@@ -91,19 +64,11 @@ class CustomerHeader extends StatelessWidget {
                       customer.address!.isNotEmpty) ...[
                     const SizedBox(height: 6),
                     Row(
-                      crossAxisAlignment:
-                          CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Icon(
-                          Icons.location_on,
-                          size: 18,
-                        ),
+                        const Icon(Icons.location_on, size: 18),
                         const SizedBox(width: 8),
-                        Expanded(
-                          child: Text(
-                            customer.address!,
-                          ),
-                        ),
+                        Expanded(child: Text(customer.address!)),
                       ],
                     ),
                   ],

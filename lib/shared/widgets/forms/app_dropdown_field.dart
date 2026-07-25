@@ -67,9 +67,7 @@ class AppDropdownField<T> extends StatelessWidget {
 
         hintText: hint,
 
-        prefixIcon: icon == null
-            ? null
-            : Icon(icon),
+        prefixIcon: icon == null ? null : Icon(icon),
       ),
     );
   }

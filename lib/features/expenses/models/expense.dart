@@ -106,41 +106,33 @@ class Expense {
   }
 
   bool get hasVendor {
-    return vendor != null &&
-        vendor!.trim().isNotEmpty;
+    return vendor != null && vendor!.trim().isNotEmpty;
   }
 
   bool get hasNotes {
-    return notes != null &&
-        notes!.trim().isNotEmpty;
+    return notes != null && notes!.trim().isNotEmpty;
   }
 
   bool get hasAttachment {
     return attachment != null;
   }
 
-  bool get isPaid =>
-      status == ExpenseStatus.paid;
+  bool get isPaid => status == ExpenseStatus.paid;
 
-  bool get isPending =>
-      status == ExpenseStatus.pending;
+  bool get isPending => status == ExpenseStatus.pending;
 
-  bool get isApproved =>
-      status == ExpenseStatus.approved;
+  bool get isApproved => status == ExpenseStatus.approved;
 
-  bool get isDraft =>
-      status == ExpenseStatus.draft;
+  bool get isDraft => status == ExpenseStatus.draft;
 
-  bool get isCancelled =>
-      status == ExpenseStatus.cancelled;
+  bool get isCancelled => status == ExpenseStatus.cancelled;
 
   bool get isOverdue {
     if (dueDate == null) {
       return false;
     }
 
-    return !isPaid &&
-        DateTime.now().isAfter(dueDate!);
+    return !isPaid && DateTime.now().isAfter(dueDate!);
   }
 
   //--------------------------------------------------------------------------
@@ -167,33 +159,21 @@ class Expense {
   }) {
     return Expense(
       id: id ?? this.id,
-      expenseNumber:
-          expenseNumber ??
-              this.expenseNumber,
+      expenseNumber: expenseNumber ?? this.expenseNumber,
       title: title ?? this.title,
-      category:
-          category ?? this.category,
+      category: category ?? this.category,
       amount: amount ?? this.amount,
       tax: tax ?? this.tax,
       vendor: vendor ?? this.vendor,
-      paymentMethod:
-          paymentMethod ??
-              this.paymentMethod,
-      expenseDate:
-          expenseDate ??
-              this.expenseDate,
+      paymentMethod: paymentMethod ?? this.paymentMethod,
+      expenseDate: expenseDate ?? this.expenseDate,
       dueDate: dueDate ?? this.dueDate,
-      paidDate:
-          paidDate ?? this.paidDate,
+      paidDate: paidDate ?? this.paidDate,
       status: status ?? this.status,
       notes: notes ?? this.notes,
-      attachment:
-          attachment ??
-              this.attachment,
-      createdAt:
-          createdAt ?? this.createdAt,
-      updatedAt:
-          updatedAt ?? this.updatedAt,
+      attachment: attachment ?? this.attachment,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
     );
   }
 }

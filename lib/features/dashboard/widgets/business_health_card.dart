@@ -33,9 +33,7 @@ class BusinessHealthCard extends StatelessWidget {
 
     return Card(
       elevation: 0,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       child: Padding(
         padding: const EdgeInsets.all(22),
         child: Row(
@@ -43,11 +41,7 @@ class BusinessHealthCard extends StatelessWidget {
             CircleAvatar(
               radius: 34,
               backgroundColor: color.withValues(alpha: 0.12),
-              child: Icon(
-                _statusIcon(),
-                color: color,
-                size: 34,
-              ),
+              child: Icon(_statusIcon(), color: color, size: 34),
             ),
 
             const SizedBox(width: 20),
@@ -59,31 +53,25 @@ class BusinessHealthCard extends StatelessWidget {
                   Text(
                     "Business Health",
                     style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
 
                   const SizedBox(height: 8),
 
                   Text(
                     "$score%",
-                    style: Theme.of(context)
-                        .textTheme
-                        .headlineMedium
-                        ?.copyWith(
-                          color: color,
-                          fontWeight: FontWeight.bold,
-                        ),
+                    style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                      color: color,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
 
                   const SizedBox(height: 6),
 
                   Text(
                     status,
-                    style: TextStyle(
-                      color: color,
-                      fontWeight: FontWeight.w600,
-                    ),
+                    style: TextStyle(color: color, fontWeight: FontWeight.w600),
                   ),
 
                   const SizedBox(height: 12),

@@ -15,27 +15,22 @@ class AppCard extends StatelessWidget {
   final EdgeInsetsGeometry padding;
   final VoidCallback? onTap;
 
- @override
-Widget build(BuildContext context) {
-  final card = Card(
-    child: Padding(
-      padding: padding,
-      child: child,
-    ),
-  );
+  @override
+  Widget build(BuildContext context) {
+    final card = Card(
+      child: Padding(padding: padding, child: child),
+    );
 
-  if (onTap == null) {
-    return card;
-  }
+    if (onTap == null) {
+      return card;
+    }
 
-  return Card(
-    child: InkWell(
-      borderRadius: BorderRadius.circular(16),
-      onTap: onTap,
-      child: Padding(
-        padding: padding,
-        child: child,
+    return Card(
+      child: InkWell(
+        borderRadius: BorderRadius.circular(16),
+        onTap: onTap,
+        child: Padding(padding: padding, child: child),
       ),
-    ),
-  );
-}}
+    );
+  }
+}

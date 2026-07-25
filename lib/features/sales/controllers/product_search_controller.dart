@@ -22,11 +22,9 @@ class ProductSearchController extends ChangeNotifier {
   // Getters
   //---------------------------------------------------------------------------
 
-  List<Product> get products =>
-      List.unmodifiable(_products);
+  List<Product> get products => List.unmodifiable(_products);
 
-  List<Product> get filteredProducts =>
-      List.unmodifiable(_filteredProducts);
+  List<Product> get filteredProducts => List.unmodifiable(_filteredProducts);
 
   bool get isEmpty => _filteredProducts.isEmpty;
 
@@ -63,11 +61,9 @@ class ProductSearchController extends ChangeNotifier {
       _filteredProducts = _products.where((product) {
         final name = product.name.toLowerCase();
 
-        final barcode =
-            product.barcode?.toLowerCase() ?? '';
+        final barcode = product.barcode?.toLowerCase() ?? '';
 
-        final category =
-            product.category.toLowerCase();
+        final category = product.category.toLowerCase();
 
         return name.contains(text) ||
             barcode.contains(text) ||
@@ -89,18 +85,14 @@ class ProductSearchController extends ChangeNotifier {
 
   Product? findById(String id) {
     try {
-      return _products.firstWhere(
-        (product) => product.id == id,
-      );
+      return _products.firstWhere((product) => product.id == id);
     } catch (_) {
       return null;
     }
   }
 
   bool contains(Product product) {
-    return _products.any(
-      (element) => element.id == product.id,
-    );
+    return _products.any((element) => element.id == product.id);
   }
 
   void clear() {

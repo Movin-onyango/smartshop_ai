@@ -28,11 +28,9 @@ class SupplierFormActions extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-
         //----------------------------------------------------------------------
         // Cancel
         //----------------------------------------------------------------------
-
         if (onCancel != null)
           Expanded(
             child: OutlinedButton.icon(
@@ -42,13 +40,11 @@ class SupplierFormActions extends StatelessWidget {
             ),
           ),
 
-        if (onCancel != null)
-          const SizedBox(width: 16),
+        if (onCancel != null) const SizedBox(width: 16),
 
         //----------------------------------------------------------------------
         // Save
         //----------------------------------------------------------------------
-
         Expanded(
           flex: 2,
           child: FilledButton.icon(

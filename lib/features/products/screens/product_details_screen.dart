@@ -16,10 +16,7 @@ import '../widgets/details/inventory_section.dart';
 /// The screen is composed of reusable sections to improve
 /// maintainability and encourage reuse across the application.
 class ProductDetailsScreen extends StatelessWidget {
-  const ProductDetailsScreen({
-    super.key,
-    required this.productId,
-  });
+  const ProductDetailsScreen({super.key, required this.productId});
 
   /// ID of the product being viewed.
   final String productId;
@@ -30,11 +27,7 @@ class ProductDetailsScreen extends StatelessWidget {
     final product = provider.findById(productId);
 
     if (product == null) {
-      return const Scaffold(
-        body: Center(
-          child: Text('Product not found'),
-        ),
-      );
+      return const Scaffold(body: Center(child: Text('Product not found')));
     }
 
     return SmartScaffold(
@@ -43,9 +36,7 @@ class ProductDetailsScreen extends StatelessWidget {
         IconButton(
           icon: const Icon(Icons.edit_outlined),
           onPressed: () {
-            context.push(
-              AppRoutes.editProduct(product.id!),
-            );
+            context.push(AppRoutes.editProduct(product.id!));
           },
         ),
       ],
@@ -54,35 +45,25 @@ class ProductDetailsScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ProductHeader(
-              product: product,
-            ),
+            ProductHeader(product: product),
 
             const SizedBox(height: 24),
 
-            InformationSection(
-              product: product,
-            ),
+            InformationSection(product: product),
 
             const SizedBox(height: 24),
 
-            PricingSection(
-              product: product,
-            ),
+            PricingSection(product: product),
 
             const SizedBox(height: 24),
 
-            InventorySection(
-              product: product,
-            ),
+            InventorySection(product: product),
 
             const SizedBox(height: 32),
 
             FilledButton.icon(
               onPressed: () {
-                context.push(
-                  AppRoutes.editProduct(product.id!),
-                );
+                context.push(AppRoutes.editProduct(product.id!));
               },
               icon: const Icon(Icons.edit),
               label: const Text('Edit Product'),

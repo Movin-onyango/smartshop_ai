@@ -14,11 +14,7 @@ import '../../models/expense_category.dart';
 /// • ExpenseListScreen
 /// ---------------------------------------------------------------------------
 class ExpenseCard extends StatelessWidget {
-  const ExpenseCard({
-    super.key,
-    required this.expense,
-    this.onTap,
-  });
+  const ExpenseCard({super.key, required this.expense, this.onTap});
 
   final Expense expense;
 
@@ -35,50 +31,35 @@ class ExpenseCard extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Column(
-            crossAxisAlignment:
-                CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               //----------------------------------------------------------------
               // Header
               //----------------------------------------------------------------
-
               Row(
                 children: [
                   Expanded(
                     child: Column(
-                      crossAxisAlignment:
-                          CrossAxisAlignment
-                              .start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           expense.title,
-                          style: theme
-                              .textTheme
-                              .titleMedium
-                              ?.copyWith(
-                                fontWeight:
-                                    FontWeight
-                                        .bold,
-                              ),
+                          style: theme.textTheme.titleMedium?.copyWith(
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
 
-                        const SizedBox(
-                          height: 4,
-                        ),
+                        const SizedBox(height: 4),
 
                         Text(
                           expense.expenseNumber,
-                          style: theme
-                              .textTheme
-                              .bodySmall,
+                          style: theme.textTheme.bodySmall,
                         ),
                       ],
                     ),
                   ),
 
-                  _StatusChip(
-                    status: expense.status,
-                  ),
+                  _StatusChip(status: expense.status),
                 ],
               ),
 
@@ -87,12 +68,10 @@ class ExpenseCard extends StatelessWidget {
               //----------------------------------------------------------------
               // Details
               //----------------------------------------------------------------
-
               _DetailRow(
                 icon: Icons.category,
                 label: 'Category',
-                value:
-                    expense.category.label,
+                value: expense.category.label,
               ),
 
               if (expense.vendor != null)
@@ -114,35 +93,21 @@ class ExpenseCard extends StatelessWidget {
               //----------------------------------------------------------------
               // Amount
               //----------------------------------------------------------------
-
               Row(
                 children: [
-                  const Icon(
-                    Icons.payments,
-                  ),
+                  const Icon(Icons.payments),
 
                   const SizedBox(width: 8),
 
-                  Text(
-                    'Amount',
-                    style: theme
-                        .textTheme
-                        .bodyMedium,
-                  ),
+                  Text('Amount', style: theme.textTheme.bodyMedium),
 
                   const Spacer(),
 
                   Text(
-                    expense.amount
-                        .toStringAsFixed(2),
-                    style: theme
-                        .textTheme
-                        .titleMedium
-                        ?.copyWith(
-                          fontWeight:
-                              FontWeight
-                                  .bold,
-                        ),
+                    expense.amount.toStringAsFixed(2),
+                    style: theme.textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ],
               ),
@@ -173,16 +138,10 @@ class _DetailRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:
-          const EdgeInsets.only(
-        bottom: 8,
-      ),
+      padding: const EdgeInsets.only(bottom: 8),
       child: Row(
         children: [
-          Icon(
-            icon,
-            size: 18,
-          ),
+          Icon(icon, size: 18),
 
           const SizedBox(width: 8),
 
@@ -201,9 +160,7 @@ class _DetailRow extends StatelessWidget {
 /// Status Chip
 /// ---------------------------------------------------------------------------
 class _StatusChip extends StatelessWidget {
-  const _StatusChip({
-    required this.status,
-  });
+  const _StatusChip({required this.status});
 
   final ExpenseStatus status;
 
@@ -235,13 +192,8 @@ class _StatusChip extends StatelessWidget {
 
     return Chip(
       label: Text(status.label),
-      backgroundColor:
-          color.withValues(alpha: .12),
-      labelStyle: TextStyle(
-        color: color,
-        fontWeight:
-            FontWeight.w600,
-      ),
+      backgroundColor: color.withValues(alpha: .12),
+      labelStyle: TextStyle(color: color, fontWeight: FontWeight.w600),
       side: BorderSide.none,
     );
   }

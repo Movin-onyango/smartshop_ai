@@ -43,10 +43,7 @@ class ProductValidator {
     return null;
   }
 
-  static String? validateSellingPrice(
-    String? value,
-    double buyingPrice,
-  ) {
+  static String? validateSellingPrice(String? value, double buyingPrice) {
     if (value == null || value.trim().isEmpty) {
       return 'Selling price is required.';
     }
@@ -111,11 +108,7 @@ class ProductValidator {
 
     final today = DateTime.now();
 
-    final normalizedToday = DateTime(
-      today.year,
-      today.month,
-      today.day,
-    );
+    final normalizedToday = DateTime(today.year, today.month, today.day);
 
     final normalizedExpiry = DateTime(
       expiryDate.year,

@@ -16,21 +16,15 @@ import '../widgets/form/supplier_form.dart';
 /// Edit an existing supplier.
 /// ---------------------------------------------------------------------------
 class EditSupplierScreen extends StatefulWidget {
-  const EditSupplierScreen({
-    super.key,
-    required this.supplierId,
-  });
+  const EditSupplierScreen({super.key, required this.supplierId});
 
   final String supplierId;
 
   @override
-  State<EditSupplierScreen> createState() =>
-      _EditSupplierScreenState();
+  State<EditSupplierScreen> createState() => _EditSupplierScreenState();
 }
 
-class _EditSupplierScreenState
-    extends State<EditSupplierScreen> {
-
+class _EditSupplierScreenState extends State<EditSupplierScreen> {
   Supplier? supplier;
 
   late SupplierFormController controller;
@@ -43,15 +37,10 @@ class _EditSupplierScreenState
 
     if (_initialized) return;
 
-    supplier = context
-        .read<SupplierProvider>()
-        .findById(widget.supplierId);
+    supplier = context.read<SupplierProvider>().findById(widget.supplierId);
 
     if (supplier != null) {
-      controller =
-          SupplierFormController.fromSupplier(
-        supplier!,
-      );
+      controller = SupplierFormController.fromSupplier(supplier!);
     }
 
     _initialized = true;
@@ -67,24 +56,18 @@ class _EditSupplierScreenState
   }
 
   Future<void> _saveSupplier() async {
-
     if (supplier == null) return;
 
     if (!controller.validate()) {
       return;
     }
 
-    final updatedSupplier =
-        controller.toSupplier().copyWith(
-              id: supplier!.id,
-              createdAt: supplier!.createdAt,
-            );
+    final updatedSupplier = controller.toSupplier().copyWith(
+      id: supplier!.id,
+      createdAt: supplier!.createdAt,
+    );
 
-    await context
-        .read<SupplierProvider>()
-        .updateSupplier(
-          updatedSupplier,
-        );
+    await context.read<SupplierProvider>().updateSupplier(updatedSupplier);
 
     if (!mounted) return;
 
@@ -93,15 +76,10 @@ class _EditSupplierScreenState
 
   @override
   Widget build(BuildContext context) {
-
     if (supplier == null) {
       return const SmartScaffold(
         title: 'Supplier',
-        body: Center(
-          child: Text(
-            'Supplier not found.',
-          ),
-        ),
+        body: Center(child: Text('Supplier not found.')),
       );
     }
 

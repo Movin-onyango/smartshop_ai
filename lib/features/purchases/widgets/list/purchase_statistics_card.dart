@@ -12,10 +12,7 @@ import '../../providers/purchase_provider.dart';
 /// • PurchaseListScreen
 /// ---------------------------------------------------------------------------
 class PurchaseStatisticsCard extends StatelessWidget {
-  const PurchaseStatisticsCard({
-    super.key,
-    required this.provider,
-  });
+  const PurchaseStatisticsCard({super.key, required this.provider});
 
   final PurchaseProvider provider;
 
@@ -25,18 +22,14 @@ class PurchaseStatisticsCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
-          crossAxisAlignment:
-              CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             //------------------------------------------------------------------
             // Title
             //------------------------------------------------------------------
-
             Text(
               'Purchase Overview',
-              style: Theme.of(context)
-                  .textTheme
-                  .titleLarge,
+              style: Theme.of(context).textTheme.titleLarge,
             ),
 
             const SizedBox(height: 20),
@@ -46,8 +39,7 @@ class PurchaseStatisticsCard extends StatelessWidget {
                 Expanded(
                   child: _StatisticTile(
                     title: 'Total',
-                    value: provider.totalPurchases
-                        .toString(),
+                    value: provider.totalPurchases.toString(),
                     icon: Icons.receipt_long,
                   ),
                 ),
@@ -57,8 +49,7 @@ class PurchaseStatisticsCard extends StatelessWidget {
                 Expanded(
                   child: _StatisticTile(
                     title: 'Pending',
-                    value: provider.pendingPurchases
-                        .toString(),
+                    value: provider.pendingPurchases.toString(),
                     icon: Icons.schedule,
                   ),
                 ),
@@ -72,8 +63,7 @@ class PurchaseStatisticsCard extends StatelessWidget {
                 Expanded(
                   child: _StatisticTile(
                     title: 'Received',
-                    value: provider.receivedPurchases
-                        .toString(),
+                    value: provider.receivedPurchases.toString(),
                     icon: Icons.inventory,
                   ),
                 ),
@@ -83,8 +73,7 @@ class PurchaseStatisticsCard extends StatelessWidget {
                 Expanded(
                   child: _StatisticTile(
                     title: 'Spent',
-                    value: provider.totalSpent
-                        .toStringAsFixed(2),
+                    value: provider.totalSpent.toStringAsFixed(2),
                     icon: Icons.payments,
                   ),
                 ),
@@ -114,15 +103,10 @@ class _StatisticTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding:
-          const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        border: Border.all(
-          color: Theme.of(context)
-              .dividerColor,
-        ),
-        borderRadius:
-            BorderRadius.circular(12),
+        border: Border.all(color: Theme.of(context).dividerColor),
+        borderRadius: BorderRadius.circular(12),
       ),
       child: Column(
         children: [
@@ -130,21 +114,11 @@ class _StatisticTile extends StatelessWidget {
 
           const SizedBox(height: 8),
 
-          Text(
-            value,
-            style: Theme.of(context)
-                .textTheme
-                .headlineSmall,
-          ),
+          Text(value, style: Theme.of(context).textTheme.headlineSmall),
 
           const SizedBox(height: 4),
 
-          Text(
-            title,
-            style: Theme.of(context)
-                .textTheme
-                .bodySmall,
-          ),
+          Text(title, style: Theme.of(context).textTheme.bodySmall),
         ],
       ),
     );

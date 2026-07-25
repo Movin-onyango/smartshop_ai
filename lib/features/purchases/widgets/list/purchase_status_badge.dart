@@ -15,10 +15,7 @@ import '../../models/purchase_status.dart';
 /// • Reports
 /// ---------------------------------------------------------------------------
 class PurchaseStatusBadge extends StatelessWidget {
-  const PurchaseStatusBadge({
-    super.key,
-    required this.status,
-  });
+  const PurchaseStatusBadge({super.key, required this.status});
 
   final PurchaseStatus status;
 
@@ -27,26 +24,13 @@ class PurchaseStatusBadge extends StatelessWidget {
     final color = _statusColor(status);
 
     return Chip(
-      avatar: Icon(
-        _statusIcon(status),
-        size: 18,
-        color: color,
-      ),
+      avatar: Icon(_statusIcon(status), size: 18, color: color),
       label: Text(
         status.label,
-        style: TextStyle(
-          color: color,
-          fontWeight: FontWeight.w600,
-        ),
+        style: TextStyle(color: color, fontWeight: FontWeight.w600),
       ),
-      backgroundColor: color.withValues(
-        alpha: 0.15,
-      ),
-      side: BorderSide(
-        color: color.withValues(
-          alpha: 0.30,
-        ),
-      ),
+      backgroundColor: color.withValues(alpha: 0.15),
+      side: BorderSide(color: color.withValues(alpha: 0.30)),
       visualDensity: VisualDensity.compact,
     );
   }
@@ -55,9 +39,7 @@ class PurchaseStatusBadge extends StatelessWidget {
   // Helpers
   //---------------------------------------------------------------------------
 
-  Color _statusColor(
-    PurchaseStatus status,
-  ) {
+  Color _statusColor(PurchaseStatus status) {
     switch (status) {
       case PurchaseStatus.draft:
         return Colors.grey;
@@ -79,9 +61,7 @@ class PurchaseStatusBadge extends StatelessWidget {
     }
   }
 
-  IconData _statusIcon(
-    PurchaseStatus status,
-  ) {
+  IconData _statusIcon(PurchaseStatus status) {
     switch (status) {
       case PurchaseStatus.draft:
         return Icons.edit_document;

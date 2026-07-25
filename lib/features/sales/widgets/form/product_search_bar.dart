@@ -27,9 +27,7 @@ class ProductSearchBar extends StatelessWidget {
                 },
               )
             : null,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(16),
-        ),
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(16)),
         filled: true,
       ),
     );

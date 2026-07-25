@@ -21,8 +21,7 @@ import '../models/expense_category.dart';
 /// • Status updates
 /// ---------------------------------------------------------------------------
 class ExpenseProvider extends ChangeNotifier {
-  final ExpenseStatisticsController
-      _statisticsController =
+  final ExpenseStatisticsController _statisticsController =
       const ExpenseStatisticsController();
 
   List<Expense> _expenses = [];
@@ -35,43 +34,29 @@ class ExpenseProvider extends ChangeNotifier {
   // Getters
   //--------------------------------------------------------------------------
 
-  List<Expense> get expenses =>
-      List.unmodifiable(_expenses);
+  List<Expense> get expenses => List.unmodifiable(_expenses);
 
   bool get isLoading => _isLoading;
 
-  String get searchQuery =>
-      _searchQuery;
+  String get searchQuery => _searchQuery;
 
   List<Expense> get filteredExpenses {
     if (_searchQuery.trim().isEmpty) {
       return expenses;
     }
 
-    final query =
-        _searchQuery.toLowerCase();
+    final query = _searchQuery.toLowerCase();
 
     return _expenses.where((expense) {
-      return expense.title
-              .toLowerCase()
-              .contains(query) ||
-          expense.expenseNumber
-              .toLowerCase()
-              .contains(query) ||
-          expense.category.label
-              .toLowerCase()
-              .contains(query) ||
-          (expense.vendor
-                  ?.toLowerCase()
-                  .contains(query) ??
-              false);
+      return expense.title.toLowerCase().contains(query) ||
+          expense.expenseNumber.toLowerCase().contains(query) ||
+          expense.category.label.toLowerCase().contains(query) ||
+          (expense.vendor?.toLowerCase().contains(query) ?? false);
     }).toList();
   }
 
   ExpenseStatistics get statistics =>
-      _statisticsController.calculate(
-        _expenses,
-      );
+      _statisticsController.calculate(_expenses);
 
   //--------------------------------------------------------------------------
   // Loading
@@ -81,8 +66,7 @@ class ExpenseProvider extends ChangeNotifier {
     _isLoading = true;
     notifyListeners();
 
-    _expenses =
-        ExpenseRepository.getAll();
+    _expenses = ExpenseRepository.getAll();
 
     _isLoading = false;
     notifyListeners();
@@ -96,25 +80,19 @@ class ExpenseProvider extends ChangeNotifier {
   // CRUD
   //--------------------------------------------------------------------------
 
-  Future<void> addExpense(
-    Expense expense,
-  ) async {
+  Future<void> addExpense(Expense expense) async {
     ExpenseRepository.add(expense);
 
     await loadExpenses();
   }
 
-  Future<void> updateExpense(
-    Expense expense,
-  ) async {
+  Future<void> updateExpense(Expense expense) async {
     ExpenseRepository.update(expense);
 
     await loadExpenses();
   }
 
-  Future<void> deleteExpense(
-    String id,
-  ) async {
+  Future<void> deleteExpense(String id) async {
     ExpenseRepository.delete(id);
 
     await loadExpenses();
@@ -124,9 +102,7 @@ class ExpenseProvider extends ChangeNotifier {
   // Search
   //--------------------------------------------------------------------------
 
-  void search(
-    String query,
-  ) {
+  void search(String query) {
     _searchQuery = query;
     notifyListeners();
   }
@@ -140,14 +116,9 @@ class ExpenseProvider extends ChangeNotifier {
   // Lookup
   //--------------------------------------------------------------------------
 
-  Expense? findById(
-    String id,
-  ) {
+  Expense? findById(String id) {
     try {
-      return _expenses.firstWhere(
-        (expense) =>
-            expense.id == id,
-      );
+      return _expenses.firstWhere((expense) => expense.id == id);
     } catch (_) {
       return null;
     }
@@ -157,92 +128,57 @@ class ExpenseProvider extends ChangeNotifier {
   // Status Actions
   //--------------------------------------------------------------------------
 
-  Future<void> approveExpense(
-    String id,
-  ) async {
-    final expense =
-        findById(id);
+  Future<void> approveExpense(String id) async {
+    final expense = findById(id);
+
+    if (expense == null) return;
+
+    await updateExpense(expense.copyWith(status: ExpenseStatus.approved));
+  }
+
+  Future<void> markAsPaid(String id) async {
+    final expense = findById(id);
 
     if (expense == null) return;
 
     await updateExpense(
-      expense.copyWith(
-        status:
-            ExpenseStatus.approved,
-      ),
+      expense.copyWith(status: ExpenseStatus.paid, paidDate: DateTime.now()),
     );
   }
 
-  Future<void> markAsPaid(
-    String id,
-  ) async {
-    final expense =
-        findById(id);
+  Future<void> cancelExpense(String id) async {
+    final expense = findById(id);
 
     if (expense == null) return;
 
-    await updateExpense(
-      expense.copyWith(
-        status:
-            ExpenseStatus.paid,
-        paidDate: DateTime.now(),
-      ),
-    );
-  }
-
-  Future<void> cancelExpense(
-    String id,
-  ) async {
-    final expense =
-        findById(id);
-
-    if (expense == null) return;
-
-    await updateExpense(
-      expense.copyWith(
-        status:
-            ExpenseStatus.cancelled,
-      ),
-    );
+    await updateExpense(expense.copyWith(status: ExpenseStatus.cancelled));
   }
 
   //--------------------------------------------------------------------------
   // Dashboard KPIs
   //--------------------------------------------------------------------------
 
-  int get totalExpenses =>
-      statistics.totalExpenses;
+  int get totalExpenses => statistics.totalExpenses;
 
-  int get draftExpenses =>
-      statistics.draftExpenses;
+  int get draftExpenses => statistics.draftExpenses;
 
-  int get pendingExpenses =>
-      statistics.pendingExpenses;
+  int get pendingExpenses => statistics.pendingExpenses;
 
-  int get approvedExpenses =>
-      statistics.approvedExpenses;
+  int get approvedExpenses => statistics.approvedExpenses;
 
-  int get paidExpenses =>
-      statistics.paidExpenses;
+  int get paidExpenses => statistics.paidExpenses;
 
-  int get cancelledExpenses =>
-      statistics.cancelledExpenses;
+  int get cancelledExpenses => statistics.cancelledExpenses;
 
-  double get totalAmount =>
-      statistics.totalAmount;
+  double get totalAmount => statistics.totalAmount;
 
-  double get paidAmount =>
-      statistics.paidAmount;
+  double get paidAmount => statistics.paidAmount;
 
-  double get pendingAmount =>
-      statistics.pendingAmount;
+  double get pendingAmount => statistics.pendingAmount;
 
-  double get averageExpense =>
-      statistics.averageExpense;
+  double get averageExpense => statistics.averageExpense;
 
-  double get highestExpense =>
-      statistics.highestExpense;
+  double get highestExpense => statistics.highestExpense;
 
-  double get monthlyTotal =>
-      statistics.monthlyTotal;
+  double get monthlyTotal => statistics.monthlyTotal;
 }

@@ -14,9 +14,7 @@ import 'product_card.dart';
 /// • Large tablets  -> 3 columns
 /// • Desktop        -> 4 columns
 class ProductGrid extends StatelessWidget {
-  const ProductGrid({
-    super.key,
-  });
+  const ProductGrid({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,9 +22,7 @@ class ProductGrid extends StatelessWidget {
       builder: (context, provider, child) {
         // Show a loading indicator while products are being fetched.
         if (provider.isLoading) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
+          return const Center(child: CircularProgressIndicator());
         }
 
         // Display the empty state when there are no products.
@@ -89,9 +85,7 @@ class ProductGrid extends StatelessWidget {
                   // will be implemented in a later sprint.
                   onTap: () {
                     // TODO: Navigate to Product Details.
-                    context.push(
-                      AppRoutes.productDetails(product.id!),
-                        );
+                    context.push(AppRoutes.productDetails(product.id!));
                   },
                 );
               },

@@ -12,18 +12,12 @@ import '../widgets/dashboard/report_section_header.dart';
 import '../widgets/dashboard/report_shortcut_card.dart';
 
 class ReportsDashboardScreen extends StatelessWidget {
-  const ReportsDashboardScreen({
-    super.key,
-  });
+  const ReportsDashboardScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Consumer<ReportProvider>(
-      builder: (
-        context,
-        provider,
-        _,
-      ) {
+      builder: (context, provider, _) {
         return SmartScaffold(
           title: 'Reports',
           body: RefreshIndicator(
@@ -31,9 +25,7 @@ class ReportsDashboardScreen extends StatelessWidget {
             child: ListView(
               padding: const EdgeInsets.all(24),
               children: [
-                const ReportSectionHeader(
-                  title: 'Business Overview',
-                ),
+                const ReportSectionHeader(title: 'Business Overview'),
 
                 const SizedBox(height: 20),
 
@@ -46,8 +38,7 @@ class ReportsDashboardScreen extends StatelessWidget {
 
                 GridView.count(
                   shrinkWrap: true,
-                  physics:
-                      const NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   crossAxisCount: 2,
                   crossAxisSpacing: 16,
                   mainAxisSpacing: 16,
@@ -55,32 +46,28 @@ class ReportsDashboardScreen extends StatelessWidget {
                   children: [
                     ReportSummaryCard(
                       title: 'Revenue',
-                      value:
-                          'KES ${provider.revenue.toStringAsFixed(2)}',
+                      value: 'KES ${provider.revenue.toStringAsFixed(2)}',
                       icon: Icons.payments,
                       color: Colors.green,
                     ),
 
                     ReportSummaryCard(
                       title: 'Expenses',
-                      value:
-                          'KES ${provider.totalExpenses.toStringAsFixed(2)}',
+                      value: 'KES ${provider.totalExpenses.toStringAsFixed(2)}',
                       icon: Icons.receipt_long,
                       color: Colors.red,
                     ),
 
                     ReportSummaryCard(
                       title: 'Profit',
-                      value:
-                          'KES ${provider.netProfit.toStringAsFixed(2)}',
+                      value: 'KES ${provider.netProfit.toStringAsFixed(2)}',
                       icon: Icons.trending_up,
                       color: Colors.blue,
                     ),
 
                     ReportSummaryCard(
                       title: 'Customers',
-                      value:
-                          provider.totalCustomers.toString(),
+                      value: provider.totalCustomers.toString(),
                       icon: Icons.people,
                       color: Colors.teal,
                     ),
@@ -89,9 +76,7 @@ class ReportsDashboardScreen extends StatelessWidget {
 
                 const SizedBox(height: 32),
 
-                const ReportSectionHeader(
-                  title: 'Reports',
-                ),
+                const ReportSectionHeader(title: 'Reports'),
 
                 const SizedBox(height: 16),
 
@@ -103,62 +88,49 @@ class ReportsDashboardScreen extends StatelessWidget {
                       title: 'Sales',
                       icon: Icons.point_of_sale,
                       color: Colors.green,
-                      onTap: () =>
-                          context.push(AppRoutes.salesReport),
+                      onTap: () => context.push(AppRoutes.salesReport),
                     ),
 
                     ReportShortcutCard(
                       title: 'Inventory',
                       icon: Icons.inventory_2,
                       color: Colors.orange,
-                      onTap: () => context.push(
-                        AppRoutes.inventoryReport,
-                      ),
+                      onTap: () => context.push(AppRoutes.inventoryReport),
                     ),
 
                     ReportShortcutCard(
                       title: 'Purchases',
                       icon: Icons.shopping_cart,
                       color: Colors.blue,
-                      onTap: () => context.push(
-                        AppRoutes.purchaseReport,
-                      ),
+                      onTap: () => context.push(AppRoutes.purchaseReport),
                     ),
 
                     ReportShortcutCard(
                       title: 'Expenses',
                       icon: Icons.receipt_long,
                       color: Colors.red,
-                      onTap: () => context.push(
-                        AppRoutes.expenseReport,
-                      ),
+                      onTap: () => context.push(AppRoutes.expenseReport),
                     ),
 
                     ReportShortcutCard(
                       title: 'Customers',
                       icon: Icons.people,
                       color: Colors.teal,
-                      onTap: () => context.push(
-                        AppRoutes.customerReport,
-                      ),
+                      onTap: () => context.push(AppRoutes.customerReport),
                     ),
 
                     ReportShortcutCard(
                       title: 'Suppliers',
                       icon: Icons.local_shipping,
                       color: Colors.indigo,
-                      onTap: () => context.push(
-                        AppRoutes.supplierReport,
-                      ),
+                      onTap: () => context.push(AppRoutes.supplierReport),
                     ),
 
                     ReportShortcutCard(
                       title: 'Financial',
                       icon: Icons.analytics,
                       color: Colors.purple,
-                      onTap: () => context.push(
-                        AppRoutes.financialReport,
-                      ),
+                      onTap: () => context.push(AppRoutes.financialReport),
                     ),
                   ],
                 ),

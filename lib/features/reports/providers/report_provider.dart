@@ -1,38 +1,44 @@
 import 'package:flutter/material.dart';
 
+//import '../controllers/report_controller.dart';
 import '../controllers/report_controllers.dart';
+import '../exporters/report_export_manager.dart';
 import '../repositories/report_repository.dart';
 import 'report_state.dart';
 
 class ReportProvider extends ChangeNotifier {
   ReportProvider({
     ReportRepository? repository,
-  }) : repository =
-            repository ??
-            const ReportRepository() {
-    _sales =
-        SalesReportController(this.repository);
+    ReportExportManager? exportManager,
+  })  : repository = repository ?? const ReportRepository(),
+        _exportManager =
+            exportManager ?? const ReportExportManager() {
+    _sales = SalesReportController(this.repository);
 
-    _inventory =
-        InventoryReportController(this.repository);
+    _inventory = InventoryReportController(this.repository);
 
-    _purchases =
-        PurchaseReportController(this.repository);
+    _purchases = PurchaseReportController(this.repository);
 
-    _expenses =
-        ExpenseReportController(this.repository);
+    _expenses = ExpenseReportController(this.repository);
 
-    _customers =
-        CustomerReportController(this.repository);
+    _customers = CustomerReportController(this.repository);
 
-    _suppliers =
-        SupplierReportController(this.repository);
+    _suppliers = SupplierReportController(this.repository);
 
-    _financial =
-        FinancialReportController(this.repository);
+    _financial = FinancialReportController(this.repository);
   }
 
+  //---------------------------------------------------------------------------
+  // Dependencies
+  //---------------------------------------------------------------------------
+
   final ReportRepository repository;
+
+  final ReportExportManager _exportManager;
+
+  //---------------------------------------------------------------------------
+  // Controllers
+  //---------------------------------------------------------------------------
 
   late final SalesReportController _sales;
 
@@ -48,44 +54,106 @@ class ReportProvider extends ChangeNotifier {
 
   late final FinancialReportController _financial;
 
-  ReportType _selectedReport =
-      ReportType.sales;
+  //---------------------------------------------------------------------------
+  // Controller Getters
+  //---------------------------------------------------------------------------
 
-  ReportPeriod _selectedPeriod =
-      ReportPeriod.month;
+  SalesReportController get salesController =>
+      _sales;
 
-  ReportType get selectedReport =>
-      _selectedReport;
+  InventoryReportController get inventoryController =>
+      _inventory;
 
-  ReportPeriod get selectedPeriod =>
-      _selectedPeriod;
+  PurchaseReportController get purchaseController =>
+      _purchases;
 
-  void setReport(
-    ReportType report,
-  ) {
-    if (_selectedReport == report) {
-      return;
+  ExpenseReportController get expenseController =>
+      _expenses;
+
+  CustomerReportController get customerController =>
+      _customers;
+
+  SupplierReportController get supplierController =>
+      _suppliers;
+
+  FinancialReportController get financialController =>
+      _financial;
+
+  //---------------------------------------------------------------------------
+  // State
+  //---------------------------------------------------------------------------
+
+  ReportType _selectedReport = ReportType.sales;
+
+  ReportPeriod _selectedPeriod = ReportPeriod.month;
+
+  ReportType get selectedReport => _selectedReport;
+
+  ReportPeriod get selectedPeriod => _selectedPeriod;
+
+  //---------------------------------------------------------------------------
+  // Current Controller
+  //---------------------------------------------------------------------------
+
+  ReportController get currentController {
+    switch (_selectedReport) {
+      case ReportType.sales:
+        return _sales;
+
+      case ReportType.inventory:
+        return _inventory;
+
+      case ReportType.purchases:
+        return _purchases;
+
+      case ReportType.expenses:
+        return _expenses;
+
+      case ReportType.customers:
+        return _customers;
+
+      case ReportType.suppliers:
+        return _suppliers;
+
+      case ReportType.financial:
+        return _financial;
     }
+  }
+
+  //---------------------------------------------------------------------------
+  // State Updates
+  //---------------------------------------------------------------------------
+
+  void setReport(ReportType report) {
+    if (_selectedReport == report) return;
 
     _selectedReport = report;
-
     notifyListeners();
   }
 
-  void setPeriod(
-    ReportPeriod period,
-  ) {
-    if (_selectedPeriod == period) {
-      return;
-    }
+  void setPeriod(ReportPeriod period) {
+    if (_selectedPeriod == period) return;
 
     _selectedPeriod = period;
-
     notifyListeners();
   }
 
   Future<void> refresh() async {
     notifyListeners();
+  }
+
+  //---------------------------------------------------------------------------
+  // Export
+  //---------------------------------------------------------------------------
+
+  Future<void> exportReport({
+    required ReportController controller,
+    required ExportFormat format,
+  }) async {
+    await _exportManager.export(
+      controller: controller,
+      format: format,
+    );
   }
 
   //---------------------------------------------------------------------------

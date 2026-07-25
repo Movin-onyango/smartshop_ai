@@ -19,18 +19,14 @@ import 'inventory_card.dart';
 /// • Desktop -> 3–4 columns
 /// ---------------------------------------------------------------------------
 class InventoryGrid extends StatelessWidget {
-  const InventoryGrid({
-    super.key,
-  });
+  const InventoryGrid({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Consumer<InventoryProvider>(
       builder: (context, provider, child) {
         if (provider.isLoading) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
+          return const Center(child: CircularProgressIndicator());
         }
 
         final inventory = provider.inventory;
@@ -55,8 +51,7 @@ class InventoryGrid extends StatelessWidget {
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               itemCount: inventory.length,
-              gridDelegate:
-                  SliverGridDelegateWithFixedCrossAxisCount(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: columns,
                 crossAxisSpacing: 16,
                 mainAxisSpacing: 16,
@@ -68,9 +63,7 @@ class InventoryGrid extends StatelessWidget {
                 return InventoryCard(
                   item: item,
                   onTap: () {
-                    context.push(
-                      '${AppRoutes.inventory}/${item.id}',
-                    );
+                    context.push('${AppRoutes.inventory}/${item.id}');
                   },
                 );
               },

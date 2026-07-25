@@ -16,10 +16,7 @@ import '../../models/sale.dart';
 /// • Line total
 /// ---------------------------------------------------------------------------
 class SaleItemsSection extends StatelessWidget {
-  const SaleItemsSection({
-    super.key,
-    required this.sale,
-  });
+  const SaleItemsSection({super.key, required this.sale});
 
   final Sale sale;
 
@@ -31,48 +28,35 @@ class SaleItemsSection extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
-          crossAxisAlignment:
-              CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'Items Purchased',
-              style: theme.textTheme.titleLarge,
-            ),
+            Text('Items Purchased', style: theme.textTheme.titleLarge),
 
             const SizedBox(height: 20),
 
             ...sale.items.map(
               (item) => Padding(
-                padding:
-                    const EdgeInsets.only(bottom: 16),
+                padding: const EdgeInsets.only(bottom: 16),
                 child: Container(
-                  padding:
-                      const EdgeInsets.all(16),
+                  padding: const EdgeInsets.all(16),
                   decoration: BoxDecoration(
-                    color: theme.colorScheme
-                        .surfaceContainerHighest,
-                    borderRadius:
-                        BorderRadius.circular(12),
+                    color: theme.colorScheme.surfaceContainerHighest,
+                    borderRadius: BorderRadius.circular(12),
                   ),
                   child: Column(
                     children: [
-
                       Row(
                         children: [
                           Expanded(
                             child: Text(
                               item.product.name,
-                              style: theme
-                                  .textTheme
-                                  .titleMedium,
+                              style: theme.textTheme.titleMedium,
                             ),
                           ),
 
                           Text(
                             'x${item.quantity}',
-                            style: theme
-                                .textTheme
-                                .titleMedium,
+                            style: theme.textTheme.titleMedium,
                           ),
                         ],
                       ),
@@ -120,18 +104,14 @@ class SaleItemsSection extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Padding(
-      padding:
-          const EdgeInsets.symmetric(vertical: 4),
+      padding: const EdgeInsets.symmetric(vertical: 4),
       child: Row(
         children: [
-          Expanded(
-            child: Text(label),
-          ),
+          Expanded(child: Text(label)),
           Text(
             value,
             style: isBold
-                ? theme.textTheme.titleMedium
-                    ?.copyWith(
+                ? theme.textTheme.titleMedium?.copyWith(
                     fontWeight: FontWeight.bold,
                   )
                 : theme.textTheme.bodyMedium,

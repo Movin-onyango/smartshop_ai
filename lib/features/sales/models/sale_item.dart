@@ -53,8 +53,7 @@ class SaleItem {
   double get subtotal => grossTotal - discount;
 
   /// Buying cost of this quantity.
-  double get cost =>
-      quantity * product.buyingPrice;
+  double get cost => quantity * product.buyingPrice;
 
   /// Expected profit from this line.
   double get profit => subtotal - cost;

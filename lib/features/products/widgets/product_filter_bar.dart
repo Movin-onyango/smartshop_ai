@@ -4,9 +4,7 @@ import 'package:provider/provider.dart';
 import '../providers/product_provider.dart';
 
 class ProductFilterBar extends StatelessWidget {
-  const ProductFilterBar({
-    super.key,
-  });
+  const ProductFilterBar({super.key});
 
   static const _categories = [
     'All',
@@ -26,8 +24,7 @@ class ProductFilterBar extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           child: Row(
             children: _categories.map((category) {
-              final selected =
-                  provider.selectedCategory == category;
+              final selected = provider.selectedCategory == category;
 
               return Padding(
                 padding: const EdgeInsets.only(right: 8),

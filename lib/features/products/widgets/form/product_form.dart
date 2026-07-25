@@ -52,22 +52,15 @@ class ProductForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        ProductInformationCard(
-          controller: controller,
-          categories: categories,
-        ),
+        ProductInformationCard(controller: controller, categories: categories),
 
         AppFormSpacing.sectionGap,
 
-        PricingCard(
-          controller: controller,
-        ),
+        PricingCard(controller: controller),
 
         AppFormSpacing.sectionGap,
 
-        InventoryCard(
-          controller: controller,
-        ),
+        InventoryCard(controller: controller),
 
         AppFormSpacing.sectionGap,
 

@@ -12,10 +12,7 @@ import '../../models/expense.dart';
 /// • ExpenseDetailsScreen
 /// ---------------------------------------------------------------------------
 class ExpenseNotesSection extends StatelessWidget {
-  const ExpenseNotesSection({
-    super.key,
-    required this.expense,
-  });
+  const ExpenseNotesSection({super.key, required this.expense});
 
   final Expense expense;
 
@@ -25,26 +22,16 @@ class ExpenseNotesSection extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
-          crossAxisAlignment:
-              CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'Notes',
-              style: Theme.of(context)
-                  .textTheme
-                  .titleLarge,
-            ),
+            Text('Notes', style: Theme.of(context).textTheme.titleLarge),
 
             const SizedBox(height: 20),
 
-            if (expense.notes == null ||
-                expense.notes!.trim().isEmpty)
+            if (expense.notes == null || expense.notes!.trim().isEmpty)
               const Center(
                 child: Padding(
-                  padding:
-                      EdgeInsets.symmetric(
-                    vertical: 24,
-                  ),
+                  padding: EdgeInsets.symmetric(vertical: 24),
                   child: Column(
                     children: [
                       Icon(
@@ -53,9 +40,7 @@ class ExpenseNotesSection extends StatelessWidget {
                         color: Colors.grey,
                       ),
                       SizedBox(height: 12),
-                      Text(
-                        'No notes available.',
-                      ),
+                      Text('No notes available.'),
                     ],
                   ),
                 ),
@@ -63,9 +48,7 @@ class ExpenseNotesSection extends StatelessWidget {
             else
               SelectableText(
                 expense.notes!,
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyLarge,
+                style: Theme.of(context).textTheme.bodyLarge,
               ),
           ],
         ),

@@ -29,49 +29,35 @@ class CustomerSelector extends StatelessWidget {
             children: [
               CircleAvatar(
                 radius: 24,
-                child: Icon(
-                  _hasCustomer
-                      ? Icons.person
-                      : Icons.person_outline,
-                ),
+                child: Icon(_hasCustomer ? Icons.person : Icons.person_outline),
               ),
 
               const SizedBox(width: 16),
 
               Expanded(
                 child: Column(
-                  crossAxisAlignment:
-                      CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       'Customer',
-                      style: Theme.of(context)
-                          .textTheme
-                          .labelMedium,
+                      style: Theme.of(context).textTheme.labelMedium,
                     ),
 
                     const SizedBox(height: 4),
 
                     Text(
-                      _hasCustomer
-                          ? customerName!
-                          : 'Walk-in Customer',
-                      style: Theme.of(context)
-                          .textTheme
-                          .titleMedium,
+                      _hasCustomer ? customerName! : 'Walk-in Customer',
+                      style: Theme.of(context).textTheme.titleMedium,
                     ),
 
                     if (_hasCustomer &&
                         customerPhone != null &&
                         customerPhone!.isNotEmpty)
                       Padding(
-                        padding:
-                            const EdgeInsets.only(top: 4),
+                        padding: const EdgeInsets.only(top: 4),
                         child: Text(
                           customerPhone!,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodySmall,
+                          style: Theme.of(context).textTheme.bodySmall,
                         ),
                       ),
                   ],

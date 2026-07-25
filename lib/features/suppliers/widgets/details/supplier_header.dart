@@ -9,10 +9,7 @@ import '../../models/supplier.dart';
 /// Header displayed at the top of the Supplier Details screen.
 /// ---------------------------------------------------------------------------
 class SupplierHeader extends StatelessWidget {
-  const SupplierHeader({
-    super.key,
-    required this.supplier,
-  });
+  const SupplierHeader({super.key, required this.supplier});
 
   final Supplier supplier;
 
@@ -22,16 +19,12 @@ class SupplierHeader extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(24),
         child: Row(
-          crossAxisAlignment:
-              CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-
             CircleAvatar(
               radius: 34,
               child: Text(
-                supplier.name
-                    .substring(0, 1)
-                    .toUpperCase(),
+                supplier.name.substring(0, 1).toUpperCase(),
                 style: const TextStyle(
                   fontSize: 26,
                   fontWeight: FontWeight.bold,
@@ -43,72 +36,47 @@ class SupplierHeader extends StatelessWidget {
 
             Expanded(
               child: Column(
-                crossAxisAlignment:
-                    CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-
                   Text(
                     supplier.name,
-                    style: Theme.of(context)
-                        .textTheme
-                        .headlineSmall,
+                    style: Theme.of(context).textTheme.headlineSmall,
                   ),
 
                   if (supplier.contactPerson != null &&
                       supplier.contactPerson!.isNotEmpty)
                     Padding(
-                      padding:
-                          const EdgeInsets.only(top: 6),
+                      padding: const EdgeInsets.only(top: 6),
                       child: Text(
                         supplier.contactPerson!,
-                        style: Theme.of(context)
-                            .textTheme
-                            .titleMedium,
+                        style: Theme.of(context).textTheme.titleMedium,
                       ),
                     ),
 
-                  if (supplier.email != null &&
-                      supplier.email!.isNotEmpty)
+                  if (supplier.email != null && supplier.email!.isNotEmpty)
                     Padding(
-                      padding:
-                          const EdgeInsets.only(top: 12),
+                      padding: const EdgeInsets.only(top: 12),
                       child: Row(
                         children: [
-
-                          const Icon(
-                            Icons.email_outlined,
-                            size: 18,
-                          ),
+                          const Icon(Icons.email_outlined, size: 18),
 
                           const SizedBox(width: 8),
 
-                          Expanded(
-                            child: Text(
-                              supplier.email!,
-                            ),
-                          ),
+                          Expanded(child: Text(supplier.email!)),
                         ],
                       ),
                     ),
 
-                  if (supplier.phone != null &&
-                      supplier.phone!.isNotEmpty)
+                  if (supplier.phone != null && supplier.phone!.isNotEmpty)
                     Padding(
-                      padding:
-                          const EdgeInsets.only(top: 8),
+                      padding: const EdgeInsets.only(top: 8),
                       child: Row(
                         children: [
-
-                          const Icon(
-                            Icons.phone_outlined,
-                            size: 18,
-                          ),
+                          const Icon(Icons.phone_outlined, size: 18),
 
                           const SizedBox(width: 8),
 
-                          Text(
-                            supplier.phone!,
-                          ),
+                          Text(supplier.phone!),
                         ],
                       ),
                     ),

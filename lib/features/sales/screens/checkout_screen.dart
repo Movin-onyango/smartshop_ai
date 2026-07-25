@@ -26,20 +26,15 @@ import '../widgets/form/payment_selector.dart';
 /// • Navigate to receipt
 /// ---------------------------------------------------------------------------
 class CheckoutScreen extends StatefulWidget {
-  const CheckoutScreen({
-    super.key,
-    required this.saleController,
-  });
+  const CheckoutScreen({super.key, required this.saleController});
 
   final SaleFormController saleController;
 
   @override
-  State<CheckoutScreen> createState() =>
-      _CheckoutScreenState();
+  State<CheckoutScreen> createState() => _CheckoutScreenState();
 }
 
-class _CheckoutScreenState
-    extends State<CheckoutScreen> {
+class _CheckoutScreenState extends State<CheckoutScreen> {
   late final CheckoutController checkoutController;
 
   @override
@@ -60,23 +55,16 @@ class _CheckoutScreenState
     if (!checkoutController.canCompleteSale(total)) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text(
-            'Amount received is less than the total payable.',
-          ),
+          content: Text('Amount received is less than the total payable.'),
         ),
       );
       return;
     }
 
     final sale = Sale(
-      id: DateTime.now()
-          .millisecondsSinceEpoch
-          .toString(),
-      invoiceNumber:
-          'INV-${DateTime.now().millisecondsSinceEpoch}',
-      items: List.from(
-        widget.saleController.items,
-      ),
+      id: DateTime.now().millisecondsSinceEpoch.toString(),
+      invoiceNumber: 'INV-${DateTime.now().millisecondsSinceEpoch}',
+      items: List.from(widget.saleController.items),
       payment: checkoutController.buildPayment(),
       saleDate: DateTime.now(),
     );
@@ -85,9 +73,7 @@ class _CheckoutScreenState
 
     widget.saleController.clearCart();
 
-    context.go(
-      '${AppRoutes.sales}/${sale.id}/receipt',
-    );
+    context.go('${AppRoutes.sales}/${sale.id}/receipt');
   }
 
   @override
@@ -98,17 +84,13 @@ class _CheckoutScreenState
         animation: checkoutController,
         builder: (context, _) {
           return ListView(
-            padding: const EdgeInsets.symmetric(
-              vertical: 16,
-            ),
+            padding: const EdgeInsets.symmetric(vertical: 16),
             children: [
               PaymentSelector(
                 method: checkoutController.paymentMethod,
                 onChanged: (method) {
                   if (method != null) {
-                    checkoutController.setPaymentMethod(
-                      method,
-                    );
+                    checkoutController.setPaymentMethod(method);
                   }
                 },
               ),
@@ -119,8 +101,7 @@ class _CheckoutScreenState
                   vertical: 8,
                 ),
                 child: TextFormField(
-                  keyboardType:
-                      const TextInputType.numberWithOptions(
+                  keyboardType: const TextInputType.numberWithOptions(
                     decimal: true,
                   ),
                   decoration: const InputDecoration(
@@ -147,12 +128,8 @@ class _CheckoutScreenState
                   width: double.infinity,
                   child: FilledButton.icon(
                     onPressed: _completeSale,
-                    icon: const Icon(
-                      Icons.check_circle_outline,
-                    ),
-                    label: const Text(
-                      'Complete Sale',
-                    ),
+                    icon: const Icon(Icons.check_circle_outline),
+                    label: const Text('Complete Sale'),
                   ),
                 ),
               ),

@@ -24,17 +24,11 @@ class LoginForm extends StatelessWidget {
 
         const SizedBox(height: 20),
 
-        AppPasswordField(
-          label: 'Password',
-          controller: passwordController,
-        ),
+        AppPasswordField(label: 'Password', controller: passwordController),
 
         const SizedBox(height: 32),
 
-        AppButton(
-          label: 'Sign In',
-          onPressed: () {},
-        ),
+        AppButton(label: 'Sign In', onPressed: () {}),
       ],
     );
   }

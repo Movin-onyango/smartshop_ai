@@ -52,7 +52,7 @@ class AppDropdownField<T> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DropdownButtonFormField<T>(
-     initialValue: value,
+      initialValue: value,
 
       items: items,
 
@@ -67,9 +67,7 @@ class AppDropdownField<T> extends StatelessWidget {
 
         hintText: hint,
 
-        prefixIcon: icon == null
-            ? null
-            : Icon(icon),
+        prefixIcon: icon == null ? null : Icon(icon),
       ),
     );
   }

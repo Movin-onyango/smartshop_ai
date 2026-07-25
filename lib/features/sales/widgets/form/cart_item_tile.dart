@@ -37,14 +37,11 @@ class CartItemTile extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
-          crossAxisAlignment:
-              CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-
             /// Product Name + Remove Button
             Row(
               children: [
-
                 Expanded(
                   child: Text(
                     item.product.name,
@@ -76,11 +73,8 @@ class CartItemTile extends StatelessWidget {
             /// Quantity Controls
             Row(
               children: [
-
                 IconButton(
-                  icon: const Icon(
-                    Icons.remove_circle_outline,
-                  ),
+                  icon: const Icon(Icons.remove_circle_outline),
                   onPressed: onDecrease,
                 ),
 
@@ -95,9 +89,7 @@ class CartItemTile extends StatelessWidget {
                 ),
 
                 IconButton(
-                  icon: const Icon(
-                    Icons.add_circle_outline,
-                  ),
+                  icon: const Icon(Icons.add_circle_outline),
                   onPressed: onIncrease,
                 ),
 

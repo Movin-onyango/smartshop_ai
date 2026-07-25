@@ -14,10 +14,7 @@ import '../../models/sale.dart';
 /// • Walk-in customer support
 /// ---------------------------------------------------------------------------
 class CustomerSection extends StatelessWidget {
-  const CustomerSection({
-    super.key,
-    required this.sale,
-  });
+  const CustomerSection({super.key, required this.sale});
 
   final Sale sale;
 
@@ -31,20 +28,14 @@ class CustomerSection extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'Customer',
-              style: theme.textTheme.titleLarge,
-            ),
+            Text('Customer', style: theme.textTheme.titleLarge),
             const SizedBox(height: 20),
             Row(
               children: [
                 CircleAvatar(
                   radius: 26,
                   backgroundColor: theme.colorScheme.primaryContainer,
-                  child: Icon(
-                    Icons.person,
-                    color: theme.colorScheme.primary,
-                  ),
+                  child: Icon(Icons.person, color: theme.colorScheme.primary),
                 ),
                 const SizedBox(width: 16),
                 Expanded(

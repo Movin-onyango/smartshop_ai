@@ -29,14 +29,11 @@ class PaymentSelector extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
-          crossAxisAlignment:
-              CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               'Payment Method',
-              style: Theme.of(context)
-                  .textTheme
-                  .titleLarge,
+              style: Theme.of(context).textTheme.titleLarge,
             ),
 
             const SizedBox(height: 16),
@@ -50,18 +47,13 @@ class PaymentSelector extends StatelessWidget {
               onChanged: onChanged,
               items: PaymentMethod.values
                   .map(
-                    (paymentMethod) =>
-                        DropdownMenuItem(
+                    (paymentMethod) => DropdownMenuItem(
                       value: paymentMethod,
                       child: Row(
                         children: [
-                          Icon(
-                            _icon(paymentMethod),
-                          ),
+                          Icon(_icon(paymentMethod)),
                           const SizedBox(width: 12),
-                          Text(
-                            _label(paymentMethod),
-                          ),
+                          Text(_label(paymentMethod)),
                         ],
                       ),
                     ),
@@ -74,9 +66,7 @@ class PaymentSelector extends StatelessWidget {
     );
   }
 
-  static IconData _icon(
-    PaymentMethod method,
-  ) {
+  static IconData _icon(PaymentMethod method) {
     switch (method) {
       case PaymentMethod.cash:
         return Icons.payments;
@@ -98,9 +88,7 @@ class PaymentSelector extends StatelessWidget {
     }
   }
 
-  static String _label(
-    PaymentMethod method,
-  ) {
+  static String _label(PaymentMethod method) {
     switch (method) {
       case PaymentMethod.cash:
         return 'Cash';

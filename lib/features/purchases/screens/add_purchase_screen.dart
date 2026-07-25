@@ -20,27 +20,21 @@ import '../widgets/form/purchase_form.dart';
 /// • Navigation
 /// ---------------------------------------------------------------------------
 class AddPurchaseScreen extends StatefulWidget {
-  const AddPurchaseScreen({
-    super.key,
-  });
+  const AddPurchaseScreen({super.key});
 
   @override
-  State<AddPurchaseScreen> createState() =>
-      _AddPurchaseScreenState();
+  State<AddPurchaseScreen> createState() => _AddPurchaseScreenState();
 }
 
-class _AddPurchaseScreenState
-    extends State<AddPurchaseScreen> {
-  late final PurchaseFormController
-      controller;
+class _AddPurchaseScreenState extends State<AddPurchaseScreen> {
+  late final PurchaseFormController controller;
 
   bool _isSaving = false;
 
   @override
   void initState() {
     super.initState();
-    controller =
-        PurchaseFormController();
+    controller = PurchaseFormController();
   }
 
   @override
@@ -62,11 +56,7 @@ class _AddPurchaseScreenState
       _isSaving = true;
     });
 
-    await context
-        .read<PurchaseProvider>()
-        .addPurchase(
-          controller.toPurchase(),
-        );
+    await context.read<PurchaseProvider>().addPurchase(controller.toPurchase());
 
     if (!mounted) return;
 
@@ -101,10 +91,7 @@ class _AddPurchaseScreenState
   // Edit Item
   //---------------------------------------------------------------------------
 
-  Future<void> _editItem(
-    int index,
-    item,
-  ) async {
+  Future<void> _editItem(int index, item) async {
     // TODO
   }
 
@@ -120,8 +107,7 @@ class _AddPurchaseScreenState
 
         isSaving: _isSaving,
 
-        onSelectSupplier:
-            _selectSupplier,
+        onSelectSupplier: _selectSupplier,
 
         onAddItem: _addItem,
 

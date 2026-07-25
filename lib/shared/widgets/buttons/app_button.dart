@@ -27,20 +27,13 @@ class AppButton extends StatelessWidget {
       child = const SizedBox(
         width: 22,
         height: 22,
-        child: CircularProgressIndicator(
-          strokeWidth: 2.5,
-        ),
+        child: CircularProgressIndicator(strokeWidth: 2.5),
       );
     } else if (icon != null) {
       child = Row(
-        mainAxisSize:
-            expand ? MainAxisSize.max : MainAxisSize.min,
+        mainAxisSize: expand ? MainAxisSize.max : MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(icon),
-          AppSpacing.gapHorizontalSM,
-          Text(label),
-        ],
+        children: [Icon(icon), AppSpacing.gapHorizontalSM, Text(label)],
       );
     } else {
       child = Text(label);
@@ -55,9 +48,6 @@ class AppButton extends StatelessWidget {
       return button;
     }
 
-    return SizedBox(
-      width: double.infinity,
-      child: button,
-    );
+    return SizedBox(width: double.infinity, child: button);
   }
 }

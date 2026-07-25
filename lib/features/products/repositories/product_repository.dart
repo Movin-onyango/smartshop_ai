@@ -28,9 +28,7 @@ class ProductRepository {
       description: 'Fresh milk',
       discount: 0,
       trackExpiry: true,
-      expiryDate: DateTime.now().add(
-        const Duration(days: 14),
-      ),
+      expiryDate: DateTime.now().add(const Duration(days: 14)),
       createdAt: DateTime.now(),
       updatedAt: DateTime.now(),
     ),
@@ -46,9 +44,7 @@ class ProductRepository {
       barcode: '100000002',
       description: 'Sliced bread',
       trackExpiry: true,
-      expiryDate: DateTime.now().add(
-        const Duration(days: 4),
-      ),
+      expiryDate: DateTime.now().add(const Duration(days: 4)),
       createdAt: DateTime.now(),
       updatedAt: DateTime.now(),
     ),
@@ -69,15 +65,12 @@ class ProductRepository {
   ];
 
   /// Returns all products.
-  static List<Product> getAll() =>
-      List.unmodifiable(_products);
+  static List<Product> getAll() => List.unmodifiable(_products);
 
   /// Returns a product by id.
   static Product? getById(String id) {
     try {
-      return _products.firstWhere(
-        (product) => product.id == id,
-      );
+      return _products.firstWhere((product) => product.id == id);
     } catch (_) {
       return null;
     }
@@ -90,9 +83,7 @@ class ProductRepository {
 
   /// Updates a product.
   static void update(Product product) {
-    final index = _products.indexWhere(
-      (p) => p.id == product.id,
-    );
+    final index = _products.indexWhere((p) => p.id == product.id);
 
     if (index != -1) {
       _products[index] = product;
@@ -101,8 +92,6 @@ class ProductRepository {
 
   /// Deletes a product.
   static void delete(String id) {
-    _products.removeWhere(
-      (product) => product.id == id,
-    );
+    _products.removeWhere((product) => product.id == id);
   }
 }

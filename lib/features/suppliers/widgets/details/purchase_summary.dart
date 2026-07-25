@@ -13,10 +13,7 @@ import '../../models/supplier.dart';
 /// • Supplier Details Screen
 /// ---------------------------------------------------------------------------
 class PurchaseSummary extends StatelessWidget {
-  const PurchaseSummary({
-    super.key,
-    required this.supplier,
-  });
+  const PurchaseSummary({super.key, required this.supplier});
 
   final Supplier supplier;
 
@@ -32,27 +29,21 @@ class PurchaseSummary extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
-          crossAxisAlignment:
-              CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-
             Text(
               'Purchase Summary',
-              style: Theme.of(context)
-                  .textTheme
-                  .titleLarge,
+              style: Theme.of(context).textTheme.titleLarge,
             ),
 
             const SizedBox(height: 20),
 
             Row(
               children: [
-
                 Expanded(
                   child: _StatisticCard(
                     title: 'Orders',
-                    value:
-                        statistics.totalOrders.toString(),
+                    value: statistics.totalOrders.toString(),
                     icon: Icons.shopping_bag_outlined,
                   ),
                 ),
@@ -62,9 +53,7 @@ class PurchaseSummary extends StatelessWidget {
                 Expanded(
                   child: _StatisticCard(
                     title: 'Completed',
-                    value: statistics
-                        .completedOrders
-                        .toString(),
+                    value: statistics.completedOrders.toString(),
                     icon: Icons.check_circle_outline,
                   ),
                 ),
@@ -75,13 +64,10 @@ class PurchaseSummary extends StatelessWidget {
 
             Row(
               children: [
-
                 Expanded(
                   child: _StatisticCard(
                     title: 'Pending',
-                    value: statistics
-                        .pendingOrders
-                        .toString(),
+                    value: statistics.pendingOrders.toString(),
                     icon: Icons.schedule_outlined,
                   ),
                 ),
@@ -91,9 +77,7 @@ class PurchaseSummary extends StatelessWidget {
                 Expanded(
                   child: _StatisticCard(
                     title: 'Cancelled',
-                    value: statistics
-                        .cancelledOrders
-                        .toString(),
+                    value: statistics.cancelledOrders.toString(),
                     icon: Icons.cancel_outlined,
                   ),
                 ),
@@ -106,52 +90,34 @@ class PurchaseSummary extends StatelessWidget {
 
             ListTile(
               contentPadding: EdgeInsets.zero,
-              leading: const Icon(
-                Icons.payments_outlined,
-              ),
-              title:
-                  const Text('Total Purchases'),
+              leading: const Icon(Icons.payments_outlined),
+              title: const Text('Total Purchases'),
               trailing: Text(
-                statistics.totalPurchased
-                    .toStringAsFixed(2),
-                style: Theme.of(context)
-                    .textTheme
-                    .titleMedium,
+                statistics.totalPurchased.toStringAsFixed(2),
+                style: Theme.of(context).textTheme.titleMedium,
               ),
             ),
 
             ListTile(
               contentPadding: EdgeInsets.zero,
-              leading: const Icon(
-                Icons.calculate_outlined,
-              ),
-              title: const Text(
-                  'Average Order'),
+              leading: const Icon(Icons.calculate_outlined),
+              title: const Text('Average Order'),
               trailing: Text(
-                statistics.averageOrderValue
-                    .toStringAsFixed(2),
-                style: Theme.of(context)
-                    .textTheme
-                    .titleMedium,
+                statistics.averageOrderValue.toStringAsFixed(2),
+                style: Theme.of(context).textTheme.titleMedium,
               ),
             ),
 
             ListTile(
               contentPadding: EdgeInsets.zero,
-              leading: const Icon(
-                Icons.calendar_month_outlined,
-              ),
-              title:
-                  const Text('Last Order'),
+              leading: const Icon(Icons.calendar_month_outlined),
+              title: const Text('Last Order'),
               trailing: Text(
                 statistics.lastOrderDate == null
                     ? '-'
                     : DateFormat(
                         'dd MMM yyyy',
-                      ).format(
-                        statistics
-                            .lastOrderDate!,
-                      ),
+                      ).format(statistics.lastOrderDate!),
               ),
             ),
           ],
@@ -178,37 +144,22 @@ class _StatisticCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding:
-          const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Theme.of(context)
-            .colorScheme
-            .surfaceContainerHighest,
-        borderRadius:
-            BorderRadius.circular(12),
+        color: Theme.of(context).colorScheme.surfaceContainerHighest,
+        borderRadius: BorderRadius.circular(12),
       ),
       child: Column(
         children: [
-
           Icon(icon),
 
           const SizedBox(height: 10),
 
-          Text(
-            value,
-            style: Theme.of(context)
-                .textTheme
-                .headlineSmall,
-          ),
+          Text(value, style: Theme.of(context).textTheme.headlineSmall),
 
           const SizedBox(height: 4),
 
-          Text(
-            title,
-            style: Theme.of(context)
-                .textTheme
-                .bodySmall,
-          ),
+          Text(title, style: Theme.of(context).textTheme.bodySmall),
         ],
       ),
     );

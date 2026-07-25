@@ -28,12 +28,10 @@ class AddCategoryScreen extends StatefulWidget {
   const AddCategoryScreen({super.key});
 
   @override
-  State<AddCategoryScreen> createState() =>
-      _AddCategoryScreenState();
+  State<AddCategoryScreen> createState() => _AddCategoryScreenState();
 }
 
-class _AddCategoryScreenState
-    extends State<AddCategoryScreen> {
+class _AddCategoryScreenState extends State<AddCategoryScreen> {
   late final CategoryFormController controller;
 
   @override
@@ -51,25 +49,15 @@ class _AddCategoryScreenState
   void _saveCategory() {
     if (!controller.isValid) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text(
-            'Please enter a category name.',
-          ),
-        ),
+        const SnackBar(content: Text('Please enter a category name.')),
       );
       return;
     }
 
-    context.read<CategoryProvider>().addCategoryFromController(
-          controller,
-        );
+    context.read<CategoryProvider>().addCategoryFromController(controller);
 
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text(
-          'Category created successfully.',
-        ),
-      ),
+      const SnackBar(content: Text('Category created successfully.')),
     );
 
     context.pop();

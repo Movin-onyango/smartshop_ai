@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 
 /// Displayed when there are no products available.
 class EmptyProducts extends StatelessWidget {
-  const EmptyProducts({
-    super.key,
-  });
+  const EmptyProducts({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,9 +20,7 @@ class EmptyProducts extends StatelessWidget {
             const SizedBox(height: 20),
             Text(
               'No products available',
-              style: Theme.of(context)
-                  .textTheme
-                  .headlineSmall,
+              style: Theme.of(context).textTheme.headlineSmall,
             ),
             const SizedBox(height: 8),
             Text(

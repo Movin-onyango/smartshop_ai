@@ -15,11 +15,7 @@ import 'purchase_status_badge.dart';
 /// • Dashboard Recent Purchases
 /// ---------------------------------------------------------------------------
 class PurchaseCard extends StatelessWidget {
-  const PurchaseCard({
-    super.key,
-    required this.purchase,
-    this.onTap,
-  });
+  const PurchaseCard({super.key, required this.purchase, this.onTap});
 
   final Purchase purchase;
 
@@ -30,37 +26,29 @@ class PurchaseCard extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Card(
-      margin: const EdgeInsets.symmetric(
-        horizontal: 16,
-        vertical: 8,
-      ),
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: InkWell(
         borderRadius: BorderRadius.circular(12),
         onTap: onTap,
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Column(
-            crossAxisAlignment:
-                CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               //----------------------------------------------------------------
               // Header
               //----------------------------------------------------------------
-
               Row(
                 children: [
                   Expanded(
                     child: Column(
-                      crossAxisAlignment:
-                          CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           purchase.purchaseNumber,
                           style: theme.textTheme.titleMedium,
                         ),
-                        const SizedBox(
-                          height: 4,
-                        ),
+                        const SizedBox(height: 4),
                         Text(
                           purchase.supplierName,
                           style: theme.textTheme.bodyMedium,
@@ -69,9 +57,7 @@ class PurchaseCard extends StatelessWidget {
                     ),
                   ),
 
-                  PurchaseStatusBadge(
-                    status: purchase.status,
-                  ),
+                  PurchaseStatusBadge(status: purchase.status),
                 ],
               ),
 
@@ -80,20 +66,11 @@ class PurchaseCard extends StatelessWidget {
               //----------------------------------------------------------------
               // Details
               //----------------------------------------------------------------
-
               Row(
                 children: [
-                  const Icon(
-                    Icons.calendar_today,
-                    size: 18,
-                  ),
+                  const Icon(Icons.calendar_today, size: 18),
                   const SizedBox(width: 8),
-                  Text(
-                    purchase.orderDate
-                        .toIso8601String()
-                        .split('T')
-                        .first,
-                  ),
+                  Text(purchase.orderDate.toIso8601String().split('T').first),
                 ],
               ),
 
@@ -101,14 +78,9 @@ class PurchaseCard extends StatelessWidget {
 
               Row(
                 children: [
-                  const Icon(
-                    Icons.inventory_2,
-                    size: 18,
-                  ),
+                  const Icon(Icons.inventory_2, size: 18),
                   const SizedBox(width: 8),
-                  Text(
-                    '${purchase.totalItems} item(s)',
-                  ),
+                  Text('${purchase.totalItems} item(s)'),
                 ],
               ),
 
@@ -116,15 +88,9 @@ class PurchaseCard extends StatelessWidget {
 
               Row(
                 children: [
-                  const Icon(
-                    Icons.shopping_cart,
-                    size: 18,
-                  ),
+                  const Icon(Icons.shopping_cart, size: 18),
                   const SizedBox(width: 8),
-                  Text(
-                    purchase.totalQuantity
-                        .toStringAsFixed(0),
-                  ),
+                  Text(purchase.totalQuantity.toStringAsFixed(0)),
                 ],
               ),
 
@@ -133,19 +99,13 @@ class PurchaseCard extends StatelessWidget {
               //----------------------------------------------------------------
               // Footer
               //----------------------------------------------------------------
-
               Row(
                 children: [
-                  Text(
-                    'Grand Total',
-                    style: theme.textTheme.titleSmall,
-                  ),
+                  Text('Grand Total', style: theme.textTheme.titleSmall),
                   const Spacer(),
                   Text(
-                    purchase.grandTotal
-                        .toStringAsFixed(2),
-                    style: theme.textTheme.titleMedium
-                        ?.copyWith(
+                    purchase.grandTotal.toStringAsFixed(2),
+                    style: theme.textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
                   ),

@@ -28,39 +28,27 @@ import '../widgets/details/sale_summary_section.dart';
 /// • Navigate to receipt
 /// ---------------------------------------------------------------------------
 class SaleDetailsScreen extends StatelessWidget {
-  const SaleDetailsScreen({
-    super.key,
-    required this.saleId,
-  });
+  const SaleDetailsScreen({super.key, required this.saleId});
 
   final String saleId;
 
   @override
   Widget build(BuildContext context) {
-    final sale = context.read<SalesProvider>().findById(
-          saleId,
-        );
+    final sale = context.read<SalesProvider>().findById(saleId);
 
     if (sale == null) {
       return const SmartScaffold(
         title: 'Sale',
-        body: Center(
-          child: Text(
-            'Sale not found.',
-          ),
-        ),
+        body: Center(child: Text('Sale not found.')),
       );
     }
 
     return SmartScaffold(
       title: 'Sale Details',
 
-      floatingActionButton:
-          FloatingActionButton.extended(
+      floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          context.push(
-            '${AppRoutes.sales}/${sale.id}/receipt',
-          );
+          context.push('${AppRoutes.sales}/${sale.id}/receipt');
         },
         icon: const Icon(Icons.receipt_long),
         label: const Text('Receipt'),
@@ -70,37 +58,25 @@ class SaleDetailsScreen extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-
-            SaleHeader(
-              sale: sale,
-            ),
+            SaleHeader(sale: sale),
 
             const SizedBox(height: 24),
 
-            CustomerSection(
-              sale: sale,
-            ),
+            CustomerSection(sale: sale),
 
             const SizedBox(height: 24),
 
-            SaleItemsSection(
-              sale: sale,
-            ),
+            SaleItemsSection(sale: sale),
 
             const SizedBox(height: 24),
 
-            PaymentSection(
-              sale: sale,
-            ),
+            PaymentSection(sale: sale),
 
             const SizedBox(height: 24),
 
-            SaleSummarySection(
-              sale: sale,
-            ),
+            SaleSummarySection(sale: sale),
 
             const SizedBox(height: 40),
-
           ],
         ),
       ),

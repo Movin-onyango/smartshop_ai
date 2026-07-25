@@ -4,10 +4,7 @@ import '/features/products/extensions/product_extensions.dart';
 import '../../models/product.dart';
 
 class ProductStockSummary extends StatelessWidget {
-  const ProductStockSummary({
-    super.key,
-    required this.product,
-  });
+  const ProductStockSummary({super.key, required this.product});
 
   final Product product;
 
@@ -17,12 +14,7 @@ class ProductStockSummary extends StatelessWidget {
       child: Row(
         children: [
           Expanded(child: Text(title)),
-          Text(
-            value,
-            style: const TextStyle(
-              fontWeight: FontWeight.w600,
-            ),
-          ),
+          Text(value, style: const TextStyle(fontWeight: FontWeight.w600)),
         ],
       ),
     );
@@ -32,18 +24,9 @@ class ProductStockSummary extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        _row(
-          'Quantity',
-          product.quantity.toString(),
-        ),
-        _row(
-          'Reorder',
-          product.reorderLevel.toString(),
-        ),
-        _row(
-          'Stock Value',
-          'KES ${product.stockValue.toStringAsFixed(2)}',
-        ),
+        _row('Quantity', product.quantity.toString()),
+        _row('Reorder', product.reorderLevel.toString()),
+        _row('Stock Value', 'KES ${product.stockValue.toStringAsFixed(2)}'),
       ],
     );
   }

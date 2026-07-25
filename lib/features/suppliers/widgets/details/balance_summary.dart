@@ -12,10 +12,7 @@ import '../../models/supplier.dart';
 /// • Supplier Details Screen
 /// ---------------------------------------------------------------------------
 class BalanceSummary extends StatelessWidget {
-  const BalanceSummary({
-    super.key,
-    required this.supplier,
-  });
+  const BalanceSummary({super.key, required this.supplier});
 
   final Supplier supplier;
 
@@ -25,15 +22,11 @@ class BalanceSummary extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
-          crossAxisAlignment:
-              CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-
             Text(
               'Financial Summary',
-              style: Theme.of(context)
-                  .textTheme
-                  .titleLarge,
+              style: Theme.of(context).textTheme.titleLarge,
             ),
 
             const SizedBox(height: 20),
@@ -68,15 +61,11 @@ class BalanceSummary extends StatelessWidget {
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
                   color: Colors.red.shade50,
-                  borderRadius:
-                      BorderRadius.circular(12),
-                  border: Border.all(
-                    color: Colors.red.shade300,
-                  ),
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(color: Colors.red.shade300),
                 ),
                 child: Row(
                   children: [
-
                     Icon(
                       Icons.warning_amber_rounded,
                       color: Colors.red.shade700,
@@ -102,15 +91,11 @@ class BalanceSummary extends StatelessWidget {
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
                   color: Colors.green.shade50,
-                  borderRadius:
-                      BorderRadius.circular(12),
-                  border: Border.all(
-                    color: Colors.green.shade300,
-                  ),
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(color: Colors.green.shade300),
                 ),
                 child: Row(
                   children: [
-
                     Icon(
                       Icons.check_circle_outline,
                       color: Colors.green.shade700,
@@ -159,9 +144,7 @@ class _BalanceTile extends StatelessWidget {
       title: Text(title),
       trailing: Text(
         value.toStringAsFixed(2),
-        style: Theme.of(context)
-            .textTheme
-            .titleMedium,
+        style: Theme.of(context).textTheme.titleMedium,
       ),
     );
   }

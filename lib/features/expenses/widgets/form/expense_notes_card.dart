@@ -11,10 +11,7 @@ import 'package:flutter/material.dart';
 /// • EditExpenseScreen
 /// ---------------------------------------------------------------------------
 class ExpenseNotesCard extends StatelessWidget {
-  const ExpenseNotesCard({
-    super.key,
-    required this.notesController,
-  });
+  const ExpenseNotesCard({super.key, required this.notesController});
 
   final TextEditingController notesController;
 
@@ -24,15 +21,9 @@ class ExpenseNotesCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
-          crossAxisAlignment:
-              CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'Notes',
-              style: Theme.of(context)
-                  .textTheme
-                  .titleLarge,
-            ),
+            Text('Notes', style: Theme.of(context).textTheme.titleLarge),
 
             const SizedBox(height: 20),
 
@@ -41,26 +32,17 @@ class ExpenseNotesCard extends StatelessWidget {
               maxLines: 5,
               minLines: 4,
               maxLength: 500,
-              textCapitalization:
-                  TextCapitalization.sentences,
-              decoration:
-                  const InputDecoration(
-                labelText:
-                    'Additional Notes',
+              textCapitalization: TextCapitalization.sentences,
+              decoration: const InputDecoration(
+                labelText: 'Additional Notes',
                 hintText:
                     'Enter any additional information about this expense...',
                 alignLabelWithHint: true,
                 prefixIcon: Padding(
-                  padding:
-                      EdgeInsets.only(
-                    bottom: 90,
-                  ),
-                  child: Icon(
-                    Icons.notes,
-                  ),
+                  padding: EdgeInsets.only(bottom: 90),
+                  child: Icon(Icons.notes),
                 ),
-                border:
-                    OutlineInputBorder(),
+                border: OutlineInputBorder(),
               ),
             ),
           ],

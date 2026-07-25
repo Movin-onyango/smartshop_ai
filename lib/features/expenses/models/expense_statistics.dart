@@ -82,9 +82,7 @@ class ExpenseStatistics {
       return 0;
     }
 
-    return ((approvedExpenses + paidExpenses) /
-            totalExpenses) *
-        100;
+    return ((approvedExpenses + paidExpenses) / totalExpenses) * 100;
   }
 
   //--------------------------------------------------------------------------
@@ -106,33 +104,18 @@ class ExpenseStatistics {
     double? monthlyTotal,
   }) {
     return ExpenseStatistics(
-      totalExpenses:
-          totalExpenses ?? this.totalExpenses,
-      draftExpenses:
-          draftExpenses ?? this.draftExpenses,
-      pendingExpenses:
-          pendingExpenses ?? this.pendingExpenses,
-      approvedExpenses:
-          approvedExpenses ?? this.approvedExpenses,
-      paidExpenses:
-          paidExpenses ?? this.paidExpenses,
-      cancelledExpenses:
-          cancelledExpenses ??
-              this.cancelledExpenses,
-      totalAmount:
-          totalAmount ?? this.totalAmount,
-      paidAmount:
-          paidAmount ?? this.paidAmount,
-      pendingAmount:
-          pendingAmount ?? this.pendingAmount,
-      averageExpense:
-          averageExpense ??
-              this.averageExpense,
-      highestExpense:
-          highestExpense ??
-              this.highestExpense,
-      monthlyTotal:
-          monthlyTotal ?? this.monthlyTotal,
+      totalExpenses: totalExpenses ?? this.totalExpenses,
+      draftExpenses: draftExpenses ?? this.draftExpenses,
+      pendingExpenses: pendingExpenses ?? this.pendingExpenses,
+      approvedExpenses: approvedExpenses ?? this.approvedExpenses,
+      paidExpenses: paidExpenses ?? this.paidExpenses,
+      cancelledExpenses: cancelledExpenses ?? this.cancelledExpenses,
+      totalAmount: totalAmount ?? this.totalAmount,
+      paidAmount: paidAmount ?? this.paidAmount,
+      pendingAmount: pendingAmount ?? this.pendingAmount,
+      averageExpense: averageExpense ?? this.averageExpense,
+      highestExpense: highestExpense ?? this.highestExpense,
+      monthlyTotal: monthlyTotal ?? this.monthlyTotal,
     );
   }
 }

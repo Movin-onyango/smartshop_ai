@@ -12,9 +12,7 @@ import '../../../../app/router/app_routes.dart';
 /// Encourages the user to record their first sale.
 /// ---------------------------------------------------------------------------
 class EmptySales extends StatelessWidget {
-  const EmptySales({
-    super.key,
-  });
+  const EmptySales({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,18 +25,14 @@ class EmptySales extends StatelessWidget {
             Icon(
               Icons.point_of_sale_outlined,
               size: 96,
-              color: Theme.of(context)
-                  .colorScheme
-                  .primary,
+              color: Theme.of(context).colorScheme.primary,
             ),
 
             const SizedBox(height: 24),
 
             Text(
               'No Sales Yet',
-              style: Theme.of(context)
-                  .textTheme
-                  .headlineSmall,
+              style: Theme.of(context).textTheme.headlineSmall,
               textAlign: TextAlign.center,
             ),
 
@@ -47,9 +41,7 @@ class EmptySales extends StatelessWidget {
             Text(
               'Record your first sale to start tracking revenue, '
               'profit and business performance.',
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyMedium,
+              style: Theme.of(context).textTheme.bodyMedium,
               textAlign: TextAlign.center,
             ),
 

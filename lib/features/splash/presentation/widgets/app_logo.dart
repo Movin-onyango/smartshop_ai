@@ -8,10 +8,7 @@ import '../../../../core/theme/app_colors.dart';
 /// SmartShop AI logo without requiring changes to the splash
 /// screen or any other screen that uses it.
 class AppLogo extends StatelessWidget {
-  const AppLogo({
-    super.key,
-    this.size = 120,
-  });
+  const AppLogo({super.key, this.size = 120});
 
   final double size;
 

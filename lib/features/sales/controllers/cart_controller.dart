@@ -33,61 +33,35 @@ class CartController extends ChangeNotifier {
 
   int get itemCount => _items.length;
 
-  int get totalQuantity =>
-      _items.fold(
-        0,
-        (sum, item) => sum + item.quantity,
-      );
+  int get totalQuantity => _items.fold(0, (sum, item) => sum + item.quantity);
 
   //---------------------------------------------------------------------------
   // Totals
   //---------------------------------------------------------------------------
 
   double get grossTotal =>
-      _items.fold(
-        0.0,
-        (sum, item) => sum + item.grossTotal,
-      );
+      _items.fold(0.0, (sum, item) => sum + item.grossTotal);
 
   double get totalDiscount =>
-      _items.fold(
-        0.0,
-        (sum, item) => sum + item.discount,
-      );
+      _items.fold(0.0, (sum, item) => sum + item.discount);
 
-  double get subtotal =>
-      _items.fold(
-        0.0,
-        (sum, item) => sum + item.subtotal,
-      );
+  double get subtotal => _items.fold(0.0, (sum, item) => sum + item.subtotal);
 
-  double get totalCost =>
-      _items.fold(
-        0.0,
-        (sum, item) => sum + item.cost,
-      );
+  double get totalCost => _items.fold(0.0, (sum, item) => sum + item.cost);
 
-  double get totalProfit =>
-      _items.fold(
-        0.0,
-        (sum, item) => sum + item.profit,
-      );
+  double get totalProfit => _items.fold(0.0, (sum, item) => sum + item.profit);
 
   //---------------------------------------------------------------------------
   // Cart Operations
   //---------------------------------------------------------------------------
 
   void addProduct(Product product) {
-    final index = _items.indexWhere(
-      (item) => item.product.id == product.id,
-    );
+    final index = _items.indexWhere((item) => item.product.id == product.id);
 
     if (index == -1) {
       _items.add(
         SaleItem(
-          id: DateTime.now()
-              .millisecondsSinceEpoch
-              .toString(),
+          id: DateTime.now().millisecondsSinceEpoch.toString(),
           product: product,
           quantity: 1,
           unitPrice: product.sellingPrice,
@@ -101,33 +75,25 @@ class CartController extends ChangeNotifier {
   }
 
   void removeItem(SaleItem item) {
-    _items.removeWhere(
-      (element) => element.id == item.id,
-    );
+    _items.removeWhere((element) => element.id == item.id);
 
     notifyListeners();
   }
 
   void increaseQuantity(SaleItem item) {
-    final index = _items.indexWhere(
-      (element) => element.id == item.id,
-    );
+    final index = _items.indexWhere((element) => element.id == item.id);
 
     if (index == -1) return;
 
     final current = _items[index];
 
-    _items[index] = current.copyWith(
-      quantity: current.quantity + 1,
-    );
+    _items[index] = current.copyWith(quantity: current.quantity + 1);
 
     notifyListeners();
   }
 
   void decreaseQuantity(SaleItem item) {
-    final index = _items.indexWhere(
-      (element) => element.id == item.id,
-    );
+    final index = _items.indexWhere((element) => element.id == item.id);
 
     if (index == -1) return;
 
@@ -138,26 +104,17 @@ class CartController extends ChangeNotifier {
       return;
     }
 
-    _items[index] = current.copyWith(
-      quantity: current.quantity - 1,
-    );
+    _items[index] = current.copyWith(quantity: current.quantity - 1);
 
     notifyListeners();
   }
 
-  void updateDiscount(
-    SaleItem item,
-    double discount,
-  ) {
-    final index = _items.indexWhere(
-      (element) => element.id == item.id,
-    );
+  void updateDiscount(SaleItem item, double discount) {
+    final index = _items.indexWhere((element) => element.id == item.id);
 
     if (index == -1) return;
 
-    _items[index] = _items[index].copyWith(
-      discount: discount,
-    );
+    _items[index] = _items[index].copyWith(discount: discount);
 
     notifyListeners();
   }

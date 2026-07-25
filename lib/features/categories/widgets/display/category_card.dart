@@ -15,11 +15,7 @@ import '../../models/category.dart';
 /// • Tap callback
 /// ---------------------------------------------------------------------------
 class CategoryCard extends StatelessWidget {
-  const CategoryCard({
-    super.key,
-    required this.category,
-    this.onTap,
-  });
+  const CategoryCard({super.key, required this.category, this.onTap});
 
   final Category category;
   final VoidCallback? onTap;
@@ -37,8 +33,7 @@ class CategoryCard extends StatelessWidget {
             children: [
               CircleAvatar(
                 radius: 26,
-                backgroundColor:
-                    category.colorValue.withValues(alpha: 0.15),
+                backgroundColor: category.colorValue.withValues(alpha: 0.15),
                 child: Icon(
                   category.iconData,
                   color: category.colorValue,
@@ -72,11 +67,7 @@ class CategoryCard extends StatelessWidget {
 
               Row(
                 children: [
-                  Icon(
-                    category.iconData,
-                    size: 18,
-                    color: category.colorValue,
-                  ),
+                  Icon(category.iconData, size: 18, color: category.colorValue),
 
                   const SizedBox(width: 8),
 

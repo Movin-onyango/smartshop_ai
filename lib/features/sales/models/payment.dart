@@ -1,14 +1,7 @@
 /// ---------------------------------------------------------------------------
 /// Payment Method
 /// ---------------------------------------------------------------------------
-enum PaymentMethod {
-  cash,
-  mpesa,
-  card,
-  bankTransfer,
-  credit,
-  mixed,
-}
+enum PaymentMethod { cash, mpesa, card, bankTransfer, credit, mixed }
 
 /// ---------------------------------------------------------------------------
 /// Payment
@@ -46,8 +39,7 @@ class Payment {
 
   bool get isCard => method == PaymentMethod.card;
 
-  bool get isBankTransfer =>
-      method == PaymentMethod.bankTransfer;
+  bool get isBankTransfer => method == PaymentMethod.bankTransfer;
 
   bool get isCredit => method == PaymentMethod.credit;
 

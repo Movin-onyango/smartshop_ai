@@ -12,10 +12,7 @@ import '../../models/purchase.dart';
 /// • PurchaseDetailsScreen
 /// ---------------------------------------------------------------------------
 class SupplierCard extends StatelessWidget {
-  const SupplierCard({
-    super.key,
-    required this.purchase,
-  });
+  const SupplierCard({super.key, required this.purchase});
 
   final Purchase purchase;
 
@@ -25,40 +22,23 @@ class SupplierCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
-          crossAxisAlignment:
-              CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             //------------------------------------------------------------------
             // Title
             //------------------------------------------------------------------
-
-            Text(
-              'Supplier',
-              style: Theme.of(context)
-                  .textTheme
-                  .titleLarge,
-            ),
+            Text('Supplier', style: Theme.of(context).textTheme.titleLarge),
 
             const SizedBox(height: 20),
 
             //------------------------------------------------------------------
             // Supplier Name
             //------------------------------------------------------------------
-
             ListTile(
-              contentPadding:
-                  EdgeInsets.zero,
-              leading: const CircleAvatar(
-                child: Icon(
-                  Icons.business,
-                ),
-              ),
-              title: Text(
-                purchase.supplierName,
-              ),
-              subtitle: Text(
-                'Supplier ID: ${purchase.supplierId}',
-              ),
+              contentPadding: EdgeInsets.zero,
+              leading: const CircleAvatar(child: Icon(Icons.business)),
+              title: Text(purchase.supplierName),
+              subtitle: Text('Supplier ID: ${purchase.supplierId}'),
             ),
 
             const Divider(),
@@ -66,35 +46,28 @@ class SupplierCard extends StatelessWidget {
             //------------------------------------------------------------------
             // Purchase Number
             //------------------------------------------------------------------
-
             _InfoRow(
               icon: Icons.receipt_long,
               label: 'Purchase No.',
-              value:
-                  purchase.purchaseNumber,
+              value: purchase.purchaseNumber,
             ),
 
             //------------------------------------------------------------------
             // Total Items
             //------------------------------------------------------------------
-
             _InfoRow(
               icon: Icons.inventory_2,
               label: 'Products',
-              value:
-                  purchase.totalItems.toString(),
+              value: purchase.totalItems.toString(),
             ),
 
             //------------------------------------------------------------------
             // Total Quantity
             //------------------------------------------------------------------
-
             _InfoRow(
               icon: Icons.shopping_cart,
               label: 'Total Quantity',
-              value: purchase
-                  .totalQuantity
-                  .toStringAsFixed(2),
+              value: purchase.totalQuantity.toStringAsFixed(2),
             ),
           ],
         ),
@@ -120,30 +93,16 @@ class _InfoRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:
-          const EdgeInsets.symmetric(
-        vertical: 8,
-      ),
+      padding: const EdgeInsets.symmetric(vertical: 8),
       child: Row(
         children: [
-          Icon(
-            icon,
-            size: 20,
-          ),
+          Icon(icon, size: 20),
 
           const SizedBox(width: 12),
 
-          Expanded(
-            child: Text(label),
-          ),
+          Expanded(child: Text(label)),
 
-          Text(
-            value,
-            style: const TextStyle(
-              fontWeight:
-                  FontWeight.w600,
-            ),
-          ),
+          Text(value, style: const TextStyle(fontWeight: FontWeight.w600)),
         ],
       ),
     );

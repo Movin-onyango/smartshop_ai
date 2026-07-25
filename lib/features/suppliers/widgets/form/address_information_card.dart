@@ -36,15 +36,11 @@ class AddressInformationCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
-          crossAxisAlignment:
-              CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-
             Text(
               'Address Information',
-              style: Theme.of(context)
-                  .textTheme
-                  .titleLarge,
+              style: Theme.of(context).textTheme.titleLarge,
             ),
 
             const SizedBox(height: 20),
@@ -52,7 +48,6 @@ class AddressInformationCard extends StatelessWidget {
             //------------------------------------------------------------------
             // Country
             //------------------------------------------------------------------
-
             TextFormField(
               controller: countryController,
               decoration: const InputDecoration(
@@ -60,8 +55,7 @@ class AddressInformationCard extends StatelessWidget {
                 prefixIcon: Icon(Icons.public),
                 border: OutlineInputBorder(),
               ),
-              textCapitalization:
-                  TextCapitalization.words,
+              textCapitalization: TextCapitalization.words,
             ),
 
             const SizedBox(height: 16),
@@ -69,17 +63,14 @@ class AddressInformationCard extends StatelessWidget {
             //------------------------------------------------------------------
             // County
             //------------------------------------------------------------------
-
             TextFormField(
               controller: countyController,
               decoration: const InputDecoration(
                 labelText: 'County / State',
-                prefixIcon:
-                    Icon(Icons.map_outlined),
+                prefixIcon: Icon(Icons.map_outlined),
                 border: OutlineInputBorder(),
               ),
-              textCapitalization:
-                  TextCapitalization.words,
+              textCapitalization: TextCapitalization.words,
             ),
 
             const SizedBox(height: 16),
@@ -87,17 +78,14 @@ class AddressInformationCard extends StatelessWidget {
             //------------------------------------------------------------------
             // City
             //------------------------------------------------------------------
-
             TextFormField(
               controller: cityController,
               decoration: const InputDecoration(
                 labelText: 'City / Town',
-                prefixIcon:
-                    Icon(Icons.location_city),
+                prefixIcon: Icon(Icons.location_city),
                 border: OutlineInputBorder(),
               ),
-              textCapitalization:
-                  TextCapitalization.words,
+              textCapitalization: TextCapitalization.words,
             ),
 
             const SizedBox(height: 16),
@@ -105,14 +93,11 @@ class AddressInformationCard extends StatelessWidget {
             //------------------------------------------------------------------
             // Postal Code
             //------------------------------------------------------------------
-
             TextFormField(
-              controller:
-                  postalCodeController,
+              controller: postalCodeController,
               decoration: const InputDecoration(
                 labelText: 'Postal Code',
-                prefixIcon:
-                    Icon(Icons.markunread_mailbox),
+                prefixIcon: Icon(Icons.markunread_mailbox),
                 border: OutlineInputBorder(),
               ),
             ),
@@ -122,13 +107,11 @@ class AddressInformationCard extends StatelessWidget {
             //------------------------------------------------------------------
             // Street
             //------------------------------------------------------------------
-
             TextFormField(
               controller: streetController,
               decoration: const InputDecoration(
                 labelText: 'Street',
-                prefixIcon:
-                    Icon(Icons.signpost_outlined),
+                prefixIcon: Icon(Icons.signpost_outlined),
                 border: OutlineInputBorder(),
               ),
             ),
@@ -138,13 +121,11 @@ class AddressInformationCard extends StatelessWidget {
             //------------------------------------------------------------------
             // Building
             //------------------------------------------------------------------
-
             TextFormField(
               controller: buildingController,
               decoration: const InputDecoration(
                 labelText: 'Building',
-                prefixIcon:
-                    Icon(Icons.apartment),
+                prefixIcon: Icon(Icons.apartment),
                 border: OutlineInputBorder(),
               ),
             ),
@@ -154,15 +135,12 @@ class AddressInformationCard extends StatelessWidget {
             //------------------------------------------------------------------
             // Landmark
             //------------------------------------------------------------------
-
             TextFormField(
               controller: landmarkController,
               decoration: const InputDecoration(
                 labelText: 'Landmark',
-                hintText:
-                    'Optional nearby landmark',
-                prefixIcon:
-                    Icon(Icons.place_outlined),
+                hintText: 'Optional nearby landmark',
+                prefixIcon: Icon(Icons.place_outlined),
                 border: OutlineInputBorder(),
               ),
             ),

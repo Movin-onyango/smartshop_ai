@@ -15,10 +15,7 @@ import '../../models/category.dart';
 /// • Average Selling Price
 /// ---------------------------------------------------------------------------
 class CategoryStatisticsSection extends StatelessWidget {
-  const CategoryStatisticsSection({
-    super.key,
-    required this.category,
-  });
+  const CategoryStatisticsSection({super.key, required this.category});
 
   final Category category;
 
@@ -30,10 +27,7 @@ class CategoryStatisticsSection extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'Statistics',
-              style: Theme.of(context).textTheme.titleLarge,
-            ),
+            Text('Statistics', style: Theme.of(context).textTheme.titleLarge),
 
             const SizedBox(height: 20),
 
@@ -105,9 +99,7 @@ class _StatisticTile extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        border: Border.all(
-          color: Theme.of(context).dividerColor,
-        ),
+        border: Border.all(color: Theme.of(context).dividerColor),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Column(
@@ -116,10 +108,7 @@ class _StatisticTile extends StatelessWidget {
 
           const SizedBox(height: 12),
 
-          Text(
-            value,
-            style: Theme.of(context).textTheme.titleLarge,
-          ),
+          Text(value, style: Theme.of(context).textTheme.titleLarge),
 
           const SizedBox(height: 6),
 

@@ -106,8 +106,7 @@ class AppTextField extends StatelessWidget {
 
         hintText: hint,
 
-        prefixIcon:
-            icon == null ? null : Icon(icon),
+        prefixIcon: icon == null ? null : Icon(icon),
 
         prefixText: prefixText,
 

@@ -19,10 +19,7 @@ import '../providers/inventory_provider.dart';
 /// • Navigate to Stock Adjustment
 /// ---------------------------------------------------------------------------
 class InventoryDetailsScreen extends StatelessWidget {
-  const InventoryDetailsScreen({
-    super.key,
-    required this.inventoryId,
-  });
+  const InventoryDetailsScreen({super.key, required this.inventoryId});
 
   final String inventoryId;
 
@@ -33,9 +30,7 @@ class InventoryDetailsScreen extends StatelessWidget {
 
     if (item == null) {
       return const Scaffold(
-        body: Center(
-          child: Text('Inventory item not found'),
-        ),
+        body: Center(child: Text('Inventory item not found')),
       );
     }
 
@@ -45,9 +40,7 @@ class InventoryDetailsScreen extends StatelessWidget {
         IconButton(
           icon: const Icon(Icons.edit),
           onPressed: () {
-            context.push(
-              '${AppRoutes.inventory}/${item.id}/adjust',
-            );
+            context.push('${AppRoutes.inventory}/${item.id}/adjust');
           },
         ),
       ],
@@ -56,7 +49,6 @@ class InventoryDetailsScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-
             Card(
               child: Padding(
                 padding: const EdgeInsets.all(20),
@@ -64,31 +56,23 @@ class InventoryDetailsScreen extends StatelessWidget {
                   children: [
                     const CircleAvatar(
                       radius: 28,
-                      child: Icon(
-                        Icons.inventory_2_outlined,
-                        size: 28,
-                      ),
+                      child: Icon(Icons.inventory_2_outlined, size: 28),
                     ),
 
                     const SizedBox(width: 16),
 
                     Expanded(
                       child: Column(
-                        crossAxisAlignment:
-                            CrossAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
                             item.product.name,
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleLarge,
+                            style: Theme.of(context).textTheme.titleLarge,
                           ),
 
                           const SizedBox(height: 6),
 
-                          Text(
-                            item.product.category,
-                          ),
+                          Text(item.product.category),
                         ],
                       ),
                     ),
@@ -104,16 +88,9 @@ class InventoryDetailsScreen extends StatelessWidget {
                 padding: const EdgeInsets.all(20),
                 child: Column(
                   children: [
+                    _infoRow('Current Stock', '${item.quantity}'),
 
-                    _infoRow(
-                      'Current Stock',
-                      '${item.quantity}',
-                    ),
-
-                    _infoRow(
-                      'Reorder Level',
-                      '${item.reorderLevel}',
-                    ),
+                    _infoRow('Reorder Level', '${item.reorderLevel}'),
 
                     _infoRow(
                       'Buying Price',
@@ -139,7 +116,6 @@ class InventoryDetailsScreen extends StatelessWidget {
                       'Expected Profit',
                       'KSh ${item.expectedProfit.toStringAsFixed(2)}',
                     ),
-
                   ],
                 ),
               ),
@@ -151,14 +127,10 @@ class InventoryDetailsScreen extends StatelessWidget {
               width: double.infinity,
               child: FilledButton.icon(
                 onPressed: () {
-                  context.push(
-                    '${AppRoutes.inventory}/${item.id}/adjust',
-                  );
+                  context.push('${AppRoutes.inventory}/${item.id}/adjust');
                 },
                 icon: const Icon(Icons.edit_note),
-                label: const Text(
-                  'Adjust Stock',
-                ),
+                label: const Text('Adjust Stock'),
               ),
             ),
           ],
@@ -167,25 +139,13 @@ class InventoryDetailsScreen extends StatelessWidget {
     );
   }
 
-  static Widget _infoRow(
-    String title,
-    String value,
-  ) {
+  static Widget _infoRow(String title, String value) {
     return Padding(
-      padding: const EdgeInsets.symmetric(
-        vertical: 10,
-      ),
+      padding: const EdgeInsets.symmetric(vertical: 10),
       child: Row(
         children: [
-          Expanded(
-            child: Text(title),
-          ),
-          Text(
-            value,
-            style: const TextStyle(
-              fontWeight: FontWeight.bold,
-            ),
-          ),
+          Expanded(child: Text(title)),
+          Text(value, style: const TextStyle(fontWeight: FontWeight.bold)),
         ],
       ),
     );

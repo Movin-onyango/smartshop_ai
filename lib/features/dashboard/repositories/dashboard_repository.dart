@@ -6,9 +6,8 @@ import '../services/dashboard_service.dart';
 /// The provider talks only to the repository.
 /// The repository decides where the data comes from.
 class DashboardRepository {
-  DashboardRepository({
-    DashboardService? service,
-  }) : _service = service ?? const DashboardService();
+  DashboardRepository({DashboardService? service})
+    : _service = service ?? const DashboardService();
 
   final DashboardService _service;
 

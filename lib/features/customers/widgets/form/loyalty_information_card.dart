@@ -10,10 +10,7 @@ import '../../models/loyalty_account.dart';
 /// Configure customer loyalty membership.
 /// ---------------------------------------------------------------------------
 class LoyaltyInformationCard extends StatelessWidget {
-  const LoyaltyInformationCard({
-    super.key,
-    required this.controller,
-  });
+  const LoyaltyInformationCard({super.key, required this.controller});
 
   final CustomerFormController controller;
 
@@ -23,23 +20,18 @@ class LoyaltyInformationCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
-          crossAxisAlignment:
-              CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               'Loyalty Program',
-              style: Theme.of(context)
-                  .textTheme
-                  .titleLarge,
+              style: Theme.of(context).textTheme.titleLarge,
             ),
 
             const SizedBox(height: 24),
 
             SwitchListTile(
               contentPadding: EdgeInsets.zero,
-              title: const Text(
-                'Enroll in Loyalty Program',
-              ),
+              title: const Text('Enroll in Loyalty Program'),
               subtitle: const Text(
                 'Customer earns reward points from purchases.',
               ),
@@ -53,26 +45,18 @@ class LoyaltyInformationCard extends StatelessWidget {
               const SizedBox(height: 24),
 
               TextFormField(
-                controller:
-                    controller
-                        .loyaltyPointsController,
-                keyboardType:
-                    TextInputType.number,
-                decoration:
-                    const InputDecoration(
-                  labelText:
-                      'Starting Points',
-                  prefixIcon:
-                      Icon(Icons.stars),
+                controller: controller.loyaltyPointsController,
+                keyboardType: TextInputType.number,
+                decoration: const InputDecoration(
+                  labelText: 'Starting Points',
+                  prefixIcon: Icon(Icons.stars),
                 ),
                 validator: (value) {
-                  if (value == null ||
-                      value.isEmpty) {
+                  if (value == null || value.isEmpty) {
                     return null;
                   }
 
-                  if (int.tryParse(value) ==
-                      null) {
+                  if (int.tryParse(value) == null) {
                     return 'Enter a valid number';
                   }
 
@@ -82,34 +66,21 @@ class LoyaltyInformationCard extends StatelessWidget {
 
               const SizedBox(height: 24),
 
-              DropdownButtonFormField<
-                  LoyaltyTier>(
-                initialValue:
-                    controller.loyaltyTier,
-                decoration:
-                    const InputDecoration(
-                  labelText:
-                      'Membership Tier',
-                  prefixIcon:
-                      Icon(Icons.workspace_premium),
+              DropdownButtonFormField<LoyaltyTier>(
+                initialValue: controller.loyaltyTier,
+                decoration: const InputDecoration(
+                  labelText: 'Membership Tier',
+                  prefixIcon: Icon(Icons.workspace_premium),
                 ),
-                items:
-                    LoyaltyTier.values.map(
-                  (tier) {
-                    return DropdownMenuItem(
-                      value: tier,
-                      child: Text(
-                        tier.name
-                            .toUpperCase(),
-                      ),
-                    );
-                  },
-                ).toList(),
+                items: LoyaltyTier.values.map((tier) {
+                  return DropdownMenuItem(
+                    value: tier,
+                    child: Text(tier.name.toUpperCase()),
+                  );
+                }).toList(),
                 onChanged: (value) {
                   if (value != null) {
-                    controller.setLoyaltyTier(
-                      value,
-                    );
+                    controller.setLoyaltyTier(value);
                   }
                 },
               ),

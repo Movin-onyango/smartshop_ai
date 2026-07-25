@@ -15,17 +15,13 @@ import '../widgets/form/customer_form.dart';
 /// Screen for creating a new customer.
 /// ---------------------------------------------------------------------------
 class AddCustomerScreen extends StatefulWidget {
-  const AddCustomerScreen({
-    super.key,
-  });
+  const AddCustomerScreen({super.key});
 
   @override
-  State<AddCustomerScreen> createState() =>
-      _AddCustomerScreenState();
+  State<AddCustomerScreen> createState() => _AddCustomerScreenState();
 }
 
-class _AddCustomerScreenState
-    extends State<AddCustomerScreen> {
+class _AddCustomerScreenState extends State<AddCustomerScreen> {
   late final CustomerFormController controller;
 
   @override
@@ -48,9 +44,7 @@ class _AddCustomerScreenState
 
     final customer = controller.toCustomer();
 
-    context
-        .read<CustomerProvider>()
-        .addCustomer(customer);
+    context.read<CustomerProvider>().addCustomer(customer);
 
     Navigator.pop(context);
   }
@@ -59,10 +53,7 @@ class _AddCustomerScreenState
   Widget build(BuildContext context) {
     return SmartScaffold(
       title: 'Add Customer',
-      body: CustomerForm(
-        controller: controller,
-        onSave: _saveCustomer,
-      ),
+      body: CustomerForm(controller: controller, onSave: _saveCustomer),
     );
   }
 }

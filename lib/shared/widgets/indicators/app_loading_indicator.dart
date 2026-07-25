@@ -2,10 +2,7 @@ import 'package:flutter/material.dart';
 
 /// Standard loading indicator for SmartShop AI.
 class AppLoadingIndicator extends StatelessWidget {
-  const AppLoadingIndicator({
-    super.key,
-    this.message,
-  });
+  const AppLoadingIndicator({super.key, this.message});
 
   final String? message;
 
@@ -16,10 +13,7 @@ class AppLoadingIndicator extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           const CircularProgressIndicator(),
-          if (message != null) ...[
-            const SizedBox(height: 16),
-            Text(message!),
-          ],
+          if (message != null) ...[const SizedBox(height: 16), Text(message!)],
         ],
       ),
     );
