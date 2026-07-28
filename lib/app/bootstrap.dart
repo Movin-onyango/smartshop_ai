@@ -11,6 +11,9 @@ import '../features/suppliers/providers/supplier_provider.dart';
 import '../features/purchases/providers/purchase_provider.dart';
 import '../features/expenses/providers/expense_provider.dart';
 import '/features/reports/providers/report_provider.dart';
+import '/features/settings/providers/settings_provider.dart';
+import '/features/notifications/providers/notification_provider.dart';
+
 
 /// Bootstraps the SmartShop AI application.
 ///
@@ -58,6 +61,10 @@ Future<void> bootstrap() async {
         ChangeNotifierProvider(create: (_) => PurchaseProvider()),
         ChangeNotifierProvider(create: (_) => ExpenseProvider()),
         ChangeNotifierProvider(create: (_) => ReportProvider()),
+        ChangeNotifierProvider(create: (_) => SettingsProvider()),
+        ChangeNotifierProvider(create: (_) => NotificationProvider(),
+),
+
       ],
       child: const SmartShopApp(),
     ),

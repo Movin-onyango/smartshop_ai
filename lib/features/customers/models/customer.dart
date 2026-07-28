@@ -18,7 +18,7 @@ class Customer {
     this.email,
     this.address,
     this.notes,
-
+    
     this.creditLimit = 0,
 
     CustomerStatistics? statistics,
@@ -27,7 +27,7 @@ class Customer {
     this.createdAt,
     this.updatedAt,
   }) : statistics = statistics ?? const CustomerStatistics(),
-       loyaltyAccount = loyaltyAccount;
+       this.loyaltyAccount = loyaltyAccount;
 
   //---------------------------------------------------------------------------
   // Identity

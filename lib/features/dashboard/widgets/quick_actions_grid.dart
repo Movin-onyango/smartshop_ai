@@ -5,7 +5,9 @@ import '../../../app/router/app_routes.dart';
 import 'quick_action_card.dart';
 
 class QuickActionsGrid extends StatelessWidget {
-  const QuickActionsGrid({super.key});
+  const QuickActionsGrid({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -64,19 +66,10 @@ class QuickActionsGrid extends StatelessWidget {
 
         QuickActionCard(
           title: 'Purchases',
-          icon: Icons.shopping_bag,
+          icon: Icons.shopping_bag_rounded,
           color: Colors.purple,
           onTap: () {
             context.push(AppRoutes.purchases);
-          },
-        ),
-
-        QuickActionCard(
-          title: 'Expenses',
-          icon: Icons.receipt_long,
-          color: Colors.red,
-          onTap: () {
-            context.push(AppRoutes.expenses);
           },
         ),
 
@@ -90,11 +83,38 @@ class QuickActionsGrid extends StatelessWidget {
         ),
 
         QuickActionCard(
+          title: 'Expenses',
+          icon: Icons.receipt_long_rounded,
+          color: Colors.red,
+          onTap: () {
+            context.push(AppRoutes.expenses);
+          },
+        ),
+
+        QuickActionCard(
           title: 'Reports',
-          icon: Icons.analytics,
+          icon: Icons.analytics_rounded,
           color: Colors.deepPurple,
           onTap: () {
             context.push(AppRoutes.reports);
+          },
+        ),
+
+        QuickActionCard(
+          title: 'Notifications',
+          icon: Icons.notifications_active_rounded,
+          color: Colors.amber,
+          onTap: () {
+            context.push(AppRoutes.notifications);
+          },
+        ),
+
+        QuickActionCard(
+          title: 'Settings',
+          icon: Icons.settings_rounded,
+          color: Colors.blueGrey,
+          onTap: () {
+            context.push(AppRoutes.settings);
           },
         ),
       ],
